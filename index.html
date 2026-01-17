@@ -10,7 +10,6 @@
         :root { --p-blue: #38bdf8; --p-purple: #a78bfa; --bg: #030508; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; overflow-x: hidden; }
         
-        /* Fixed Header from Screenshot 19:39:46 */
         .glass-nav { 
             background: rgba(255, 255, 255, 0.02); 
             backdrop-filter: blur(25px); 
@@ -20,7 +19,6 @@
             max-width: 960px;
         }
 
-        /* Typography Fixes */
         .hero-title { font-size: 8rem; font-weight: 800; line-height: 0.8; letter-spacing: -0.05em; }
         .spark-text { 
             background: linear-gradient(to right, #a78bfa, #38bdf8); 
@@ -28,22 +26,23 @@
             -webkit-text-fill-color: transparent; 
         }
 
-        /* Architecture Badges */
         .arch-badge { font-size: 8px; font-weight: 800; padding: 4px 12px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
         .badge-x64 { background: rgba(56, 189, 248, 0.1); color: var(--p-blue); border: 1px solid rgba(56, 189, 248, 0.2); }
         .badge-x86 { background: rgba(167, 139, 250, 0.1); color: var(--p-purple); border: 1px solid rgba(167, 139, 250, 0.2); }
 
-        /* Button Refinement */
         .btn-whirly { background: #0ea5e9; color: #000; font-weight: 700; padding: 16px 36px; border-radius: 10px; transition: 0.3s; font-size: 14px; }
         .btn-mission { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #fff; font-weight: 600; padding: 16px 36px; border-radius: 10px; transition: 0.3s; font-size: 14px; }
-        .btn-whirly:hover { background: #38bdf8; transform: scale(1.02); }
 
+        /* Tables */
         .obsidian-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
-        .obsidian-table td { background: rgba(255,255,255,0.02); padding: 1rem; font-size: 11px; border-top: 1px solid rgba(255,255,255,0.03); }
+        .obsidian-table th { font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--p-blue); padding: 1rem; text-align: left; opacity: 0.6; }
+        .obsidian-table td { background: rgba(255,255,255,0.02); padding: 1.25rem 1rem; font-size: 11px; border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .obsidian-table tr td:first-child { border-left: 1px solid rgba(255,255,255,0.03); border-radius: 12px 0 0 12px; font-weight: 800; }
+        .obsidian-table tr td:last-child { border-right: 1px solid rgba(255,255,255,0.03); border-radius: 0 12px 12px 0; }
 
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.5s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body onload="initApp()">
@@ -64,7 +63,6 @@
                 <a href="https://github.com/22soulfan/WhirlyOS" target="_blank" class="opacity-40 hover:opacity-100 transition">
                     <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
-                <span class="text-xs opacity-30">🌙</span>
             </div>
         </div>
     </header>
@@ -91,17 +89,17 @@
             <div class="overflow-x-auto">
                 <table class="obsidian-table">
                     <thead>
-                        <tr class="text-[9px] uppercase tracking-widest opacity-40 text-left">
-                            <th class="p-4">Edition</th><th class="p-4">Environment</th><th class="p-4">Inspiration</th><th class="p-4">Specs</th>
+                        <tr>
+                            <th>Edition</th><th>Environment</th><th>Inspired By</th><th>Notes</th><th>Specs</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td><b>SoulFrame</b></td><td>GNOME</td><td>Soul (Dreamlike UI)</td><td>2GB RAM / 20GB Disk</td></tr>
-                        <tr><td><b>MeiLite</b></td><td>XFCE</td><td>Turning Red (Retro 2002)</td><td>1GB RAM / 10GB Disk</td></tr>
-                        <tr><td><b>ElementalDesk</b></td><td>KDE Plasma</td><td>Elemental (Vibrant)</td><td>4GB RAM / 25GB Disk</td></tr>
-                        <tr><td><b>NotebookOS</b></td><td>Openbox</td><td>Luca (Seaside Minimal)</td><td>512MB RAM / 5GB Disk</td></tr>
-                        <tr><td><b>QuestLand</b></td><td>Budgie</td><td>Onward (Adventurous)</td><td>2GB RAM / 15GB Disk</td></tr>
-                        <tr><td><b>IntellSpace</b></td><td>LXQt</td><td>Wall·E (Futuristic)</td><td>1GB RAM / 8GB Disk</td></tr>
+                        <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>The dream interface feels like perfect.</td><td>2 GB RAM, 20 GB disk</td></tr>
+                        <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>Uses Xfce to give the olden times feel (2002).</td><td>1 GB RAM, 10 GB disk</td></tr>
+                        <tr><td>ElementalDesk</td><td>KDE Plasma</td><td>Elemental</td><td>Classical elements fit perfectly in Plasma.</td><td>4 GB RAM, 25 GB disk</td></tr>
+                        <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>Seaside calm; BunsenLabs interface into WhirlyOS.</td><td>512 MB RAM, 5 GB disk</td></tr>
+                        <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>Adventurous, magical modern desktop for fantasy fans.</td><td>2 GB RAM, 15 GB disk</td></tr>
+                        <tr><td>IntellSpace</td><td>LXQt</td><td>Wall·E</td><td>LXQt brings the Windows 7 interface back to life.</td><td>1 GB RAM, 8 GB disk</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -109,19 +107,31 @@
     </main>
 
     <main id="about" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
+        <div class="max-w-5xl mx-auto">
             <h2 class="text-3xl font-black italic uppercase mb-12">🎯 Project <span class="text-sky-400">Goals</span></h2>
-            <div class="grid gap-4 mb-20">
-                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-sm">🧠 <b>Inspire creativity</b> through themed desktop environments based on beloved films.</div>
-                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-sm">👨‍👩‍👧‍👦 <b>Support families</b> with built-in parental controls and screen time tools.</div>
-                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-sm">💡 <b>Make computing magical</b> with custom UI elements, mascots, and cinematic flair.</div>
-                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-sm">🐧 <b>Revive old hardware</b> with lightweight editions for low specs.</div>
+            <div class="grid md:grid-cols-2 gap-4 mb-24">
+                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-xs">🧠 <b>Inspire creativity</b> through themed desktops based on animated films.</div>
+                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-xs">👨‍👩‍👧‍👦 <b>Support families</b> with built-in parental controls and screen tools.</div>
+                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-xs">💡 <b>Make computing magical</b> with custom UI elements and cinematic flair.</div>
+                <div class="bg-white/5 p-6 rounded-xl border border-white/5 text-xs">🐧 <b>Revive old hardware</b> with lightweight editions for low specs.</div>
             </div>
-            
-            <h2 class="text-3xl font-black italic uppercase mb-8">📅 Timeline</h2>
-            <div class="bg-white/5 p-8 rounded-xl border border-white/5">
-                <p class="text-xs font-bold uppercase text-sky-400 mb-2">Jan 2025: WhirlyOS Building</p>
-                <p class="text-sm opacity-50">Preparing to build WhirlyOS via Debian Linux. Creating custom assets. No releases as of 2026.</p>
+
+            <h2 class="text-3xl font-black italic uppercase mb-10">📅 Development <span class="text-sky-400">Timeline</span></h2>
+            <div class="overflow-x-auto">
+                <table class="obsidian-table">
+                    <thead>
+                        <tr class="text-[9px] uppercase tracking-widest opacity-40">
+                            <th>Month</th><th>Phase</th><th>Platform</th><th>Key Developments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Jan 2025</td><td>WhirlyOS Building</td><td>Debian Linux</td>
+                            <td>Preparing to build via Debian Linux; Asset creation phase.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="mt-6 text-[10px] font-black uppercase opacity-30 tracking-[0.4em]">Note: No releases have been made as of 2026.</p>
             </div>
         </div>
     </main>
