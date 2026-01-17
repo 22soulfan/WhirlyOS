@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | Vision 2026</title>
+    <title>WhirlyOS | Find Your Spark</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --p-blue: #38bdf8; --p-purple: #a855f7; --p-orange: #fb923c; --p-red: #ef4444; --bg: #05070a; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
@@ -13,14 +13,14 @@
         
         /* 🚫 UNMOVABLE NAVIGATION */
         nav { position: fixed !important; top: 1.5rem; left: 50%; transform: translateX(-50%); width: 94%; z-index: 9999; }
-        .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; }
+        .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; cursor: pointer; }
         .nav-link:hover { opacity: 1; color: var(--p-blue); }
 
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        .btn-stay-tuned { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); cursor: not-allowed; transition: 0.3s; }
+        .btn-stay-tuned { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.3); cursor: not-allowed; }
         .rox-fab { position: fixed; bottom: 2rem; right: 2rem; background: var(--p-red); padding: 12px 24px; border-radius: 100px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; z-index: 10000; box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4); }
     </style>
 </head>
@@ -29,7 +29,7 @@
     <nav class="liquid-panel px-8 py-4 flex justify-between items-center shadow-2xl">
         <div class="flex items-center gap-8">
             <span class="text-xl font-black italic tracking-tighter">
-                <span class="text-sky-400">MYRIAD</span><span class="text-purple-500">PROJECT</span>
+                <span class="text-sky-400">WHIRLY</span><span class="text-white">OS</span>
             </span>
             <div class="hidden lg:flex gap-6">
                 <button onclick="showPage('home')" class="nav-link">Dashboard</button>
@@ -45,19 +45,19 @@
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-6xl font-black italic uppercase tracking-tighter mb-12 text-center">Doing the <span class="text-sky-400">Impossible.</span></h1>
+            <h1 class="text-6xl font-black italic uppercase tracking-tighter mb-12 text-center">The <span class="text-sky-400">WhirlyOS</span> Project</h1>
             <div class="liquid-panel p-12 text-[13px] leading-relaxed opacity-80 font-medium space-y-1">
-                <p>1. The Myriad Project is a journey through a countless or extremely great number of possibilities.</p>
-                <p>2. Defined by Oxford as a multitude or a unit of ten thousand, our mission is vast.</p>
-                <p>3. WhirlyOS sits at the heart of this vision, wrapping Linux in a playful, ADHD-aware shell.</p>
-                <p>4. We believe computing should be magical, filled with cinematic flair and childhood wonder.</p>
+                <p>1. WhirlyOS is a journey through a countless or extremely great number of possibilities.</p>
+                <p>2. Defined by Oxford as a "myriad"—a multitude or a unit of ten thousand computers.</p>
+                <p>3. We wrap a Linux base in a playful, ADHD-aware shell designed for clarity.</p>
+                <p>4. We believe computing should be magical, filled with cinematic flair and wonder.</p>
                 <p>5. Inspired by Pixar's "Soul" (2020), our motto is: Find your spark. Find your way.</p>
-                <p>6. This is not just an OS; it is a tool for users to discover their true passion.</p>
-                <p>7. We prioritize health through built-in screen time limits and distraction-free design.</p>
+                <p>6. WhirlyOS is not just an operating system; it is a tool to discover your true passion.</p>
+                <p>7. We prioritize digital health through built-in screen time limits and distraction-free design.</p>
                 <p>8. The road has been difficult, with many failed attempts using 0x OS Builder.</p>
                 <p>9. But we do not stop; we are now preparing for rigorous testing with Cubic.</p>
-                <p>10. MyriadOS serves as our flagship flagship proprietary fork for high-performance shells.</p>
-                <p>11. openMyriad offers an open-source alternative for those who believe in total transparency.</p>
+                <p>10. WhirlyOS remains our central vision for a cinematic, educational desktop experience.</p>
+                <p>11. openMyriad offers an open-source alternative for those who believe in transparency.</p>
                 <p>12. Communiverse11 breaks the mold as our anti-Microsoft protocol for global identity.</p>
                 <p>13. ChromMyriadOS brings the best of the web with a focus on seamless browser learning.</p>
                 <p>14. Every edition is optimized for i386 compatibility to revive legacy hardware.</p>
@@ -73,27 +73,18 @@
 
     <main id="about" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-8 border-l-8 border-purple-500 pl-6 text-purple-400">WonderRepo History</h2>
+            <h2 class="text-4xl font-black italic uppercase mb-8 border-l-8 border-purple-500 pl-6 text-purple-400">WonderRepo & Origins</h2>
             <div class="liquid-panel p-10 space-y-6 text-sm opacity-70">
-                <p>Copyright Notice: I forked this repository from hirohamada2014, who is the original owner of WhirlyOS.</p>
-                <p>hirohamada2014 was my old GitHub account; I moved to a new one and forked this repo to continue the vision.</p>
-                <div class="grid md:grid-cols-2 gap-4">
-                    <div class="p-6 bg-orange-500/5 rounded-2xl border border-orange-500/20">
-                        <h4 class="font-black text-orange-400 uppercase text-xs mb-2">The Mission</h4>
-                        <p class="text-[11px]">Help users discover passion through technology.</p>
-                    </div>
-                    <div class="p-6 bg-blue-500/5 rounded-2xl border border-blue-500/20">
-                        <h4 class="font-black text-sky-400 uppercase text-xs mb-2">The Base</h4>
-                        <p class="text-[11px]">Debian Stable: Rock-solid reliability and APT support.</p>
-                    </div>
-                </div>
+                <p>A curated repository for building WhirlyOS Linux, based on Debian.</p>
+                <p><b>Copyright Notice:</b> I forked this repository from hirohamada2014, the original owner. hirohamada2014 was my old GitHub account; I moved to a new one and forked this repo to keep the spark alive.</p>
+                <p>WhirlyOS wraps Linux in a playful shell—complete with simple interfaces and seamless access to browser-based learning tools.</p>
             </div>
         </div>
     </main>
 
     <main id="downloads" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-12 text-center">System <span class="text-red-500">Vault</span></h2>
+            <h2 class="text-4xl font-black italic uppercase mb-12 text-center">ISO <span class="text-red-500">Selection</span></h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="liquid-panel p-8 hover:border-sky-400 transition">
                     <h3 class="text-xl font-black mb-1">WhirlyOS</h3>
@@ -101,23 +92,18 @@
                     <button class="w-full py-3 rounded-xl btn-stay-tuned text-[10px] font-black uppercase">Stay Tuned</button>
                 </div>
                 <div class="liquid-panel p-8 hover:border-purple-400 transition">
-                    <h3 class="text-xl font-black mb-1">MyriadOS</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Flagship NT Fork</p>
+                    <h3 class="text-xl font-black mb-1">openMyriad</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Open-Source Core</p>
                     <button class="w-full py-3 rounded-xl btn-stay-tuned text-[10px] font-black uppercase">Stay Tuned</button>
                 </div>
                 <div class="liquid-panel p-8 hover:border-orange-400 transition">
-                    <h3 class="text-xl font-black mb-1">openMyriad</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Open-Source Alternative</p>
-                    <button class="w-full py-3 rounded-xl btn-stay-tuned text-[10px] font-black uppercase">Stay Tuned</button>
-                </div>
-                <div class="liquid-panel p-8 hover:border-red-400 transition">
                     <h3 class="text-xl font-black mb-1">ChromMyriadOS</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Chromium-Based Learning</p>
+                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Browser-Based Shell</p>
                     <button class="w-full py-3 rounded-xl btn-stay-tuned text-[10px] font-black uppercase">Stay Tuned</button>
                 </div>
                 <div class="liquid-panel p-8 border-white/20">
-                    <h3 class="text-xl font-black mb-1">Communiverse11</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Anti-Microsoft Protocol</p>
+                    <h3 class="text-xl font-black mb-1 text-red-500">Communiverse11</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Global Identity Protocol</p>
                     <button class="w-full py-3 rounded-xl btn-stay-tuned text-[10px] font-black uppercase">Stay Tuned</button>
                 </div>
             </div>
@@ -128,30 +114,29 @@
         <div class="max-w-4xl mx-auto space-y-8">
             <h2 class="text-4xl font-black italic uppercase mb-8">Latest <span class="text-sky-400">Sparks</span></h2>
             <div class="liquid-panel p-8 border-l-4 border-sky-400">
-                <span class="text-[10px] font-bold opacity-30 uppercase">Jan 2025 - Phase 1</span>
-                <h4 class="text-xl font-bold mt-2">Initial Building Phase</h4>
-                <p class="text-xs opacity-60 mt-4">Preparing to build WhirlyOS via Debian. Creating assets for the cinematic shell.</p>
+                <span class="text-[10px] font-bold opacity-30 uppercase">Jan 2025</span>
+                <h4 class="text-xl font-bold mt-2">WhirlyOS Building Phase</h4>
+                <p class="text-xs opacity-60 mt-4 leading-relaxed">Preparing to build via Debian Linux and asset creation. No releases yet as of 2026.</p>
             </div>
-            <div class="liquid-panel p-8 border-l-4 border-red-400">
-                <span class="text-[10px] font-bold opacity-30 uppercase">Current Status</span>
-                <h4 class="text-xl font-bold mt-2">Cubic Testing</h4>
-                <p class="text-xs opacity-60 mt-4">Development is ongoing. ISO releases are pending.</p>
+            <div class="liquid-panel p-8 border-l-4 border-red-500">
+                <span class="text-[10px] font-bold opacity-30 uppercase">Status Update</span>
+                <h4 class="text-xl font-bold mt-2">The Cubic Move</h4>
+                <p class="text-xs opacity-60 mt-4">After attempts with 0x OS Builder, we are shifting focus to Cubic for ISO generation.</p>
             </div>
         </div>
     </main>
 
-    <div class="rox-fab" onclick="alert('WhirlyOS Rox Assistant Connecting...')">
-        Ask Rox
-    </div>
+    <div class="rox-fab" onclick="alert('WhirlyOS Rox Assistant Connecting...')">Ask Rox</div>
 
     <footer class="mt-20 py-20 bg-black/40 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 text-[11px] opacity-40 uppercase font-black">
-            <div>© 2026 Myriad Project</div>
-            <div>MIT License</div>
-            <div class="text-sky-400">Blue</div>
-            <div class="text-purple-500">Purple</div>
-            <div class="text-orange-400">Orange</div>
-            <div class="text-red-500">Red</div>
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center text-[10px] font-black opacity-30 uppercase tracking-[0.2em]">
+            <span>© 2026 WhirlyOS</span>
+            <div class="flex gap-4">
+                <span class="text-sky-400">Blue</span>
+                <span class="text-purple-500">Purple</span>
+                <span class="text-orange-400">Orange</span>
+                <span class="text-red-500">Red</span>
+            </div>
         </div>
     </footer>
 
