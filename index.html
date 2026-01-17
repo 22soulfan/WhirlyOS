@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhirlyOS | Decade LTS Edition</title>
+    <title>WhirlyOS | Creator Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -14,16 +14,14 @@
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Soul Assistant */
         .soul-fab { position: fixed; bottom: 2rem; right: 2rem; background: linear-gradient(135deg, #38bdf8, #a855f7); padding: 12px 24px; border-radius: 100px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; z-index: 10000; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4); border: 1px solid rgba(255,255,255,0.2); }
         
-        /* Goal Panels */
-        .panel-blue { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); }
-        .panel-purple { background: rgba(168, 85, 247, 0.05); border: 1px solid rgba(168, 85, 247, 0.2); }
-        .panel-orange { background: rgba(251, 146, 60, 0.05); border: 1px solid rgba(251, 146, 60, 0.2); }
-        
-        table { width: 100%; border-collapse: collapse; font-size: 11px; }
-        th { text-align: left; opacity: 0.4; text-transform: uppercase; padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        /* Blog Creator UI */
+        .add-post-btn { background: var(--p-orange); color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .add-post-btn:hover { transform: scale(1.1) rotate(90deg); }
+        .empty-state { border: 2px dashed rgba(255,255,255,0.1); border-radius: 2rem; padding: 4rem; text-align: center; }
     </style>
 </head>
 <body onload="initApp()">
@@ -33,102 +31,66 @@
             <span class="text-xl font-black italic tracking-tighter text-sky-400">WHIRLY<span class="text-white">OS</span></span>
             <div class="hidden lg:flex gap-6">
                 <button onclick="showPage('home')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Dashboard</button>
-                <button onclick="showPage('downloads')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">ISO Selection</button>
+                <button onclick="showPage('blog')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Sparks Feed</button>
             </div>
         </div>
-        <div class="text-[9px] font-bold opacity-40 tracking-widest uppercase bg-white/5 px-4 py-1 rounded-full">10-Year LTS Cycle</div>
+        <div class="flex items-center gap-4">
+            <div class="text-[9px] font-bold opacity-60 uppercase text-right">
+                <span class="block text-sky-400">Authenticated Owner</span>
+                22soulfan
+            </div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-400 to-purple-500 border border-white/20"></div>
+        </div>
     </nav>
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            
             <div class="mb-16">
-                <h1 class="text-7xl font-black italic uppercase leading-none mb-6">Built for the <br><span class="text-sky-400">Next Decade.</span></h1>
-                <p class="max-w-2xl text-sm leading-relaxed opacity-70">
-                    WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and seamless access to browser-based learning tools. Every 10 years, a new Long Term Support (LTS) version is released to ensure your hardware stays magical and distraction-free.
-                </p>
+                <h1 class="text-6xl font-black italic uppercase leading-tight mb-4">Finding the <span class="text-sky-400">Spark.</span></h1>
+                <p class="max-w-2xl text-sm opacity-60">WhirlyOS is an ADHD-aware Linux shell built for the next decade. Every 10 years, we release an LTS version to keep your hardware magical.</p>
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                <div class="liquid-panel p-8 panel-blue">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="liquid-panel p-8 bg-sky-500/5 border-sky-500/20">
                     <span class="text-2xl">🧠</span>
                     <h4 class="font-black uppercase text-xs mt-4 mb-2">Inspire Creativity</h4>
-                    <p class="text-[11px] opacity-60">Themed desktop environments based on beloved animated films to spark wonder.</p>
+                    <p class="text-[11px] opacity-60">Themed desktops based on animated films.</p>
                 </div>
-                <div class="liquid-panel p-8 panel-purple">
+                <div class="liquid-panel p-8 bg-purple-500/5 border-purple-500/20">
                     <span class="text-2xl">👨‍👩‍👧‍👦</span>
                     <h4 class="font-black uppercase text-xs mt-4 mb-2">Support Families</h4>
-                    <p class="text-[11px] opacity-60">Built-in parental controls and screen time tools to keep users healthy and focused.</p>
+                    <p class="text-[11px] opacity-60">Parental controls and screen time tools.</p>
                 </div>
-                <div class="liquid-panel p-8 panel-orange">
-                    <span class="text-2xl">💡</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Magical Computing</h4>
-                    <p class="text-[11px] opacity-60">Custom UI elements, mascots, and cinematic flair that make tech feel alive.</p>
-                </div>
-                <div class="liquid-panel p-8 panel-orange">
-                    <span class="text-2xl">🐧</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Revive Hardware</h4>
-                    <p class="text-[11px] opacity-60">Lightweight i386 editions that run smoothly on low-spec legacy machines.</p>
-                </div>
-                <div class="liquid-panel p-8 panel-blue">
-                    <span class="text-2xl">🎨</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Celebrate Diversity</h4>
-                    <p class="text-[11px] opacity-60">Design and UX that reflects emotion and character, just like Pixar’s worlds.</p>
-                </div>
-                <div class="liquid-panel p-8 panel-purple">
+                <div class="liquid-panel p-8 bg-orange-500/5 border-orange-500/20">
                     <span class="text-2xl">👨‍🎓</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Educational Focus</h4>
-                    <p class="text-[11px] opacity-60">No AI tools. Perfect for homeschooling or technical coding. Physical notebooks welcome!</p>
-                </div>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-1 liquid-panel p-8">
-                    <h3 class="text-xs font-black uppercase text-sky-400 mb-6 tracking-widest">Standard Features</h3>
-                    <ul class="text-[11px] space-y-4 opacity-70">
-                        <li><b>Shell:</b> Minimal GNOME Shell / GDM</li>
-                        <li><b>Learning:</b> GCompris, Scratch, TuxMath</li>
-                        <li><b>Creative:</b> GIMP, Mu Editor, MuseScore</li>
-                        <li><b>Web:</b> Classroom, Drive, YouTube Kids</li>
-                        <li><b>Health:</b> Native Screen Time features</li>
-                    </ul>
-                </div>
-
-                <div class="lg:col-span-2 liquid-panel p-8 overflow-hidden">
-                    <h3 class="text-xs font-black uppercase text-orange-400 mb-6 tracking-widest">WhirlyOS Development Timeline</h3>
-                    <div class="overflow-x-auto">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Month</th>
-                                    <th>Phase</th>
-                                    <th>Platform</th>
-                                    <th>Developments</th>
-                                </tr>
-                            </thead>
-                            <tbody class="opacity-80">
-                                <tr>
-                                    <td class="font-bold text-sky-400">Jan 2025</td>
-                                    <td>Building</td>
-                                    <td>Debian Linux</td>
-                                    <td>Asset creation and preparing the initial build.</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4" class="py-6">
-                                        <div class="bg-red-500/10 border border-red-500/20 p-4 rounded-xl text-red-500 font-bold text-center">
-                                            Status: No releases have been made as of 2026.
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Education Ready</h4>
+                    <p class="text-[11px] opacity-60">Math, coding, and exploring without AI bloat.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <div class="soul-fab" onclick="alert('Soul Number 2026: I am here to help you find your spark!')">Soul 2026</div>
+    <main id="blog" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-between items-center mb-12">
+                <div>
+                    <h2 class="text-4xl font-black italic uppercase">Latest <span class="text-orange-400">Sparks</span></h2>
+                    <p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Blogger Engine • Publisher: 22soulfan</p>
+                </div>
+                <button onclick="openCreator()" class="add-post-btn" title="Create New Spark">+</button>
+            </div>
+
+            <div id="blog-container">
+                <div class="empty-state">
+                    <div class="text-4xl mb-4">✨</div>
+                    <h3 class="text-xl font-bold opacity-80">No sparks published yet.</h3>
+                    <p class="text-xs opacity-40 mt-2">Click the plus icon to write your first WhirlyOS update.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="soul-fab" onclick="alert('Soul Number 2026: Ready to document your journey?')">Soul 2026</div>
 
     <script>
         function showPage(p) {
@@ -137,6 +99,27 @@
             if(target) target.classList.add('active');
             window.scrollTo(0,0);
         }
+
+        function openCreator() {
+            const title = prompt("Spark Title:");
+            const content = prompt("Spark Content:");
+            if(title && content) {
+                const container = document.getElementById('blog-container');
+                if(container.querySelector('.empty-state')) container.innerHTML = '';
+                
+                const post = document.createElement('div');
+                post.className = 'liquid-panel p-8 mb-6 border-l-4 border-orange-400';
+                post.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-[10px] font-bold text-orange-400 uppercase">January 17, 2026 • Owner: 22soulfan</span>
+                    </div>
+                    <h3 class="text-xl font-black mb-3">${title}</h3>
+                    <p class="text-sm opacity-60 leading-relaxed">${content}</p>
+                `;
+                container.prepend(post);
+            }
+        }
+
         function initApp() { showPage('home'); }
     </script>
 </body>
