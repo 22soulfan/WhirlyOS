@@ -13,7 +13,7 @@
             --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
         }
         .light { --bg: #f8fafc; --text: #0f172a; --glass: rgba(15, 23, 42, 0.05); --border: rgba(15, 23, 42, 0.1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; scroll-behavior: smooth; overflow-x: hidden; }
         
         .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
@@ -29,11 +29,16 @@
         .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        .os-card { height: 100%; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .os-card { height: 100%; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
         .os-card:hover { transform: translateY(-8px); border-color: var(--primary); }
         
         .badge { font-size: 8px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.1em; }
         .tech-stack { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--primary); margin-bottom: 0.5rem; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
 <body onload="loadPosts()">
@@ -46,45 +51,78 @@
         </div>
         <div class="hidden md:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest opacity-60">
             <button onclick="showPage('home')" class="hover:text-sky-400 transition">Portal</button>
-            <button onclick="showPage('systems')" class="hover:text-sky-400 transition">Systems</button>
+            <button onclick="showPage('systems')" class="hover:text-sky-400 transition">Multiverse</button>
             <button onclick="showPage('blog')" class="hover:text-sky-400 transition">DevLog</button>
             <button onclick="showPage('wonderrepo')" class="hover:text-sky-400 transition">WonderRepo</button>
         </div>
-        <div class="flex items-center gap-4">
-            <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
-        </div>
+        <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
     </nav>
 
     <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
         <div class="max-w-5xl mx-auto">
             <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-4 leading-[0.85]">The <br><span class="text-gradient">Myriad</span> Project.</h1>
             <h2 class="text-xl md:text-3xl font-light tracking-[0.4em] uppercase opacity-40 mb-12">Find your spark. Find your way.</h2>
-            <button onclick="showPage('blog')" class="px-12 py-5 bg-sky-500 text-slate-950 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 transition-all">Latest Updates</button>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl">Architectures</button>
+                <button onclick="showPage('blog')" class="px-10 py-4 glass rounded-2xl font-black text-[10px] uppercase tracking-widest">Create Update</button>
+            </div>
         </div>
     </main>
 
     <main id="systems" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Multiverse</h2>
+            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">System Architectures</h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">ReactOS</span>
+                    <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">ReactOS Kernel</span>
                     <h3 class="text-3xl font-bold mb-2">MyriadOS</h3>
-                    <div class="tech-stack">Light-Aesthetic Layer (1-2GB RAM)</div>
-                    <p class="text-xs opacity-60">Optimized NT-based compatibility with the signature Myriad Shell.</p>
+                    <div class="tech-stack italic">Light-Aesthetic Layer (1-2GB RAM)</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Designed for stability on older hardware. Features a refined, low-resource UI shell that brings modern aesthetics to the ReactOS core.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
+
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Debian</span>
-                    <h3 class="text-3xl font-bold mb-2">WhirlyOS</h3>
-                    <div class="tech-stack">Zero-Aesthetic Layer (Functional)</div>
-                    <p class="text-xs opacity-60">Minimalist educational powerhouse with no resource overhead.</p>
-                </div>
-                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-green-500/20 text-green-400 mb-4 inline-block w-fit">openSUSE</span>
+                    <span class="badge bg-green-500/20 text-green-400 mb-4 inline-block w-fit">openSUSE Tumbleweed</span>
                     <h3 class="text-3xl font-bold mb-2">RenardOS</h3>
-                    <div class="tech-stack">Light-Aesthetic Layer (1-2GB RAM)</div>
-                    <p class="text-xs opacity-60">Rolling release performance with a focused fox-shell UI.</p>
+                    <div class="tech-stack italic">Light-Aesthetic Layer (1-2GB RAM)</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">A high-performance rolling release. The fox-shell interface is stripped for speed, ensuring Tumbleweed's power isn't wasted on bloat.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge bg-red-500/20 text-red-400 mb-4 inline-block w-fit">Cosmos C# DevKit</span>
+                    <h3 class="text-3xl font-bold mb-2">RPandaOS</h3>
+                    <div class="tech-stack italic">Light-Aesthetic Layer (1-2GB RAM)</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">An experimental managed-code OS. Leverages C# for a unique, vibrant UI environment that remains stable within tight RAM profiles.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Debian Stable</span>
+                    <h3 class="text-3xl font-bold mb-2">WhirlyOS</h3>
+                    <div class="tech-stack italic">Zero-Aesthetic (Strictly Functional)</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Built for education and legacy rescue. Every spare cycle is dedicated to performance, removing all decorative layers for raw speed.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-yellow-500/10">
+                    <span class="badge bg-yellow-500/20 text-yellow-400 mb-4 inline-block w-fit">ChromiumOS Hybrid</span>
+                    <h3 class="text-3xl font-bold mb-2">ChromMyriad</h3>
+                    <div class="tech-stack italic">MyriadOS Shell Integration</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Combines the fast web-based architecture of ChromiumOS with the specialized security and lockscreen logic of MyriadOS.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Anti-Microsoft Win11</span>
+                    <h3 class="text-3xl font-bold mb-2">Communiverse11</h3>
+                    <div class="tech-stack italic">Minimalist NT Core</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">The ultimate Windows 11 reclamation project. No telemetry, no forced accounts—just the core OS you paid for.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                </div>
+
             </div>
         </div>
     </main>
@@ -94,31 +132,50 @@
             <div class="flex justify-between items-end mb-12">
                 <div>
                     <h2 class="text-5xl font-black tracking-tighter uppercase text-gradient">DevLog</h2>
-                    <p class="opacity-40 text-xs font-bold uppercase tracking-widest mt-2">Project Updates & Milestones</p>
+                    <p class="opacity-40 text-xs font-bold uppercase tracking-widest mt-2">Documenting the Multiverse</p>
                 </div>
-                <button onclick="openEditor()" class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full font-black text-[10px] uppercase tracking-widest transition-all">Create Blog Post</button>
+                <button onclick="openEditor()" class="px-6 py-3 bg-sky-500 text-slate-950 rounded-full font-black text-[10px] uppercase tracking-widest">Create Update</button>
             </div>
 
-            <div id="blogEditor" class="hidden glass p-8 rounded-[2rem] border-sky-500/30 mb-12 animate-pulse">
-                <input type="text" id="postTitle" placeholder="Post Title..." class="w-full bg-transparent text-2xl font-bold mb-4 outline-none border-b border-white/10 pb-2">
-                <textarea id="postContent" rows="5" placeholder="What's the latest update on the Myriad Project?" class="w-full bg-transparent text-sm opacity-80 outline-none resize-none mb-4"></textarea>
+            <div id="blogEditor" class="hidden glass p-8 rounded-[2.5rem] border-sky-400/30 mb-12">
+                <input type="text" id="postTitle" placeholder="Update Title (e.g., Cubic Testing)" class="w-full bg-transparent text-xl font-bold mb-4 outline-none border-b border-white/10 pb-2">
+                <select id="postCategory" class="bg-transparent text-[10px] uppercase font-black tracking-widest opacity-50 mb-4 outline-none">
+                    <option value="TECHNICAL">Technical Update</option>
+                    <option value="AESTHETIC">Aesthetic Design</option>
+                    <option value="GENERAL">General News</option>
+                </select>
+                <textarea id="postContent" rows="4" placeholder="Describe the update..." class="w-full bg-transparent text-sm opacity-70 outline-none resize-none mb-6"></textarea>
                 <div class="flex gap-4">
-                    <button onclick="savePost()" class="px-8 py-3 bg-sky-500 text-slate-950 rounded-xl font-black text-[10px] uppercase tracking-widest">Publish</button>
+                    <button onclick="savePost()" class="px-8 py-3 bg-white text-slate-950 rounded-xl font-black text-[10px] uppercase tracking-widest">Publish</button>
                     <button onclick="closeEditor()" class="px-8 py-3 glass rounded-xl font-black text-[10px] uppercase tracking-widest">Cancel</button>
                 </div>
             </div>
 
-            <div id="postsContainer" class="space-y-8">
-                </div>
+            <div id="postsContainer" class="space-y-6"></div>
         </div>
     </main>
 
     <main id="wonderrepo" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black mb-8">Wonder<span class="text-gradient">Repo</span></h2>
+            <h2 class="text-4xl font-black mb-8">Wonder<span class="text-gradient">Repo</span> Lab</h2>
+            
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="glass p-6 rounded-3xl">
+                    <h4 class="text-sky-400 font-bold text-[10px] mb-2 uppercase tracking-widest">Aesthetic Concept 01</h4>
+                    <p class="text-xs opacity-60"><b>Spark-Lock:</b> The unified Android-inspired lockscreen that adapts to kernel color-profiles.</p>
+                </div>
+                <div class="glass p-6 rounded-3xl">
+                    <h4 class="text-indigo-400 font-bold text-[10px] mb-2 uppercase tracking-widest">Resource Concept 02</h4>
+                    <p class="text-xs opacity-60"><b>RAM Shield:</b> A layer manager that prioritizes functional processes over UI assets in $1\text{GB}$ builds.</p>
+                </div>
+                <div class="glass p-6 rounded-3xl">
+                    <h4 class="text-accent font-bold text-[10px] mb-2 uppercase tracking-widest">Visual Concept 03</h4>
+                    <p class="text-xs opacity-60"><b>Zero-Glass:</b> The strictly functional WhirlyOS interface using flat, vector-based rendering.</p>
+                </div>
+            </div>
+
             <div class="glass p-10 rounded-[3rem] border-white/5">
-                <h3 class="text-xl font-bold mb-4 italic">Architectural Reclamation</h3>
-                <p class="text-sm opacity-60">Development focused on reclaiming legacy hardware through strategic aesthetic layering.</p>
+                <p class="text-[10px] opacity-40 font-mono italic">Note: Forked from hirohamada2014. Architected by 22soulfan.</p>
             </div>
         </div>
     </main>
@@ -136,31 +193,20 @@
 
         function toggleTheme() { document.documentElement.classList.toggle('light'); }
 
-        // --- BLOG LOGIC ---
-        function openEditor() {
-            document.getElementById('blogEditor').classList.remove('hidden');
-        }
-
-        function closeEditor() {
-            document.getElementById('blogEditor').classList.add('hidden');
-        }
+        function openEditor() { document.getElementById('blogEditor').classList.remove('hidden'); }
+        function closeEditor() { document.getElementById('blogEditor').classList.add('hidden'); }
 
         function savePost() {
             const title = document.getElementById('postTitle').value;
+            const cat = document.getElementById('postCategory').value;
             const content = document.getElementById('postContent').value;
-            if (!title || !content) return alert("Please fill in both fields!");
+            if(!title || !content) return;
 
-            const post = {
-                title,
-                content,
-                date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
-                id: Date.now()
-            };
-
-            let posts = JSON.parse(localStorage.getItem('myriad_posts') || '[]');
+            const post = { title, cat, content, date: new Date().toLocaleDateString(), id: Date.now() };
+            let posts = JSON.parse(localStorage.getItem('myriad_devlog') || '[]');
             posts.unshift(post);
-            localStorage.setItem('myriad_posts', JSON.stringify(posts));
-
+            localStorage.setItem('myriad_devlog', JSON.stringify(posts));
+            
             document.getElementById('postTitle').value = '';
             document.getElementById('postContent').value = '';
             closeEditor();
@@ -169,27 +215,30 @@
 
         function loadPosts() {
             const container = document.getElementById('postsContainer');
-            const posts = JSON.parse(localStorage.getItem('myriad_posts') || '[]');
+            const posts = JSON.parse(localStorage.getItem('myriad_devlog') || '[]');
             
-            if (posts.length === 0) {
-                container.innerHTML = `<div class="glass p-12 rounded-[2rem] text-center opacity-40 italic">No updates published yet. Click "Create Blog Post" to start.</div>`;
+            if(posts.length === 0) {
+                container.innerHTML = `<div class="glass p-20 rounded-[3rem] text-center opacity-30 italic">No project updates yet. Start documenting your journey.</div>`;
                 return;
             }
 
-            container.innerHTML = posts.map(post => `
-                <div class="glass p-8 rounded-[2rem] border-white/5 hover:border-white/10 transition-all">
-                    <p class="text-[9px] font-black text-sky-400 uppercase tracking-widest mb-2">${post.date}</p>
-                    <h3 class="text-2xl font-bold mb-4">${post.title}</h3>
-                    <p class="text-sm opacity-60 leading-relaxed">${post.content}</p>
-                    <button onclick="deletePost(${post.id})" class="mt-6 text-[8px] font-black uppercase tracking-tighter opacity-20 hover:opacity-100 hover:text-red-400 transition">Delete Post</button>
+            container.innerHTML = posts.map(p => `
+                <div class="glass p-8 rounded-[2rem] border-white/5">
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="badge bg-sky-500/10 text-sky-400">${p.cat}</span>
+                        <span class="text-[9px] opacity-30 font-bold">${p.date}</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">${p.title}</h3>
+                    <p class="text-xs opacity-60 leading-relaxed">${p.content}</p>
+                    <button onclick="deletePost(${p.id})" class="mt-4 text-[8px] opacity-20 hover:opacity-100 hover:text-red-400 transition uppercase font-black">Remove</button>
                 </div>
             `).join('');
         }
 
         function deletePost(id) {
-            let posts = JSON.parse(localStorage.getItem('myriad_posts') || '[]');
+            let posts = JSON.parse(localStorage.getItem('myriad_devlog') || '[]');
             posts = posts.filter(p => p.id !== id);
-            localStorage.setItem('myriad_posts', JSON.stringify(posts));
+            localStorage.setItem('myriad_devlog', JSON.stringify(posts));
             loadPosts();
         }
     </script>
