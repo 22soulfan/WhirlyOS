@@ -69,41 +69,75 @@ WhirlyOS is the latest chapter in a multi-year journey of OS experimentation and
 
 | **Month** | **Phase** | **Platform & Tools** | **Key Developments** |
 |-----------|-----------|----------------------|-----------------------|
-| **March 2025** | 🐼 PandaOS Revival | Visual Basic 6 → C# with COSMOS | - Revisited early PandaOS concepts<br>- Migrated legacy VB6 code to C#<br>- Experimented with COSMOS kernel for custom bootloader |
-| **April 2025** | 🎓 PixOS Educational | SUSE Studio Express + OBS | - Built PixOS for schools and learning labs<br>- Used SUSE Studio for rapid prototyping<br>- Published builds via Open Build Service |
-| **May 2025** | 🌀 WhirlyOS Foundation | Debian Stable + GNOME | - Chose Debian for long-term stability<br>- Created SoulFrame edition (GNOME)<br>- Developed core scripts: `screen_time.sh`, `nightshield.sh` |
-| **June 2025** | 🎭 WhirlyOS Editions | XFCE, KDE, Budgie | - Launched themed editions: MeiLite, ElementalDesk, QuestLand<br>- Integrated cinematic branding and mascots<br>- Built ISOs using Cubic and Linux Live Kit |
-| **July 2025** | Ongoing work | Disk image builds | - **Since WhirlyOS work is still in process in the last 5 or 6 weeks, don't worry for that; it will come soon.** |
+| **Jan 2025** | WhirlyOS building | Debian Linux | - Preparing to build WhirlyOS <br> via Debian Linux <br>- I also have to create assets. |
 
----
+
+
+
+> Notes for release: No releases has been made as of 2026.
 
 ## How to install 
 
-### Linux Build Host  
-- Any Linux distro 
-- KIWI NG toolchain installed  
-- Internet access for repositories and packages  
+## Linux:
 
-### Windows
-- Windows 10/11 (any version works well as long as you have 512 MB RAM and 8 GB storage)
-- Bootable USB drive 
-- Imaging software (e.g. Rufus, BalenaEtcher)
+- A linux distro (any linux distro work)
+- BalenaEtcher or DD command
 
-### Raspberry Pi (ARM)  
-- Raspberry Pi Zero 2 w or later
-- a microSD card  
-- Raspberry Pi Imager
+## Windows:
+
+- Windows 10/11 (or any version. Make sure they are compatible)
+- Rufus, BalenaEtcher, or Win32Imager
+
+## MacOS:
+
+- macOS 10.15 or newer
+- BalenaEtcher
+
+## To install WhirlyOS on Windows:
+
+If you use dual boot, you have to shrink your drive and create a partition with it. Be careful as you may break your device. The creator and WhirlyOS are not responsible for any damage.
+
+On Windows:
+
+1. Download your bootable usb creator from its official website.
+2. Download WhirlyOS official iso disk image from the repository releases
+3. Open the bootable usb creator
+4. On Rufus: select your USB drive, select ISO disk image, and click Start. On Etcher: Select your USB drive, select ISO disk image, and click Flash.
+5. After writing WhirlyOS to USB, restart your computer.
+6. Enter Boot Manager (e.g. Del, F10, F12)
+7. If Secure Boot is enabled, you may need to disable it. Otherwise, you will have a security violation.
+8. Follow the onscreen instructions to setup WhirlyOS.
+
+On Linux:
+
+> You can use Etcher or dd, but it is recommended to use Etcher, because dd is advanced.
+
+1. Download Etcher from its official website and install it.
+2. Install WhirlyOS disk image
+3. Follow steps 3 to 4 in the Windows section.
+4. Follow steps 5 to 8.
+
+To write WhirlyOS using the dd command, type this:
+
+```bash
+
+sudo dd if=path/to/your/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync
+
+```
+
+> Note: The disk image name may vary.
+
+   
 
 ---
 
 ## Building the ISO or Image
     
-### On Windows
+We don't support building WhirlyOS, but you may want to fork the repository.
 
-```bash
-git clone https://github.com/your-org/WonderRepo.git
-cd WonderRepo
+---
 
-sudo kiwi-ng --debug \
-  --target-dir /tmp/whirlyos-image \
-  --build config/config.kiwi
+## License
+
+WhirlyOS is open-source under the MIT License. Anyone can fork this repo.
+
