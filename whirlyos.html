@@ -5,121 +5,151 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhirlyOS | Find Your Spark</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .gradient-text { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
-        .warning-box { border-left: 4px solid #facc15; background: rgba(250, 204, 21, 0.1); }
+        :root {
+            --mizu-deep: #0a192f;
+            --mizu-light: #64ffda;
+            --mizu-glow: #7ed6df;
+        }
+        body { 
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+            color: #e2e8f0;
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+        }
+        /* Animated Background Stars */
+        .stars {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; background: url('https://www.transparenttextures.com/patterns/stardust.png');
+            opacity: 0.3;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glow-text {
+            text-shadow: 0 0 15px rgba(96, 165, 250, 0.6);
+        }
+        .spark-button {
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6);
+        }
+        .spark-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.4);
+        }
+        .gradient-border {
+            border: 2px solid;
+            border-image: linear-gradient(to right, #60a5fa, #a78bfa) 1;
+        }
     </style>
 </head>
-<body class="leading-relaxed">
+<body class="selection:bg-blue-500/30">
+    <div class="stars"></div>
 
-    <header class="py-12 px-6 text-center">
-        <h1 class="text-6xl font-bold gradient-text mb-4">WhirlyOS</h1>
-        <p class="text-xl italic text-blue-300">"Find your spark. Find your way."</p>
-        <div class="mt-8 flex justify-center gap-4">
-            <span class="bg-blue-600 px-4 py-1 rounded-full text-sm font-semibold">Debian Stable Base</span>
-            <span class="bg-purple-600 px-4 py-1 rounded-full text-sm font-semibold">i386 Compatibility</span>
+    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4">
+        <div class="absolute top-10 left-10 opacity-20 text-xs">WonderRepo v1.0</div>
+        
+        <h1 class="text-7xl md:text-8xl font-bold mb-4 glow-text tracking-tight">
+            Whirly<span class="text-blue-400">OS</span>
+        </h1>
+        <p class="text-2xl md:text-3xl font-light text-blue-200 mb-8 italic">
+            Find your spark. Find your way.
+        </p>
+        
+        <div class="flex gap-4">
+            <a href="#editions" class="spark-button px-8 py-3 rounded-full font-bold text-white">Explore Editions</a>
+            <a href="#install" class="glass px-8 py-3 rounded-full font-bold hover:bg-white/10 transition">Get Started</a>
         </div>
+
+        <div class="mt-16 animate-bounce text-blue-300/50 text-3xl">↓</div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 space-y-16">
+    <main class="max-w-5xl mx-auto px-6 pb-20 space-y-32">
 
-        <section class="warning-box p-6 rounded-lg">
-            <h2 class="text-yellow-400 font-bold text-xl mb-2">⚠️ Development Status: Ongoing</h2>
-            <p>WhirlyOS is currently being refined. We are transitioning from 0x OS Builder to <strong>Cubic</strong> for better image generation. Stay tuned for the v1.0 release!</p>
-            <p class="mt-2 text-sm text-gray-400">Copyright: Forked from hirohamada2014 (Old Account) to 22soulfan.</p>
+        <section class="glass p-8 rounded-3xl border-l-4 border-yellow-400/50">
+            <h2 class="text-yellow-400 font-bold text-xl mb-3 flex items-center">
+                <span class="mr-2">🚧</span> Status: Development Ongoing
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+                WhirlyOS is currently evolving. After testing 0x OS Builder, we are moving to <span class="text-blue-300">Cubic</span> for more stable ISO generation. i386 compatibility is our priority.
+            </p>
         </section>
 
-        <section class="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h2 class="text-3xl font-bold mb-6">Playful. ADHD-Aware. Simple.</h2>
-                <p class="text-gray-300 mb-4">WhirlyOS wraps a powerful Linux base in a shell designed for focus. With built-in screen time limits and seamless access to learning tools, it’s the perfect companion for students and creators.</p>
-                <ul class="space-y-2">
-                    <li>🔒 Rock-solid reliability</li>
-                    <li>📦 Thousands of packages via APT</li>
-                    <li>🛠️ Easy customization</li>
-                </ul>
-            </div>
-            <div class="card p-8 rounded-2xl shadow-2xl">
-                <h3 class="text-2xl font-bold mb-4">Core Features</h3>
-                <div class="grid grid-cols-2 gap-4 text-sm">
-                    <div class="p-3 bg-blue-900/30 rounded">GCompris & Scratch</div>
-                    <div class="p-3 bg-blue-900/30 rounded">TuxMath & TuxPaint</div>
-                    <div class="p-3 bg-blue-900/30 rounded">GIMP & MuseScore</div>
-                    <div class="p-3 bg-blue-900/30 rounded">YouTube Kids Integration</div>
+        <section id="editions">
+            <h2 class="text-4xl font-bold mb-12 text-center glow-text">The SoulFrame Editions</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="glass p-6 rounded-2xl hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-bold text-blue-400 mb-2">SoulFrame</h3>
+                    <p class="text-sm text-gray-400 mb-4 italic">Inspired by "Soul"</p>
+                    <p class="text-sm mb-6">Celestial GNOME interface. Pure dreamlike focus.</p>
+                    <div class="text-xs font-mono text-blue-200 bg-blue-900/40 p-2 rounded">2GB RAM | 20GB Disk</div>
                 </div>
-            </div>
-        </section>
-
-        <section>
-            <h2 class="text-3xl font-bold mb-8 text-center">The Editions</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-left border-collapse card rounded-xl">
-                    <thead>
-                        <tr class="border-b border-gray-700">
-                            <th class="p-4 text-blue-400">Edition</th>
-                            <th class="p-4 text-blue-400">Base</th>
-                            <th class="p-4 text-blue-400">Inspiration</th>
-                            <th class="p-4 text-blue-400">Minimum Specs</th>
-                        </tr>
-                    </thead>
-                    <tbody class="text-sm">
-                        <tr class="border-b border-gray-800">
-                            <td class="p-4 font-bold">SoulFrame</td>
-                            <td class="p-4">GNOME</td>
-                            <td class="p-4">Soul (2020)</td>
-                            <td class="p-4">2GB RAM / 20GB Disk</td>
-                        </tr>
-                        <tr class="border-b border-gray-800">
-                            <td class="p-4 font-bold">MeiLite</td>
-                            <td class="p-4">XFCE</td>
-                            <td class="p-4">Turning Red</td>
-                            <td class="p-4">1GB RAM / 10GB Disk</td>
-                        </tr>
-                        <tr class="border-b border-gray-800">
-                            <td class="p-4 font-bold">IntellSpace</td>
-                            <td class="p-4">LXQt</td>
-                            <td class="p-4">Wall·E</td>
-                            <td class="p-4">1GB RAM / 8GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td class="p-4 font-bold">NotebookOS</td>
-                            <td class="p-4">Openbox</td>
-                            <td class="p-4">Luca</td>
-                            <td class="p-4">512MB RAM / 5GB Disk</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="glass p-6 rounded-2xl hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-bold text-red-400 mb-2">MeiLite</h3>
+                    <p class="text-sm text-gray-400 mb-4 italic">Inspired by "Turning Red"</p>
+                    <p class="text-sm mb-6">XFCE efficiency with 2002-era expressive vibes.</p>
+                    <div class="text-xs font-mono text-red-200 bg-red-900/40 p-2 rounded">1GB RAM | 10GB Disk</div>
+                </div>
+                <div class="glass p-6 rounded-2xl hover:scale-105 transition duration-300">
+                    <h3 class="text-2xl font-bold text-emerald-400 mb-2">NotebookOS</h3>
+                    <p class="text-sm text-gray-400 mb-4 italic">Inspired by "Luca"</p>
+                    <p class="text-sm mb-6">Ultra-minimal Openbox for the seaside calm.</p>
+                    <div class="text-xs font-mono text-emerald-200 bg-emerald-900/40 p-2 rounded">512MB RAM | 5GB Disk</div>
+                </div>
             </div>
         </section>
 
-        <section class="bg-black/30 p-10 rounded-3xl border border-blue-500/20">
-            <h2 class="text-3xl font-bold mb-6">Installation Guide</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h4 class="font-bold text-blue-400 mb-2">Windows</h4>
-                    <p class="text-sm text-gray-400">Use Rufus or BalenaEtcher. Ensure Secure Boot is disabled if necessary.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-blue-400 mb-2">Linux</h4>
-                    <p class="text-sm text-gray-400">Use <code>dd</code> command or Etcher for a simple experience.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-blue-400 mb-2">macOS</h4>
-                    <p class="text-sm text-gray-400">Compatible with 10.15+. Use BalenaEtcher to flash the ISO.</p>
+        <section class="grid md:grid-cols-2 gap-12">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold">ADHD-Aware Computing</h2>
+                <p class="text-gray-400">WhirlyOS isn't just a theme; it's a sanctuary. We include screen-time limits and distraction-free learning environments to keep your spark bright.</p>
+                <div class="space-y-3">
+                    <div class="flex items-center"><span class="text-blue-400 mr-2">✓</span> Preinstalled Learning: Scratch & TuxMath</div>
+                    <div class="flex items-center"><span class="text-blue-400 mr-2">✓</span> Creative Suite: GIMP & MuseScore</div>
+                    <div class="flex items-center"><span class="text-blue-400 mr-2">✓</span> Safe Browsing: YouTube Kids & Classroom</div>
                 </div>
             </div>
-            <div class="mt-8 p-4 bg-red-900/20 border border-red-500/50 rounded-lg text-xs">
-                <strong>Disclaimer:</strong> Dual booting involves partitioning. Backup your data. WhirlyOS is not responsible for hardware damage or warranty voids.
+            <div class="glass p-1 rounded-3xl overflow-hidden">
+                 <div class="bg-slate-900/50 p-8 h-full rounded-3xl flex items-center justify-center border border-white/5">
+                    <div class="text-center">
+                        <div class="text-5xl mb-4">🐧</div>
+                        <p class="font-mono text-blue-300">Debian Stable Base</p>
+                        <p class="text-xs text-gray-500 mt-2">Built for i386 Architecture</p>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="install" class="space-y-8">
+            <h2 class="text-4xl font-bold text-center glow-text">Installation</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-8 rounded-3xl space-y-4">
+                    <h4 class="text-xl font-bold">Using Etcher (Recommended)</h4>
+                    <ol class="list-decimal list-inside text-gray-400 space-y-2 text-sm">
+                        <li>Download WhirlyOS ISO</li>
+                        <li>Select your USB drive in Etcher</li>
+                        <li>Flash and Restart</li>
+                        <li>Boot from USB (F12/Del)</li>
+                    </ol>
+                </div>
+                <div class="glass p-8 rounded-3xl space-y-4">
+                    <h4 class="text-xl font-bold text-red-400">⚠️ Risk Notice</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        Installing an OS is a big step. Always backup your data. WhirlyOS is a community project and is not responsible for data loss or hardware issues. Proceed with a "clean heart" and a fresh backup!
+                    </p>
+                </div>
             </div>
         </section>
 
     </main>
 
-    <footer class="mt-20 py-10 border-t border-gray-800 text-center text-gray-500 text-sm">
-        <p>WhirlyOS is Open Source under the MIT License.</p>
-        <p class="mt-2">Inspired by the magic of animation. Built for the future of education.</p>
+    <footer class="py-12 text-center text-gray-500 border-t border-white/5 glass">
+        <p class="mb-2">WhirlyOS is Open Source (MIT License)</p>
+        <p class="text-xs italic">For the dreamers, the thinkers, and the restless sparks.</p>
     </footer>
 
 </body>
