@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhirlyOS | Find Your Spark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0f172a; color: #f8fafc; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .gradient-text { background: linear-gradient(to right, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .card { background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+        .warning-box { border-left: 4px solid #facc15; background: rgba(250, 204, 21, 0.1); }
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <header class="py-12 px-6 text-center">
+        <h1 class="text-6xl font-bold gradient-text mb-4">WhirlyOS</h1>
+        <p class="text-xl italic text-blue-300">"Find your spark. Find your way."</p>
+        <div class="mt-8 flex justify-center gap-4">
+            <span class="bg-blue-600 px-4 py-1 rounded-full text-sm font-semibold">Debian Stable Base</span>
+            <span class="bg-purple-600 px-4 py-1 rounded-full text-sm font-semibold">i386 Compatibility</span>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-6 space-y-16">
+
+        <section class="warning-box p-6 rounded-lg">
+            <h2 class="text-yellow-400 font-bold text-xl mb-2">⚠️ Development Status: Ongoing</h2>
+            <p>WhirlyOS is currently being refined. We are transitioning from 0x OS Builder to <strong>Cubic</strong> for better image generation. Stay tuned for the v1.0 release!</p>
+            <p class="mt-2 text-sm text-gray-400">Copyright: Forked from hirohamada2014 (Old Account) to 22soulfan.</p>
+        </section>
+
+        <section class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6">Playful. ADHD-Aware. Simple.</h2>
+                <p class="text-gray-300 mb-4">WhirlyOS wraps a powerful Linux base in a shell designed for focus. With built-in screen time limits and seamless access to learning tools, it’s the perfect companion for students and creators.</p>
+                <ul class="space-y-2">
+                    <li>🔒 Rock-solid reliability</li>
+                    <li>📦 Thousands of packages via APT</li>
+                    <li>🛠️ Easy customization</li>
+                </ul>
+            </div>
+            <div class="card p-8 rounded-2xl shadow-2xl">
+                <h3 class="text-2xl font-bold mb-4">Core Features</h3>
+                <div class="grid grid-cols-2 gap-4 text-sm">
+                    <div class="p-3 bg-blue-900/30 rounded">GCompris & Scratch</div>
+                    <div class="p-3 bg-blue-900/30 rounded">TuxMath & TuxPaint</div>
+                    <div class="p-3 bg-blue-900/30 rounded">GIMP & MuseScore</div>
+                    <div class="p-3 bg-blue-900/30 rounded">YouTube Kids Integration</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl font-bold mb-8 text-center">The Editions</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse card rounded-xl">
+                    <thead>
+                        <tr class="border-b border-gray-700">
+                            <th class="p-4 text-blue-400">Edition</th>
+                            <th class="p-4 text-blue-400">Base</th>
+                            <th class="p-4 text-blue-400">Inspiration</th>
+                            <th class="p-4 text-blue-400">Minimum Specs</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-gray-800">
+                            <td class="p-4 font-bold">SoulFrame</td>
+                            <td class="p-4">GNOME</td>
+                            <td class="p-4">Soul (2020)</td>
+                            <td class="p-4">2GB RAM / 20GB Disk</td>
+                        </tr>
+                        <tr class="border-b border-gray-800">
+                            <td class="p-4 font-bold">MeiLite</td>
+                            <td class="p-4">XFCE</td>
+                            <td class="p-4">Turning Red</td>
+                            <td class="p-4">1GB RAM / 10GB Disk</td>
+                        </tr>
+                        <tr class="border-b border-gray-800">
+                            <td class="p-4 font-bold">IntellSpace</td>
+                            <td class="p-4">LXQt</td>
+                            <td class="p-4">Wall·E</td>
+                            <td class="p-4">1GB RAM / 8GB Disk</td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">NotebookOS</td>
+                            <td class="p-4">Openbox</td>
+                            <td class="p-4">Luca</td>
+                            <td class="p-4">512MB RAM / 5GB Disk</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="bg-black/30 p-10 rounded-3xl border border-blue-500/20">
+            <h2 class="text-3xl font-bold mb-6">Installation Guide</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="font-bold text-blue-400 mb-2">Windows</h4>
+                    <p class="text-sm text-gray-400">Use Rufus or BalenaEtcher. Ensure Secure Boot is disabled if necessary.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-400 mb-2">Linux</h4>
+                    <p class="text-sm text-gray-400">Use <code>dd</code> command or Etcher for a simple experience.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-blue-400 mb-2">macOS</h4>
+                    <p class="text-sm text-gray-400">Compatible with 10.15+. Use BalenaEtcher to flash the ISO.</p>
+                </div>
+            </div>
+            <div class="mt-8 p-4 bg-red-900/20 border border-red-500/50 rounded-lg text-xs">
+                <strong>Disclaimer:</strong> Dual booting involves partitioning. Backup your data. WhirlyOS is not responsible for hardware damage or warranty voids.
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-20 py-10 border-t border-gray-800 text-center text-gray-500 text-sm">
+        <p>WhirlyOS is Open Source under the MIT License.</p>
+        <p class="mt-2">Inspired by the magic of animation. Built for the future of education.</p>
+    </footer>
+
+</body>
+</html>
