@@ -7,17 +7,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --p-blue: #38bdf8; --p-purple: #a855f7; --bg: #05070a; }
+        :root { --p-blue: #38bdf8; --p-purple: #a855f7; --bg: #030406; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
-        .glass-nav { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; }
-        .liquid-panel { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.05); border-radius: 2rem; }
+        
+        /* Navigation & Glass */
+        .glass-nav { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(25px); border: 1px solid rgba(255,255,255,0.05); border-radius: 100px; }
+        .liquid-panel { background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.05); border-radius: 2rem; }
+        
+        /* Typography */
         .hero-text { font-size: 7rem; font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; }
         .spark-gradient { background: linear-gradient(to bottom right, #38bdf8, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        nav { position: fixed; top: 2rem; left: 50%; transform: translateX(-50%); width: 85%; z-index: 9999; }
+        
+        /* Dark Blog Editor */
+        .dark-editor { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 24px; padding: 2.5rem; transition: 0.3s; }
+        .dark-editor:focus-within { border-color: var(--p-blue); background: rgba(255, 255, 255, 0.04); }
+        
+        .dark-input { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 1rem; width: 100%; color: white; font-size: 14px; outline: none; }
+        .dark-input:focus { border-color: var(--p-blue); background: rgba(0,0,0,0.5); }
+
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .soul-log-entry { font-family: monospace; font-size: 10px; color: #38bdf8; border-left: 2px solid #38bdf8; padding-left: 10px; margin-bottom: 8px; }
+        
+        .soul-log-entry { font-family: monospace; font-size: 10px; color: #38bdf8; border-left: 2px solid #38bdf8; padding-left: 10px; margin-bottom: 8px; opacity: 0.7; }
     </style>
 </head>
 <body onload="initApp()">
@@ -25,42 +37,36 @@
     <nav class="glass-nav px-8 py-4 flex justify-between items-center shadow-2xl">
         <div class="flex items-center gap-4">
             <span class="text-sm font-black uppercase tracking-tighter">Whirly<span class="text-sky-400">OS</span></span>
-            <span class="text-[9px] bg-white/10 px-2 py-1 rounded text-white/40 font-bold uppercase">v229.0</span>
+            <span class="text-[9px] bg-sky-500/10 px-2 py-1 rounded text-sky-400 font-bold uppercase border border-sky-500/20">WonderRepo</span>
         </div>
         <div class="flex gap-8">
-            <button onclick="showPage('home')" class="text-[11px] font-bold opacity-60 hover:opacity-100 uppercase">Dashboard</button>
-            <button onclick="showPage('blog')" class="text-[11px] font-bold opacity-60 hover:opacity-100 uppercase">Blog</button>
-            <button onclick="showPage('about')" class="text-[11px] font-bold opacity-60 hover:opacity-100 uppercase">Mission</button>
+            <button onclick="showPage('home')" class="text-[11px] font-bold opacity-40 hover:opacity-100 hover:text-sky-400 transition uppercase">Home</button>
+            <button onclick="showPage('blog')" class="text-[11px] font-bold opacity-40 hover:opacity-100 hover:text-sky-400 transition uppercase">Blog</button>
+            <button onclick="showPage('about')" class="text-[11px] font-bold opacity-40 hover:opacity-100 hover:text-sky-400 transition uppercase">About</button>
         </div>
         <div class="flex items-center gap-3">
-            <div class="text-right hidden md:block">
-                <p class="text-[8px] font-black opacity-40 uppercase">Creator</p>
-                <p class="text-[10px] font-bold">22soulfan</p>
-            </div>
-            <div class="w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center font-bold text-xs">22</div>
+            <p class="text-[10px] font-bold opacity-40 uppercase tracking-widest hidden md:block">22soulfan</p>
+            <div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center font-bold text-xs text-sky-400">22</div>
         </div>
     </nav>
 
     <main id="home" class="page-section active pt-64 pb-20 px-6">
         <div class="max-w-6xl mx-auto text-center">
-            <h1 class="hero-text italic">Whirly</h1>
-            <h1 class="hero-text spark-gradient italic mb-12">WonderRepo.</h1>
+            <h1 class="hero-text italic">Find your</h1>
+            <h1 class="hero-text spark-gradient italic mb-12">Spark.</h1>
             
             <div class="grid md:grid-cols-3 gap-8 mt-20 text-left">
-                <div class="liquid-panel p-8 border-t-2 border-sky-400">
-                    <h3 class="text-xs font-black uppercase mb-4 text-sky-400 tracking-widest">Educational Uplift</h3>
-                    <p class="text-[11px] opacity-50 leading-relaxed">Providing high-utility learning tools (Scratch, GCompris) for homeschoolers without the distraction of algorithmic AI. Focus on technical growth.</p>
+                <div class="liquid-panel p-8 border-l-2 border-sky-400">
+                    <h3 class="text-[10px] font-black uppercase mb-4 text-sky-400 tracking-[0.2em]">Educational Uplift</h3>
+                    <p class="text-[11px] opacity-40 leading-relaxed">Dedicated tools for homeschoolers. No tracking, no unwanted AI noise, just pure technical learning for i386 hardware.</p>
                 </div>
-                <div class="liquid-panel p-8 border-t-2 border-purple-400">
-                    <h3 class="text-xs font-black uppercase mb-4 text-purple-400 tracking-widest">Homeschool First</h3>
-                    <p class="text-[11px] opacity-50 leading-relaxed">Built-in parental controls and simplified UI. WhirlyOS is the technical companion for physical notebook learning.</p>
+                <div class="liquid-panel p-8 border-l-2 border-purple-400">
+                    <h3 class="text-[10px] font-black uppercase mb-4 text-purple-400 tracking-[0.2em]">One Creator</h3>
+                    <p class="text-[11px] opacity-40 leading-relaxed">WhirlyOS and its legacy components (hirohamada2014) are built and maintained by 22soulfan.</p>
                 </div>
-                <div class="liquid-panel p-8 border-t-2 border-orange-400">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-xs font-black uppercase text-orange-400 tracking-widest">Soul 2026</h3>
-                        <div class="w-2 h-2 rounded-full bg-orange-400 animate-pulse"></div>
-                    </div>
-                    <p class="text-[11px] opacity-50 leading-relaxed italic">"System status: Stable. All custom mascots are in experimental phase. I am ready to assist your build."</p>
+                <div class="liquid-panel p-8 border-l-2 border-orange-400">
+                    <h3 class="text-[10px] font-black uppercase mb-4 text-orange-400 tracking-[0.2em]">Soul 2026</h3>
+                    <p class="text-[11px] opacity-40 leading-relaxed italic">"Ready to assist. System build 230.0 is currently optimizing for dark-mode readability."</p>
                 </div>
             </div>
         </div>
@@ -68,25 +74,27 @@
 
     <main id="blog" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-3xl mx-auto">
-            <div class="bg-white rounded-3xl p-10 mb-12 text-black">
+            
+            <div class="dark-editor mb-16">
                 <div class="flex items-center gap-4 mb-8">
-                    <div class="w-10 h-10 rounded-full bg-sky-500 text-white flex items-center justify-center font-bold">22</div>
+                    <div class="w-10 h-10 rounded-lg bg-sky-500/20 border border-sky-500/30 flex items-center justify-center font-bold text-sky-400">22</div>
                     <div>
-                        <h4 class="font-black uppercase text-sm">Create Blog Entry</h4>
-                        <p class="text-[10px] opacity-50 font-bold uppercase tracking-widest">Authenticated: 22soulfan</p>
+                        <h4 class="font-black uppercase text-xs tracking-widest">New Blog Entry</h4>
+                        <p class="text-[9px] opacity-30 font-bold uppercase tracking-widest">Signed in as 22soulfan</p>
                     </div>
                 </div>
                 <div class="space-y-4">
-                    <input type="text" id="bTitle" placeholder="Update Title..." class="w-full bg-gray-100 border-none p-4 rounded-xl outline-none focus:ring-2 ring-sky-400">
-                    <textarea id="bBody" rows="4" placeholder="What's happening in the repo?" class="w-full bg-gray-100 border-none p-4 rounded-xl outline-none focus:ring-2 ring-sky-400"></textarea>
-                    <button onclick="postBlog()" class="w-full py-4 bg-black text-white font-black uppercase text-xs rounded-xl hover:bg-sky-600 transition shadow-xl">Post to WonderRepo</button>
+                    <input type="text" id="bTitle" placeholder="Entry Title..." class="dark-input">
+                    <textarea id="bBody" rows="4" placeholder="Update the WonderRepo..." class="dark-input"></textarea>
+                    <button onclick="postBlog()" class="w-full py-4 bg-white text-black font-black uppercase text-[10px] rounded-xl hover:bg-sky-400 transition shadow-2xl">Publish Update</button>
                 </div>
             </div>
-            <div id="blog-feed" class="space-y-6">
-                <div class="liquid-panel p-8 border-l-4 border-sky-400">
+
+            <div id="blog-feed" class="space-y-8">
+                <div class="liquid-panel p-8 border-l-4 border-sky-500/50">
                     <p class="text-[9px] font-black opacity-30 mb-2 uppercase">Jan 18, 2026 • 22soulfan</p>
-                    <h3 class="text-xl font-black italic mb-2 text-sky-400">The Unity Update</h3>
-                    <p class="text-sm opacity-60">Confirmed: hirohamada2014 and 22soulfan are one. This allows for a seamless transition of WhirlyOS assets into the new centralized WonderRepo. Soul 2026 is officially active.</p>
+                    <h3 class="text-xl font-black italic mb-2">Deep Obsidian Shift</h3>
+                    <p class="text-sm opacity-50 leading-relaxed">I've moved the blog interface to a full dark style to match the cinematic energy of WhirlyOS. Soul 2026 is currently indexing the new UI assets.</p>
                 </div>
             </div>
         </div>
@@ -94,48 +102,41 @@
 
     <main id="about" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto liquid-panel p-12">
-            <h2 class="text-3xl font-black italic uppercase mb-6">About the <span class="text-sky-400">Creator</span></h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <p class="text-sm opacity-60 leading-relaxed">
-                    WhirlyOS is the solo project of a creator managing both <b>hirohamada2014</b> (Legacy) and <b>22soulfan</b> (Active). 
-                    The project aims to rescue legacy i386 hardware and turn them into cinematic, educational tools for students and homeschoolers worldwide.
+            <h2 class="text-3xl font-black italic uppercase mb-8">The <span class="text-sky-400">WonderRepo</span></h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <p class="text-sm opacity-40 leading-relaxed">
+                    WhirlyOS is a specialized Linux distribution based on Debian Stable. It targets legacy i386 machines to provide students and homeschoolers with a cinematic, distraction-free environment.
                 </p>
                 <div class="space-y-4">
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                        <p class="text-[10px] font-black uppercase text-sky-400">Primary Hub</p>
-                        <p class="text-xs font-bold">GitHub: 22soulfan/WhirlyOS</p>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                        <p class="text-[9px] font-black uppercase text-sky-400">Active Creator</p>
+                        <p class="text-xs font-bold">22soulfan</p>
                     </div>
-                    <div class="bg-white/5 p-4 rounded-xl border border-white/10">
-                        <p class="text-[10px] font-black uppercase text-purple-400">Legacy Hub</p>
-                        <p class="text-xs font-bold">Original: hirohamada2014</p>
+                    <div class="bg-white/5 p-4 rounded-xl border border-white/5">
+                        <p class="text-[9px] font-black uppercase text-purple-400">Legacy Profile</p>
+                        <p class="text-xs font-bold">hirohamada2014</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="mt-32 border-t border-white/5 bg-black/40 py-20 px-6">
+    <footer class="mt-40 border-t border-white/5 bg-black/40 py-20 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="grid md:grid-cols-2 gap-20 mb-16">
                 <div>
-                    <h4 class="text-[10px] font-black uppercase tracking-widest text-sky-400 mb-6">Soul 2026 // System Logs</h4>
-                    <div class="bg-black/50 p-6 rounded-2xl border border-white/5 h-48 overflow-y-auto">
-                        <div class="soul-log-entry">[00:01] Soul 2026 Initialized.</div>
-                        <div class="soul-log-entry">[00:05] Checking hirohamada2014 legacy link... OK.</div>
-                        <div class="soul-log-entry">[00:12] Mounting 22soulfan WonderRepo... OK.</div>
-                        <div class="soul-log-entry">[00:45] Scanning i386 hardware compatibility... Ready.</div>
-                        <div class="soul-log-entry">[01:02] Experimental Mascots (Rox, Shelly) stand-by.</div>
-                        <div class="soul-log-entry">[Active] Monitoring for new blog updates...</div>
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-sky-400 mb-6">Soul 2026 // Status Logs</h4>
+                    <div class="bg-black/80 p-6 rounded-2xl border border-white/5 h-40 overflow-y-auto space-y-2">
+                        <div class="soul-log-entry">[12:00] Soul 2026 Active.</div>
+                        <div class="soul-log-entry">[12:02] UI Theme: Obsidian Dark applied.</div>
+                        <div class="soul-log-entry">[12:04] hirohamada2014 assets synced.</div>
+                        <div class="soul-log-entry">[12:05] Monitoring 22soulfan blog feed...</div>
                     </div>
                 </div>
-                <div class="text-right flex flex-col justify-center">
-                    <p class="text-xs font-black uppercase opacity-20 tracking-[0.5em] mb-4">WonderRepo // 2026</p>
-                    <p class="text-[10px] opacity-40 uppercase">Stars: 0 • Forks: 0 • Deployments: 66</p>
-                    <p class="text-[10px] opacity-40 uppercase mt-2">Shell 45.4% • HTML 44.8% • Python 9.8%</p>
+                <div class="text-right flex flex-col justify-end">
+                    <p class="text-[10px] font-black opacity-20 uppercase tracking-[0.5em] mb-4">WonderRepo // MMXXVI</p>
+                    <p class="text-[9px] opacity-30 uppercase">66 Deployments • Shell / HTML / Python</p>
                 </div>
-            </div>
-            <div class="text-center">
-                <p class="text-[9px] font-black opacity-20 uppercase tracking-[0.8em]">Find your spark // Find your way</p>
             </div>
         </div>
     </footer>
@@ -153,7 +154,7 @@
             if(t.value && b.value) {
                 const post = document.createElement('div');
                 post.className = 'liquid-panel p-8 border-l-4 border-sky-400 animate-pulse';
-                post.innerHTML = `<p class="text-[9px] font-black opacity-30 mb-2 uppercase">Jan 18, 2026 • 22soulfan</p><h3 class="text-xl font-black italic mb-2">${t.value}</h3><p class="text-sm opacity-60">${b.value}</p>`;
+                post.innerHTML = `<p class="text-[9px] font-black opacity-30 mb-2 uppercase">Jan 18, 2026 • 22soulfan</p><h3 class="text-xl font-black italic mb-2">${t.value}</h3><p class="text-sm opacity-50 leading-relaxed">${b.value}</p>`;
                 f.prepend(post); t.value = ''; b.value = '';
                 setTimeout(() => post.classList.remove('animate-pulse'), 1000);
             }
