@@ -3,200 +3,169 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | Hiro Hamada</title>
+    <title>WhirlyOS | Find Your Spark</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #38bdf8; --secondary: #818cf8; --accent: #f472b6;
-            --bg: #020617; --text: #f8fafc;
-            --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #c084fc;
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
         }
-        .light { --bg: #f8fafc; --text: #0f172a; --glass: rgba(15, 23, 42, 0.05); --border: rgba(15, 23, 42, 0.1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
-        
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            background: #020617;
+            overflow-x: hidden;
+        }
+
+        /* --- THE AESTHETIC LAYER (Grain & Mesh) --- */
+        .aesthetic-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 100;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
         .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
-            background: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
-                        radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.12) 0px, transparent 50%);
+            background: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.18) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(192, 132, 252, 0.18) 0px, transparent 50%);
             filter: blur(100px);
         }
 
-        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
-        .text-gradient { background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .page-section { display: none; opacity: 0; }
-        .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid var(--glass-border);
+        }
 
-        table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
-        th, td { padding: 10px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
-        
-        .badge { font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; }
-        .warning-banner { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); color: #fbbf24; }
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: flow 8s linear infinite;
+        }
+
+        @keyframes flow { to { background-position: 200% center; } }
+
+        .page-section { display: none; opacity: 0; transform: translateY(30px); }
+        .page-section.active { display: block; animation: sectionIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes sectionIn { to { opacity: 1; transform: translateY(0); } }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .download-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: var(--primary);
+            color: #020617;
+            border-color: var(--primary);
+        }
     </style>
 </head>
-<body>
+<body class="text-slate-100 selection:bg-sky-500/30">
 
+    <div class="aesthetic-overlay"></div>
     <div class="mesh-gradient"></div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-[150] glass rounded-[2rem] px-8 py-4 flex justify-between items-center border-white/5 shadow-2xl">
-        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
-            <span class="text-xl font-black tracking-tighter uppercase italic">Myriad <span class="text-sky-400 font-light">Project</span></span>
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-[150] glass rounded-3xl px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-4 group cursor-pointer" onclick="showPage('home')">
+            <img src="whirlyos.png" alt="WhirlyOS" class="w-10 h-10 object-contain group-hover:rotate-12 transition-transform duration-500">
+            <span class="text-xl font-black tracking-tighter uppercase">Whirly<span class="text-sky-400">OS</span></span>
         </div>
-        <div class="hidden md:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
-            <button onclick="showPage('home')">Home</button>
-            <button onclick="showPage('about')">About</button>
-            <button onclick="showPage('systems')">Systems</button>
-            <button onclick="showPage('wonderrepo')">WonderRepo</button>
+        
+        <div class="hidden md:flex items-center gap-10 text-[10px] font-bold uppercase tracking-[0.25em] text-slate-400">
+            <button onclick="showPage('home')" class="hover:text-white transition">Home</button>
+            <button onclick="showPage('about')" class="hover:text-white transition">About</button>
+            <button onclick="showPage('downloads')" class="hover:text-white transition">Downloads</button>
         </div>
-        <div class="flex items-center gap-4">
-            <a href="https://github.com/22soulfan" target="_blank" class="opacity-60 hover:opacity-100 transition">
-                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+
+        <div class="flex items-center gap-6">
+            <a href="https://github.com/22soulfan/WonderRepo" target="_blank" class="opacity-40 hover:opacity-100 transition duration-300">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
             </a>
-            <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
+            <button class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/10 transition">🌙</button>
         </div>
     </nav>
 
     <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-8 leading-[0.85]">The <br><span class="text-gradient">Myriad</span> Project.</h1>
-            <div class="glass p-8 rounded-3xl border-white/5 max-w-3xl mx-auto mb-12">
-                <p class="text-lg italic opacity-80 leading-relaxed">
-                    "A collection of operating systems for Windows 11 fans who want minimal support, an educational Linux distro, Android lockscreen in ChromiumOS, and an Android-inspired lockscreen and an open-sourced modern Windows 11."
-                </p>
-                <div class="mt-6 flex items-center justify-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500"></div>
-                    <div class="text-left">
-                        <p class="text-xs font-black uppercase tracking-widest">Hiro Hamada</p>
-                        <p class="text-[9px] opacity-40 uppercase">Original Owner & Lead Architect</p>
-                    </div>
-                </div>
+            <div class="flex justify-center gap-3 mb-8">
+                <span class="px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-sky-500/10">64-Bit Optimized</span>
+                <span class="px-4 py-1.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-purple-500/10">32-Bit (i386)</span>
             </div>
-            <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">System Portfolio</button>
-        </div>
-    </main>
-
-    <main id="about" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black mb-8 tracking-tight">One Vision. <span class="text-gradient">Hiro Hamada.</span></h2>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="space-y-6 opacity-80 text-sm leading-relaxed">
-                    <p>The **Myriad Project** is a solo initiative by **Hiro Hamada** (formerly <code>hirohamada2014</code>) to provide an alternative to the monolithic OS landscape. We focus on variety—from Windows-compatible shells to educational Linux distributions.</p>
-                    <p>Our goal is to reclaim the "Personal" in Personal Computing by building systems that respect user privacy, support older hardware (i386), and provide a distraction-free, cinematic environment for students and creatives alike.</p>
-                </div>
-                <div class="glass p-8 rounded-3xl border-white/5">
-                    <h4 class="font-bold text-sky-400 uppercase text-[10px] tracking-widest mb-4">Core Principles</h4>
-                    <ul class="text-[11px] space-y-3 opacity-60 font-mono">
-                        <li>• NO ARTIFICIAL INTELLIGENCE</li>
-                        <li>• i386 COMPATIBILITY FOCUS</li>
-                        <li>• ADHD-AWARE DESIGN</li>
-                        <li>• CINEMATIC PIXAR-INSPIRED UI</li>
-                    </ul>
-                </div>
+            <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-[0.8]">
+                Find your <br><span class="text-gradient">Spark.</span>
+            </h1>
+            <p class="text-xl text-slate-400 mb-14 font-light max-w-2xl mx-auto leading-relaxed">
+                The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <button onclick="showPage('downloads')" class="btn-glow px-12 py-5 bg-sky-500 text-slate-950 rounded-2xl font-black text-sm uppercase tracking-wider transition-all">Get WhirlyOS</button>
+                <button onclick="showPage('about')" class="px-12 py-5 glass rounded-2xl font-black text-sm uppercase tracking-wider hover:bg-white/5 transition">The Mission</button>
             </div>
         </div>
     </main>
 
-    <main id="systems" class="page-section pt-48 pb-20 px-6">
+    <main id="downloads" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Multiverse</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
-                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Open Source NT</span>
-                    <h3 class="text-2xl font-bold mb-2">openMyriad</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">ReactOS Fork / Modern C++ Shell</p>
-                    <p class="text-sm opacity-70 mb-6">A modernized rebirth of the Windows-compatible shell. Features an Android-inspired lockscreen and a hybrid Windows 10/11 start menu logic. Completely open source.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
-                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Educational Linux</span>
-                    <h3 class="text-2xl font-bold mb-2">WhirlyOS</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">Debian Stable / i386 Focus</p>
-                    <p class="text-sm opacity-70 mb-6">A playful, ADHD-aware shell built for learning. Includes screen time limits, parental controls, and six specialized cinematic editions.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
-                    <span class="badge bg-orange-500/20 text-orange-400 mb-4 inline-block w-fit">Web Hybrid</span>
-                    <h3 class="text-2xl font-bold mb-2">ChromMyriad</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">ChromiumOS / Aura Shell</p>
-                    <p class="text-sm opacity-70 mb-6">Exploring cloud sovereignty with a native Android lockscreen integrated into the Chromium ecosystem. Minimalist and ultra-fast.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
-                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Minimal Windows</span>
-                    <h3 class="text-2xl font-bold mb-2">Communiverse11</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">Win11 Mod / Ambassador Login</p>
-                    <p class="text-sm opacity-70 mb-6">A de-bloated Windows 11 for power users. Focuses on minimal support, zero telemetry, and the security-focused Ambassador login role.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
-                </div>
-
+            <div class="text-center mb-20">
+                <h2 class="text-6xl font-black mb-6 tracking-tight">System <span class="text-gradient">Images</span></h2>
+                <p class="text-slate-400 text-lg">Universal compatibility. Legacy heart. Modern soul.</p>
             </div>
-        </div>
-    </main>
-
-    <main id="wonderrepo" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black mb-6">Wonder<span class="text-gradient">Repo</span></h2>
-            <div class="warning-banner p-4 rounded-xl text-xs mb-8 flex items-center gap-3">
-                <span>⚠️</span>
-                <p><strong>Note:</strong> Currently testing build attempts with 0x OS Builder. Moving to <strong>Cubic</strong> tests next. i386 compatibility only!</p>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 space-y-8">
-                    <div class="glass p-8 rounded-3xl">
-                        <h3 class="text-xl font-bold mb-4">🐧 WhirlyOS Editions (Table)</h3>
-                        <div class="overflow-x-auto">
-                            <table>
-                                <thead class="opacity-40 uppercase text-[9px] tracking-widest">
-                                    <tr><th>Edition</th><th>DE</th><th>Inspiration</th><th>RAM</th></tr>
-                                </thead>
-                                <tbody class="opacity-80">
-                                    <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>2GB</td></tr>
-                                    <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>1GB</td></tr>
-                                    <tr><td>ElementalDesk</td><td>KDE</td><td>Elemental</td><td>4GB</td></tr>
-                                    <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>512MB</td></tr>
-                                    <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>2GB</td></tr>
-                                    <tr><td>IntellSpace</td><td>LXQt</td><td>Wall-E</td><td>1GB</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="glass p-8 rounded-3xl">
-                        <h3 class="text-xl font-bold mb-4 italic">"Find your spark. Find your way."</h3>
-                        <p class="text-sm opacity-60 leading-relaxed">
-                            For homeschooling, private and public schools by giving educational tools (without AI). 
-                            WhirlyOS focuses on coding, technical exploration, and surfing with safe restrictions.
-                        </p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-[2.5rem] flex flex-col border border-white/5 group hover:border-sky-500/30 transition-colors">
+                    <div class="text-4xl mb-8 group-hover:scale-110 transition-transform">🌌</div>
+                    <h3 class="text-3xl font-black mb-3">SoulFrame</h3>
+                    <p class="text-slate-500 mb-10 leading-relaxed">Minimalist GNOME. Celestial aesthetics and fluid animations.</p>
+                    <div class="space-y-4">
+                        <button class="download-btn w-full py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">Download x64</button>
+                        <button class="download-btn w-full py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">Download x86</button>
                     </div>
                 </div>
 
-                <div class="space-y-6 text-xs">
-                    <div class="glass p-6 rounded-2xl">
-                        <h4 class="font-bold mb-4 uppercase text-sky-400">Software Suite</h4>
-                        <ul class="space-y-2 opacity-60">
-                            <li>• GCompris / Scratch / TuxMath</li>
-                            <li>• GIMP / MuseScore / VLC</li>
-                            <li>• Google Classroom / Docs Integration</li>
-                        </ul>
+                <div class="glass p-10 rounded-[2.5rem] flex flex-col border border-white/5 group hover:border-red-500/30 transition-colors">
+                    <div class="text-4xl mb-8 group-hover:scale-110 transition-transform">🏮</div>
+                    <h3 class="text-3xl font-black mb-3">MeiLite</h3>
+                    <p class="text-slate-500 mb-10 leading-relaxed">XFCE efficiency. Expressive, fast, and optimized for low-spec i386.</p>
+                    <div class="space-y-4">
+                        <button class="download-btn w-full py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">Download x64</button>
+                        <button class="download-btn w-full py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">Download x86</button>
                     </div>
-                    <div class="glass p-6 rounded-2xl">
-                        <h4 class="font-bold mb-4 uppercase text-sky-400">Timeline</h4>
-                        <p class="opacity-60">Jan 2025: Building Debian Assets<br>2026: No release yet—Ongoing.</p>
+                </div>
+
+                <div class="glass p-10 rounded-[2.5rem] flex flex-col border border-white/5 group hover:border-emerald-500/30 transition-colors">
+                    <div class="text-4xl mb-8 group-hover:scale-110 transition-transform">🌊</div>
+                    <h3 class="text-3xl font-black mb-3">NotebookOS</h3>
+                    <p class="text-slate-500 mb-10 leading-relaxed">Openbox minimal. Seaside calm for focused notebook-style work.</p>
+                    <div class="space-y-4">
+                        <button class="download-btn w-full py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">Download x64</button>
+                        <button class="download-btn w-full py-4 rounded-2xl text-[11px] font-black uppercase tracking-widest">Download x86</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <footer class="py-24 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
-        The Myriad Project // Original Owner: Hiro Hamada // Open Source MIT
+    <footer class="py-24 text-center opacity-30 text-[10px] font-black uppercase tracking-[0.5em]">
+        WhirlyOS Project & WonderRepo // MMXXVI
     </footer>
 
     <script>
@@ -205,7 +174,6 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function toggleTheme() { document.documentElement.classList.toggle('light'); }
     </script>
 </body>
 </html>
