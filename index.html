@@ -14,10 +14,10 @@
         .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Interactive Shell */
+        /* Terminal */
         #terminal { background: #000; font-family: 'Fira Code', monospace; height: 350px; overflow-y: auto; padding: 20px; font-size: 13px; color: #4ade80; border-radius: 1.5rem; border: 1px solid #333; }
-        .term-input { background: transparent; border: none; outline: none; color: white; width: 100%; }
-
+        .term-input { background: transparent; border: none; outline: none; color: white; width: 80%; }
+        
         .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; }
         .nav-link:hover { opacity: 1; color: var(--primary); }
     </style>
@@ -29,98 +29,89 @@
             <span class="text-xl font-black tracking-tighter uppercase italic cursor-pointer" onclick="showPage('home')">Myriad</span>
             <div class="hidden lg:flex gap-8">
                 <button onclick="showPage('home')" class="nav-link">Home</button>
-                <button onclick="showPage('multiverse')" class="nav-link">Multiverse</button>
-                <button onclick="showPage('terminal-sec')" class="nav-link">Terminal</button>
+                <button onclick="showPage('os-collection')" class="nav-link">OS Collection</button>
+                <button onclick="showPage('terminal-sec')" class="nav-link">Live Terminal</button>
                 <button onclick="showPage('blog')" class="nav-link">Blogger</button>
             </div>
         </div>
-        <a href="https://github.com/22soulfan" target="_blank" class="bg-white/10 hover:bg-sky-500 hover:text-black px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition border border-white/10">GitHub Repo</a>
+        <a href="https://github.com/22soulfan" target="_blank" class="bg-white text-black px-6 py-2 rounded-full text-[9px] font-black uppercase tracking-widest transition hover:bg-sky-400">GitHub Repo</a>
     </nav>
 
     <main id="home" class="page-section active pt-56 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-24">
-                <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter mb-4 leading-none italic uppercase">Myriad <span class="text-sky-400">Core</span></h1>
-                <p class="text-lg md:text-xl font-light opacity-40 tracking-[0.4em] uppercase">"Find your spark. Find your way."</p>
-                <div class="mt-12 flex justify-center gap-4">
-                    <button onclick="showPage('terminal-sec')" class="px-10 py-5 bg-sky-500 text-black rounded-2xl font-black text-[11px] uppercase tracking-widest">Start Terminal</button>
-                    <button onclick="showPage('multiverse')" class="px-10 py-5 glass rounded-2xl font-black text-[11px] uppercase tracking-widest">View Multiverse</button>
-                </div>
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-8">
-                <div class="glass p-10 rounded-[3.5rem] border-sky-400/20">
-                    <h2 class="text-3xl font-black mb-10 uppercase tracking-tighter text-sky-400 italic">Strategic Goals</h2>
-                    <div class="space-y-8">
-                        <div>
-                            <h4 class="font-black uppercase text-sm mb-2">01. Legacy Hardware Reclamation</h4>
-                            <p class="text-xs opacity-50 leading-relaxed">Optimization of NT and Linux kernels to ensure modern fluidity on $1\text{GB}$ - $2\text{GB}$ RAM machines. Reducing e-waste through software efficiency.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-black uppercase text-sm mb-2">02. Universal Aesthetic Layer</h4>
-                            <p class="text-xs opacity-50 leading-relaxed">Developing a C++ based shell that maintains visual consistency whether the user is on a Debian, openSUSE, or ReactOS base.</p>
-                        </div>
-                        <div>
-                            <h4 class="font-black uppercase text-sm mb-2">03. Sovereignty & Privacy</h4>
-                            <p class="text-xs opacity-50 leading-relaxed">Hardening kernels to remove all telemetry, forced updates, and cloud dependencies. The OS belongs to the user, not the provider.</p>
+                <h1 class="text-7xl md:text-[9rem] font-black tracking-tighter mb-4 leading-tight italic uppercase">Myriad <span class="text-sky-400">Portal</span></h1>
+                <p class="text-lg md:text-xl font-light opacity-40 tracking-[0.4em] uppercase mb-12 italic">"Find your spark. Find your way."</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="glass p-10 rounded-[3rem] border-sky-400/20">
+                        <h2 class="text-3xl font-black mb-8 uppercase tracking-tighter text-sky-400">Strategic Goals</h2>
+                        <div class="space-y-6 text-xs leading-relaxed opacity-70">
+                            <p><b>1. $1\text{GB}$ Standard:</b> Prove that high-end aesthetics can run on low-end legacy hardware through kernel stripping and C++ UI optimization.</p>
+                            <p><b>2. The Unified UI:</b> Develop a "Spark" shell that allows a user to switch from a Debian base to a ReactOS base without changing their workflow.</p>
+                            <p><b>3. Data Autonomy:</b> Build a "Zero-Call" ecosystem where the OS never communicates with external servers without explicit user consent.</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="glass p-10 rounded-[3.5rem] border-white/5 bg-white/[0.01]">
-                    <h2 class="text-3xl font-black mb-10 uppercase tracking-tighter italic">Technical Benefits</h2>
-                    <div class="grid gap-4">
-                        <div class="p-6 glass rounded-3xl border-white/5 hover:border-sky-400/30 transition">
-                            <h4 class="text-sky-400 font-bold uppercase text-xs mb-1">Low Latency Kernel</h4>
-                            <p class="text-[11px] opacity-40 italic">Custom task scheduling for high responsiveness on old CPUs.</p>
-                        </div>
-                        <div class="p-6 glass rounded-3xl border-white/5 hover:border-sky-400/30 transition">
-                            <h4 class="text-sky-400 font-bold uppercase text-xs mb-1">Modular Design</h4>
-                            <p class="text-[11px] opacity-40 italic">Enable or disable any system component via the Myriad Shell.</p>
-                        </div>
-                        <div class="p-6 glass rounded-3xl border-white/5 hover:border-sky-400/30 transition">
-                            <h4 class="text-sky-400 font-bold uppercase text-xs mb-1">Cross-Base Support</h4>
-                            <p class="text-[11px] opacity-40 italic">Run Windows binaries and Linux packages in a unified workflow.</p>
-                        </div>
+                    <div class="glass p-10 rounded-[3rem] border-white/5 bg-white/[0.01]">
+                        <h2 class="text-3xl font-black mb-8 uppercase tracking-tighter italic">Key Benefits</h2>
+                        <ul class="space-y-4 text-xs font-bold uppercase tracking-widest text-sky-300">
+                            <li>⚡ Zero Telemetry / Absolute Privacy</li>
+                            <li>🎨 Adaptive "Light-Aesthetic" Design</li>
+                            <li>📦 Full Flatpak & Wine Integration</li>
+                            <li>🚀 Sub-10 Second Boot Times</li>
+                            <li>🛠️ One-Click Kernel Swapping</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <main id="multiverse" class="page-section pt-48 pb-20 px-6">
+    <main id="os-collection" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black mb-16 uppercase text-center italic">The <span class="text-sky-400">Multiverse</span></h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="glass p-8 rounded-[2.5rem] border-white/5">
-                    <h3 class="text-2xl font-bold uppercase">MyriadOS</h3>
-                    <span class="text-[10px] text-sky-400 font-black">REACTOS BASE</span>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">Bringing the Light-Aesthetic Layer to the open-source NT architecture.</p>
+            <h2 class="text-5xl font-black mb-16 uppercase text-center italic tracking-tighter">The <span class="text-sky-400">Multiverse</span> Collection</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl font-black">01</div>
+                    <h3 class="text-2xl font-black uppercase text-sky-400">MyriadOS</h3>
+                    <p class="text-[10px] font-bold opacity-30 tracking-[0.2em] mb-4">BASE: REACTOS (NT)</p>
+                    <p class="text-xs opacity-60 mb-6">The flagship binary-compatible system. Runs Windows applications on a custom Myriad-Aesthetic kernel. Designed for absolute legacy speed.</p>
+                    <div class="text-[9px] font-black opacity-20 uppercase">Status: Alpha-0.4</div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-white/5">
-                    <h3 class="text-2xl font-bold uppercase">WhirlyOS</h3>
-                    <span class="text-[10px] text-sky-400 font-black">DEBIAN STABLE</span>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">Zero-Aesthetic design focused purely on educational performance.</p>
+                <div class="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl font-black">02</div>
+                    <h3 class="text-2xl font-black uppercase text-sky-400">WhirlyOS</h3>
+                    <p class="text-[10px] font-bold opacity-30 tracking-[0.2em] mb-4">BASE: DEBIAN STABLE</p>
+                    <p class="text-xs opacity-60 mb-6">The education-first warrior. A "Zero-Aesthetic" build that prioritizes raw CPU cycles for compiling and learning. Perfect for $1\text{GB}$ laptops.</p>
+                    <div class="text-[9px] font-black opacity-20 uppercase">Status: Stable Release</div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-white/5">
-                    <h3 class="text-2xl font-bold uppercase">RenardOS</h3>
-                    <span class="text-[10px] text-sky-400 font-black">OPENSUSE BASE</span>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">A rolling-release workstation for advanced Myriad users.</p>
+                <div class="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl font-black">03</div>
+                    <h3 class="text-2xl font-black uppercase text-sky-400">RenardOS</h3>
+                    <p class="text-[10px] font-bold opacity-30 tracking-[0.2em] mb-4">BASE: OPENSUSE</p>
+                    <p class="text-xs opacity-60 mb-6">A rolling-release powerhouse with the "Obsidian" shell theme. Best for developers who need the latest tools without the bloat of standard KDE/Gnome.</p>
+                    <div class="text-[9px] font-black opacity-20 uppercase">Status: Beta-Rolling</div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-white/5">
-                    <h3 class="text-2xl font-bold uppercase">RPandaOS</h3>
-                    <span class="text-[10px] text-sky-400 font-black">COSMOS C#</span>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">Experimental visual kernel built with managed code experiments.</p>
+                <div class="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl font-black">04</div>
+                    <h3 class="text-2xl font-black uppercase text-sky-400">RPandaOS</h3>
+                    <p class="text-[10px] font-bold opacity-30 tracking-[0.2em] mb-4">BASE: COSMOS (C#)</p>
+                    <p class="text-xs opacity-60 mb-6">An experimental C#-based kernel. Visualizing memory management in real-time. A sandbox for the next generation of managed operating systems.</p>
+                    <div class="text-[9px] font-black opacity-20 uppercase">Status: Experimental</div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-white/5">
-                    <h3 class="text-2xl font-bold uppercase">ChromMyriad</h3>
-                    <span class="text-[10px] text-sky-400 font-black">CHROMIUM HYBRID</span>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">Lightweight web-focused system with native Myriad shell integration.</p>
+                <div class="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl font-black">05</div>
+                    <h3 class="text-2xl font-black uppercase text-sky-400">ChromMyriad</h3>
+                    <p class="text-[10px] font-bold opacity-30 tracking-[0.2em] mb-4">BASE: GENTOO / WEB</p>
+                    <p class="text-xs opacity-60 mb-6">A Gentoo-optimized web-first OS. Built for users who live in the browser but want the local privacy of the Myriad Shell.</p>
+                    <div class="text-[9px] font-black opacity-20 uppercase">Status: Custom Build</div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-white/5">
-                    <h3 class="text-2xl font-bold uppercase">Communiverse11</h3>
-                    <span class="text-[10px] text-sky-400 font-black">WINDOWS 11 MOD</span>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">The anti-bloat edition. No telemetry. No ads. Just NT power.</p>
+                <div class="glass p-8 rounded-[2.5rem] border-white/5 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 text-4xl font-black">06</div>
+                    <h3 class="text-2xl font-black uppercase text-sky-400">Comm11</h3>
+                    <p class="text-[10px] font-bold opacity-30 tracking-[0.2em] mb-4">BASE: WIN11 DE-BLOAT</p>
+                    <p class="text-xs opacity-60 mb-6">A surgical modification of Windows 11. Removes 80% of background services and all telemetry for a pure gaming/creative experience.</p>
+                    <div class="text-[9px] font-black opacity-20 uppercase">Status: Production Mod</div>
                 </div>
             </div>
         </div>
@@ -128,40 +119,24 @@
 
     <main id="terminal-sec" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-black mb-8 uppercase text-center italic">Whirly <span class="text-sky-400">Live Shell</span></h2>
+            <h2 class="text-3xl font-black mb-8 uppercase text-center italic tracking-tighter">Myriad <span class="text-sky-400">System Shell</span></h2>
             <div id="terminal">
-                <div id="term-output">Myriad Project Shell [Version 2026.01]<br>Welcome, 22soulfan. Type 'help' for commands.</div>
+                <div id="term-output">Myriad Kernel v6.2 [User: 22soulfan]<br>Authorized Access Only. Type 'help' for a list of OS commands.</div>
                 <div class="flex mt-2">
-                    <span class="mr-2 text-sky-400 font-black">myriad@dev:~$</span>
+                    <span class="mr-2 text-sky-400 font-black">admin@myriad:~$</span>
                     <input type="text" id="term-input" class="term-input" autofocus>
                 </div>
             </div>
-            <div class="mt-8 glass p-6 rounded-2xl border-white/5 text-center">
-                <p class="text-[10px] font-bold opacity-30 uppercase tracking-[0.2em]">The terminal is a simulated WhirlyOS Linux environment.</p>
-            </div>
-        </div>
-    </main>
-
-    <main id="blog" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-3xl mx-auto glass p-12 rounded-[3.5rem]">
-            <h2 class="text-4xl font-black mb-8 text-center uppercase tracking-tighter text-sky-400">Blogger Engine</h2>
-            <div class="flex flex-col gap-4">
-                <input type="text" id="postTitle" placeholder="Devlog Title" class="bg-white/5 border border-white/10 p-4 rounded-xl text-white outline-none focus:border-sky-400">
-                <textarea id="postContent" rows="6" placeholder="Document your Myriad breakthrough..." class="bg-white/5 border border-white/10 p-4 rounded-xl text-white outline-none focus:border-sky-400 resize-none"></textarea>
-                <button onclick="publishToBlogger()" class="py-5 bg-sky-500 text-black font-black uppercase rounded-2xl text-[11px] tracking-widest hover:bg-white transition">Publish to Myriad Blog</button>
-            </div>
-            <p id="publishStatus" class="mt-6 text-center text-[10px] font-black uppercase text-sky-400 hidden italic">Successfully synced to Google Blogger Engine.</p>
         </div>
     </main>
 
     <footer class="py-24 text-center border-t border-white/5 mt-20">
-        <p class="text-[10px] font-black uppercase tracking-[0.6em] mb-6 text-sky-400 italic">"Find your spark. Find your way."</p>
-        <div class="flex flex-wrap justify-center gap-10 mb-8 text-[9px] font-black opacity-30 uppercase tracking-widest">
+        <p class="text-[10px] font-black uppercase tracking-[0.5em] mb-6 text-sky-400 italic">"Find your spark. Find your way."</p>
+        <div class="flex flex-wrap justify-center gap-10 mb-8 text-[9px] font-black opacity-20 uppercase tracking-widest">
             <span>© 2026 The Myriad Project</span>
-            <span>Licensed Under MIT</span>
             <span>Architect: 22soulfan</span>
+            <span>MIT License</span>
         </div>
-        <p class="text-[8px] opacity-10 uppercase font-black">Portal Build v7.0 // Zero-Bloat Aesthetics</p>
     </footer>
 
     <script>
@@ -171,39 +146,27 @@
             window.scrollTo(0,0);
         }
 
-        // Live Terminal Logic
         const input = document.getElementById('term-input');
         const output = document.getElementById('term-output');
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const cmd = input.value.toLowerCase().trim();
                 let res = '';
-                if (cmd === 'help') res = "Available commands: ls, whoami, uname, multiverse, clear";
-                else if (cmd === 'ls') res = "myriad/ whirly/ renard/ rpanda/ chrommyriad/ communiverse11/";
+                if (cmd === 'help') res = "Available: ls, whoami, uname, status, clear";
+                else if (cmd === 'ls') res = "myriad_os/ whirly/ renard/ rpanda/ chrom_myriad/ comm_11/";
                 else if (cmd === 'whoami') res = "22soulfan (Lead Architect)";
-                else if (cmd === 'uname') res = "Myriad-Linux-v6.x-Rolling";
-                else if (cmd === 'multiverse') res = "All 6 systems operational. Kernel bridge active.";
+                else if (cmd === 'uname') res = "WhirlyCore-Linux-6.x-x64";
+                else if (cmd === 'status') res = "Current Load: 0.12 | All 6 Universes Online.";
                 else if (cmd === 'clear') { output.innerHTML = ''; input.value = ''; return; }
                 else if (cmd === '') res = '';
-                else res = `Error: '${cmd}' not found in Whirly-bin.`;
+                else res = `Shell: Command '${cmd}' not found.`;
                 
-                output.innerHTML += `<div><span class="text-sky-400">myriad@dev:~$</span> ${input.value}</div>`;
-                if(res) output.innerHTML += `<div class="mb-2 text-white/50">${res}</div>`;
+                output.innerHTML += `<div><span class="text-sky-400">admin@myriad:~$</span> ${input.value}</div>`;
+                if(res) output.innerHTML += `<div class="mb-2 text-white/40">${res}</div>`;
                 input.value = '';
                 document.getElementById('terminal').scrollTop = document.getElementById('terminal').scrollHeight;
             }
         });
-
-        // Blogger Engine
-        function publishToBlogger() {
-            const status = document.getElementById('publishStatus');
-            status.classList.remove('hidden');
-            setTimeout(() => {
-                document.getElementById('postTitle').value = "";
-                document.getElementById('postContent').value = "";
-                setTimeout(() => status.classList.add('hidden'), 3000);
-            }, 1200);
-        }
 
         function initTerminal() { input.focus(); }
     </script>
