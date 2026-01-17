@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | By Hiro Hamada</title>
+    <title>The Myriad Project | Hiro Hamada</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -13,7 +13,7 @@
             --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
         }
         .light { --bg: #f8fafc; --text: #0f172a; --glass: rgba(15, 23, 42, 0.05); --border: rgba(15, 23, 42, 0.1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
         
         .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
@@ -29,10 +29,11 @@
         .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .os-card { transition: all 0.3s ease; }
-        .os-card:hover { transform: translateY(-5px); border-color: var(--primary); }
+        table { width: 100%; border-collapse: collapse; font-size: 0.7rem; }
+        th, td { padding: 10px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
         
         .badge { font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; }
+        .warning-banner { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.2); color: #fbbf24; }
     </style>
 </head>
 <body>
@@ -44,13 +45,15 @@
             <span class="text-xl font-black tracking-tighter uppercase italic">Myriad <span class="text-sky-400 font-light">Project</span></span>
         </div>
         <div class="hidden md:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
-            <button onclick="showPage('home')">Portal</button>
+            <button onclick="showPage('home')">Home</button>
             <button onclick="showPage('about')">About</button>
             <button onclick="showPage('systems')">Systems</button>
-            <button onclick="showPage('whirlyos')">WhirlyOS</button>
+            <button onclick="showPage('wonderrepo')">WonderRepo</button>
         </div>
         <div class="flex items-center gap-4">
-            <a href="https://github.com/22soulfan/whirlyos" target="_blank" class="opacity-60 hover:opacity-100 transition"><svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+            <a href="https://github.com/22soulfan" target="_blank" class="opacity-60 hover:opacity-100 transition">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
             <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
         </div>
     </nav>
@@ -58,37 +61,37 @@
     <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
             <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-8 leading-[0.85]">The <br><span class="text-gradient">Myriad</span> Project.</h1>
-            <div class="glass p-8 rounded-3xl border-white/5 max-w-2xl mx-auto mb-12">
+            <div class="glass p-8 rounded-3xl border-white/5 max-w-3xl mx-auto mb-12">
                 <p class="text-lg italic opacity-80 leading-relaxed">
                     "A collection of operating systems for Windows 11 fans who want minimal support, an educational Linux distro, Android lockscreen in ChromiumOS, and an Android-inspired lockscreen and an open-sourced modern Windows 11."
                 </p>
                 <div class="mt-6 flex items-center justify-center gap-3">
-                    <div class="w-10 h-10 rounded-full bg-sky-500"></div>
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-500"></div>
                     <div class="text-left">
                         <p class="text-xs font-black uppercase tracking-widest">Hiro Hamada</p>
                         <p class="text-[9px] opacity-40 uppercase">Original Owner & Lead Architect</p>
                     </div>
                 </div>
             </div>
-            <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">Explore the Multiverse</button>
+            <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">System Portfolio</button>
         </div>
     </main>
 
     <main id="about" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black mb-8 tracking-tight">One Vision. <span class="text-gradient">Many Foundations.</span></h2>
+            <h2 class="text-5xl font-black mb-8 tracking-tight">One Vision. <span class="text-gradient">Hiro Hamada.</span></h2>
             <div class="grid md:grid-cols-2 gap-10">
                 <div class="space-y-6 opacity-80 text-sm leading-relaxed">
-                    <p>Founded and maintained by **Hiro Hamada**, The Myriad Project is a solo endeavor to redefine personal computing. By forking and modernizing existing foundations like **ReactOS** and **Debian**, Hiro aims to provide specialized environments for different user needs.</p>
-                    <p>Whether you are seeking the cinematic, ADHD-aware focus of **WhirlyOS** or the open-source Windows compatibility of **openMyriad**, this project puts user sovereignty first.</p>
+                    <p>The **Myriad Project** is a solo initiative by **Hiro Hamada** (formerly <code>hirohamada2014</code>) to provide an alternative to the monolithic OS landscape. We focus on variety—from Windows-compatible shells to educational Linux distributions.</p>
+                    <p>Our goal is to reclaim the "Personal" in Personal Computing by building systems that respect user privacy, support older hardware (i386), and provide a distraction-free, cinematic environment for students and creatives alike.</p>
                 </div>
                 <div class="glass p-8 rounded-3xl border-white/5">
-                    <h4 class="font-bold text-sky-400 uppercase text-[10px] tracking-widest mb-4">Ownership Metadata</h4>
+                    <h4 class="font-bold text-sky-400 uppercase text-[10px] tracking-widest mb-4">Core Principles</h4>
                     <ul class="text-[11px] space-y-3 opacity-60 font-mono">
-                        <li>• PRIMARY OWNER: Hiro Hamada</li>
-                        <li>• LEGACY IDENT: hirohamada2014</li>
-                        <li>• CURRENT IDENT: 22soulfan</li>
-                        <li>• MISSION: Digital Sovereignty</li>
+                        <li>• NO ARTIFICIAL INTELLIGENCE</li>
+                        <li>• i386 COMPATIBILITY FOCUS</li>
+                        <li>• ADHD-AWARE DESIGN</li>
+                        <li>• CINEMATIC PIXAR-INSPIRED UI</li>
                     </ul>
                 </div>
             </div>
@@ -97,93 +100,103 @@
 
     <main id="systems" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Portfolio</h2>
+            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Multiverse</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 
-                <div class="glass p-8 rounded-[2.5rem] os-card border-sky-400/20">
-                    <span class="badge bg-sky-500 text-slate-950 mb-4 inline-block">Modern Windows</span>
+                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
+                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Open Source NT</span>
                     <h3 class="text-2xl font-bold mb-2">openMyriad</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4">ReactOS Fork / Modern Win 11 Inspired</p>
-                    <p class="text-sm opacity-70 mb-6">The open-sourced rebirth of Windows 11. Features an Android-inspired lockscreen and a modernized UI shell that stays true to the Windows 11 aesthetic while remaining completely open-source.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">Dev in Progress</button>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">ReactOS Fork / Modern C++ Shell</p>
+                    <p class="text-sm opacity-70 mb-6">A modernized rebirth of the Windows-compatible shell. Features an Android-inspired lockscreen and a hybrid Windows 10/11 start menu logic. Completely open source.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
                 </div>
 
-                <div class="glass p-8 rounded-[2.5rem] os-card border-sky-500/10">
-                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block">Educational Linux</span>
+                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
+                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Educational Linux</span>
                     <h3 class="text-2xl font-bold mb-2">WhirlyOS</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4">Debian Stable / ADHD-Aware</p>
-                    <p class="text-sm opacity-70 mb-6">A playful, educational distro featuring the <strong>SoulFrame</strong> desktop. Designed to help users "Find their Spark" with built-in distraction filters and cinematic UI.</p>
-                    <button onclick="showPage('whirlyos')" class="mt-auto block py-4 bg-sky-500 text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest">View Editions</button>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">Debian Stable / i386 Focus</p>
+                    <p class="text-sm opacity-70 mb-6">A playful, ADHD-aware shell built for learning. Includes screen time limits, parental controls, and six specialized cinematic editions.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
                 </div>
 
-                <div class="glass p-8 rounded-[2.5rem] os-card border-orange-500/10">
-                    <span class="badge bg-orange-500/20 text-orange-400 mb-4 inline-block">ChromiumOS Hybrid</span>
+                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
+                    <span class="badge bg-orange-500/20 text-orange-400 mb-4 inline-block w-fit">Web Hybrid</span>
                     <h3 class="text-2xl font-bold mb-2">ChromMyriad</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4">Chromium Base / Android Lock</p>
-                    <p class="text-sm opacity-70 mb-6">Cloud speed with a twist. Integrates a native Android lockscreen into the ChromiumOS environment for a seamless mobile-to-desktop transition.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">Reference Only</button>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">ChromiumOS / Aura Shell</p>
+                    <p class="text-sm opacity-70 mb-6">Exploring cloud sovereignty with a native Android lockscreen integrated into the Chromium ecosystem. Minimalist and ultra-fast.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
                 </div>
 
-                <div class="glass p-8 rounded-[2.5rem] os-card border-pink-500/10">
-                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block">Minimal Win11</span>
+                <div class="glass p-8 rounded-[2.5rem] flex flex-col border-white/5">
+                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Minimal Windows</span>
                     <h3 class="text-2xl font-bold mb-2">Communiverse11</h3>
-                    <p class="text-xs opacity-50 font-mono uppercase mb-4">Windows 11 Mod / Minimal Support</p>
-                    <p class="text-sm opacity-70 mb-6">The "Ambassador" project. A stripped-down Windows 11 for users who want a minimal footprint, zero telemetry, and complete local control.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">Stay Tuned</button>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4 italic">Win11 Mod / Ambassador Login</p>
+                    <p class="text-sm opacity-70 mb-6">A de-bloated Windows 11 for power users. Focuses on minimal support, zero telemetry, and the security-focused Ambassador login role.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned (2026)</button>
                 </div>
 
             </div>
         </div>
     </main>
 
-    <main id="whirlyos" class="page-section pt-48 pb-20 px-6">
+    <main id="wonderrepo" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-             <div class="glass p-10 rounded-[3rem] border-white/5">
-                <h2 class="text-3xl font-black mb-8 text-center">WhirlyOS <span class="text-gradient">Editions</span></h2>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-xs">
-                        <thead class="opacity-40 uppercase tracking-widest">
-                            <tr>
-                                <th class="pb-4">Edition</th>
-                                <th class="pb-4">Desktop Environment</th>
-                                <th class="pb-4">Inspiration</th>
-                                <th class="pb-4">Specs</th>
-                            </tr>
-                        </thead>
-                        <tbody class="opacity-80">
-                            <tr class="border-t border-white/5">
-                                <td class="py-4 font-bold text-sky-400">SoulFrame</td>
-                                <td>GNOME</td>
-                                <td>Soul (2020)</td>
-                                <td>2GB RAM / 20GB Disk</td>
-                            </tr>
-                            <tr class="border-t border-white/5">
-                                <td class="py-4 font-bold text-red-400">MeiLite</td>
-                                <td>XFCE</td>
-                                <td>Turning Red</td>
-                                <td>1GB RAM / 10GB Disk</td>
-                            </tr>
-                            <tr class="border-t border-white/5">
-                                <td class="py-4 font-bold text-green-400">ElementalDesk</td>
-                                <td>KDE Plasma</td>
-                                <td>Elemental</td>
-                                <td>4GB RAM / 25GB Disk</td>
-                            </tr>
-                            <tr class="border-t border-white/5">
-                                <td class="py-4 font-bold text-blue-400">NotebookOS</td>
-                                <td>Openbox</td>
-                                <td>Luca</td>
-                                <td>512MB RAM / 5GB Disk</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <h2 class="text-4xl font-black mb-6">Wonder<span class="text-gradient">Repo</span></h2>
+            <div class="warning-banner p-4 rounded-xl text-xs mb-8 flex items-center gap-3">
+                <span>⚠️</span>
+                <p><strong>Note:</strong> Currently testing build attempts with 0x OS Builder. Moving to <strong>Cubic</strong> tests next. i386 compatibility only!</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="glass p-8 rounded-3xl">
+                        <h3 class="text-xl font-bold mb-4">🐧 WhirlyOS Editions (Table)</h3>
+                        <div class="overflow-x-auto">
+                            <table>
+                                <thead class="opacity-40 uppercase text-[9px] tracking-widest">
+                                    <tr><th>Edition</th><th>DE</th><th>Inspiration</th><th>RAM</th></tr>
+                                </thead>
+                                <tbody class="opacity-80">
+                                    <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>2GB</td></tr>
+                                    <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>1GB</td></tr>
+                                    <tr><td>ElementalDesk</td><td>KDE</td><td>Elemental</td><td>4GB</td></tr>
+                                    <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>512MB</td></tr>
+                                    <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>2GB</td></tr>
+                                    <tr><td>IntellSpace</td><td>LXQt</td><td>Wall-E</td><td>1GB</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="glass p-8 rounded-3xl">
+                        <h3 class="text-xl font-bold mb-4 italic">"Find your spark. Find your way."</h3>
+                        <p class="text-sm opacity-60 leading-relaxed">
+                            For homeschooling, private and public schools by giving educational tools (without AI). 
+                            WhirlyOS focuses on coding, technical exploration, and surfing with safe restrictions.
+                        </p>
+                    </div>
                 </div>
-             </div>
+
+                <div class="space-y-6 text-xs">
+                    <div class="glass p-6 rounded-2xl">
+                        <h4 class="font-bold mb-4 uppercase text-sky-400">Software Suite</h4>
+                        <ul class="space-y-2 opacity-60">
+                            <li>• GCompris / Scratch / TuxMath</li>
+                            <li>• GIMP / MuseScore / VLC</li>
+                            <li>• Google Classroom / Docs Integration</li>
+                        </ul>
+                    </div>
+                    <div class="glass p-6 rounded-2xl">
+                        <h4 class="font-bold mb-4 uppercase text-sky-400">Timeline</h4>
+                        <p class="opacity-60">Jan 2025: Building Debian Assets<br>2026: No release yet—Ongoing.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
     <footer class="py-24 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
-        The Myriad Project // Original Owner: Hiro Hamada // 2026
+        The Myriad Project // Original Owner: Hiro Hamada // Open Source MIT
     </footer>
 
     <script>
