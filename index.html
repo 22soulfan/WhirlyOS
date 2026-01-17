@@ -28,7 +28,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             background: var(--bg);
             color: var(--text);
-            transition: background 0.5s ease, color 0.5s ease;
+            transition: background 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s ease;
             overflow-x: hidden;
         }
 
@@ -54,11 +54,17 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .page-section { display: none; opacity: 0; }
+        .page-section { display: none; opacity: 0; transform: translateY(20px); }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
         .nav-logo { filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4)); }
+        
+        /* Custom Button Styling */
+        .cta-btn {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cta-btn:hover { transform: scale(1.05) translateY(-2px); }
     </style>
 </head>
 <body>
@@ -66,13 +72,13 @@
     <div class="aesthetic-overlay"></div>
     <div class="mesh-gradient"></div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-[150] glass rounded-3xl px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
-            <img src="branding/whirlyos.png" alt="Logo" class="nav-logo w-9 h-9 object-contain">
-            <span class="text-lg font-black tracking-tighter uppercase">WhirlyOS</span>
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-[150] glass rounded-[2rem] px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3 cursor-pointer group" onclick="showPage('home')">
+            <img src="branding/whirlyos.png" alt="WhirlyOS" class="nav-logo w-9 h-9 object-contain group-hover:rotate-12 transition-transform">
+            <span class="text-xl font-black tracking-tighter uppercase">Whirly<span class="text-sky-400">OS</span></span>
         </div>
         
-        <div class="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest opacity-60">
+        <div class="hidden md:flex items-center gap-8 text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
             <button onclick="showPage('home')" class="hover:opacity-100 transition">Home</button>
             <button onclick="showPage('about')" class="hover:opacity-100 transition">About</button>
             <button onclick="showPage('downloads')" class="hover:opacity-100 transition">Downloads</button>
@@ -80,78 +86,95 @@
             <a href="https://github.com/22soulfan/WonderRepo/discussions" target="_blank" class="hover:opacity-100 transition">Forum</a>
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-5">
             <a href="https://github.com/22soulfan/WonderRepo" target="_blank" class="opacity-40 hover:opacity-100 transition">
                 <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             </a>
-            <button onclick="toggleTheme()" id="themeBtn" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition">🌙</button>
+            <button onclick="toggleTheme()" id="themeBtn" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:bg-white/10 transition text-lg">🌙</button>
         </div>
     </nav>
 
-    <main id="home" class="page-section active pt-48 pb-20 px-6 text-center">
+    <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-7xl md:text-9xl font-black tracking-tighter mb-8 leading-none">Find your <br><span class="text-gradient">Spark.</span></h1>
-            <p class="text-lg opacity-60 mb-12 max-w-2xl mx-auto">The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <button onclick="showPage('downloads')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-bold transition-all hover:scale-105">Get WhirlyOS</button>
-                <button onclick="showPage('about')" class="px-10 py-4 glass rounded-2xl font-bold hover:bg-white/10 transition">The Mission</button>
+            <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-[0.8]">Find your <br><span class="text-gradient">Spark.</span></h1>
+            <p class="text-xl opacity-60 mb-14 max-w-2xl mx-auto font-light">The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-5">
+                <button onclick="showPage('downloads')" class="cta-btn px-12 py-5 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-sky-500/20">Get WhirlyOS</button>
+                <button onclick="showPage('about')" class="cta-btn px-12 py-5 glass rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/5 transition">The Mission</button>
             </div>
         </div>
     </main>
 
     <main id="about" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black mb-12 tracking-tight">Focus through <span class="text-gradient">Play.</span></h2>
-            <div class="grid md:grid-cols-2 gap-12 text-sm leading-relaxed opacity-80">
-                <p>WhirlyOS was born from a simple idea: technology shouldn't feel like a chore. For those of us with ADHD, traditional desktops can be either too distracting or too clinical. We build on Debian Stable to give you a "Rock Solid" foundation, then we wrap it in an interface that feels like a Pixar movie.</p>
-                <p>Inspired by the film <i>Soul (2020)</i>, our motto "Find your spark" represents the journey of discovering passion through creation. Whether you're using our 64-bit modern builds or breathing life into an old i386 laptop, WhirlyOS is designed to stay out of your way while keeping you inspired.</p>
+            <h2 class="text-6xl font-black mb-12 tracking-tight">Focus through <span class="text-gradient">Play.</span></h2>
+            <div class="grid md:grid-cols-2 gap-12 text-lg leading-relaxed opacity-80 font-light">
+                <div class="space-y-6">
+                    <p>WhirlyOS was born from a simple observation: modern desktops are often either too clinical or too distracting. For the ADHD mind, a "boring" interface leads to friction, and friction leads to unfinished tasks.</p>
+                    <p>We believe that an OS should feel like a <b>creative companion</b>. By building on the "Rock Solid" foundation of Debian Stable, we ensure your work is safe while providing a UI that feels alive.</p>
+                </div>
+                <div class="space-y-6">
+                    <p>Inspired by the cinematic warmth of films like <i>Soul</i>, our goal is to help you "Find your spark." We prioritize fluid animations, soft colors, and a "Notebook" philosophy where your digital space feels like a physical canvas.</p>
+                    <p>Whether you're running a modern x64 workstation or breathing new life into a legacy i386 machine, WhirlyOS is here to keep your momentum going.</p>
+                </div>
             </div>
         </div>
     </main>
 
     <main id="downloads" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-            <div class="glass p-10 rounded-[2.5rem] border-white/5 group">
-                <div class="text-4xl mb-6">🌌</div>
-                <h3 class="text-2xl font-bold mb-4">SoulFrame</h3>
-                <p class="text-xs opacity-50 mb-8">GNOME-based. Fluid, cinematic, and modern.</p>
-                <button class="w-full py-3 mb-2 rounded-xl bg-sky-500/10 text-sky-400 font-bold text-[10px] uppercase">x64 Build</button>
-                <button class="w-full py-3 rounded-xl bg-purple-500/10 text-purple-400 font-bold text-[10px] uppercase">x86 Build</button>
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-black mb-4">The <span class="text-gradient">Editions</span></h2>
+                <p class="opacity-50">Every edition supports both x64 and legacy i386 hardware.</p>
             </div>
-            <div class="glass p-10 rounded-[2.5rem] border-white/5 group">
-                <div class="text-4xl mb-6">🏮</div>
-                <h3 class="text-2xl font-bold mb-4">MeiLite</h3>
-                <p class="text-xs opacity-50 mb-8">XFCE-based. Expressive and incredibly fast.</p>
-                <button class="w-full py-3 mb-2 rounded-xl bg-sky-500/10 text-sky-400 font-bold text-[10px] uppercase">x64 Build</button>
-                <button class="w-full py-3 rounded-xl bg-purple-500/10 text-purple-400 font-bold text-[10px] uppercase">x86 Build</button>
-            </div>
-            <div class="glass p-10 rounded-[2.5rem] border-white/5 group">
-                <div class="text-4xl mb-6">🌊</div>
-                <h3 class="text-2xl font-bold mb-4">NotebookOS</h3>
-                <p class="text-xs opacity-50 mb-8">Openbox-based. Calm, minimal, and lightweight.</p>
-                <button class="w-full py-3 mb-2 rounded-xl bg-sky-500/10 text-sky-400 font-bold text-[10px] uppercase">x64 Build</button>
-                <button class="w-full py-3 rounded-xl bg-purple-500/10 text-purple-400 font-bold text-[10px] uppercase">x86 Build</button>
-            </div>
-        </div>
-    </main>
-
-    <main id="contribute" class="page-section pt-48 pb-20 px-6 text-center">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="text-5xl font-black mb-6">Build the <span class="text-gradient">Future.</span></h2>
-            <p class="opacity-60 mb-10">WhirlyOS is open-source. We need help with documentation, testing on legacy i386 hardware, and creating new "Spark" themes.</p>
-            <div class="glass p-8 rounded-3xl inline-block text-left">
-                <p class="text-[10px] font-bold uppercase tracking-widest text-sky-400 mb-4">Current Goals</p>
-                <ul class="space-y-3 text-sm opacity-80">
-                    <li>• Porting Spark-Theme to GTK4</li>
-                    <li>• Optimizing kernel for Pentium 4 processors</li>
-                    <li>• Translating Whirly-Settings to more languages</li>
-                </ul>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 group hover:border-sky-500/30 transition-all">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">🌌</div>
+                    <h3 class="text-2xl font-black mb-2">SoulFrame</h3>
+                    <p class="text-sm opacity-50 mb-10 leading-relaxed">GNOME-based. Cinematic, fluid, and optimized for modern focus.</p>
+                    <button class="w-full py-4 mb-3 rounded-2xl bg-sky-500/10 text-sky-400 font-bold text-[10px] uppercase tracking-widest hover:bg-sky-500 hover:text-slate-950 transition">x64 Build</button>
+                    <button class="w-full py-4 rounded-2xl bg-purple-500/10 text-purple-400 font-bold text-[10px] uppercase tracking-widest hover:bg-purple-500 hover:text-slate-950 transition">x86 (i386)</button>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 group hover:border-red-500/30 transition-all">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">🏮</div>
+                    <h3 class="text-2xl font-black mb-2">MeiLite</h3>
+                    <p class="text-sm opacity-50 mb-10 leading-relaxed">XFCE-based. Ultra-responsive, lightweight, and incredibly fast.</p>
+                    <button class="w-full py-4 mb-3 rounded-2xl bg-sky-500/10 text-sky-400 font-bold text-[10px] uppercase tracking-widest hover:bg-sky-500 hover:text-slate-950 transition">x64 Build</button>
+                    <button class="w-full py-4 rounded-2xl bg-purple-500/10 text-purple-400 font-bold text-[10px] uppercase tracking-widest hover:bg-purple-500 hover:text-slate-950 transition">x86 (i386)</button>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 group hover:border-emerald-500/30 transition-all">
+                    <div class="text-5xl mb-6 group-hover:scale-110 transition-transform">🌊</div>
+                    <h3 class="text-2xl font-black mb-2">NotebookOS</h3>
+                    <p class="text-sm opacity-50 mb-10 leading-relaxed">Openbox-based. A zen-like experience for pure writing and work.</p>
+                    <button class="w-full py-4 mb-3 rounded-2xl bg-sky-500/10 text-sky-400 font-bold text-[10px] uppercase tracking-widest hover:bg-sky-500 hover:text-slate-950 transition">x64 Build</button>
+                    <button class="w-full py-4 rounded-2xl bg-purple-500/10 text-purple-400 font-bold text-[10px] uppercase tracking-widest hover:bg-purple-500 hover:text-slate-950 transition">x86 (i386)</button>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="py-20 text-center opacity-30 text-[9px] font-bold uppercase tracking-[0.5em]">
-        WhirlyOS & WonderRepo // MMXXVI
+    <main id="contribute" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-6xl font-black mb-8">Build the <span class="text-gradient">Future.</span></h2>
+            <p class="text-xl opacity-60 mb-16 max-w-2xl mx-auto">WhirlyOS is a community-driven project. We are looking for dreamers, developers, and designers to help refine the experience.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6 text-left">
+                <div class="glass p-8 rounded-3xl border-white/5">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest text-sky-400 mb-4">Development</h4>
+                    <p class="text-sm opacity-70 mb-6">Help us port the Whirly-Theme to more DEs or optimize our custom kernels for legacy hardware.</p>
+                    <a href="https://github.com/22soulfan/WonderRepo" class="text-xs font-bold border-b border-sky-400 pb-1 hover:text-sky-400 transition">Visit Repo</a>
+                </div>
+                <div class="glass p-8 rounded-3xl border-white/5">
+                    <h4 class="font-black uppercase text-[10px] tracking-widest text-purple-400 mb-4">Design</h4>
+                    <p class="text-sm opacity-70 mb-6">We need help creating "Spark" icons, wallpapers, and branding assets that match our cinematic vision.</p>
+                    <a href="https://github.com/22soulfan/WonderRepo/issues" class="text-xs font-bold border-b border-purple-400 pb-1 hover:text-purple-400 transition">See Issues</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-24 text-center opacity-30 text-[10px] font-black uppercase tracking-[0.5em]">
+        WhirlyOS Project & WonderRepo // MMXXVI
     </footer>
 
     <script>
