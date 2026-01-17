@@ -2,15 +2,20 @@
 
 A curated repository for building **WhirlyOS Linux**, based on Debian.
 
+> **Copyright Notice:** I forked this repository from hirohamada2014, who is the original owner of WhirlyOS. hirohamada214 was my old GitHub account, but I moved to a new one and forked this repo.
+
 WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms. It has the features of the screen time limit to keep you free from distraction and be healthy. 
 
-> **Note:** I made lots of attempts to build WhirlyOS using 0x OS Builder. I have to test with Cubic next!
+> ### **Note:** I made lots of attempts to build WhirlyOS using 0x OS Builder. I have to test with Cubic next!
 > 
 > i386 compatibility releases only! 
 
 ---
 
 ## 🐧 Base Distribution
+
+> [!WARNING]
+> Development of WhirlyOS is still ongoing. Wait for a release.
 
 WhirlyOS is based on **Debian Stable**, ensuring:
 
@@ -95,6 +100,9 @@ WhirlyOS is the latest chapter in a multi-year journey of OS experimentation and
 - BalenaEtcher
 
 ## To install WhirlyOS on Windows:
+
+> [!WARNING]
+> Install at your own risk, as improper installation may result in warranty void. The owner of this operating system is not responsible for any damage done to the computer. Make sure in case of emergency to do a clean install of the original operating system.
 
 If you use dual boot, you have to shrink your drive and create a partition with it. Be careful as you may break your device. The creator and WhirlyOS are not responsible for any damage.
 
