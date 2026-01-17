@@ -4,8 +4,7 @@ A curated repository for building **WhirlyOS Linux**, based on Debian.
 
 WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms. It has the features of the screen time limit to keep you free from distraction and be healthy. 
 
-> **Warning:** The work on WhirlyOS is still ongoing, so please stay tuned for the first release of v1.0.
-There are problems while I'm trying to build the disk image in GitHub Codespaces, but don't worry, I'm trying to do my best.
+> **Note** I made lots of attempts to build WhirlyOS using 0x OS Builder. I have to test with Cubic next!
 
 ---
 
