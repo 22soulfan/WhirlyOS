@@ -10,7 +10,6 @@
         :root { --p-blue: #38bdf8; --p-purple: #a78bfa; --bg: #030508; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; overflow-x: hidden; }
         
-        /* Screenshot-Exact Nav Bar */
         .glass-nav { 
             background: rgba(255, 255, 255, 0.03); 
             backdrop-filter: blur(20px); 
@@ -20,7 +19,6 @@
             max-width: 1000px;
         }
 
-        /* Hero Typography Fixes */
         .hero-title { font-size: 8rem; font-weight: 800; line-height: 0.8; letter-spacing: -0.05em; color: #ffffff; }
         .spark-text { 
             background: linear-gradient(to right, #a78bfa, #38bdf8); 
@@ -28,27 +26,22 @@
             -webkit-text-fill-color: transparent; 
         }
 
-        /* Centered Arch Badges */
         .arch-badge { font-size: 8px; font-weight: 800; padding: 4px 14px; border-radius: 6px; text-transform: uppercase; letter-spacing: 0.1em; }
         .badge-x64 { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
         .badge-x86 { background: rgba(167, 139, 250, 0.15); color: #a78bfa; border: 1px solid rgba(167, 139, 250, 0.3); }
 
-        /* Button Refinement */
         .btn-whirly { background: #38bdf8; color: #000; font-weight: 700; padding: 18px 42px; border-radius: 12px; transition: 0.3s; font-size: 15px; }
         .btn-mission { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: #fff; font-weight: 600; padding: 18px 42px; border-radius: 12px; transition: 0.3s; font-size: 15px; }
-        .btn-whirly:hover { transform: scale(1.02); background: #7dd3fc; }
-        .btn-mission:hover { background: rgba(255,255,255,0.08); }
 
-        /* Data Displays */
         .obsidian-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; }
         .obsidian-table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
-        .obsidian-table td { background: rgba(255,255,255,0.02); padding: 1.25rem; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.03); }
+        .obsidian-table td { background: rgba(255,255,255,0.02); padding: 1.25rem; font-size: 11px; border-top: 1px solid rgba(255,255,255,0.03); }
         .obsidian-table tr td:first-child { border-radius: 12px 0 0 12px; font-weight: 800; }
         .obsidian-table tr td:last-child { border-radius: 0 12px 12px 0; }
 
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.4s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body onload="initApp()">
@@ -56,7 +49,7 @@
     <header class="fixed top-8 left-0 right-0 flex justify-center z-50 px-6">
         <div class="glass-nav flex items-center justify-between px-8 py-4">
             <div class="flex items-center gap-4">
-                <img src="https://raw.githubusercontent.com/22soulfan/WhirlyOS/main/logo.png" alt="Logo" class="w-6 h-6 rounded-md">
+                <div class="w-6 h-6 bg-sky-500 rounded flex items-center justify-center font-black text-white text-[10px]">W</div>
                 <span class="font-bold tracking-tighter text-sm uppercase">Whirly<span class="text-sky-400">OS</span></span>
             </div>
             <nav class="hidden md:flex items-center gap-10">
@@ -80,28 +73,32 @@
         </div>
         <h1 class="hero-title">Find your</h1>
         <h1 class="hero-title spark-text mb-12">Spark.</h1>
-        <p class="text-white/40 max-w-2xl mx-auto text-xl leading-relaxed mb-20 font-medium">
+        <p class="text-white/40 max-w-2xl mx-auto text-xl leading-relaxed mb-20">
             The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.
         </p>
-        <div class="flex flex-wrap justify-center gap-6">
+        <div class="flex gap-6">
             <button onclick="showPage('downloads')" class="btn-whirly">Get WhirlyOS</button>
             <button onclick="showPage('about')" class="btn-mission">The Mission</button>
         </div>
-        <p class="mt-32 text-[10px] font-black uppercase tracking-[1em] opacity-20">Whirlyos & Wonderrepo // MMXXVI</p>
     </main>
 
     <main id="downloads" class="page-section pt-48 pb-20 px-10">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-16 tracking-tighter">Desktop <span class="text-sky-400">Environments</span></h2>
+            <h2 class="text-4xl font-black italic uppercase mb-12 tracking-tighter">Desktop <span class="text-sky-400">Environments</span></h2>
             <div class="overflow-x-auto">
                 <table class="obsidian-table">
-                    <tbody id="edition-table">
-                        <tr><td><b>SoulFrame</b></td><td>GNOME</td><td>Soul</td><td>Dreamlike UI, celestial theme.</td><td>2 GB RAM</td></tr>
-                        <tr><td><b>MeiLite</b></td><td>XFCE</td><td>Turning Red</td><td>Retro 2002 interface feel.</td><td>1 GB RAM</td></tr>
-                        <tr><td><b>ElementalDesk</b></td><td>KDE Plasma</td><td>Elemental</td><td>Vibrant classical elements.</td><td>4 GB RAM</td></tr>
-                        <tr><td><b>NotebookOS</b></td><td>Openbox</td><td>Luca</td><td>Seaside calm minimal boot.</td><td>512 MB RAM</td></tr>
-                        <tr><td><b>QuestLand</b></td><td>Budgie</td><td>Onward</td><td>Modern fantasy desktop.</td><td>2 GB RAM</td></tr>
-                        <tr><td><b>IntellSpace</b></td><td>LXQt</td><td>Wall·E</td><td>Futuristic efficiency.</td><td>1 GB RAM</td></tr>
+                    <thead>
+                        <tr class="text-[9px] uppercase tracking-[0.2em] opacity-30 text-left">
+                            <th class="p-4">Edition</th><th>Environment</th><th>Inspiration</th><th>Reasoning</th><th>Specs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>The dream interface feels like perfect.</td><td>2GB RAM, 20GB Disk</td></tr>
+                        <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>Uses Xfce for a retro 2002 olden times feel.</td><td>1GB RAM, 10GB Disk</td></tr>
+                        <tr><td>ElementalDesk</td><td>KDE Plasma</td><td>Elemental</td><td>Classical elements fit perfectly in Plasma.</td><td>4GB RAM, 25GB Disk</td></tr>
+                        <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>Luca's seaside calm meets BunsenLabs.</td><td>512MB RAM, 5GB Disk</td></tr>
+                        <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>Magical modern desktop for fantasy fans.</td><td>2GB RAM, 15GB Disk</td></tr>
+                        <tr><td>IntellSpace</td><td>LXQt</td><td>Wall·E</td><td>Brings the Windows 7 interface back to life.</td><td>1GB RAM, 8GB Disk</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -109,23 +106,43 @@
     </main>
 
     <main id="about" class="page-section pt-48 pb-20 px-10">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-black italic uppercase mb-16 tracking-tighter">🎯 Project <span class="text-sky-400">Goals</span></h2>
-            <div class="grid md:grid-cols-2 gap-8 mb-32">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
                 <div class="obsidian-panel p-8">🧠 <b>Inspire creativity</b> through themed desktop environments based on beloved animated films.</div>
                 <div class="obsidian-panel p-8">👨‍👩‍👧‍👦 <b>Support families</b> with built-in parental controls and screen time tools.</div>
                 <div class="obsidian-panel p-8">💡 <b>Make computing magical</b> with custom UI elements, mascots, and cinematic flair.</div>
-                <div class="obsidian-panel p-8">🐧 <b>Revive old hardware</b> with lightweight editions for low specs.</div>
+                <div class="obsidian-panel p-8">🐧 <b>Revive old hardware</b> with lightweight editions that run smoothly on low specs.</div>
+                <div class="obsidian-panel p-8">🎨 <b>Celebrate diversity</b> in design, emotion, and user experience.</div>
+                <div class="obsidian-panel p-8">👨‍🎓 <b>Education Focused</b> providing educational tools for homeschooling and public schools.</div>
             </div>
 
-            <h2 class="text-4xl font-black italic uppercase mb-12 tracking-tighter">📅 Development Timeline</h2>
-            <div class="obsidian-panel p-10">
-                <p class="text-xs font-black text-sky-400 uppercase tracking-widest mb-4">January 2025: WhirlyOS Building</p>
-                <p class="text-sm opacity-50 mb-4">Phase: Debian Linux Foundation. Preparing architecture assets and system themes.</p>
-                <p class="text-[10px] font-black uppercase opacity-30 mt-10">No releases have been made as of January 2026.</p>
+            <div class="grid lg:grid-cols-2 gap-10 mb-32">
+                <div class="obsidian-panel p-10">
+                    <h3 class="text-xl font-black uppercase mb-8 italic">System Features</h3>
+                    <ul class="space-y-4 text-sm opacity-50">
+                        <li>✨ Minimal-clutter GNOME Shell with GDM login</li>
+                        <li>✨ Learning apps: GCompris, Scratch, TuxMath, TuxPaint</li>
+                        <li>✨ Creative tools: GIMP, Mu Editor, MuseScore, VLC</li>
+                        <li>✨ integrations for Classroom, Docs, Drive, YouTube Kids</li>
+                        <li>✨ Screen Time management features</li>
+                    </ul>
+                </div>
+                <div class="obsidian-panel p-10 bg-sky-500/5">
+                    <h3 class="text-xl font-black uppercase mb-6 italic">📅 Timeline (2025)</h3>
+                    <p class="text-xs font-bold text-sky-400 uppercase tracking-widest mb-4">Phase: Building Foundation</p>
+                    <p class="text-sm opacity-50 mb-6">Preparing to build WhirlyOS via Debian Linux. Custom assets creation phase.</p>
+                    <div class="pt-6 border-t border-white/5 opacity-30 text-[10px] font-black uppercase tracking-widest">
+                        No releases has been made as of 2026.
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+
+    <footer class="py-20 border-t border-white/5 opacity-30 text-center">
+        <p class="text-[9px] font-black uppercase tracking-[1em]">Whirlyos & Wonderrepo // MMXXVI</p>
+    </footer>
 
     <script>
         function showPage(p) {
