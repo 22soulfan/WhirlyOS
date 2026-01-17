@@ -9,125 +9,146 @@
     <style>
         :root { --primary: #38bdf8; --bg: #020617; --text: #f8fafc; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
-        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
+        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); transition: all 0.3s ease; }
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Terminal Styling */
-        #terminal { background: #000; font-family: 'Fira Code', monospace; border: 1px solid #333; height: 300px; overflow-y: auto; padding: 20px; font-size: 13px; color: #4ade80; }
+        #terminal { background: #000; font-family: 'Fira Code', monospace; border: 1px solid #333; height: 320px; overflow-y: auto; padding: 20px; font-size: 13px; color: #4ade80; border-radius: 1.5rem; }
         .term-input { background: transparent; border: none; outline: none; color: white; width: 70%; }
         
-        .os-card { transition: all 0.3s ease; }
-        .os-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .os-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .badge-cat { font-size: 9px; font-weight: 900; padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.1em; }
+        .github-stats { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 15px; text-align: center; }
     </style>
 </head>
 <body onload="initTerminal()">
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] z-[150] glass rounded-3xl px-8 py-4 flex justify-between items-center shadow-2xl">
-        <span class="font-black tracking-tighter uppercase italic">Myriad <span class="text-sky-400 font-light">Project</span></span>
-        <div class="hidden md:flex gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] z-[150] glass rounded-[2.5rem] px-8 py-4 flex justify-between items-center shadow-2xl border-white/10">
+        <span class="text-xl font-black tracking-tighter uppercase italic">Myriad <span class="text-sky-400 font-light">Project</span></span>
+        <div class="hidden lg:flex gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
             <button onclick="showPage('home')">Home</button>
             <button onclick="showPage('systems')">Systems</button>
-            <button onclick="showPage('terminal-sec')">Terminal</button>
-            <button onclick="showPage('about')">Creator</button>
+            <button onclick="showPage('terminal-sec')">Shell</button>
+            <button onclick="showPage('github-sec')">GitHub</button>
             <button onclick="showPage('blog')">Blogger</button>
+            <button onclick="showPage('about')">Guidance</button>
         </div>
+        <a href="https://github.com/22soulfan" target="_blank" class="glass p-2 px-4 rounded-full text-[9px] font-bold uppercase hover:bg-white/10 transition">Follow @22soulfan</a>
     </nav>
 
     <main id="home" class="page-section active pt-56 pb-20 text-center">
-        <h1 class="text-7xl font-black tracking-tighter mb-4">The <span class="text-sky-400">Myriad</span> Project.</h1>
-        <p class="text-xl opacity-60 mb-12 italic">"Find your spark. Find your way."</p>
-        <button onclick="showPage('systems')" class="px-12 py-5 bg-sky-500 text-black rounded-2xl font-black text-[10px] uppercase tracking-widest">Enter Multiverse</button>
+        <div class="max-w-4xl mx-auto px-6">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 leading-tight">Reclaiming <span class="text-sky-400">Hardware.</span></h1>
+            <p class="text-lg md:text-2xl font-light opacity-50 mb-12 tracking-wide uppercase italic">"Find your spark. Find your way."</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="showPage('systems')" class="px-10 py-5 bg-sky-500 text-black rounded-2xl font-black text-[11px] uppercase tracking-widest shadow-lg">The Multiverse</button>
+                <button onclick="showPage('github-sec')" class="px-10 py-5 glass rounded-2xl font-black text-[11px] uppercase tracking-widest">Source Code</button>
+            </div>
+        </div>
     </main>
 
     <main id="systems" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-left">
-            <div class="glass p-8 rounded-[2.5rem] os-card">
-                <span class="text-[10px] font-black text-sky-400 uppercase">ReactOS Base</span>
-                <h3 class="text-2xl font-bold mb-2">MyriadOS / openMyriad</h3>
-                <p class="text-xs opacity-60 mb-6">Light-Aesthetic Layer ($1\text{GB}$ - $2\text{GB}$ RAM). Modern C++ Shell.</p>
-                <div class="text-[9px] font-black opacity-30 italic">STAY TUNED FOR ISO</div>
-            </div>
-            <div class="glass p-8 rounded-[2.5rem] os-card">
-                <span class="text-[10px] font-black text-green-400 uppercase">openSUSE Tumbleweed</span>
-                <h3 class="text-2xl font-bold mb-2">RenardOS</h3>
-                <p class="text-xs opacity-60 mb-6">Rolling release speed. Light-Aesthetic Layer.</p>
-                <div class="text-[9px] font-black opacity-30 italic">STAY TUNED FOR ISO</div>
-            </div>
-            <div class="glass p-8 rounded-[2.5rem] os-card">
-                <span class="text-[10px] font-black text-red-400 uppercase">Cosmos C# DevKit</span>
-                <h3 class="text-2xl font-bold mb-2">RPandaOS</h3>
-                <p class="text-xs opacity-60 mb-6">Managed code environment. $1\text{GB}$ RAM Optimized.</p>
-                <div class="text-[9px] font-black opacity-30 italic">STAY TUNED FOR ISO</div>
-            </div>
-            <div class="glass p-8 rounded-[2.5rem] os-card">
-                <span class="text-[10px] font-black text-sky-300 uppercase">Debian Stable</span>
-                <h3 class="text-2xl font-bold mb-2">WhirlyOS</h3>
-                <p class="text-xs opacity-60 mb-6">Zero-Aesthetic. Educational tool. Minimal overhead.</p>
-                <div class="text-[9px] font-black opacity-30 italic">STAY TUNED FOR ISO</div>
-            </div>
-            <div class="glass p-8 rounded-[2.5rem] os-card">
-                <span class="text-[10px] font-black text-yellow-400 uppercase">ChromiumOS Hybrid</span>
-                <h3 class="text-2xl font-bold mb-2">ChromMyriadOS</h3>
-                <p class="text-xs opacity-60 mb-6">Cloud speed with Myriad Spark-Lock security.</p>
-                <div class="text-[9px] font-black opacity-30 italic">STAY TUNED FOR ISO</div>
-            </div>
-            <div class="glass p-8 rounded-[2.5rem] os-card">
-                <span class="text-[10px] font-black text-pink-400 uppercase">Windows 11 Mod</span>
-                <h3 class="text-2xl font-bold mb-2">Communiverse11</h3>
-                <p class="text-xs opacity-60 mb-6">Anti-Microsoft. No telemetry. Maximum performance.</p>
-                <div class="text-[9px] font-black opacity-30 italic">STAY TUNED FOR SCRIPT</div>
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge-cat bg-sky-500/20 text-sky-400 mb-4 inline-block">ReactOS / NT</span>
+                    <h3 class="text-2xl font-bold mb-2">MyriadOS / openMyriad</h3>
+                    <p class="text-xs opacity-60 mb-6 italic">Light-Aesthetic ($1\text{GB}$-$2\text{GB}$ RAM)</p>
+                    <button class="w-full py-3 glass rounded-xl text-[9px] font-black uppercase opacity-40">Stay Tuned for ISO</button>
+                </div>
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge-cat bg-blue-500/20 text-blue-400 mb-4 inline-block">Debian Stable</span>
+                    <h3 class="text-2xl font-bold mb-2">WhirlyOS</h3>
+                    <p class="text-xs opacity-60 mb-6 italic">Zero-Aesthetic (Educational/Minimal)</p>
+                    <button class="w-full py-3 glass rounded-xl text-[9px] font-black uppercase opacity-40">Stay Tuned for ISO</button>
+                </div>
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge-cat bg-green-500/20 text-green-400 mb-4 inline-block">openSUSE Tumbleweed</span>
+                    <h3 class="text-2xl font-bold mb-2">RenardOS</h3>
+                    <p class="text-xs opacity-60 mb-6 italic">Light-Aesthetic (Rolling Release)</p>
+                    <button class="w-full py-3 glass rounded-xl text-[9px] font-black uppercase opacity-40">Stay Tuned for ISO</button>
+                </div>
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge-cat bg-red-500/20 text-red-400 mb-4 inline-block">Cosmos C#</span>
+                    <h3 class="text-2xl font-bold mb-2">RPandaOS</h3>
+                    <p class="text-xs opacity-60 mb-6 italic">Light-Aesthetic ($1\text{GB}$ RAM Limit)</p>
+                    <button class="w-full py-3 glass rounded-xl text-[9px] font-black uppercase opacity-40">Stay Tuned for ISO</button>
+                </div>
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge-cat bg-yellow-500/20 text-yellow-400 mb-4 inline-block">Chromium Hybrid</span>
+                    <h3 class="text-2xl font-bold mb-2">ChromMyriadOS</h3>
+                    <p class="text-xs opacity-60 mb-6 italic">Cloud-Speed + Spark Shell</p>
+                    <button class="w-full py-3 glass rounded-xl text-[9px] font-black uppercase opacity-40">Stay Tuned for ISO</button>
+                </div>
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge-cat bg-pink-500/20 text-pink-400 mb-4 inline-block">NT Modification</span>
+                    <h3 class="text-2xl font-bold mb-2">Communiverse11</h3>
+                    <p class="text-xs opacity-60 mb-6 italic">Anti-Microsoft (Stripped Win11)</p>
+                    <button class="w-full py-3 glass rounded-xl text-[9px] font-black uppercase opacity-40">Stay Tuned for Script</button>
+                </div>
             </div>
         </div>
     </main>
 
     <main id="terminal-sec" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-black mb-6 uppercase text-sky-400">System Shell</h2>
-            <div id="terminal" class="rounded-2xl shadow-2xl mb-4">
-                <div id="term-output">Welcome to Myriad Shell v1.0... Type 'help' for commands.</div>
+            <h2 class="text-3xl font-black mb-8 uppercase tracking-widest text-sky-400 text-center">System Shell</h2>
+            <div id="terminal" class="shadow-2xl">
+                <div id="term-output">Myriad Shell [Build 2026.01] initialized... Type 'help' for commands.</div>
                 <div class="flex mt-2">
                     <span class="mr-2">user@myriad:~$</span>
                     <input type="text" id="term-input" class="term-input" autofocus>
                 </div>
             </div>
-            <p class="text-[10px] opacity-40 uppercase tracking-widest font-black text-center">Simulated WhirlyOS Linux Core</p>
+        </div>
+    </main>
+
+    <main id="github-sec" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-black mb-12 tracking-tighter uppercase">Source <span class="text-sky-400">Repositories</span></h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <a href="https://github.com/22soulfan" target="_blank" class="glass p-8 rounded-3xl block hover:bg-white/5">
+                    <h3 class="text-xl font-bold mb-2">/22soulfan</h3>
+                    <p class="text-xs opacity-50 mb-4">Official project organization for Myriad Project kernels and shells.</p>
+                    <div class="flex justify-center gap-4 text-[10px] font-black uppercase tracking-widest">
+                        <span>Stars: --</span>
+                        <span>Repos: --</span>
+                    </div>
+                </a>
+                <div class="glass p-8 rounded-3xl opacity-50 border-dashed border-2 border-white/10 flex items-center justify-center">
+                    <span class="text-[10px] font-black uppercase tracking-widest">Blogger Sync API Pending</span>
+                </div>
+            </div>
         </div>
     </main>
 
     <main id="blog" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-4xl font-black mb-8">Blogger <span class="text-sky-400 text-gradient">Creator</span></h2>
+            <h2 class="text-4xl font-black mb-8 uppercase">Google <span class="text-sky-400">Blogger</span></h2>
             <div class="glass p-12 rounded-[3rem]">
-                <p class="text-sm opacity-60 mb-8">To integrate your Google Blogger account, enter your Blog ID below to fetch updates directly from Google's servers.</p>
-                <input type="text" id="blogId" placeholder="Enter Google Blogger ID" class="w-full mb-4 bg-white/5 border border-white/10 p-4 rounded-xl">
-                <button onclick="alert('Blogger API Connection: Please provide your API Key in the source code to sync.')" class="w-full py-4 bg-sky-500 text-black font-black uppercase rounded-xl text-[10px]">Sync with Google Blogger</button>
-                <hr class="my-8 border-white/5">
-                <a href="https://www.blogger.com" target="_blank" class="text-[10px] font-black uppercase text-sky-400 underline tracking-widest">Open Blogger Dashboard</a>
+                <input type="text" id="blogId" placeholder="Enter Your Google Blogger ID" class="w-full mb-4 bg-white/5 border border-white/10 p-4 rounded-xl text-center">
+                <button onclick="alert('Searching for Blog ID... Connect your API Key in settings to finish.')" class="w-full py-4 bg-sky-500 text-black font-black uppercase rounded-xl text-[10px]">Sync Updates</button>
             </div>
         </div>
     </main>
 
     <main id="about" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black mb-12 tracking-tighter text-gradient">The Architect</h2>
-            <div class="grid md:grid-cols-2 gap-12">
-                <div class="glass p-10 rounded-[3rem]">
-                    <h3 class="text-xl font-bold mb-4">About 22soulfan</h3>
-                    <p class="text-sm opacity-60 leading-relaxed mb-6">A developer focused on reclaiming hardware potential. My mission is to ensure that even users with $1\text{GB}$ of RAM can experience a cinematic, modern interface without Microsoft's telemetry or bloatware.</p>
-                    <div class="flex gap-4">
-                        <span class="badge bg-sky-500/20 text-sky-400">OS Developer</span>
-                        <span class="badge bg-purple-500/20 text-purple-400">Minimalist Architect</span>
-                    </div>
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+            <div>
+                <h2 class="text-4xl font-black mb-6 uppercase">Creator</h2>
+                <div class="glass p-8 rounded-[2.5rem]">
+                    <p class="text-sm opacity-60 leading-relaxed italic">"22soulfan is a minimalist architect focused on hardware reclamation. The goal is simple: High performance, zero bloat, and a aesthetic that makes low-spec PC's feel like the future."</p>
                 </div>
-                <div class="glass p-10 rounded-[3rem]">
-                    <h3 class="text-xl font-bold mb-4">Project Guidance</h3>
-                    <ul class="text-xs opacity-60 space-y-4">
-                        <li>• <b>Target Hardware:</b> Focus on x86/x64 systems with low memory.</li>
-                        <li>• <b>UI Logic:</b> Keep aesthetic layers vectorized to save RAM.</li>
-                        <li>• <b>Development:</b> Use Cubic for WhirlyOS and Cosmos DevKit for RPandaOS.</li>
-                        <li>• <b>Ethos:</b> Anti-Telemetry. No forced accounts. Open Myriad for everyone.</li>
+            </div>
+            <div>
+                <h2 class="text-4xl font-black mb-6 uppercase text-sky-400">Guidance</h2>
+                <div class="glass p-8 rounded-[2.5rem]">
+                    <ul class="text-xs opacity-70 space-y-4 font-bold">
+                        <li>1. $1\text{GB}$ RAM is the target baseline.</li>
+                        <li>2. Use WhirlyOS for strict education.</li>
+                        <li>3. RenardOS for rolling release reliability.</li>
+                        <li>4. No Telemetry. No compromise.</li>
                     </ul>
                 </div>
             </div>
@@ -139,9 +160,11 @@
     </footer>
 
     <script>
-        function showPage(p) { document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active')); document.getElementById(p).classList.add('active'); }
+        function showPage(p) { 
+            document.querySelectorAll('.page-section').forEach(s=>s.classList.remove('active')); 
+            document.getElementById(p).classList.add('active'); 
+        }
         
-        // Terminal Shell Logic
         const input = document.getElementById('term-input');
         const output = document.getElementById('term-output');
 
@@ -149,12 +172,10 @@
             if (e.key === 'Enter') {
                 const cmd = input.value.toLowerCase().trim();
                 let res = '';
-                
-                if (cmd === 'help') res = "Available: help, ls, clear, whoami, uname -a, sudo apt update";
-                else if (cmd === 'ls') res = "bin/  dev/  etc/  home/  lib/  usr/  var/  myriad_os_build.log";
-                else if (cmd === 'whoami') res = "22soulfan_developer";
-                else if (cmd === 'uname -a') res = "Linux WhirlyOS 6.1.0-debian-minimal-x86_64";
-                else if (cmd === 'sudo apt update') res = "Hit:1 http://deb.debian.org/debian stable InRelease... Done.";
+                if (cmd === 'help') res = "help, ls, github, whoami, clear";
+                else if (cmd === 'ls') res = "myriad_os_core/ whirly_educational/ renard_shell/";
+                else if (cmd === 'github') res = "Redirecting to github.com/22soulfan...";
+                else if (cmd === 'whoami') res = "22soulfan_architect";
                 else if (cmd === 'clear') { output.innerHTML = ''; input.value = ''; return; }
                 else if (cmd === '') res = '';
                 else res = `Command not found: ${cmd}`;
@@ -163,6 +184,7 @@
                 if(res) output.innerHTML += `<div class="mb-2 text-sky-300">${res}</div>`;
                 input.value = '';
                 document.getElementById('terminal').scrollTop = document.getElementById('terminal').scrollHeight;
+                if(cmd === 'github') window.open('https://github.com/22soulfan', '_blank');
             }
         });
 
