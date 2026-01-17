@@ -33,7 +33,8 @@
         .os-card:hover { transform: translateY(-8px); border-color: var(--primary); }
         
         .badge { font-size: 8px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.1em; }
-        .tech-stack { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--primary); margin-bottom: 1rem; }
+        .tech-stack { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--primary); margin-bottom: 0.5rem; }
+        .ram-badge { font-size: 9px; font-weight: bold; color: var(--accent); opacity: 0.8; }
     </style>
 </head>
 <body>
@@ -62,7 +63,7 @@
             
             <div class="glass p-10 rounded-[3rem] border-white/5 max-w-4xl mx-auto mb-12 shadow-2xl">
                 <p class="text-xl italic opacity-80 leading-relaxed">
-                    "A collection of operating systems for Windows 11 fans who want minimal support, an educational Linux distro, Android lockscreen in ChromiumOS, and an Android-inspired lockscreen and an open-sourced modern Windows 11."
+                    "A project for high-performance computing on low-resource hardware. From zero-aesthetic minimal builds to light-aesthetic systems designed for $1\text{GB}$ to $2\text{GB}$ RAM limits."
                 </p>
             </div>
             <button onclick="showPage('systems')" class="px-12 py-5 bg-sky-500 text-slate-950 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 transition-all">Explore Architectures</button>
@@ -71,55 +72,59 @@
 
     <main id="systems" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Stack</h2>
+            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Multiverse</h2>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">NT Compatibility</span>
+                    <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">NT Rebirth</span>
                     <h3 class="text-3xl font-bold mb-2">MyriadOS</h3>
-                    <div class="tech-stack">Base: ReactOS Kernel</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">The primary open-source Windows alternative. MyriadOS (and its sister fork **openMyriad**) focuses on binary compatibility with Windows applications while providing a modern C++ shell and a signature Android-inspired lockscreen.</p>
+                    <div class="tech-stack">ReactOS // Light-Aesthetic</div>
+                    <div class="ram-badge mb-4">Target: $1\text{GB}$ - $2\text{GB}$ RAM</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Optimized for older hardware. MyriadOS provides a reduced aesthetic layer that keeps the UI modern and responsive without the heavy resource cost of typical Windows clones.</p>
                     <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
 
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
                     <span class="badge bg-green-500/20 text-green-400 mb-4 inline-block w-fit">Rolling Release</span>
                     <h3 class="text-3xl font-bold mb-2">RenardOS</h3>
-                    <div class="tech-stack">Base: openSUSE Tumbleweed</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Built for those who need the latest packages without sacrificing stability. RenardOS leverages the power of openSUSE Tumbleweed, optimized with a custom minimalist desktop environment for maximum speed.</p>
+                    <div class="tech-stack">openSUSE // Light-Aesthetic</div>
+                    <div class="ram-badge mb-4">Target: $1\text{GB}$ - $2\text{GB}$ RAM</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">High-speed rolling release based on Tumbleweed. Uses a stripped-back aesthetic layer to ensure the kernel's speed isn't choked by the desktop environment.</p>
                     <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
 
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-red-500/20 text-red-400 mb-4 inline-block w-fit">Experimental C#</span>
+                    <span class="badge bg-red-500/20 text-red-400 mb-4 inline-block w-fit">Managed OS</span>
                     <h3 class="text-3xl font-bold mb-2">RPandaOS</h3>
-                    <div class="tech-stack">Base: Cosmos C# DevKit</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">A groundbreaking experiment in OS design. RPandaOS is written using the Cosmos (C# Open Source Managed Operating System) toolkit, creating a managed code environment that is safe, fast, and visually vibrant.</p>
+                    <div class="tech-stack">Cosmos C# // Light-Aesthetic</div>
+                    <div class="ram-badge mb-4">Target: $1\text{GB}$ - $2\text{GB}$ RAM</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Experimental C# environment. The aesthetic layer is kept simple and optimized for managed memory, ensuring $1\text{GB}$ RAM stability.</p>
                     <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
 
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
                     <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Educational</span>
                     <h3 class="text-3xl font-bold mb-2">WhirlyOS</h3>
-                    <div class="tech-stack">Base: Debian Stable</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">The ultimate educational tool. Based on the rock-solid Debian kernel, WhirlyOS provides a distraction-free environment for students, featuring i386 support and cinematic, Pixar-inspired themes.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Anti-Microsoft</span>
-                    <h3 class="text-3xl font-bold mb-2">Communiverse11</h3>
-                    <div class="tech-stack">Base: Windows 11 (Stripped)</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">A radical modification of Windows 11. Communiverse11 is "Anti-Microsoft"—meaning it strips away all telemetry, forced accounts, and bloatware, leaving only a high-performance core with minimal support.</p>
+                    <div class="tech-stack">Debian // Zero-Aesthetic</div>
+                    <div class="ram-badge mb-4">Target: Ultra-Minimal</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Strictly functional. WhirlyOS removes the aesthetic layer entirely to maximize educational tool performance on legacy hardware. No bloat, no distractions.</p>
                     <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
 
                 <div class="glass p-8 rounded-[2.5rem] os-card border-yellow-500/10">
-                    <span class="badge bg-yellow-500/20 text-yellow-400 mb-4 inline-block w-fit">Web Hybrid</span>
-                    <h3 class="text-3xl font-bold mb-2">ChromMyriad</h3>
-                    <div class="tech-stack">Base: ChromiumOS</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">A cloud-centric OS that brings the Android security aesthetic to the web. Focused on providing a familiar mobile-style lockscreen for Chromium-based workflows.</p>
+                    <span class="badge bg-yellow-500/20 text-yellow-400 mb-4 inline-block w-fit">Cloud Hybrid</span>
+                    <h3 class="text-3xl font-bold mb-2">ChromMyriadOS</h3>
+                    <div class="tech-stack">ChromiumOS + MyriadOS Shell</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">The fusion of Chromium's web-speed and Myriad's security-focused lockscreen. A bridge between cloud workflows and local resource management.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Win11 Mod</span>
+                    <h3 class="text-3xl font-bold mb-2">Communiverse11</h3>
+                    <div class="tech-stack">Anti-Microsoft NT Core</div>
+                    <p class="text-xs opacity-60 leading-relaxed mb-6">Radical de-bloating. Removing telemetry and forced MS services to reclaim the hardware's power for the user.</p>
                     <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
                 </div>
 
@@ -129,32 +134,34 @@
 
     <main id="wonderrepo" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black mb-8">Wonder<span class="text-gradient">Repo</span> Lab</h2>
+            <h2 class="text-4xl font-black mb-8">Wonder<span class="text-gradient">Repo</span></h2>
             
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
-                <div class="glass p-6 rounded-3xl">
-                    <h4 class="text-sky-400 font-bold text-[10px] uppercase mb-2">Kinetic Shell</h4>
-                    <p class="text-[11px] opacity-60">Custom UI logic for ReactOS (MyriadOS) using modern C++ for fluid animations.</p>
-                </div>
-                <div class="glass p-6 rounded-3xl">
-                    <h4 class="text-indigo-400 font-bold text-[10px] uppercase mb-2">Spark Engine</h4>
-                    <p class="text-[11px] opacity-60">The C# implementation of our UI engine for RPandaOS using the Cosmos DevKit.</p>
-                </div>
-                <div class="glass p-6 rounded-3xl">
-                    <h4 class="text-accent font-bold text-[10px] uppercase mb-2">Zero-Trace</h4>
-                    <p class="text-[11px] opacity-60">The stripping script used in Communiverse11 to remove Microsoft service dependencies.</p>
-                </div>
-            </div>
-
             <div class="glass p-10 rounded-[3rem] border-white/5">
-                <h3 class="text-xl font-bold mb-6 italic">Current Build Status (2026)</h3>
-                <p class="text-sm opacity-60">Testing ReactOS build compatibility for openMyriad. Moving Debian assets for WhirlyOS to Cubic. Managing Cosmos kernel builds for RPandaOS.</p>
+                <h3 class="text-xl font-bold mb-6 italic">RAM & Resource Roadmap</h3>
+                <p class="text-sm opacity-60 mb-8">Our development priority is **Hardware Reclamation**. By utilizing differing levels of "Aesthetic Layers," we target specific RAM profiles for maximum efficiency.</p>
+                
+                <div class="grid md:grid-cols-2 gap-8 text-[11px] opacity-70">
+                    <div class="space-y-2">
+                        <p class="font-bold text-sky-400">ZERO AESTHETIC (Functional)</p>
+                        <ul class="list-disc pl-4">
+                            <li>WhirlyOS (Debian Core)</li>
+                            <li>Designed for sub-512MB RAM tasks</li>
+                        </ul>
+                    </div>
+                    <div class="space-y-2">
+                        <p class="font-bold text-accent">LIGHT AESTHETIC (Responsive)</p>
+                        <ul class="list-disc pl-4">
+                            <li>MyriadOS / RenardOS / RPandaOS</li>
+                            <li>Targeting $1\text{GB}$–$2\text{GB}$ RAM stability</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
     <footer class="py-24 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
-        The Myriad Project // Architect: 22soulfan // 2026
+        The Myriad Project // 22soulfan // 2026
     </footer>
 
     <script>
