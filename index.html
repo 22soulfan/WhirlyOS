@@ -10,141 +10,75 @@
         :root { --p-blue: #38bdf8; --p-purple: #a855f7; --p-orange: #fb923c; --p-red: #ef4444; --bg: #05070a; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
         .liquid-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); border-radius: 2rem; }
-        
-        /* 🚫 UNMOVABLE NAVIGATION */
         nav { position: fixed !important; top: 1.5rem; left: 50%; transform: translateX(-50%); width: 94%; z-index: 9999; }
-        .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; cursor: pointer; }
-        .nav-link:hover { opacity: 1; color: var(--p-blue); }
-
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* 👼 SOUL NUMBER 2026 ASSISTANT */
         .soul-fab { position: fixed; bottom: 2rem; right: 2rem; background: linear-gradient(135deg, #38bdf8, #a855f7); padding: 12px 24px; border-radius: 100px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; z-index: 10000; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4); border: 1px solid rgba(255,255,255,0.2); }
-        
-        /* 📝 BLOGGER ENGINE STYLE */
-        .blog-post { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2rem; margin-bottom: 2rem; }
-        .blog-meta { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--p-orange); }
+        .goal-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 1.5rem; transition: 0.3s; }
+        .goal-card:hover { border-color: var(--p-blue); background: rgba(56, 189, 248, 0.05); }
     </style>
 </head>
 <body onload="initApp()">
 
     <nav class="liquid-panel px-8 py-4 flex justify-between items-center shadow-2xl">
         <div class="flex items-center gap-8">
-            <span class="text-xl font-black italic tracking-tighter">
-                <span class="text-sky-400">WHIRLY</span><span class="text-white">OS</span>
-            </span>
+            <span class="text-xl font-black italic tracking-tighter text-sky-400">WHIRLY<span class="text-white">OS</span></span>
             <div class="hidden lg:flex gap-6">
-                <button onclick="showPage('home')" class="nav-link">Dashboard</button>
-                <button onclick="showPage('about')" class="nav-link">About</button>
-                <button onclick="showPage('downloads')" class="nav-link">Downloads</button>
-                <button onclick="showPage('blog')" class="nav-link">Blog</button>
+                <button onclick="showPage('home')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Dashboard</button>
+                <button onclick="showPage('about')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">WonderRepo</button>
+                <button onclick="showPage('blog')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Sparks</button>
             </div>
         </div>
-        <a href="https://github.com/22soulfan" class="opacity-40 hover:opacity-100 transition">
-            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-        </a>
     </nav>
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-6xl font-black italic uppercase tracking-tighter mb-12 text-center">The <span class="text-sky-400">WhirlyOS</span> Project</h1>
-            <div class="liquid-panel p-12 text-[13px] leading-relaxed opacity-80 font-medium space-y-1">
-                <p>1. WhirlyOS is a journey through a countless or extremely great number of possibilities.</p>
-                <p>2. Defined by Oxford as a "myriad"—a multitude or a unit of ten thousand computers.</p>
-                <p>3. We wrap a Linux base in a playful, ADHD-aware shell designed for clarity.</p>
-                <p>4. We believe computing should be magical, filled with cinematic flair and wonder.</p>
-                <p>5. Inspired by Pixar's "Soul" (2020), our motto is: Find your spark. Find your way.</p>
-                <p>6. WhirlyOS is not just an operating system; it is a tool to discover your true passion.</p>
-                <p>7. We prioritize digital health through built-in screen time limits and distraction-free design.</p>
-                <p>8. The road has been difficult, with many failed attempts using 0x OS Builder.</p>
-                <p>9. But we do not stop; we are now preparing for rigorous testing with Cubic.</p>
-                <p>10. WhirlyOS remains our central vision for a cinematic, educational desktop experience.</p>
-                <p>11. openMyriad offers an open-source alternative for those who believe in transparency.</p>
-                <p>12. Communiverse11 breaks the mold as our anti-Microsoft protocol for global identity.</p>
-                <p>13. ChromMyriadOS brings the best of the web with a focus on seamless browser learning.</p>
-                <p>14. Every edition is optimized for i386 compatibility to revive legacy hardware.</p>
-                <p>15. We celebrate diversity in design, just like the characters in the films we love.</p>
-                <p>16. From SoulFrame to IntellSpace, every interface tells a unique cinematic story.</p>
-                <p>17. Our goal is to make education accessible through offline tools for homeschooling.</p>
-                <p>18. We ensure rock-solid reliability by building upon the foundation of Debian Stable.</p>
-                <p>19. The WonderRepo is our curated sanctuary for all code and cinematic assets.</p>
-                <p>20. Join us in this myriad of computers as we build the impossible, one spark at a time.</p>
+        <div class="max-w-5xl mx-auto">
+            <div class="liquid-panel p-10 mb-12 border-sky-400/20">
+                <h2 class="text-xs font-black uppercase text-sky-400 tracking-widest mb-6">The Mission</h2>
+                <p class="text-sm leading-relaxed opacity-80">
+                    WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms. It has the features of the screen time limit to keep you free from distraction and be healthy.
+                </p>
             </div>
-        </div>
-    </main>
 
-    <main id="about" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-8 border-l-8 border-purple-500 pl-6 text-purple-400">WonderRepo Origins</h2>
-            <div class="liquid-panel p-10 space-y-6 text-sm opacity-70">
-                <p><b>A curated repository for building WhirlyOS Linux, based on Debian.</b></p>
-                <p>Copyright Notice: I forked this repository from hirohamada2014, the original owner. hirohamada2014 was my old GitHub account; I moved to a new one and forked this repo to keep the vision alive.</p>
+            <h2 class="text-2xl font-black italic uppercase mb-8">🎯 Core <span class="text-sky-400">Goals</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+                <div class="goal-card"><p class="text-xs">🧠 <b>Inspire creativity</b> through themed desktop environments based on beloved animated films.</p></div>
+                <div class="goal-card"><p class="text-xs">👨‍👩‍👧‍👦 <b>Support families</b> with built-in parental controls and screen time tools.</p></div>
+                <div class="goal-card"><p class="text-xs">💡 <b>Make computing magical</b> with custom UI elements, mascots, and cinematic flair.</p></div>
+                <div class="goal-card"><p class="text-xs">🐧 <b>Revive old hardware</b> with lightweight editions that run smoothly on low specs.</p></div>
+                <div class="goal-card"><p class="text-xs">🎨 <b>Celebrate diversity</b> in design, emotion, and user experience—just like Pixar’s characters.</p></div>
+                <div class="goal-card"><p class="text-xs">👨‍🎓 <b>For homeschooling & schools</b> via educational tools without AI. Physical notebooks are fine—use WhirlyOS for coding and technical exploring.</p></div>
             </div>
-        </div>
-    </main>
 
-    <main id="downloads" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-12 text-center">ISO <span class="text-red-500">Selection</span></h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="liquid-panel p-8 hover:border-sky-400 transition">
-                    <h3 class="text-xl font-black mb-1">WhirlyOS</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">SoulFrame / MeiLite / NotebookOS</p>
-                    <button class="w-full py-3 rounded-xl bg-white/5 text-[10px] font-black uppercase opacity-30 cursor-not-allowed">Stay Tuned</button>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="liquid-panel p-8">
+                    <h3 class="text-xs font-black uppercase text-purple-400 mb-6">System Features</h3>
+                    <ul class="text-[11px] space-y-3 opacity-60">
+                        <li>✨ Minimal-clutter GNOME Shell / GDM</li>
+                        <li>🎓 GCompris, Scratch, TuxMath, TuxPaint</li>
+                        <li>🎨 GIMP, Mu Editor, MuseScore, VLC</li>
+                        <li>🌐 Google Classroom, Drive, YouTube Kids</li>
+                        <li>⏲️ Integrated Screen Time features</li>
+                    </ul>
                 </div>
-                <div class="liquid-panel p-8 hover:border-purple-400 transition">
-                    <h3 class="text-xl font-black mb-1">openMyriad</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Open-Source Core</p>
-                    <button class="w-full py-3 rounded-xl bg-white/5 text-[10px] font-black uppercase opacity-30 cursor-not-allowed">Stay Tuned</button>
-                </div>
-                <div class="liquid-panel p-8 hover:border-orange-400 transition">
-                    <h3 class="text-xl font-black mb-1">ChromMyriadOS</h3>
-                    <p class="text-[10px] opacity-40 uppercase mb-6 italic">Browser-Based Shell</p>
-                    <button class="w-full py-3 rounded-xl bg-white/5 text-[10px] font-black uppercase opacity-30 cursor-not-allowed">Stay Tuned</button>
+                <div class="liquid-panel p-8">
+                    <h3 class="text-xs font-black uppercase text-orange-400 mb-6">📅 2025 Timeline</h3>
+                    <div class="space-y-4">
+                        <div class="border-l-2 border-orange-400/30 pl-4">
+                            <span class="text-[10px] font-bold text-orange-400">JAN 2025: BUILDING</span>
+                            <p class="text-[11px] opacity-60 mt-1">Preparing Debian base and creating assets. Transitioning to Cubic testing.</p>
+                        </div>
+                        <div class="bg-red-500/10 p-3 rounded-xl border border-red-500/20">
+                            <p class="text-[10px] font-bold text-red-500">NOTE: No releases have been made as of 2026.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <main id="blog" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-12">Latest <span class="text-orange-400">Sparks</span></h2>
-            
-            <div class="liquid-panel p-10">
-                <article class="blog-post">
-                    <div class="blog-meta">January 17, 2026 • Published by 22soulfan</div>
-                    <h3 class="text-2xl font-black mt-2 mb-4">The Cubic Transition Begins</h3>
-                    <p class="text-sm opacity-60 leading-relaxed mb-6">After several attempts with 0x OS Builder, the project is officially moving to Cubic for ISO generation. This allows for deeper customization of the Debian base while maintaining i386 stability.</p>
-                    <button class="text-[10px] font-black uppercase text-sky-400 tracking-widest">Read More →</button>
-                </article>
-
-                <article class="blog-post">
-                    <div class="blog-meta">January 01, 2025 • Published by 22soulfan</div>
-                    <h3 class="text-2xl font-black mt-2 mb-4">WhirlyOS Building Phase</h3>
-                    <p class="text-sm opacity-60 leading-relaxed mb-6">Preparing assets and building the initial framework for SoulFrame and MeiLite. Creating a playful, ADHD-aware environment from the ground up.</p>
-                    <button class="text-[10px] font-black uppercase text-sky-400 tracking-widest">Read More →</button>
-                </article>
-            </div>
-        </div>
-    </main>
-
-    <div class="soul-fab" onclick="alert('Soul Number 2026: Hello! I am here to help you find your spark.')">
-        Soul 2026
-    </div>
-
-    <footer class="mt-20 py-20 bg-black/40 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center text-[10px] font-black opacity-30 uppercase tracking-[0.2em]">
-            <span>© 2026 WhirlyOS // WonderRepo</span>
-            <div class="flex gap-4">
-                <span class="text-sky-400">Blue</span>
-                <span class="text-purple-500">Purple</span>
-                <span class="text-orange-400">Orange</span>
-                <span class="text-red-500">Red</span>
-            </div>
-        </div>
-    </footer>
+    <div class="soul-fab" onclick="alert('Soul Number 2026: Finding your spark today?')">Soul 2026</div>
 
     <script>
         function showPage(p) {
