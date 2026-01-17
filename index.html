@@ -3,132 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | Spark Hub</title>
+    <title>WhirlyOS | WonderRepo</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #38bdf8; --bg: #0b0e14; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background: radial-gradient(circle at top right, #1e293b, #0b0e14); 
-            color: #f8fafc; scroll-behavior: smooth; overflow-x: hidden; min-height: 100vh;
+        :root { --primary: #38bdf8; --bg: #05070a; --glass: rgba(255, 255, 255, 0.02); --border: rgba(255, 255, 255, 0.08); }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
+        
+        /* 🌊 Liquid Glass Panels */
+        .liquid-panel { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .glass:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(56, 189, 248, 0.4); transform: translateY(-4px); }
+        .liquid-panel:hover { border-color: var(--primary); transform: translateY(-5px); }
+        
         .page-section { display: none; opacity: 0; }
-        .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
-        .nav-link { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; }
-        .nav-link.active { opacity: 1; color: var(--primary); }
-        .hero-text { font-size: clamp(3rem, 10vw, 8rem); font-weight: 900; line-height: 0.9; letter-spacing: -0.05em; }
-        .tag-bubble { background: rgba(56, 189, 248, 0.15); color: var(--primary); padding: 4px 12px; border-radius: 100px; font-size: 10px; font-weight: 800; text-transform: uppercase; }
+        .page-section.active { display: block; animation: fadeIn 0.6s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.4; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { opacity: 1; color: var(--primary); }
     </style>
 </head>
 <body onload="initApp()">
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-[200] glass rounded-full px-10 py-4 flex justify-between items-center shadow-2xl">
-        <div class="flex items-center gap-12">
-            <span class="text-xl font-black italic tracking-tighter">WHIRLY<span class="text-sky-400">OS</span></span>
-            <div class="hidden md:flex gap-8">
-                <button onclick="showPage('home')" class="nav-link active">Home</button>
-                <button onclick="showPage('multiverse')" class="nav-link">Multiverse</button>
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[94%] z-[200] liquid-panel px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-10">
+            <span class="text-xl font-black tracking-tighter uppercase italic text-sky-400">Whirly<span class="text-white">OS</span></span>
+            <div class="hidden xl:flex gap-8">
+                <button onclick="showPage('home')" class="nav-link">Home</button>
+                <button onclick="showPage('about')" class="nav-link">About</button>
                 <button onclick="showPage('downloads')" class="nav-link">Downloads</button>
-                <button onclick="showPage('wiki')" class="nav-link">Wiki</button>
+                <button onclick="showPage('contribute')" class="nav-link">Contribute</button>
+                <button onclick="showPage('ai-help')" class="nav-link">AI Support</button>
             </div>
         </div>
-        <div class="flex items-center gap-4">
-            <div class="w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center text-[10px] font-black">22</div>
+        <div class="flex items-center gap-6">
+            <a href="#" title="GitHub Repository">
+                <svg class="w-5 h-5 fill-current opacity-40 hover:opacity-100 transition" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <span class="text-[8px] font-black opacity-30 uppercase tracking-widest">MIT License</span>
         </div>
     </nav>
 
-    <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="flex justify-center gap-2 mb-8">
-                <span class="tag-bubble border border-sky-400/30">X64 BIT</span>
-                <span class="tag-bubble border border-purple-400/30 text-purple-400 bg-purple-400/10">X86 BIT</span>
-            </div>
-            
-            <h1 class="hero-text italic uppercase mb-6">Find your <br><span class="text-sky-400">Spark.</span></h1>
-            <p class="max-w-2xl mx-auto text-sm md:text-base opacity-50 font-medium leading-relaxed mb-12">
-                The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.
-            </p>
-
-            <div class="flex flex-wrap justify-center gap-4 mb-24">
-                <button onclick="showPage('downloads')" class="bg-sky-500 text-black px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:bg-sky-400 transition shadow-lg shadow-sky-500/20">Get WhirlyOS</button>
-                <button onclick="showPage('multiverse')" class="glass px-10 py-4 rounded-xl font-black uppercase text-xs tracking-widest hover:border-sky-400 transition">The Mission</button>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                <div class="glass p-8 rounded-[2rem]">
-                    <div class="text-2xl mb-4">🚀</div>
-                    <h4 class="font-black uppercase text-xs mb-2 tracking-widest text-sky-400">Quick Boot</h4>
-                    <p class="text-[11px] opacity-40 leading-relaxed">Optimized legacy kernel for instant response on i386.</p>
-                </div>
-                <div class="glass p-8 rounded-[2rem]">
-                    <div class="text-2xl mb-4">🛡️</div>
-                    <h4 class="font-black uppercase text-xs mb-2 tracking-widest text-sky-400">Anti-Bloat</h4>
-                    <p class="text-[11px] opacity-40 leading-relaxed">Telemetry-free architecture. Inspired by Supermium compatibility.</p>
-                </div>
-                <div class="glass p-8 rounded-[2rem]">
-                    <div class="text-2xl mb-4">🎨</div>
-                    <h4 class="font-black uppercase text-xs mb-2 tracking-widest text-sky-400">Cinematic UI</h4>
-                    <p class="text-[11px] opacity-40 leading-relaxed">Soul, Elemental, and Elio themed desktop environments.</p>
-                </div>
-                <div class="glass p-8 rounded-[2rem]">
-                    <div class="text-2xl mb-4">⌛</div>
-                    <div class="flex items-center justify-between mb-2">
-                        <h4 class="font-black uppercase text-xs tracking-widest text-sky-400">Screen Time</h4>
-                        <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></span>
+    <main id="about" class="page-section pt-40 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black uppercase italic mb-12">The <span class="text-sky-400">Vision</span></h2>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="liquid-panel p-10">
+                    <h3 class="text-xl font-bold mb-4">What is WhirlyOS?</h3>
+                    <p class="text-sm opacity-60 leading-relaxed mb-6">Based on Debian Stable, WhirlyOS is an ADHD-aware Linux experience. It wraps rock-solid reliability in a cinematic shell to keep users healthy and distraction-free.</p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-white/5 rounded-2xl">
+                            <span class="text-2xl">🧠</span>
+                            <div>
+                                <p class="text-[10px] font-black uppercase text-sky-400">Inspiration</p>
+                                <p class="text-[11px] opacity-70 italic">Soul (2020) - "Find your spark. Find your way."</p>
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-[11px] opacity-40 leading-relaxed">Built-in limits to keep you healthy and distraction-free.</p>
+                </div>
+                <div class="liquid-panel p-10">
+                    <h3 class="text-xl font-bold mb-4">The WonderRepo</h3>
+                    <p class="text-sm opacity-60 leading-relaxed italic">"I forked this repository from hirohamada2014, who is the original owner... I moved to a new GitHub account and forked this repo."</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <main id="multiverse" class="page-section pt-48 pb-20 px-6">
+    <main id="downloads" class="page-section pt-40 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-black uppercase italic mb-12 text-center">Edition <span class="text-sky-400">Selection</span></h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="liquid-panel p-8">
+                    <div class="flex justify-between items-start mb-6">
+                        <h4 class="text-2xl font-black uppercase">SoulFrame</h4>
+                        <span class="text-[10px] font-bold opacity-30">i386</span>
+                    </div>
+                    <p class="text-xs opacity-50 mb-8 h-12">Dreamlike UI based on GNOME. The perfect cinematic interface.</p>
+                    <div class="flex items-center justify-between mb-8 text-[10px] font-black uppercase opacity-40">
+                        <span>Size: 2.4 GB</span>
+                        <span>Stay Tuned</span>
+                    </div>
+                    <button class="w-full py-4 rounded-2xl bg-sky-500/20 border border-sky-400/30 text-[10px] font-black uppercase tracking-widest opacity-50 cursor-not-allowed">Download (Soon)</button>
+                </div>
+
+                <div class="liquid-panel p-8 border-red-500/10">
+                    <div class="flex justify-between items-start mb-6">
+                        <h4 class="text-2xl font-black uppercase">MeiLite</h4>
+                        <span class="text-[10px] font-bold opacity-30">i386</span>
+                    </div>
+                    <p class="text-xs opacity-50 mb-8 h-12">Fast XFCE desktop inspired by Turning Red (2002 period vibes).</p>
+                    <div class="flex items-center justify-between mb-8 text-[10px] font-black uppercase opacity-40">
+                        <span>Size: 1.2 GB</span>
+                        <span>Stay Tuned</span>
+                    </div>
+                    <button class="w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest opacity-50 cursor-not-allowed">Download (Soon)</button>
+                </div>
+
+                <div class="liquid-panel p-8 border-emerald-500/10">
+                    <div class="flex justify-between items-start mb-6">
+                        <h4 class="text-2xl font-black uppercase">NotebookOS</h4>
+                        <span class="text-[10px] font-bold opacity-30">i386</span>
+                    </div>
+                    <p class="text-xs opacity-50 mb-8 h-12">Minimal Openbox setup for legacy hardware revival.</p>
+                    <div class="flex items-center justify-between mb-8 text-[10px] font-black uppercase opacity-40">
+                        <span>Size: 840 MB</span>
+                        <span>Stay Tuned</span>
+                    </div>
+                    <button class="w-full py-4 rounded-2xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest opacity-50 cursor-not-allowed">Download (Soon)</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="ai-help" class="page-section pt-40 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="glass p-12 rounded-[3rem] border-sky-400/20 mb-12">
-                <h2 class="text-3xl font-black uppercase italic mb-6">Communiverse<span class="text-sky-400">11</span></h2>
-                <p class="text-sm opacity-60 leading-relaxed mb-8">
-                    The anti-Microsoft bridge for Windows 11. Built for Ambassadors who value local privacy over cloud tracking. Includes local profile creation with custom avatars—no Microsoft ID required.
-                </p>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <span class="text-[9px] font-black uppercase text-sky-400">User Identity</span>
-                        <p class="text-[10px] mt-1 opacity-40">Ambassador Mode Active</p>
+            <div class="liquid-panel overflow-hidden h-[600px] flex flex-col">
+                <div class="p-6 border-b border-white/10 flex items-center justify-between bg-white/5">
+                    <h3 class="text-xs font-black uppercase tracking-widest">WhirlyOS Technical Assistant</h3>
+                    <span class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_#22c55e]"></span>
+                </div>
+                <div class="flex-grow p-8 space-y-4 overflow-y-auto">
+                    <div class="bg-white/5 p-4 rounded-2xl rounded-tl-none max-w-[80%]">
+                        <p class="text-xs leading-relaxed">Hello! I am the Myriad AI support. How can I help you build WhirlyOS or troubleshoot the Debian base today?</p>
                     </div>
-                    <div class="bg-white/5 p-4 rounded-2xl border border-white/5">
-                        <span class="text-[9px] font-black uppercase text-sky-400">UX Inspiration</span>
-                        <p class="text-[10px] mt-1 opacity-40">Pixar's Elio (2025)</p>
+                </div>
+                <div class="p-6 border-t border-white/10">
+                    <div class="flex gap-4">
+                        <input type="text" placeholder="Ask about i386 compatibility, screen time tools, or installation..." class="flex-grow bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-xs outline-none focus:border-sky-400">
+                        <button class="bg-sky-500 text-black px-6 rounded-xl font-black uppercase text-[10px]">Send</button>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <footer class="py-20 text-center border-t border-white/5 mt-20">
-        <div class="flex justify-center gap-6 mb-8">
-            <span class="opacity-20 hover:opacity-100 transition cursor-pointer">GitHub</span>
-            <span class="opacity-20 hover:opacity-100 transition cursor-pointer">Discord</span>
-            <span class="opacity-20 hover:opacity-100 transition cursor-pointer">Wiki</span>
-        </div>
-        <p class="text-[10px] font-black uppercase tracking-[0.5em] opacity-20">WhirlyOS & WonderRepo // MMXXVI</p>
-    </footer>
 
     <script>
         function showPage(p) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             if(document.getElementById(p)) document.getElementById(p).classList.add('active');
-            
-            const links = document.querySelectorAll('.nav-link');
-            links.forEach(link => {
-                if(link.getAttribute('onclick').includes(p)) link.classList.add('active');
-            });
             window.scrollTo(0,0);
         }
-        function initApp() { console.log("WhirlyOS Portal v206 Initialized."); }
+        function initApp() { showPage('about'); }
     </script>
 </body>
 </html>
