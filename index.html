@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhirlyOS | Find Your Spark</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- ADVANCED CSS ENGINE --- */
+        :root {
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #c084fc;
+            --bg-dark: #020617;
+            --bg-light: #f8fafc;
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        .light {
+            --glass-white: rgba(15, 23, 42, 0.03);
+            --glass-border: rgba(15, 23, 42, 0.1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Animated Background Mesh */
+        .mesh-gradient {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
+            background: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
+            filter: blur(80px);
+        }
+
+        /* Perfect Glassmorphism */
+        .glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        /* Typography Masterclass */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: flow 8s linear infinite;
+        }
+
+        @keyframes flow { to { background-position: 200% center; } }
+
+        /* Card Hover Effects */
+        .feature-card {
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px -20px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Navigation Underline */
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        /* Page Transitions */
+        .page-section { display: none; opacity: 0; transform: translateY(20px); }
+        .page-section.active { display: block; animation: sectionIn 0.6s forwards; }
+        @keyframes sectionIn { to { opacity: 1; transform: translateY(0); } }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 selection:bg-sky-500/30">
+
+    <div class="mesh-gradient"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-5xl z-50 glass rounded-2xl px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3 group cursor-pointer" onclick="showPage('home')">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold shadow-lg shadow-sky-500/20">W</div>
+            <span class="text-xl font-extrabold tracking-tighter">WHIRLY<span class="text-sky-400">OS</span></span>
+        </div>
+        
+        <div class="hidden md:flex items-center gap-10 text-xs font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            <button onclick="showPage('home')" class="nav-link hover:text-sky-400 transition">Home</button>
+            <button onclick="showPage('about')" class="nav-link hover:text-sky-400 transition">About</button>
+            <button onclick="showPage('downloads')" class="nav-link hover:text-sky-400 transition">Downloads</button>
+        </div>
+
+        <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition">
+            <span id="theme-icon">🌙</span>
+        </button>
+    </nav>
+
+    <main id="home" class="page-section active pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-block px-4 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest mb-6">Built on Debian Stable</span>
+            <h1 class="text-7xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">
+                Find your <br><span class="text-gradient">Spark.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 font-light leading-relaxed max-w-2xl mx-auto">
+                The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <button onclick="showPage('downloads')" class="px-12 py-4 bg-sky-500 text-slate-950 rounded-2xl font-bold hover:shadow-2xl hover:shadow-sky-500/40 transition-all hover:-translate-y-1">Get Started</button>
+                <button onclick="showPage('about')" class="px-12 py-4 glass rounded-2xl font-bold hover:bg-white/10 transition">The Mission</button>
+            </div>
+        </div>
+    </main>
+
+    <main id="about" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="space-y-8">
+                    <h2 class="text-5xl font-bold tracking-tight">One Repo. <br><span class="text-sky-400">Many Spirits.</span></h2>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-lg">
+                        WhirlyOS is a multi-year journey of OS experimentation. Forked from <span class="text-sky-400">hirohamada2014</span>, the 2026 <strong>WonderRepo</strong> edition introduces SoulFrame—a cinematic interface designed for education without distraction.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 rounded-2xl bg-sky-500/5 border border-sky-500/10">
+                            <h4 class="font-bold text-sky-400 mb-2">ADHD Aware</h4>
+                            <p class="text-xs opacity-60">Visual cues and simple menus to reduce cognitive load.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-indigo-500/5 border border-indigo-500/10">
+                            <h4 class="font-bold text-indigo-400 mb-2">i386 Ready</h4>
+                            <p class="text-xs opacity-60">Optimized for legacy systems to keep hardware out of landfills.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass p-1 rounded-3xl">
+                    <div class="bg-slate-900/40 rounded-3xl p-12 text-center aspect-square flex flex-col justify-center">
+                        <div class="text-8xl mb-6 animate-float">✨</div>
+                        <p class="text-2xl italic font-light">"The Great Before of Computing."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="downloads" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto text-center mb-20">
+            <h2 class="text-5xl font-bold mb-4">Choose your <span class="text-gradient">Edition</span></h2>
+            <p class="text-slate-500">All releases are i386 compatible. Transitioning to Cubic builds.</p>
+        </div>
+        
+        <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
+            <div class="feature-card glass p-10 rounded-[2.5rem] flex flex-col h-full">
+                <div class="w-14 h-14 rounded-2xl bg-sky-500/20 flex items-center justify-center text-3xl mb-8">🌌</div>
+                <h3 class="text-2xl font-bold mb-3">SoulFrame</h3>
+                <p class="text-sm text-slate-500 mb-8 flex-grow">Minimalist GNOME Shell. Celestial aesthetics and fluid animations.</p>
+                <button class="w-full py-4 rounded-xl border border-white/10 text-[10px] font-black uppercase tracking-widest opacity-40">Development Ongoing</button>
+            </div>
+
+            <div class="feature-card glass p-10 rounded-[2.5rem] flex flex-col h-full">
+                <div class="w-14 h-14 rounded-2xl bg-red-500/20 flex items-center justify-center text-3xl mb-8">🏮</div>
+                <h3 class="text-2xl font-bold mb-3">MeiLite</h3>
+                <p class="text-sm text-slate-500 mb-8 flex-grow">XFCE efficiency with Turning Red (2002) vibes. Expressive & fast.</p>
+                <button class="w-full py-4 rounded-xl border border-white/10 text-[10px] font-black uppercase tracking-widest opacity-40">Development Ongoing</button>
+            </div>
+
+            <div class="feature-card glass p-10 rounded-[2.5rem] flex flex-col h-full">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-3xl mb-8">🌊</div>
+                <h3 class="text-2xl font-bold mb-3">NotebookOS</h3>
+                <p class="text-sm text-slate-500 mb-8 flex-grow">Openbox minimal. Seaside calm for focused notebook-style work.</p>
+                <button class="w-full py-4 rounded-xl border border-white/10 text-[10px] font-black uppercase tracking-widest opacity-40">Development Ongoing</button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-20 text-center opacity-40 text-[10px] font-bold uppercase tracking-[0.3em]">
+        WhirlyOS & WonderRepo // MMXXVI
+    </footer>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                icon.innerText = '☀️';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                icon.innerText = '🌙';
+            }
+        }
+    </script>
+</body>
+</html>
