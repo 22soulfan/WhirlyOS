@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Myriad Project | 22soulfan</title>
+    <title>The Myriad Project | 22soulfan</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -15,179 +15,136 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .nav-link { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.4; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { opacity: 1; color: var(--primary); }
-        .de-card:hover { border-color: var(--primary); background: rgba(56, 189, 248, 0.05); }
+        .badge { font-size: 8px; font-weight: 900; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; margin-bottom: 8px; display: inline-block; }
+        .badge-closed { background: #ef4444; color: white; }
+        .badge-open { background: #22c55e; color: white; }
     </style>
 </head>
 <body onload="initApp()">
 
-    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[96%] z-[200] glass rounded-[2rem] px-8 py-4 flex justify-between items-center border-white/5">
+    <nav class="fixed top-4 left-1/2 -translate-x-1/2 w-[96%] z-[200] glass rounded-[2rem] px-8 py-4 flex justify-between items-center border-white/5 shadow-2xl">
         <div class="flex items-center gap-8">
-            <span class="text-xl font-black tracking-tighter uppercase italic text-sky-400">MYRIAD</span>
+            <span class="text-xl font-black tracking-tighter uppercase italic text-sky-400">The Myriad Project</span>
             <div class="hidden xl:flex gap-6">
                 <button onclick="showPage('home')" class="nav-link">Hub</button>
+                <button onclick="showPage('definition')" class="nav-link">Definition</button>
                 <button onclick="showPage('multiverse')" class="nav-link">OS Deep-Dive</button>
-                <button onclick="showPage('desktops')" class="nav-link">DE Library</button>
                 <button onclick="showPage('downloads')" class="nav-link">Downloads</button>
-                <button onclick="showPage('wiki')" class="nav-link">Wiki/Install</button>
                 <button onclick="showPage('blog')" class="nav-link">Devlog</button>
             </div>
         </div>
         <div class="flex gap-4 items-center">
-            <span class="text-[8px] font-black opacity-30 uppercase">BUILD 200.5</span>
-            <a href="https://github.com/22soulfan" class="bg-white/5 p-2 rounded-full border border-white/10 hover:border-sky-400 transition">
-                <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
+            <span class="text-[8px] font-black opacity-30 uppercase">Ver. 201.0</span>
         </div>
     </nav>
 
     <main id="home" class="page-section active pt-40 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-24">
-                <h1 class="text-8xl md:text-[12rem] font-black tracking-tighter mb-4 italic uppercase leading-none">MYRIAD</h1>
+                <h1 class="text-6xl md:text-9xl font-black tracking-tighter mb-4 italic uppercase leading-none">The <span class="text-sky-400">Myriad</span> Project</h1>
                 <p class="text-lg md:text-xl font-light opacity-40 tracking-[0.5em] uppercase italic">"Find your spark. Find your way."</p>
             </div>
             
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div class="glass p-8 rounded-[2.5rem] border-sky-400/20">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">The Mission</h3>
-                    <p class="text-xs opacity-60 leading-relaxed italic">To reclaim digital sovereignty by engineering high-performance operating environments that breathe life back into legacy hardware, proving aesthetics don't require high specs.</p>
+                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest text-center">Project Reach</h3>
+                    <p class="text-xs opacity-60 leading-relaxed italic text-center">Unified solutions across NT, Unix, and Web-based kernels to serve every hardware generation.</p>
                 </div>
                 <div class="glass p-8 rounded-[2.5rem]">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">Strategic Goals</h3>
-                    <p class="text-xs opacity-60 leading-relaxed">Eliminate telemetry at the kernel level, achieve a sub-200MB idle memory footprint, and maintain binary parity across NT and Linux distributions.</p>
+                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest text-center">Architecture</h3>
+                    <p class="text-xs opacity-60 leading-relaxed text-center">Combining C++ Shell aesthetics with highly optimized system backends for sub-200MB efficiency.</p>
                 </div>
                 <div class="glass p-8 rounded-[2.5rem]">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">Core Benefits</h3>
-                    <p class="text-xs opacity-60 leading-relaxed">Instant-boot capabilities, zero cloud dependency, unified visual language, and hardware reclamation of 2010-era devices.</p>
+                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest text-center">Privacy</h3>
+                    <p class="text-xs opacity-60 leading-relaxed text-center">Stripped of all telemetry. Every line of code in The Myriad Project serves only the user.</p>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem]">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">About</h3>
-                    <p class="text-xs opacity-60 leading-relaxed italic">Crafted by **22soulfan**, Myriad is an ongoing experiment in kernel optimization and C++ based shell architecture for the next decade.</p>
-                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="definition" class="page-section pt-40 pb-20 px-6">
+        <div class="max-w-4xl mx-auto glass p-12 rounded-[3rem] border-sky-500/10">
+            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-8">What is <span class="text-sky-400">Myriad</span>?</h2>
+            <div class="space-y-6">
+                <p class="text-2xl font-light italic opacity-80 leading-relaxed">
+                    "Myriad" (adj.) - An indefinitely great number; innumerable; having countless variations.
+                </p>
+                <div class="h-px bg-white/10 w-full"></div>
+                <p class="text-sm opacity-60 leading-8">
+                    In the context of this project, **Myriad** represents the limitless potential of computing. It signifies the countless ways we can reinvent hardware, the innumerable paths a user can take to find their own digital "Spark," and the vast collection of operating kernels we maintain to ensure no machine is left behind. We call it The Myriad Project because there is no single solution to computing; there is only a myriad of possibilities.
+                </p>
             </div>
         </div>
     </main>
 
     <main id="multiverse" class="page-section pt-40 pb-20 px-6">
         <div class="max-w-5xl mx-auto space-y-12">
-            <h2 class="text-5xl font-black uppercase italic tracking-tighter text-center">The <span class="text-sky-400">OS</span> Collection</h2>
+            <h2 class="text-5xl font-black uppercase italic tracking-tighter text-center">System <span class="text-sky-400">Hierarchy</span></h2>
             
-            <div class="glass p-10 rounded-[3rem] border-sky-400/10">
-                <h3 class="text-3xl font-black uppercase mb-4">MyriadOS <span class="text-sky-400 text-sm ml-2">NT-Hybrid</span></h3>
-                <p class="text-[10px] font-bold opacity-30 uppercase tracking-[0.2em] mb-6">Inspired by: Windows Longhorn (Early Concepts) & Windows 7 Aero</p>
+            <div class="glass p-10 rounded-[3rem] border-red-500/10 relative overflow-hidden">
+                <div class="badge badge-closed">Flagship / Closed Source</div>
+                <h3 class="text-3xl font-black uppercase mb-4">MyriadOS</h3>
                 <p class="text-sm opacity-60 leading-7">
-                    MyriadOS is a direct surgical modification of the ReactOS kernel, aimed at achieving 100% NT-binary compatibility without the telemetry burden of modern Windows. 
-                    It utilizes a custom GDI rendering engine to simulate glass effects on hardware with no GPU acceleration. 
-                    The kernel is stripped of all non-essential services, allowing it to idle at roughly 140MB of RAM. 
-                    It features the "Spark" shell, which replaces the standard Explorer with a C++ based fluid interface. 
-                    File management is handled through an integrated tabbed explorer with native .iso and .zip mounting. 
-                    Driver support is focused on late-2000s hardware, reclaiming Dell Latitudes and ThinkPads. 
-                    It is the flagship of the project, representing the perfect marriage of nostalgia and efficiency. 
-                    Security is handled through a local-only firewall that blocks all outbound "pings" by default. 
-                    It supports standard .exe and .msi installers through a custom compatibility layer. 
-                    Designed for users who miss the "Windows" workflow but hate the Windows data-mining.
+                    The core flagship of the project. MyriadOS is a proprietary, highly optimized version of the NT kernel. It features the most advanced version of the "Spark" desktop environment, written in pure C++ for maximum performance. It is designed to be the ultimate daily driver for power users, offering full binary compatibility with Windows applications while maintaining absolute control over system resources. 
                 </p>
             </div>
 
-            <div class="glass p-10 rounded-[3rem] border-sky-400/10">
-                <h3 class="text-3xl font-black uppercase mb-4">WhirlyOS <span class="text-sky-400 text-sm ml-2">Unix-Base</span></h3>
-                <p class="text-[10px] font-bold opacity-30 uppercase tracking-[0.2em] mb-6">Inspired by: NeXTSTEP & Minimalist Alpine Linux</p>
+            <div class="glass p-10 rounded-[3rem] border-green-500/10">
+                <div class="badge badge-open">Community / Open Source</div>
+                <h3 class="text-3xl font-black uppercase mb-4">WhirlyOS</h3>
                 <p class="text-sm opacity-60 leading-7">
-                    WhirlyOS is the educational backbone of the Myriad project, built upon a rock-solid Debian Stable core. 
-                    It is optimized for users who need a distraction-free environment for coding and system administration. 
-                    The boot sequence is parallelized to achieve desktop readiness in under 8 seconds on SSD hardware. 
-                    It completely avoids systemd where possible, opting for a lightweight init system to save cycles. 
-                    The default desktop environment is "Orbit," a tiled-floating hybrid built on the X11/Wayland bridge. 
-                    It includes the Myriad Lab Notes app and the Whirly Shell as core system components. 
-                    Software management is handled via the 'Whirl' package wrapper, which simplifies apt and flatpak commands. 
-                    It is designed to run perfectly on machines with as little as 512MB of RAM. 
-                    Privacy is guaranteed through a kernel-level sandbox for web browsers. 
-                    WhirlyOS is for the purist who believes that a computer should be a tool, not a service.
+                    The educational Unix backbone. Based on Debian, WhirlyOS is the open-source gateway for users learning about system optimization. It is the fastest-booting system in our collection, focusing on sub-1GB RAM stability and educational tools.
                 </p>
             </div>
-        </div>
-    </main>
 
-    <main id="desktops" class="page-section pt-40 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-12">The <span class="text-sky-400">DE</span> Library</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="glass de-card p-10 rounded-[3rem]">
-                    <h3 class="text-2xl font-black uppercase mb-2">Spark-Shell</h3>
-                    <p class="text-[9px] font-black opacity-30 uppercase tracking-widest mb-6 italic">Inspiration: MacOS Aqua & KDE Plasma 4</p>
-                    <p class="text-xs opacity-50 leading-relaxed">The flagship UI. Focuses on heavy translucency, rounded corners, and a centered "Dynamic Dock." Built in C++/Qt for MyriadOS and RenardOS.</p>
-                </div>
-                <div class="glass de-card p-10 rounded-[3rem]">
-                    <h3 class="text-2xl font-black uppercase mb-2">Orbit-Desktop</h3>
-                    <p class="text-[9px] font-black opacity-30 uppercase tracking-widest mb-6 italic">Inspiration: NeXTSTEP & GNOME 2</p>
-                    <p class="text-xs opacity-50 leading-relaxed">The efficiency king. A minimalist top-bar with a vertical side-dock. Low CPU overhead, designed for the WhirlyOS stable release.</p>
-                </div>
-                <div class="glass de-card p-10 rounded-[3rem]">
-                    <h3 class="text-2xl font-black uppercase mb-2">Panda-View</h3>
-                    <p class="text-[9px] font-black opacity-30 uppercase tracking-widest mb-6 italic">Inspiration: Windows Mobile & WebOS</p>
-                    <p class="text-xs opacity-50 leading-relaxed">A tile-based interface designed for touchscreens and small tablets. Integrated into the RPandaOS experimental branch.</p>
-                </div>
-                <div class="glass de-card p-10 rounded-[3rem]">
-                    <h3 class="text-2xl font-black uppercase mb-2">Ghost-WM</h3>
-                    <p class="text-[9px] font-black opacity-30 uppercase tracking-widest mb-6 italic">Inspiration: i3wm & Suckless dwm</p>
-                    <p class="text-xs opacity-50 leading-relaxed">A keyboard-only tiling window manager for power users. No icons, no bloat, just pure screen real estate.</p>
-                </div>
+            <div class="glass p-10 rounded-[3rem] border-green-500/10">
+                <div class="badge badge-open">Initiative / Open Source</div>
+                <h3 class="text-3xl font-black uppercase mb-4">openMyriad</h3>
+                <p class="text-sm opacity-60 leading-7">
+                    Our answer to modern accessibility. openMyriad is an open-source project focused on rebuilding the Windows 11 experience from the ground up using open kernels. It provides a familiar UI but removes the telemetry and hardware restrictions (No TPM required).
+                </p>
+            </div>
+
+            <div class="glass p-10 rounded-[3rem] border-sky-500/10">
+                <div class="badge badge-open">Cloud / Hybrid</div>
+                <h3 class="text-3xl font-black uppercase mb-4">ChromMyriadOS</h3>
+                <p class="text-sm opacity-60 leading-7">
+                    The web-first operating system. Built on a Gentoo Linux base, ChromMyriadOS is designed for Chromebooks and web-heavy users. It integrates the Myriad Project aesthetic into a browser-centric workflow for maximum efficiency.
+                </p>
+            </div>
+
+            <div class="glass p-10 rounded-[3rem] border-white/5">
+                <div class="badge badge-open">Mod / Community</div>
+                <h3 class="text-3xl font-black uppercase mb-4">Communiverse11</h3>
+                <p class="text-sm opacity-60 leading-7">
+                    The community modification of the standard NT kernel. Communiverse11 acts as a "bridge" system, allowing users to modify existing Windows 11 installations to adopt Myriad Project features and privacy settings without a full reformat.
+                </p>
             </div>
         </div>
     </main>
 
     <main id="downloads" class="page-section pt-40 pb-20 px-6">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-12">Get <span class="text-sky-400">Myriad</span></h2>
-            <div class="space-y-4">
-                <div class="glass p-8 rounded-3xl flex flex-wrap justify-between items-center gap-6">
-                    <div>
-                        <h4 class="font-black uppercase text-xl">MyriadOS <span class="text-sky-400 opacity-50">v200</span></h4>
-                        <p class="text-[10px] opacity-40 uppercase font-bold mt-1">Edition: Spark-Desktop (NT Base)</p>
-                    </div>
-                    <button class="px-8 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black uppercase opacity-40 cursor-not-allowed">Stay Tuned</button>
+            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-12">Downloads</h2>
+            <div class="grid gap-4">
+                <div class="glass p-8 rounded-3xl flex justify-between items-center border-red-500/10">
+                    <div><h4 class="font-black uppercase text-xl">MyriadOS Pro</h4><p class="text-[9px] opacity-40">Proprietary Build</p></div>
+                    <button class="px-6 py-2 glass rounded-full text-[9px] font-black uppercase opacity-40 cursor-not-allowed">Stay Tuned</button>
                 </div>
-                <div class="glass p-8 rounded-3xl flex flex-wrap justify-between items-center gap-6 border-sky-400/20">
-                    <div>
-                        <h4 class="font-black uppercase text-xl">WhirlyOS <span class="text-sky-400 opacity-50">v200</span></h4>
-                        <p class="text-[10px] opacity-40 uppercase font-bold mt-1">Edition: Orbit (Debian Stable)</p>
-                    </div>
-                    <button class="px-8 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black uppercase opacity-40 cursor-not-allowed">Stay Tuned</button>
-                </div>
-                <div class="glass p-8 rounded-3xl flex flex-wrap justify-between items-center gap-6">
-                    <div>
-                        <h4 class="font-black uppercase text-xl">RenardOS <span class="text-sky-400 opacity-50">v200</span></h4>
-                        <p class="text-[10px] opacity-40 uppercase font-bold mt-1">Edition: Ghost-WM (Rolling)</p>
-                    </div>
-                    <button class="px-8 py-3 bg-white/5 border border-white/10 rounded-xl text-[10px] font-black uppercase opacity-40 cursor-not-allowed">Stay Tuned</button>
+                <div class="glass p-8 rounded-3xl flex justify-between items-center border-green-500/10">
+                    <div><h4 class="font-black uppercase text-xl">openMyriad LITE</h4><p class="text-[9px] opacity-40">Open Source</p></div>
+                    <button class="px-6 py-2 glass rounded-full text-[9px] font-black uppercase opacity-40 cursor-not-allowed">Stay Tuned</button>
                 </div>
             </div>
-        </div>
-    </main>
-
-    <main id="blog" class="page-section pt-40 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="glass p-10 rounded-[3rem] mb-12">
-                <h3 class="text-2xl font-black uppercase mb-6 text-sky-400 italic">Broadcast Portal</h3>
-                <input type="text" id="postTitle" placeholder="Update Title" class="w-full bg-white/5 border border-white/10 p-4 rounded-xl mb-4 outline-none text-sm">
-                <textarea id="postBody" placeholder="Log content..." class="w-full bg-white/5 border border-white/10 p-4 rounded-xl mb-4 outline-none h-32 text-sm"></textarea>
-                <div class="flex gap-4">
-                    <button onclick="addPost()" class="bg-sky-500 text-black px-10 py-4 rounded-xl font-black text-[10px] uppercase">Publish</button>
-                    <button onclick="clearBlogForm()" class="glass px-10 py-4 rounded-xl font-black text-[10px] uppercase opacity-40">Discard</button>
-                </div>
-            </div>
-            <div id="blogPosts" class="space-y-6"></div>
         </div>
     </main>
 
     <footer class="py-20 text-center border-t border-white/5 mt-20">
         <p class="text-[10px] font-black uppercase tracking-[0.5em] mb-6 text-sky-400 italic">"Find your spark. Find your way."</p>
         <div class="flex justify-center gap-10 text-[9px] font-black opacity-30 uppercase tracking-widest mb-6">
-            <span>© 2026 Myriad Project</span>
+            <span>© 2026 The Myriad Project</span>
             <span>Architect: 22soulfan</span>
-            <span>MIT License</span>
         </div>
-        <p class="text-[7px] opacity-10 uppercase font-black">Powered by Spark-Shell Engine v200.5</p>
     </footer>
 
     <script>
@@ -198,35 +155,8 @@
             window.scrollTo(0,0);
         }
 
-        // Blog Logic
-        let posts = JSON.parse(localStorage.getItem('myriad_posts_v200')) || [];
-        function addPost() {
-            const title = document.getElementById('postTitle').value;
-            const body = document.getElementById('postBody').value;
-            if(!title || !body) return;
-            posts.unshift({ id: Date.now(), title, body, date: new Date().toLocaleDateString() });
-            saveAndRender();
-            clearBlogForm();
-        }
-        function deletePost(id) {
-            posts = posts.filter(p => p.id !== id);
-            saveAndRender();
-        }
-        function saveAndRender() {
-            localStorage.setItem('myriad_posts_v200', JSON.stringify(posts));
-            document.getElementById('blogPosts').innerHTML = posts.map(p => `
-                <div class="glass p-8 rounded-[2rem] border-l-4 border-l-sky-400">
-                    <div class="flex justify-between items-start">
-                        <h4 class="font-black uppercase text-xl">${p.title}</h4>
-                        <button onclick="deletePost(${p.id})" class="text-[8px] font-black opacity-20 uppercase hover:text-red-500">Delete</button>
-                    </div>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed">${p.body}</p>
-                    <div class="mt-6 text-[8px] font-black opacity-20 uppercase tracking-widest">${p.date} // ARCHITECT BROADCAST</div>
-                </div>
-            `).join('');
-        }
-        function clearBlogForm() { document.getElementById('postTitle').value = ''; document.getElementById('postBody').value = ''; }
-        function initApp() { saveAndRender(); }
+        let posts = JSON.parse(localStorage.getItem('myriad_v201_logs')) || [];
+        function initApp() { console.log("The Myriad Project Initialized."); }
     </script>
 </body>
 </html>
