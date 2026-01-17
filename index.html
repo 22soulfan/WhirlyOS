@@ -29,19 +29,21 @@
         .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        .os-card { height: 100%; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden; }
+        .os-card { height: 100%; display: flex; flex-direction: column; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
         .os-card:hover { transform: translateY(-8px); border-color: var(--primary); }
         
         .badge { font-size: 8px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.1em; }
-        .tech-stack { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--primary); margin-bottom: 0.5rem; }
-        
-        /* Custom Scrollbar */
+        .forum-post { border-bottom: 1px solid var(--border); transition: all 0.2s; }
+        .forum-post:hover { background: rgba(255,255,255,0.02); }
+
+        input, textarea, select { background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 12px; padding: 12px; color: white; outline: none; transition: border 0.3s; }
+        input:focus { border-color: var(--primary); }
+
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg); }
         ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
     </style>
 </head>
-<body onload="loadPosts()">
+<body onload="initStorage()">
 
     <div class="mesh-gradient"></div>
 
@@ -53,7 +55,7 @@
             <button onclick="showPage('home')" class="hover:text-sky-400 transition">Portal</button>
             <button onclick="showPage('systems')" class="hover:text-sky-400 transition">Multiverse</button>
             <button onclick="showPage('blog')" class="hover:text-sky-400 transition">DevLog</button>
-            <button onclick="showPage('wonderrepo')" class="hover:text-sky-400 transition">WonderRepo</button>
+            <button onclick="showPage('forums')" class="hover:text-sky-400 transition">Forums</button>
         </div>
         <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
     </nav>
@@ -62,67 +64,29 @@
         <div class="max-w-5xl mx-auto">
             <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-4 leading-[0.85]">The <br><span class="text-gradient">Myriad</span> Project.</h1>
             <h2 class="text-xl md:text-3xl font-light tracking-[0.4em] uppercase opacity-40 mb-12">Find your spark. Find your way.</h2>
-            
             <div class="flex flex-wrap justify-center gap-4">
-                <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl">Architectures</button>
-                <button onclick="showPage('blog')" class="px-10 py-4 glass rounded-2xl font-black text-[10px] uppercase tracking-widest">Create Update</button>
+                <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-[10px] uppercase tracking-widest shadow-xl">The Systems</button>
+                <button onclick="showPage('forums')" class="px-10 py-4 glass rounded-2xl font-black text-[10px] uppercase tracking-widest">Join Forum</button>
             </div>
         </div>
     </main>
 
     <main id="systems" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">System Architectures</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
+            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Multiverse</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
                     <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">ReactOS Kernel</span>
                     <h3 class="text-3xl font-bold mb-2">MyriadOS</h3>
-                    <div class="tech-stack italic">Light-Aesthetic Layer (1-2GB RAM)</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Designed for stability on older hardware. Features a refined, low-resource UI shell that brings modern aesthetics to the ReactOS core.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                    <p class="text-xs opacity-60 mb-6 italic">Light-Aesthetic Layer (1-2GB RAM)</p>
+                    <button class="mt-auto py-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest opacity-40 cursor-not-allowed">Stay Tuned for ISO</button>
                 </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-green-500/20 text-green-400 mb-4 inline-block w-fit">openSUSE Tumbleweed</span>
-                    <h3 class="text-3xl font-bold mb-2">RenardOS</h3>
-                    <div class="tech-stack italic">Light-Aesthetic Layer (1-2GB RAM)</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">A high-performance rolling release. The fox-shell interface is stripped for speed, ensuring Tumbleweed's power isn't wasted on bloat.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-red-500/20 text-red-400 mb-4 inline-block w-fit">Cosmos C# DevKit</span>
-                    <h3 class="text-3xl font-bold mb-2">RPandaOS</h3>
-                    <div class="tech-stack italic">Light-Aesthetic Layer (1-2GB RAM)</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">An experimental managed-code OS. Leverages C# for a unique, vibrant UI environment that remains stable within tight RAM profiles.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
                     <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Debian Stable</span>
                     <h3 class="text-3xl font-bold mb-2">WhirlyOS</h3>
-                    <div class="tech-stack italic">Zero-Aesthetic (Strictly Functional)</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Built for education and legacy rescue. Every spare cycle is dedicated to performance, removing all decorative layers for raw speed.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                    <p class="text-xs opacity-60 mb-6 italic">Zero-Aesthetic (Strictly Functional)</p>
+                    <button class="mt-auto py-3 glass rounded-xl text-[9px] font-black uppercase tracking-widest opacity-40 cursor-not-allowed">Stay Tuned for ISO</button>
                 </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-yellow-500/10">
-                    <span class="badge bg-yellow-500/20 text-yellow-400 mb-4 inline-block w-fit">ChromiumOS Hybrid</span>
-                    <h3 class="text-3xl font-bold mb-2">ChromMyriad</h3>
-                    <div class="tech-stack italic">MyriadOS Shell Integration</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Combines the fast web-based architecture of ChromiumOS with the specialized security and lockscreen logic of MyriadOS.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Anti-Microsoft Win11</span>
-                    <h3 class="text-3xl font-bold mb-2">Communiverse11</h3>
-                    <div class="tech-stack italic">Minimalist NT Core</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">The ultimate Windows 11 reclamation project. No telemetry, no forced accounts—just the core OS you paid for.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
             </div>
         </div>
     </main>
@@ -132,50 +96,49 @@
             <div class="flex justify-between items-end mb-12">
                 <div>
                     <h2 class="text-5xl font-black tracking-tighter uppercase text-gradient">DevLog</h2>
-                    <p class="opacity-40 text-xs font-bold uppercase tracking-widest mt-2">Documenting the Multiverse</p>
+                    <p class="opacity-40 text-xs font-bold uppercase tracking-widest mt-2">Publish Project Milestones</p>
                 </div>
-                <button onclick="openEditor()" class="px-6 py-3 bg-sky-500 text-slate-950 rounded-full font-black text-[10px] uppercase tracking-widest">Create Update</button>
+                <button onclick="toggleElement('blogEditor')" class="px-6 py-3 bg-sky-500 text-slate-950 rounded-full font-black text-[10px] uppercase tracking-widest">New Update</button>
             </div>
 
             <div id="blogEditor" class="hidden glass p-8 rounded-[2.5rem] border-sky-400/30 mb-12">
-                <input type="text" id="postTitle" placeholder="Update Title (e.g., Cubic Testing)" class="w-full bg-transparent text-xl font-bold mb-4 outline-none border-b border-white/10 pb-2">
-                <select id="postCategory" class="bg-transparent text-[10px] uppercase font-black tracking-widest opacity-50 mb-4 outline-none">
-                    <option value="TECHNICAL">Technical Update</option>
-                    <option value="AESTHETIC">Aesthetic Design</option>
-                    <option value="GENERAL">General News</option>
-                </select>
-                <textarea id="postContent" rows="4" placeholder="Describe the update..." class="w-full bg-transparent text-sm opacity-70 outline-none resize-none mb-6"></textarea>
-                <div class="flex gap-4">
-                    <button onclick="savePost()" class="px-8 py-3 bg-white text-slate-950 rounded-xl font-black text-[10px] uppercase tracking-widest">Publish</button>
-                    <button onclick="closeEditor()" class="px-8 py-3 glass rounded-xl font-black text-[10px] uppercase tracking-widest">Cancel</button>
+                <div class="flex flex-col gap-4">
+                    <input type="text" id="blogTitle" placeholder="Update Title (e.g., Kernel Optimization)">
+                    <textarea id="blogContent" rows="4" placeholder="What's new in the Myriad Project?"></textarea>
+                    <button onclick="publishBlog()" class="w-full py-4 bg-white text-black font-black uppercase tracking-widest rounded-xl text-[10px]">Publish to DevLog</button>
                 </div>
             </div>
 
-            <div id="postsContainer" class="space-y-6"></div>
+            <div id="blogPosts" class="space-y-6 text-left"></div>
         </div>
     </main>
 
-    <main id="wonderrepo" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black mb-8">Wonder<span class="text-gradient">Repo</span> Lab</h2>
-            
-            <div class="grid md:grid-cols-3 gap-6 mb-12">
-                <div class="glass p-6 rounded-3xl">
-                    <h4 class="text-sky-400 font-bold text-[10px] mb-2 uppercase tracking-widest">Aesthetic Concept 01</h4>
-                    <p class="text-xs opacity-60"><b>Spark-Lock:</b> The unified Android-inspired lockscreen that adapts to kernel color-profiles.</p>
+    <main id="forums" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-5xl font-black tracking-tighter uppercase text-gradient">Forums</h2>
+                    <p class="opacity-40 text-xs font-bold uppercase tracking-widest mt-2">Community Discussions</p>
                 </div>
-                <div class="glass p-6 rounded-3xl">
-                    <h4 class="text-indigo-400 font-bold text-[10px] mb-2 uppercase tracking-widest">Resource Concept 02</h4>
-                    <p class="text-xs opacity-60"><b>RAM Shield:</b> A layer manager that prioritizes functional processes over UI assets in $1\text{GB}$ builds.</p>
-                </div>
-                <div class="glass p-6 rounded-3xl">
-                    <h4 class="text-accent font-bold text-[10px] mb-2 uppercase tracking-widest">Visual Concept 03</h4>
-                    <p class="text-xs opacity-60"><b>Zero-Glass:</b> The strictly functional WhirlyOS interface using flat, vector-based rendering.</p>
+                <button onclick="toggleElement('forumEditor')" class="px-6 py-3 bg-accent/20 text-accent border border-accent/30 rounded-full font-black text-[10px] uppercase tracking-widest">Start Discussion</button>
+            </div>
+
+            <div id="forumEditor" class="hidden glass p-8 rounded-[2.5rem] border-accent/30 mb-12">
+                <div class="flex flex-col gap-4">
+                    <input type="text" id="forumUser" placeholder="Your Display Name">
+                    <input type="text" id="forumTitle" placeholder="Thread Subject">
+                    <textarea id="forumContent" rows="3" placeholder="Share your thoughts or questions..."></textarea>
+                    <button onclick="publishForum()" class="w-full py-4 bg-accent text-white font-black uppercase tracking-widest rounded-xl text-[10px]">Post Thread</button>
                 </div>
             </div>
 
-            <div class="glass p-10 rounded-[3rem] border-white/5">
-                <p class="text-[10px] opacity-40 font-mono italic">Note: Forked from hirohamada2014. Architected by 22soulfan.</p>
+            <div class="glass rounded-[2.5rem] overflow-hidden border-white/5">
+                <div class="p-6 border-b border-white/10 bg-white/5 flex text-[10px] font-black uppercase tracking-widest opacity-40">
+                    <div class="flex-1">Discussion</div>
+                    <div class="w-32 text-center">Author</div>
+                    <div class="w-32 text-right">Date</div>
+                </div>
+                <div id="forumPosts"></div>
             </div>
         </div>
     </main>
@@ -192,54 +155,82 @@
         }
 
         function toggleTheme() { document.documentElement.classList.toggle('light'); }
+        function toggleElement(id) { document.getElementById(id).classList.toggle('hidden'); }
 
-        function openEditor() { document.getElementById('blogEditor').classList.remove('hidden'); }
-        function closeEditor() { document.getElementById('blogEditor').classList.add('hidden'); }
-
-        function savePost() {
-            const title = document.getElementById('postTitle').value;
-            const cat = document.getElementById('postCategory').value;
-            const content = document.getElementById('postContent').value;
-            if(!title || !content) return;
-
-            const post = { title, cat, content, date: new Date().toLocaleDateString(), id: Date.now() };
-            let posts = JSON.parse(localStorage.getItem('myriad_devlog') || '[]');
-            posts.unshift(post);
-            localStorage.setItem('myriad_devlog', JSON.stringify(posts));
-            
-            document.getElementById('postTitle').value = '';
-            document.getElementById('postContent').value = '';
-            closeEditor();
-            loadPosts();
+        // --- STORAGE LOGIC ---
+        function initStorage() {
+            renderBlogs();
+            renderForums();
         }
 
-        function loadPosts() {
-            const container = document.getElementById('postsContainer');
-            const posts = JSON.parse(localStorage.getItem('myriad_devlog') || '[]');
-            
-            if(posts.length === 0) {
-                container.innerHTML = `<div class="glass p-20 rounded-[3rem] text-center opacity-30 italic">No project updates yet. Start documenting your journey.</div>`;
-                return;
-            }
+        // --- BLOG SYSTEM ---
+        function publishBlog() {
+            const title = document.getElementById('blogTitle').value;
+            const content = document.getElementById('blogContent').value;
+            if(!title || !content) return alert("Fill all fields");
 
-            container.innerHTML = posts.map(p => `
+            const post = { title, content, date: new Date().toLocaleDateString(), id: Date.now() };
+            let blogs = JSON.parse(localStorage.getItem('m_blogs') || '[]');
+            blogs.unshift(post);
+            localStorage.setItem('m_blogs', JSON.stringify(blogs));
+            
+            document.getElementById('blogTitle').value = '';
+            document.getElementById('blogContent').value = '';
+            toggleElement('blogEditor');
+            renderBlogs();
+        }
+
+        function renderBlogs() {
+            const container = document.getElementById('blogPosts');
+            const blogs = JSON.parse(localStorage.getItem('m_blogs') || '[]');
+            container.innerHTML = blogs.map(b => `
                 <div class="glass p-8 rounded-[2rem] border-white/5">
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="badge bg-sky-500/10 text-sky-400">${p.cat}</span>
-                        <span class="text-[9px] opacity-30 font-bold">${p.date}</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">${p.title}</h3>
-                    <p class="text-xs opacity-60 leading-relaxed">${p.content}</p>
-                    <button onclick="deletePost(${p.id})" class="mt-4 text-[8px] opacity-20 hover:opacity-100 hover:text-red-400 transition uppercase font-black">Remove</button>
+                    <span class="text-[9px] opacity-30 font-bold uppercase tracking-widest">${b.date}</span>
+                    <h3 class="text-2xl font-bold my-2 text-sky-400 uppercase tracking-tighter">${b.title}</h3>
+                    <p class="text-sm opacity-60 leading-relaxed">${b.content}</p>
+                    <button onclick="deleteItem('m_blogs', ${b.id}, renderBlogs)" class="mt-4 text-[8px] opacity-20 hover:opacity-100 hover:text-red-400 font-black uppercase">Remove</button>
                 </div>
-            `).join('');
+            `).join('') || `<div class="p-12 text-center opacity-30 italic">No updates published.</div>`;
         }
 
-        function deletePost(id) {
-            let posts = JSON.parse(localStorage.getItem('myriad_devlog') || '[]');
-            posts = posts.filter(p => p.id !== id);
-            localStorage.setItem('myriad_devlog', JSON.stringify(posts));
-            loadPosts();
+        // --- FORUM SYSTEM ---
+        function publishForum() {
+            const user = document.getElementById('forumUser').value || "Anonymous";
+            const title = document.getElementById('forumTitle').value;
+            const content = document.getElementById('forumContent').value;
+            if(!title || !content) return alert("Fill all fields");
+
+            const thread = { user, title, content, date: new Date().toLocaleDateString(), id: Date.now() };
+            let forums = JSON.parse(localStorage.getItem('m_forums') || '[]');
+            forums.unshift(thread);
+            localStorage.setItem('m_forums', JSON.stringify(forums));
+
+            document.getElementById('forumTitle').value = '';
+            document.getElementById('forumContent').value = '';
+            toggleElement('forumEditor');
+            renderForums();
+        }
+
+        function renderForums() {
+            const container = document.getElementById('forumPosts');
+            const forums = JSON.parse(localStorage.getItem('m_forums') || '[]');
+            container.innerHTML = forums.map(f => `
+                <div class="p-6 forum-post flex items-center text-sm">
+                    <div class="flex-1">
+                        <h4 class="font-bold text-white mb-1 uppercase tracking-tight">${f.title}</h4>
+                        <p class="text-[11px] opacity-40 line-clamp-1">${f.content}</p>
+                    </div>
+                    <div class="w-32 text-center text-[10px] font-bold text-accent uppercase tracking-tighter">${f.user}</div>
+                    <div class="w-32 text-right text-[10px] opacity-30">${f.date}</div>
+                </div>
+            `).join('') || `<div class="p-12 text-center opacity-30 italic">No community threads yet.</div>`;
+        }
+
+        function deleteItem(key, id, callback) {
+            let items = JSON.parse(localStorage.getItem(key) || '[]');
+            items = items.filter(i => i.id !== id);
+            localStorage.setItem(key, JSON.stringify(items));
+            callback();
         }
     </script>
 </body>
