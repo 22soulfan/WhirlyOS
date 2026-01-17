@@ -1,0 +1,14 @@
+# Desktop environment + display manager
+xfce4 xfce4-goodies lightdm task-xfce-desktop
+
+# Themes and icons for nicer look
+arc-theme papirus-icon-theme
+
+# Networking and drivers
+network-manager firmware-linux firmware-misc-nonfree
+
+# VM & guest support (VMware/VirtualBox/QEMU)
+open-vm-tools virtualbox-guest-x11 qemu-guest-agent
+
+# User requested tools
+libreoffice chromium gcompris tuxmath gimp kalzium chromium
