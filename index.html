@@ -3,135 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | Ambassador Portal</title>
+    <title>WhirlyOS | Myriad Project</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #38bdf8; --secondary: #c084fc; --accent: #f472b6;
-            --bg: #030712; --text: #f8fafc;
+            --primary: #38bdf8; --secondary: #818cf8; --accent: #f472b6;
+            --bg: #020617; --text: #f8fafc;
             --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
         }
-        .light { --bg: #f0f9ff; --text: #0c4a6e; --glass: rgba(255, 255, 255, 0.7); --border: rgba(56, 189, 248, 0.2); }
+        .light {
+            --bg: #f8fafc; --text: #0f172a;
+            --glass: rgba(15, 23, 42, 0.05); --border: rgba(15, 23, 42, 0.1);
+        }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
-        
-        .cosmic-bg {
+        .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
-            background: radial-gradient(circle at 20% 30%, rgba(56, 189, 248, 0.15) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, rgba(192, 132, 252, 0.15) 0%, transparent 40%);
+            background: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.12) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(244, 114, 182, 0.12) 0px, transparent 50%);
             filter: blur(80px);
         }
-
-        .glass { background: var(--glass); backdrop-filter: blur(25px); border: 1px solid var(--border); }
-        .text-gradient { background: linear-gradient(to right, #38bdf8, #c084fc, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
+        .text-gradient { background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .page-section { display: none; opacity: 0; transform: scale(0.98); }
-        .page-section.active { display: block; animation: zoomIn 0.5s ease forwards; }
-        @keyframes zoomIn { to { opacity: 1; transform: scale(1); } }
+        .page-section { display: none; opacity: 0; transform: translateY(20px); }
+        .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
+        @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
 
-        .active-card { border: 1px solid var(--primary); box-shadow: 0 0 30px rgba(56, 189, 248, 0.15); }
-        .ref-tag { font-size: 8px; font-weight: 900; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); padding: 2px 6px; rounded: 4px; }
+        .bot-grid div:hover { transform: scale(1.05); border-color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <div class="cosmic-bg"></div>
+    <div class="mesh-gradient"></div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-6xl z-[150] glass rounded-3xl px-8 py-4 flex justify-between items-center border-white/10 shadow-2xl">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-[150] glass rounded-[2.5rem] px-8 py-4 flex justify-between items-center shadow-2xl">
         <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
-            <span class="text-xl font-black tracking-widest uppercase italic">Myriad <span class="text-sky-400 font-light">Project</span></span>
+            <img src="branding/whirlyos.png" alt="WhirlyOS" class="w-10 h-10 object-contain">
+            <span class="text-xl font-black tracking-tighter uppercase">Whirly<span class="text-sky-400">OS</span></span>
         </div>
-        <div class="hidden md:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest opacity-60">
+        <div class="hidden md:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
             <button onclick="showPage('home')">Home</button>
-            <button onclick="showPage('multiverse')">Multiverse</button>
             <button onclick="showPage('bots')">AI Bots</button>
+            <button onclick="showPage('myriad')">Myriad Project</button>
+            <button onclick="showPage('about')">Inspiration</button>
+            <a href="https://github.com/22soulfan/whirlyos/discussions" target="_blank">Forums</a>
         </div>
-        <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
+        <div class="flex items-center gap-4">
+            <button onclick="showPage('contribute')" class="text-[10px] font-bold uppercase tracking-widest px-4 py-2 glass rounded-full hover:bg-white/5">Contribute</button>
+            <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌙</button>
+        </div>
     </nav>
 
     <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
         <div class="max-w-4xl mx-auto">
-            <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-8 leading-none">The <span class="text-gradient">Myriad</span> Project.</h1>
-            <p class="text-xl opacity-60 mb-12 max-w-2xl mx-auto">One person. One vision. An intergalactic portfolio of systems designed to find your spark.</p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <button onclick="showPage('multiverse')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">Get Started</button>
-            </div>
-        </div>
-    </main>
-
-    <main id="multiverse" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black mb-12 text-center tracking-tighter uppercase">The <span class="text-gradient">Multiverse</span> Matrix</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="glass p-8 rounded-[2.5rem] active-card flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black">WhirlyOS</h3>
-                            <span class="text-[9px] font-bold bg-sky-500 text-slate-950 px-2 py-1 rounded">ACTIVE</span>
-                        </div>
-                        <p class="text-sm opacity-60 mb-6 italic">The Pixar-inspired educational OS. Debian-based stability for ADHD focus.</p>
-                    </div>
-                    <a href="https://github.com/22soulfan/whirlyos/releases" class="block py-4 bg-sky-500 text-slate-900 rounded-2xl font-black text-center text-[10px] uppercase tracking-widest">Download ISO</a>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black">Communiverse11</h3>
-                            <span class="text-[9px] font-bold bg-white/5 text-white/40 px-2 py-1 rounded">STAY TUNED</span>
-                        </div>
-                        <p class="text-sm opacity-60 mb-4">De-Microsofted Windows 11. No mandatory accounts. Introducing the <strong>Ambassador</strong> role.</p>
-                        <p class="text-[10px] opacity-30 leading-relaxed">NOTE: The Ambassador role replaces Admin, offering security without the risk of system-wide damage.</p>
-                    </div>
-                    <button class="block py-4 glass text-white/20 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed mt-6">Dev in Progress</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black">openMyriad</h3>
-                            <span class="ref-tag">REFERENCE: REACTOS</span>
-                        </div>
-                        <p class="text-sm opacity-60 mb-4">C++ rebirth of the Windows shell. Modern 7/10/11 hybrid menu with Android lockscreen.</p>
-                        <p class="text-[10px] opacity-30 leading-relaxed">NOTE: This project serves as a technical reference for shell-level C++ modernization based on the ReactOS architecture.</p>
-                    </div>
-                    <button class="block py-4 glass text-white/20 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed mt-6">Stay Tuned</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] flex flex-col justify-between">
-                    <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-2xl font-black">ChromMyriad</h3>
-                            <span class="ref-tag">REFERENCE: CHROMIUMOS</span>
-                        </div>
-                        <p class="text-sm opacity-60 mb-4">Cloud-speed web OS. Integrating mobile-style UX into the Aura shell.</p>
-                        <p class="text-[10px] opacity-30 leading-relaxed">NOTE: A reference project exploring the boundaries between browser-based operating systems and native Android-style locking mechanisms.</p>
-                    </div>
-                    <button class="block py-4 glass text-white/20 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed mt-6">Stay Tuned</button>
-                </div>
-
+            <h1 class="text-8xl md:text-[10rem] font-black tracking-tighter mb-8 leading-none">The <span class="text-gradient">Myriad</span> Project.</h1>
+            <p class="text-xl opacity-60 mb-12 max-w-2xl mx-auto">WhirlyOS is the heart of a larger ecosystem of operating systems designed for focus, education, and play.</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="showPage('myriad')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">Explore the Multiverse</button>
             </div>
         </div>
     </main>
 
     <main id="bots" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-4xl font-black mb-16 uppercase tracking-tighter">AI <span class="text-gradient">Assistants</span></h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="glass p-8 rounded-[2.5rem]"><div class="text-4xl mb-4">🩹</div><h4 class="font-bold">Carebit</h4></div>
-                <div class="glass p-8 rounded-[2.5rem]"><div class="text-4xl mb-4">🧠</div><h4 class="font-bold">Eva</h4></div>
-                <div class="glass p-8 rounded-[2.5rem]"><div class="text-4xl mb-4">💎</div><h4 class="font-bold">Luxi</h4></div>
-                <div class="glass p-8 rounded-[2.5rem]"><div class="text-4xl mb-4">🐼</div><h4 class="font-bold">Pando</h4></div>
-                <div class="glass p-8 rounded-[2.5rem]"><div class="text-4xl mb-4">🧚</div><h4 class="font-bold">Pixi</h4></div>
-                <div class="glass p-8 rounded-[2.5rem]"><div class="text-4xl mb-4">🌊</div><h4 class="font-bold">Wave</h4></div>
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-black mb-4 text-center">AI <span class="text-gradient">Companions</span></h2>
+            <p class="text-center opacity-50 mb-16">Integrated assistants built to help you navigate the Myriad ecosystem.</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6 bot-grid">
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 transition-all text-center">
+                    <div class="text-5xl mb-4">🩹</div><h4 class="font-bold">Carebit</h4><p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Health & Wellness</p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 transition-all text-center">
+                    <div class="text-5xl mb-4">🧠</div><h4 class="font-bold">Eva</h4><p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Core Intelligence</p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 transition-all text-center">
+                    <div class="text-5xl mb-4">💎</div><h4 class="font-bold">Luxi</h4><p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Premium Logic</p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 transition-all text-center">
+                    <div class="text-5xl mb-4">🐼</div><h4 class="font-bold">Pando</h4><p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Educational Guide</p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 transition-all text-center">
+                    <div class="text-5xl mb-4">🧚</div><h4 class="font-bold">Pixi</h4><p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Creative Support</p>
+                </div>
+                <div class="glass p-10 rounded-[2.5rem] border-white/5 transition-all text-center">
+                    <div class="text-5xl mb-4">🌊</div><h4 class="font-bold">Wave</h4><p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Optimization</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="myriad" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-5xl font-black mb-12 text-center">The <span class="text-gradient">Myriad</span> Project</h2>
+            <div class="space-y-6">
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div>
+                        <h3 class="text-2xl font-bold">WhirlyOS</h3>
+                        <p class="text-sm opacity-60">The flagship Pixar-inspired desktop experience. Built on Debian Stable for ADHD-aware focus.</p>
+                    </div>
+                    <a href="https://github.com/22soulfan/whirlyos" class="px-8 py-3 bg-sky-500/10 text-sky-400 rounded-xl font-bold text-[10px] uppercase tracking-widest border border-sky-500/20">Active Repo</a>
+                </div>
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
+                    <div>
+                        <h3 class="text-2xl font-bold">DreamLayer</h3>
+                        <p class="text-sm opacity-60">A VR-native Linux distribution designed for 3D spatial computing and immersive study.</p>
+                    </div>
+                    <span class="px-8 py-3 bg-pink-500/10 text-pink-400 rounded-xl font-bold text-[10px] uppercase tracking-widest border border-pink-500/20">Stay Tuned</span>
+                </div>
+                <div class="glass p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-6 opacity-60">
+                    <div>
+                        <h3 class="text-2xl font-bold">NovaCore</h3>
+                        <p class="text-sm opacity-60">An immutable, security-hardened OS for developers who need maximum stability without bloat.</p>
+                    </div>
+                    <span class="px-8 py-3 bg-pink-500/10 text-pink-400 rounded-xl font-bold text-[10px] uppercase tracking-widest border border-pink-500/20">Stay Tuned</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="about" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-black mb-12">Built with <span class="text-gradient">Heart.</span></h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-8 rounded-[2.5rem]">
+                    <h4 class="font-bold text-sky-400 mb-4 uppercase text-xs tracking-widest">Technical Foundation</h4>
+                    <p class="text-sm opacity-60">WhirlyOS stands on the shoulders of giants. We use <strong>Debian Stable</strong> to provide the world's most reliable foundation for your work.</p>
+                </div>
+                <div class="glass p-8 rounded-[2.5rem]">
+                    <h4 class="font-bold text-pink-400 mb-4 uppercase text-xs tracking-widest">Creative Inspiration</h4>
+                    <p class="text-sm opacity-60">Our visual language is inspired by the warmth and wonder of <strong>Pixar Animation Studios</strong>, specifically the cinematic soul of films like <i>Soul</i> and <i>Inside Out</i>.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="contribute" class="page-section pt-48 pb-20 px-6 text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-5xl font-black mb-8">Join the <span class="text-gradient">Dream.</span></h2>
+            <p class="opacity-60 mb-12">Whether you're a developer or a designer, there's a place for you in the Myriad Project.</p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="https://github.com/22soulfan/whirlyos" class="px-10 py-4 glass rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:bg-white/5 transition">GitHub Repo</a>
+                <a href="https://github.com/22soulfan/whirlyos/discussions" class="px-10 py-4 glass rounded-2xl font-bold text-[10px] uppercase tracking-widest hover:bg-white/5 transition">Join the Forum</a>
             </div>
         </div>
     </main>
 
     <footer class="py-24 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
-        Myriad Project // 22soulfan // 2026
+        WhirlyOS & Myriad Project // 22soulfan // MMXXVI
     </footer>
 
     <script>
@@ -140,7 +158,9 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function toggleTheme() { document.documentElement.classList.toggle('light'); }
+        function toggleTheme() {
+            document.documentElement.classList.toggle('light');
+        }
     </script>
 </body>
 </html>
