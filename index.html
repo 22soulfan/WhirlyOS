@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | WonderRepo</title>
+    <title>The Myriad Project | By Hiro Hamada</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
@@ -29,12 +29,10 @@
         .page-section.active { display: block; animation: fadeIn 0.5s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
-        th, td { padding: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
-        th { background: rgba(255,255,255,0.05); text-transform: uppercase; letter-spacing: 0.1em; }
+        .os-card { transition: all 0.3s ease; }
+        .os-card:hover { transform: translateY(-5px); border-color: var(--primary); }
         
-        .warning-box { border-left: 4px solid #f59e0b; background: rgba(245, 158, 11, 0.1); padding: 1rem; border-radius: 0.5rem; }
-        code { font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.3); padding: 2px 4px; border-radius: 4px; color: #38bdf8; }
+        .badge { font-size: 9px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.05em; }
     </style>
 </head>
 <body>
@@ -46,10 +44,10 @@
             <span class="text-xl font-black tracking-tighter uppercase italic">Myriad <span class="text-sky-400 font-light">Project</span></span>
         </div>
         <div class="hidden md:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
-            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('home')">Portal</button>
+            <button onclick="showPage('about')">About</button>
+            <button onclick="showPage('systems')">Systems</button>
             <button onclick="showPage('whirlyos')">WhirlyOS</button>
-            <button onclick="showPage('openmyriad')">openMyriad</button>
-            <button onclick="showPage('install')">Installation</button>
         </div>
         <div class="flex items-center gap-4">
             <a href="https://github.com/22soulfan/whirlyos" target="_blank" class="opacity-60 hover:opacity-100 transition"><svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
@@ -57,150 +55,135 @@
         </div>
     </nav>
 
-    <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-5xl mx-auto">
-            <h1 class="text-6xl font-black mb-6 tracking-tighter">Wonder<span class="text-gradient">Repo</span></h1>
-            <p class="text-lg opacity-70 mb-8">A curated repository for building <strong>WhirlyOS Linux</strong>, based on Debian.</p>
-            
-            <div class="glass p-6 rounded-2xl mb-12 border-white/5 text-sm">
-                <p class="opacity-50 uppercase font-bold tracking-widest text-[10px] mb-2">Copyright & Fork Notice</p>
-                <p>I forked this repository from <code>hirohamada2014</code>, the original owner of WhirlyOS. <code>hirohamada2014</code> was my old GitHub account; I moved to a new one and forked this repo to continue development.</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 mb-12">
-                <div class="glass p-8 rounded-3xl">
-                    <h2 class="text-2xl font-bold mb-4">The Mission</h2>
-                    <p class="text-sm opacity-70 leading-relaxed mb-4">WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and seamless access to browser-based learning tools across desktop and embedded platforms.</p>
-                    <p class="text-sm opacity-70 leading-relaxed">Includes <strong>Screen Time Limits</strong> to keep users healthy and free from distraction.</p>
+    <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-8 leading-[0.85]">The <br><span class="text-gradient">Myriad</span> Project.</h1>
+            <div class="glass p-8 rounded-3xl border-white/5 max-w-2xl mx-auto mb-12">
+                <p class="text-lg italic opacity-80 leading-relaxed">
+                    "A collection of operating systems for Windows 11 fans who want minimal support, an educational Linux distro, Android lockscreen in ChromiumOS, and an Android-inspired lockscreen and an open-sourced modern Windows 11."
+                </p>
+                <div class="mt-6 flex items-center justify-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-sky-500"></div>
+                    <div class="text-left">
+                        <p class="text-xs font-black uppercase tracking-widest">Hiro Hamada</p>
+                        <p class="text-[9px] opacity-40 uppercase">Original Owner & Lead Architect</p>
+                    </div>
                 </div>
-                <div class="glass p-8 rounded-3xl border-sky-500/20">
-                    <h2 class="text-2xl font-bold mb-4">🎯 Project Goals</h2>
-                    <ul class="text-xs space-y-3 opacity-70">
-                        <li>🎨 Inspire creativity via film-themed desktop environments.</li>
-                        <li>👨‍👩‍👧‍👦 Support families with parental controls & screen time tools.</li>
-                        <li>🐧 Revive old hardware with lightweight i386 compatibility.</li>
-                        <li>👨‍🎓 Educational focus for homeschooling (No AI integration).</li>
+            </div>
+            <button onclick="showPage('systems')" class="px-10 py-4 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl">Explore the Multiverse</button>
+        </div>
+    </main>
+
+    <main id="about" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-black mb-8 tracking-tight">One Vision. <span class="text-gradient">Many Foundations.</span></h2>
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="space-y-6 opacity-80 text-sm leading-relaxed">
+                    <p>Founded and maintained by **Hiro Hamada**, The Myriad Project is a solo endeavor to redefine personal computing. By forking and modernizing existing foundations like **ReactOS** and **Debian**, Hiro aims to provide specialized environments for different user needs.</p>
+                    <p>Whether you are seeking the cinematic, ADHD-aware focus of **WhirlyOS** or the open-source Windows compatibility of **openMyriad**, this project puts user sovereignty first.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl border-white/5">
+                    <h4 class="font-bold text-sky-400 uppercase text-[10px] tracking-widest mb-4">Ownership Metadata</h4>
+                    <ul class="text-[11px] space-y-3 opacity-60 font-mono">
+                        <li>• PRIMARY OWNER: Hiro Hamada</li>
+                        <li>• LEGACY IDENT: hirohamada2014</li>
+                        <li>• CURRENT IDENT: 22soulfan</li>
+                        <li>• MISSION: Digital Sovereignty</li>
                     </ul>
                 </div>
             </div>
         </div>
     </main>
 
+    <main id="systems" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Portfolio</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <div class="glass p-8 rounded-[2.5rem] os-card border-sky-400/20">
+                    <span class="badge bg-sky-500 text-slate-950 mb-4 inline-block">Modern Windows</span>
+                    <h3 class="text-2xl font-bold mb-2">openMyriad</h3>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4">ReactOS Fork / Modern Win 11 Inspired</p>
+                    <p class="text-sm opacity-70 mb-6">The open-sourced rebirth of Windows 11. Features an Android-inspired lockscreen and a modernized UI shell that stays true to the Windows 11 aesthetic while remaining completely open-source.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">Dev in Progress</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-sky-500/10">
+                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block">Educational Linux</span>
+                    <h3 class="text-2xl font-bold mb-2">WhirlyOS</h3>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4">Debian Stable / ADHD-Aware</p>
+                    <p class="text-sm opacity-70 mb-6">A playful, educational distro featuring the <strong>SoulFrame</strong> desktop. Designed to help users "Find their Spark" with built-in distraction filters and cinematic UI.</p>
+                    <button onclick="showPage('whirlyos')" class="mt-auto block py-4 bg-sky-500 text-slate-900 rounded-2xl font-black text-[10px] uppercase tracking-widest">View Editions</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-orange-500/10">
+                    <span class="badge bg-orange-500/20 text-orange-400 mb-4 inline-block">ChromiumOS Hybrid</span>
+                    <h3 class="text-2xl font-bold mb-2">ChromMyriad</h3>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4">Chromium Base / Android Lock</p>
+                    <p class="text-sm opacity-70 mb-6">Cloud speed with a twist. Integrates a native Android lockscreen into the ChromiumOS environment for a seamless mobile-to-desktop transition.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">Reference Only</button>
+                </div>
+
+                <div class="glass p-8 rounded-[2.5rem] os-card border-pink-500/10">
+                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block">Minimal Win11</span>
+                    <h3 class="text-2xl font-bold mb-2">Communiverse11</h3>
+                    <p class="text-xs opacity-50 font-mono uppercase mb-4">Windows 11 Mod / Minimal Support</p>
+                    <p class="text-sm opacity-70 mb-6">The "Ambassador" project. A stripped-down Windows 11 for users who want a minimal footprint, zero telemetry, and complete local control.</p>
+                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed">Stay Tuned</button>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
     <main id="whirlyos" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="mb-12 text-center">
-                <h2 class="text-5xl font-black mb-4">Whirly<span class="text-gradient">OS</span></h2>
-                <p class="italic opacity-60">"Find your spark. Find your way."</p>
-            </div>
-
-            <div class="warning-box mb-12">
-                <p class="font-bold">⚠️ Warning: Development is ongoing. No releases made as of 2026. i386 compatibility focus.</p>
-            </div>
-
-            <div class="overflow-x-auto glass rounded-3xl p-6 border-white/5">
-                <h3 class="text-xl font-bold mb-6 px-2">System Editions</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Edition</th>
-                            <th>DE</th>
-                            <th>Inspired By</th>
-                            <th>Specs</th>
-                        </tr>
-                    </thead>
-                    <tbody class="opacity-80">
-                        <tr>
-                            <td class="font-bold text-sky-400">SoulFrame</td>
-                            <td>GNOME</td>
-                            <td>Soul (2020)</td>
-                            <td>2GB RAM / 20GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-red-400">MeiLite</td>
-                            <td>XFCE</td>
-                            <td>Turning Red</td>
-                            <td>1GB RAM / 10GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-green-400">ElementalDesk</td>
-                            <td>KDE Plasma</td>
-                            <td>Elemental</td>
-                            <td>4GB RAM / 25GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-blue-400">NotebookOS</td>
-                            <td>Openbox</td>
-                            <td>Luca</td>
-                            <td>512MB RAM / 5GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-purple-400">QuestLand</td>
-                            <td>Budgie</td>
-                            <td>Onward</td>
-                            <td>2GB RAM / 15GB Disk</td>
-                        </tr>
-                        <tr>
-                            <td class="font-bold text-slate-400">IntellSpace</td>
-                            <td>LXQt</td>
-                            <td>Wall·E</td>
-                            <td>1GB RAM / 8GB Disk</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+             <div class="glass p-10 rounded-[3rem] border-white/5">
+                <h2 class="text-3xl font-black mb-8 text-center">WhirlyOS <span class="text-gradient">Editions</span></h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="opacity-40 uppercase tracking-widest">
+                            <tr>
+                                <th class="pb-4">Edition</th>
+                                <th class="pb-4">Desktop Environment</th>
+                                <th class="pb-4">Inspiration</th>
+                                <th class="pb-4">Specs</th>
+                            </tr>
+                        </thead>
+                        <tbody class="opacity-80">
+                            <tr class="border-t border-white/5">
+                                <td class="py-4 font-bold text-sky-400">SoulFrame</td>
+                                <td>GNOME</td>
+                                <td>Soul (2020)</td>
+                                <td>2GB RAM / 20GB Disk</td>
+                            </tr>
+                            <tr class="border-t border-white/5">
+                                <td class="py-4 font-bold text-red-400">MeiLite</td>
+                                <td>XFCE</td>
+                                <td>Turning Red</td>
+                                <td>1GB RAM / 10GB Disk</td>
+                            </tr>
+                            <tr class="border-t border-white/5">
+                                <td class="py-4 font-bold text-green-400">ElementalDesk</td>
+                                <td>KDE Plasma</td>
+                                <td>Elemental</td>
+                                <td>4GB RAM / 25GB Disk</td>
+                            </tr>
+                            <tr class="border-t border-white/5">
+                                <td class="py-4 font-bold text-blue-400">NotebookOS</td>
+                                <td>Openbox</td>
+                                <td>Luca</td>
+                                <td>512MB RAM / 5GB Disk</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+             </div>
         </div>
     </main>
 
-    <main id="openmyriad" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black mb-8">open<span class="text-gradient">Myriad</span></h2>
-            <div class="glass p-10 rounded-3xl border-white/5">
-                <p class="text-lg opacity-80 mb-6">The Open Source modern Windows rebirth. Forked from <strong>ReactOS</strong> with a focus on 2026 UI standards.</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                    <div class="p-4 glass rounded-xl">
-                        <h4 class="font-bold text-sky-400 mb-2">Android Style</h4>
-                        <p class="opacity-60">Pattern and PIN styled lockscreens for a mobile-first security feel.</p>
-                    </div>
-                    <div class="p-4 glass rounded-xl">
-                        <h4 class="font-bold text-sky-400 mb-2">Hybrid Shell</h4>
-                        <p class="opacity-60">A unified start menu merging the best of Windows 10 and Windows 11 logic.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main id="install" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-black mb-12">How to <span class="text-gradient">Install</span></h2>
-            
-            <div class="warning-box mb-8">
-                <p class="text-sm italic"><strong>Disclaimer:</strong> Install at your own risk. The owner is not responsible for damage or warranty void. Back up your original OS first.</p>
-            </div>
-
-            <div class="space-y-8">
-                <div class="glass p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold mb-4">On Windows</h3>
-                    <ol class="list-decimal list-inside space-y-2 text-sm opacity-70">
-                        <li>Download Rufus or BalenaEtcher.</li>
-                        <li>Download WhirlyOS ISO from releases.</li>
-                        <li>Select USB and ISO in creator, click Start/Flash.</li>
-                        <li>Restart and enter Boot Manager (F10, F12, or Del).</li>
-                        <li><strong>Disable Secure Boot</strong> if necessary to avoid violations.</li>
-                    </ol>
-                </div>
-
-                <div class="glass p-8 rounded-3xl">
-                    <h3 class="text-xl font-bold mb-4">On Linux (Terminal)</h3>
-                    <p class="text-xs mb-4 opacity-50 italic">Note: Use dd only if you are an advanced user. Etcher is recommended.</p>
-                    <code class="block p-4 text-xs">sudo dd if=path/to/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer class="py-20 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.4em]">
-        WhirlyOS is open-source under the MIT License. Anyone can fork this repo.
+    <footer class="py-24 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
+        The Myriad Project // Original Owner: Hiro Hamada // 2026
     </footer>
 
     <script>
