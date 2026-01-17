@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhirlyOS | WonderRepo</title>
+    <title>WhirlyOS | Find Your Spark</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
@@ -36,8 +36,6 @@
         .dl-btn { background: rgba(56, 189, 248, 0.1); color: #38bdf8; font-size: 10px; font-weight: 800; padding: 8px 16px; border-radius: 6px; border: 1px solid rgba(56, 189, 248, 0.2); transition: 0.2s; }
         .dl-btn:hover { background: #38bdf8; color: #000; }
 
-        .warning-box { border-left: 4px solid #facc15; background: rgba(250, 204, 21, 0.05); padding: 1.5rem; border-radius: 0 12px 12px 0; font-size: 12px; }
-
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.4s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -48,7 +46,7 @@
     <header class="fixed top-8 left-0 right-0 flex justify-center z-50 px-6">
         <div class="glass-nav flex items-center justify-between px-8 py-4">
             <div class="flex items-center gap-4">
-                <div class="w-6 h-6 bg-sky-500 rounded flex items-center justify-center font-black text-white text-[10px]">W</div>
+                <img src="logo.png" alt="Logo" class="w-6 h-6 rounded-md">
                 <span class="font-bold tracking-tighter text-sm uppercase">Whirly<span class="text-sky-400">OS</span></span>
             </div>
             <nav class="hidden md:flex items-center gap-10">
@@ -61,6 +59,7 @@
                 <a href="https://github.com/22soulfan/WhirlyOS" target="_blank" class="opacity-40 hover:opacity-100 transition">
                     <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 </a>
+                <span class="text-xs opacity-30">🌙</span>
             </div>
         </div>
     </header>
@@ -73,7 +72,7 @@
         <h1 class="hero-title">Find your</h1>
         <h1 class="hero-title spark-text mb-12">Spark.</h1>
         <p class="text-white/40 max-w-2xl mx-auto text-xl leading-relaxed mb-16">
-            A curated repository for building WhirlyOS Linux, based on Debian Stable.
+            The ADHD-aware desktop experience that wraps complex technology in a playful, cinematic shell.
         </p>
         <div class="flex gap-6">
             <button onclick="showPage('downloads')" class="btn-whirly">Get WhirlyOS</button>
@@ -83,9 +82,6 @@
 
     <main id="downloads" class="page-section pt-48 pb-20 px-10">
         <div class="max-w-6xl mx-auto">
-            <div class="warning-box mb-12">
-                <b>⚠️ Release Notice:</b> Development of WhirlyOS is still ongoing. Wait for a release.
-            </div>
             <h2 class="text-4xl font-black italic uppercase mb-12 tracking-tighter">Desktop <span class="text-sky-400">Environments</span></h2>
             <div class="overflow-x-auto">
                 <table class="obsidian-table">
@@ -95,44 +91,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>2GB RAM, 20GB Disk</td><td><button class="dl-btn">Coming Soon</button></td></tr>
-                        <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>1GB RAM, 10GB Disk</td><td><button class="dl-btn">Coming Soon</button></td></tr>
-                        <tr><td>ElementalDesk</td><td>KDE Plasma</td><td>Elemental</td><td>4GB RAM, 25GB Disk</td><td><button class="dl-btn">Coming Soon</button></td></tr>
-                        <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>512MB RAM, 5GB Disk</td><td><button class="dl-btn">Coming Soon</button></td></tr>
-                        <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>2GB RAM, 15GB Disk</td><td><button class="dl-btn">Coming Soon</button></td></tr>
-                        <tr><td>IntellSpace</td><td>LXQt</td><td>Wall·E</td><td>1GB RAM, 8GB Disk</td><td><button class="dl-btn">Coming Soon</button></td></tr>
+                        <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>2GB RAM</td><td><button class="dl-btn">Download</button></td></tr>
+                        <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>1GB RAM</td><td><button class="dl-btn">Download</button></td></tr>
+                        <tr><td>ElementalDesk</td><td>KDE Plasma</td><td>Elemental</td><td>4GB RAM</td><td><button class="dl-btn">Download</button></td></tr>
+                        <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>512MB RAM</td><td><button class="dl-btn">Download</button></td></tr>
+                        <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>2GB RAM</td><td><button class="dl-btn">Download</button></td></tr>
+                        <tr><td>IntellSpace</td><td>LXQt</td><td>Wall·E</td><td>1GB RAM</td><td><button class="dl-btn">Download</button></td></tr>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </main>
-
-    <main id="install" class="page-section pt-48 pb-20 px-10">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-12 tracking-tighter">Installation <span class="text-sky-400">Guide</span></h2>
-            
-            <div class="grid md:grid-cols-3 gap-6 mb-16">
-                <div class="obsidian-panel p-6">
-                    <p class="text-xs font-bold text-sky-400 mb-2 uppercase">Linux</p>
-                    <p class="text-[11px] opacity-50">BalenaEtcher or DD command</p>
-                </div>
-                <div class="obsidian-panel p-6">
-                    <p class="text-xs font-bold text-sky-400 mb-2 uppercase">Windows</p>
-                    <p class="text-[11px] opacity-50">Rufus, Etcher, or Win32Imager</p>
-                </div>
-                <div class="obsidian-panel p-6">
-                    <p class="text-xs font-bold text-sky-400 mb-2 uppercase">MacOS</p>
-                    <p class="text-[11px] opacity-50">macOS 10.15+, BalenaEtcher</p>
-                </div>
-            </div>
-
-            <div class="obsidian-panel p-10 mb-12">
-                <h3 class="font-black uppercase mb-6">Writing via DD (Linux)</h3>
-                <code class="block bg-black/40 p-4 rounded text-sky-400 text-xs">sudo dd if=path/to/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
-            </div>
-
-            <div class="warning-box border-red-500/50">
-                <b>Risk Warning:</b> Install at your own risk. The owner is not responsible for damage. Shrink drives carefully for dual-boot.
             </div>
         </div>
     </main>
@@ -142,24 +108,37 @@
             <h2 class="text-4xl font-black italic uppercase mb-12 tracking-tighter">Wonder<span class="text-sky-400">Repo</span></h2>
             <div class="obsidian-panel p-10 mb-16">
                 <p class="text-sm leading-relaxed opacity-60 mb-8">
-                    WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and seamless access to browser-based learning tools. It features screen time limits to keep you focused and healthy.
+                    WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and seamless access to browser-based learning tools.
                 </p>
                 <div class="grid md:grid-cols-2 gap-8 text-xs">
                     <div>
-                        <p class="font-bold text-sky-400 uppercase mb-2">Copyright & Fork</p>
-                        <p class="opacity-50">Forked from hirohamada2014. Original creator of WhirlyOS.</p>
+                        <p class="font-bold text-sky-400 uppercase mb-2">Fork Information</p>
+                        <p class="opacity-50 italic">Forked from hirohamada2014, the original owner.</p>
                     </div>
                     <div>
-                        <p class="font-bold text-sky-400 uppercase mb-2">Build Method</p>
-                        <p class="opacity-50">Testing with Cubic next. Previous attempts used 0x OS Builder.</p>
+                        <p class="font-bold text-sky-400 uppercase mb-2">Timeline</p>
+                        <p class="opacity-50">Jan 2025: Preparing to build WhirlyOS via Debian Linux.</p>
+                        <p class="opacity-50 mt-2 font-bold uppercase">No releases has been made as of 2026.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </main>
 
-            <h2 class="text-4xl font-black italic uppercase mb-10 tracking-tighter">📅 Project Timeline</h2>
-            <div class="obsidian-panel p-10">
-                <p class="text-xs font-bold text-sky-400 uppercase tracking-widest mb-4">January 2025: WhirlyOS Building</p>
-                <p class="text-sm opacity-50">Preparing to build via Debian Linux. Creation of visual assets. No releases as of 2026.</p>
+    <main id="install" class="page-section pt-48 pb-20 px-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-black italic uppercase mb-12 tracking-tighter">Install <span class="text-sky-400">WhirlyOS</span></h2>
+            <div class="obsidian-panel p-10 space-y-8">
+                <div>
+                    <h3 class="font-black uppercase text-sky-400 mb-4">Windows Setup</h3>
+                    <p class="text-xs opacity-50 mb-4">1. Download bootable USB creator (Rufus/Etcher).</p>
+                    <p class="text-xs opacity-50 mb-4">2. Download WhirlyOS official ISO.</p>
+                    <p class="text-xs opacity-50">3. Flash to USB and enter Boot Manager (F10, F12).</p>
+                </div>
+                <div class="border-t border-white/5 pt-8">
+                    <h3 class="font-black uppercase text-sky-400 mb-4">Linux Setup</h3>
+                    <code class="block bg-black/40 p-4 rounded text-sky-400 text-xs mb-4">sudo dd if=path/to/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
+                </div>
             </div>
         </div>
     </main>
