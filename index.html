@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | 22soulfan</title>
+    <title>The Myriad Project | Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #38bdf8; --bg: #020617; --glass: rgba(255, 255, 255, 0.02); --border: rgba(255, 255, 255, 0.08); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; overflow-x: hidden; }
         .glass { background: var(--glass); backdrop-filter: blur(24px); border: 1px solid var(--border); transition: 0.3s ease; }
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.6s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .nav-link { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.4; transition: 0.3s; }
         .nav-link:hover, .nav-link.active { opacity: 1; color: var(--primary); }
-        .warning-box { border-left: 4px solid #f59e0b; background: rgba(245, 158, 11, 0.05); padding: 20px; border-radius: 0 1rem 1rem 0; }
-        code { font-family: 'Fira Code', monospace; background: rgba(0,0,0,0.3); padding: 2px 6px; border-radius: 4px; }
+        .dash-card { background: linear-gradient(145deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid var(--border); border-radius: 2rem; padding: 1.5rem; }
+        .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; display: inline-block; margin-right: 8px; box-shadow: 0 0 12px #22c55e; }
     </style>
 </head>
 <body onload="initApp()">
@@ -25,123 +25,134 @@
         <div class="flex items-center gap-8">
             <span class="text-xl font-black tracking-tighter uppercase italic text-sky-400">The Myriad Project</span>
             <div class="hidden xl:flex gap-6">
-                <button onclick="showPage('home')" class="nav-link">Hub</button>
-                <button onclick="showPage('multiverse')" class="nav-link">OS Matrix</button>
+                <button onclick="showPage('home')" class="nav-link active">Dashboard</button>
+                <button onclick="showPage('multiverse')" class="nav-link">The Multiverse</button>
                 <button onclick="showPage('downloads')" class="nav-link">Downloads</button>
                 <button onclick="showPage('wiki')" class="nav-link">Wiki & Install</button>
-                <button onclick="showPage('about')" class="nav-link">About & License</button>
             </div>
         </div>
-        <span class="text-[8px] font-black opacity-30 uppercase">v204.0 Architect Build</span>
+        <div class="flex items-center gap-4">
+            <span class="text-[7px] font-bold opacity-30 uppercase tracking-widest">v205.0 Stable</span>
+        </div>
     </nav>
 
-    <main id="home" class="page-section active pt-40 pb-20 px-6">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-7xl font-black tracking-tighter mb-4 italic uppercase">The <span class="text-sky-400">Myriad</span> Project</h1>
-            <p class="text-lg opacity-40 tracking-[0.5em] mb-12 italic">"Find your spark. Find your way."</p>
-            
-            <div class="grid md:grid-cols-3 gap-6 text-left mb-12">
-                <div class="glass p-8 rounded-[2.5rem]">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">The Definition</h3>
-                    <p class="text-xs opacity-60 leading-relaxed italic"><b>Myriad (adj):</b> Countless variations. We believe in an indefinitely great number of ways to compute, explore, and create.</p>
+    <main id="home" class="page-section active pt-32 pb-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-3 gap-6 mb-6">
+                <div class="lg:col-span-2 dash-card flex flex-col justify-between min-h-[240px] relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h2 class="text-xs font-black uppercase tracking-[0.3em] text-sky-400 mb-2">Welcome Back</h2>
+                        <h1 class="text-5xl font-black tracking-tighter leading-none italic uppercase">FIND YOUR <span class="text-sky-400">SPARK.</span></h1>
+                    </div>
+                    <div class="flex gap-4 mt-8">
+                        <button onclick="showPage('multiverse')" class="bg-white text-black text-[10px] font-black uppercase px-6 py-3 rounded-full hover:bg-sky-400 transition">Explore OS Matrix</button>
+                        <button onclick="showPage('wiki')" class="glass text-[10px] font-black uppercase px-6 py-3 rounded-full hover:border-sky-400 transition">View Wiki</button>
+                    </div>
+                    <div class="absolute top-0 right-0 p-8 opacity-10 text-[120px] font-black italic select-none">2026</div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem] border-white/10">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">WonderRepo</h3>
-                    <p class="text-xs opacity-60 leading-relaxed">The open heart of WhirlyOS. A curated repository for building Debian-based, ADHD-aware experiences.</p>
+                
+                <div class="dash-card">
+                    <h3 class="text-[10px] font-black uppercase opacity-40 mb-6 tracking-widest">Project Health</h3>
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-medium opacity-70">Core Engine</span>
+                            <span class="text-[9px] font-black text-green-400 uppercase flex items-center"><span class="status-dot"></span> Operational</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-medium opacity-70">WonderRepo</span>
+                            <span class="text-[9px] font-black text-green-400 uppercase flex items-center"><span class="status-dot"></span> Online</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-medium opacity-70">NT-Lineage Beta</span>
+                            <span class="text-[9px] font-black text-sky-400 uppercase">In Dev</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass p-8 rounded-[2.5rem]">
-                    <h3 class="text-sky-400 font-black text-[10px] uppercase mb-4 tracking-widest">Legal</h3>
-                    <p class="text-[10px] opacity-40 leading-relaxed">Licensed under **MIT**. Open forking encouraged. Independent of Disney/Pixar.</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-6 mb-6">
+                <div class="dash-card group hover:border-sky-400/50 cursor-pointer transition">
+                    <p class="text-[24px] mb-2">🐚</p>
+                    <h4 class="font-black text-[11px] uppercase mb-1">Spark Shell</h4>
+                    <p class="text-[9px] opacity-40 uppercase">v1.2 Stable</p>
+                </div>
+                <div class="dash-card group hover:border-sky-400/50 cursor-pointer transition">
+                    <p class="text-[24px] mb-2">🔒</p>
+                    <h4 class="font-black text-[11px] uppercase mb-1">Privacy Wall</h4>
+                    <p class="text-[9px] opacity-40 uppercase">Telemetry: Blocked</p>
+                </div>
+                <div class="dash-card group hover:border-sky-400/50 cursor-pointer transition">
+                    <p class="text-[24px] mb-2">🐧</p>
+                    <h4 class="font-black text-[11px] uppercase mb-1">i386 Ready</h4>
+                    <p class="text-[9px] opacity-40 uppercase">Legacy Compatible</p>
+                </div>
+                <div class="dash-card group hover:border-sky-400/50 cursor-pointer transition">
+                    <p class="text-[24px] mb-2">🧩</p>
+                    <h4 class="font-black text-[11px] uppercase mb-1">MIT License</h4>
+                    <p class="text-[9px] opacity-40 uppercase">Fork Authorized</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <main id="multiverse" class="page-section pt-40 pb-20 px-6">
-        <div class="max-w-6xl mx-auto space-y-20">
-            <h2 class="text-5xl font-black uppercase italic tracking-tighter text-center">The <span class="text-sky-400">Multiverse</span></h2>
-            
-            <div class="glass p-12 rounded-[3.5rem] border-sky-400/10">
-                <h3 class="text-3xl font-black uppercase mb-6">Deployment Tiers <span class="text-sky-400 text-sm opacity-50 block mt-2">Available for MyriadOS & openMyriad</span></h3>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <h4 class="font-bold text-sky-400 uppercase text-sm mb-2">Minimal</h4>
-                        <p class="text-[11px] opacity-50 italic">Kernel + Shell only. Pure performance for legacy i386.</p>
-                    </div>
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <h4 class="font-bold text-sky-400 uppercase text-sm mb-2">Full</h4>
-                        <p class="text-[11px] opacity-50 italic">The cinematic suite. All learning apps & media tools.</p>
-                    </div>
-                    <div class="p-6 bg-white/5 rounded-2xl border border-white/5">
-                        <h4 class="font-bold text-sky-400 uppercase text-sm mb-2">Custom</h4>
-                        <p class="text-[11px] opacity-50 italic">Modular build. You choose the drivers and assets.</p>
-                    </div>
-                </div>
-            </div>
-
+    <main id="multiverse" class="page-section pt-32 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-black uppercase italic tracking-tighter text-center mb-16">The <span class="text-sky-400">OS</span> Matrix</h2>
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass p-10 rounded-[3rem]">
-                    <h3 class="text-2xl font-black uppercase mb-2">ChromMyriadOS</h3>
-                    <p class="text-[9px] font-black text-emerald-400 uppercase mb-4">World First: Android Lockscreen Implementation</p>
-                    <p class="text-xs opacity-60">A web-first Gentoo base featuring a fluid mobile-inspired lockscreen never seen on desktop.</p>
-                </div>
-                <div class="glass p-10 rounded-[3rem]">
-                    <h3 class="text-2xl font-black uppercase mb-2">Communiverse11</h3>
-                    <p class="text-[9px] font-black text-sky-400 uppercase mb-4">The Anti-Microsoft Bridge // Elio Inspired</p>
-                    <p class="text-xs opacity-60">Stripped Windows 11 base. Create an **Ambassador Account** with local name and avatar. No Microsoft login required.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main id="wiki" class="page-section pt-40 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-12">Project <span class="text-sky-400">Wiki</span></h2>
-            
-            <div class="warning-box mb-8">
-                <p class="text-xs font-bold text-amber-500 uppercase mb-2">⚠️ Installation Warning</p>
-                <p class="text-[11px] opacity-70">Install at your own risk. Improper installation may result in warranty void or data loss. The creator and The Myriad Project are not responsible for damage.</p>
-            </div>
-
-            <div class="space-y-6">
-                <div class="glass p-8 rounded-3xl">
-                    <h3 class="text-xl font-black uppercase mb-4">Windows Installation</h3>
-                    <ol class="text-xs opacity-70 space-y-3 list-decimal ml-4">
-                        <li>Download ISO from repository releases.</li>
-                        <li>Use <b>Rufus</b> or <b>BalenaEtcher</b> to flash the image to USB.</li>
-                        <li>Restart and enter Boot Manager (Del, F10, or F12).</li>
-                        <li>Disable <b>Secure Boot</b> to avoid security violations.</li>
-                    </ol>
+                    <span class="text-emerald-400 text-[8px] font-black border border-emerald-400/30 px-2 py-1 rounded mb-4 inline-block uppercase">World First Features</span>
+                    <h3 class="text-3xl font-black uppercase mb-2">ChromMyriadOS</h3>
+                    <p class="text-xs opacity-60 leading-7 mb-6">A web-first Gentoo base. Features the **first-ever Android-style lockscreen** for desktop, offering fluid touch and mouse patterns never seen before in a Linux environment.</p>
                 </div>
 
-                <div class="glass p-8 rounded-3xl">
-                    <h3 class="text-xl font-black uppercase mb-4">Linux (Advanced)</h3>
-                    <p class="text-[11px] opacity-50 mb-4 italic">Recommended: Use Etcher for safety. For CLI, use <code>dd</code>:</p>
-                    <div class="bg-black/50 p-4 rounded-xl">
-                        <code class="text-sky-400 text-[10px]">sudo dd if=whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
+                <div class="glass p-10 rounded-[3rem] border-sky-400/20">
+                    <span class="text-sky-400 text-[8px] font-black border border-sky-400/30 px-2 py-1 rounded mb-4 inline-block uppercase">Anti-Microsoft Protocol</span>
+                    <h3 class="text-3xl font-black uppercase mb-2">Communiverse11</h3>
+                    <p class="text-xs opacity-60 leading-7 mb-6">Inspired by Pixar’s <i>Elio</i>. This is the bridge for Windows 11 users wanting out of the ecosystem.</p>
+                    
+                    <div class="bg-white/5 p-6 rounded-2xl">
+                        <h4 class="text-[10px] font-black uppercase text-sky-400 mb-4 tracking-widest">Ambassador Setup Interface</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-sky-400/20 border border-sky-400/40 flex items-center justify-center">👤</div>
+                                <div class="text-[10px] opacity-50">Local Profile: Choose name & avatar. No Microsoft ID.</div>
+                            </div>
+                            <div class="text-[10px] opacity-40 italic">During setup, users are designated as "Ambassadors," securing their machine locally without cloud-sync interference.</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <main id="about" class="page-section pt-40 pb-20 px-6">
-        <div class="max-w-4xl mx-auto glass p-12 rounded-[3rem]">
-            <h2 class="text-3xl font-black uppercase mb-8">About <span class="text-sky-400">The Project</span></h2>
-            <div class="space-y-6 text-sm opacity-70 leading-relaxed">
-                <p><b>WonderRepo:</b> A curated repository for building WhirlyOS (Debian-based). Forked from <code>hirohamada2014</code> (previous account of 22soulfan).</p>
-                <p><b>Licensing:</b> The Myriad Project and WhirlyOS are open-source under the **MIT License**. We believe in the freedom to fork, modify, and explore.</p>
-                <p><b>Lineage:</b> All NT-based systems (MyriadOS, openMyriad) draw architectural inspiration from the **ReactOS** project and the Windows NT family tree.</p>
+    <main id="downloads" class="page-section pt-32 pb-20 px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-5xl font-black uppercase italic tracking-tighter mb-12">Deployment <span class="text-sky-400">Vault</span></h2>
+            <div class="grid gap-4">
+                <div class="glass p-8 rounded-3xl flex justify-between items-center group hover:border-sky-400 transition">
+                    <div>
+                        <h4 class="font-black text-xl uppercase">MyriadOS <span class="text-sky-400">Flagship</span></h4>
+                        <p class="text-[9px] opacity-40 uppercase mt-1 italic">Choice: Minimal // Full // Custom</p>
+                    </div>
+                    <button class="px-8 py-3 glass rounded-full text-[9px] font-black uppercase opacity-30 cursor-not-allowed">Stay Tuned</button>
+                </div>
+                <div class="glass p-8 rounded-3xl flex justify-between items-center group hover:border-sky-400 transition">
+                    <div>
+                        <h4 class="font-black text-xl uppercase">openMyriad <span class="text-sky-400">OSS</span></h4>
+                        <p class="text-[9px] opacity-40 uppercase mt-1 italic">Choice: Minimal // Full // Custom</p>
+                    </div>
+                    <button class="px-8 py-3 glass rounded-full text-[9px] font-black uppercase opacity-30 cursor-not-allowed">Stay Tuned</button>
+                </div>
             </div>
         </div>
     </main>
 
     <footer class="py-20 text-center border-t border-white/5 mt-20">
-        <p class="text-[10px] font-black uppercase tracking-[0.5em] mb-4 text-sky-400 italic">"Find your spark. Find your way."</p>
-        <div class="flex justify-center gap-10 text-[9px] font-black opacity-30 uppercase mb-8">
-            <span>© 2026 The Myriad Project</span>
+        <p class="text-[10px] font-black uppercase tracking-[0.5em] mb-4 text-sky-400 italic">"The Myriad Project // Curated by 22soulfan"</p>
+        <div class="flex justify-center gap-10 text-[9px] font-black opacity-30 uppercase tracking-widest mb-6">
             <span>MIT License</span>
-            <span>Architect: 22soulfan</span>
+            <span>Independent Project</span>
+            <span>2026 Edition</span>
         </div>
     </footer>
 
@@ -150,9 +161,15 @@
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
             if(document.getElementById(p)) document.getElementById(p).classList.add('active');
+            
+            // Highlight nav link
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(link => {
+                if(link.getAttribute('onclick').includes(p)) link.classList.add('active');
+            });
             window.scrollTo(0,0);
         }
-        function initApp() { console.log("The Myriad Project v204 Architect Build Active."); }
+        function initApp() { console.log("The Myriad Project v205 Dashboard Build Active."); }
     </script>
 </body>
 </html>
