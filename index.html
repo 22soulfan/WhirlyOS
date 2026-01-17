@@ -3,25 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhirlyOS | Creator Portal</title>
+    <title>WhirlyOS | Official Repository</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root { --p-blue: #38bdf8; --p-purple: #a855f7; --p-orange: #fb923c; --p-red: #ef4444; --bg: #05070a; }
         body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
         .liquid-panel { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); border-radius: 2rem; }
+        
+        /* 🚫 FIXED NAVIGATION */
         nav { position: fixed !important; top: 1.5rem; left: 50%; transform: translateX(-50%); width: 94%; z-index: 9999; }
+        .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.5; transition: 0.3s; cursor: pointer; }
+        .nav-link:hover { opacity: 1; color: var(--p-blue); }
+
         .page-section { display: none; opacity: 0; }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
-        /* Soul Assistant */
+
+        /* 👼 SOUL NUMBER 2026 */
         .soul-fab { position: fixed; bottom: 2rem; right: 2rem; background: linear-gradient(135deg, #38bdf8, #a855f7); padding: 12px 24px; border-radius: 100px; font-weight: 800; font-size: 11px; text-transform: uppercase; cursor: pointer; z-index: 10000; box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4); border: 1px solid rgba(255,255,255,0.2); }
         
-        /* Blog Creator UI */
-        .add-post-btn { background: var(--p-orange); color: black; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .add-post-btn:hover { transform: scale(1.1) rotate(90deg); }
-        .empty-state { border: 2px dashed rgba(255,255,255,0.1); border-radius: 2rem; padding: 4rem; text-align: center; }
+        /* UI COMPONENTS */
+        .edition-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 1.5rem; padding: 1.5rem; transition: 0.3s; }
+        .edition-card:hover { border-color: var(--p-blue); transform: translateY(-5px); }
+        .btn-stay-tuned { width: 100%; padding: 0.75rem; border-radius: 1rem; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.3); font-size: 10px; font-weight: 900; text-transform: uppercase; cursor: not-allowed; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body onload="initApp()">
@@ -30,67 +35,96 @@
         <div class="flex items-center gap-8">
             <span class="text-xl font-black italic tracking-tighter text-sky-400">WHIRLY<span class="text-white">OS</span></span>
             <div class="hidden lg:flex gap-6">
-                <button onclick="showPage('home')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Dashboard</button>
-                <button onclick="showPage('blog')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Sparks Feed</button>
+                <button onclick="showPage('home')" class="nav-link">Home</button>
+                <button onclick="showPage('downloads')" class="nav-link">Downloads</button>
+                <button onclick="showPage('about')" class="nav-link">About</button>
+                <button onclick="showPage('blog')" class="nav-link">Publisher</button>
             </div>
         </div>
         <div class="flex items-center gap-4">
-            <div class="text-[9px] font-bold opacity-60 uppercase text-right">
-                <span class="block text-sky-400">Authenticated Owner</span>
-                22soulfan
-            </div>
-            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-400 to-purple-500 border border-white/20"></div>
+            <span class="text-[9px] font-black opacity-40 uppercase tracking-widest">Owner: 22soulfan</span>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-400 to-purple-500"></div>
         </div>
     </nav>
 
-    <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="mb-16">
-                <h1 class="text-6xl font-black italic uppercase leading-tight mb-4">Finding the <span class="text-sky-400">Spark.</span></h1>
-                <p class="max-w-2xl text-sm opacity-60">WhirlyOS is an ADHD-aware Linux shell built for the next decade. Every 10 years, we release an LTS version to keep your hardware magical.</p>
-            </div>
+    <main id="home" class="page-section active pt-48 pb-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-7xl font-black italic uppercase mb-8">Find your <span class="text-sky-400">Spark.</span></h1>
+            <p class="text-sm opacity-60 leading-relaxed max-w-2xl mx-auto">
+                WhirlyOS is a playful, ADHD-aware Debian-based Linux shell. Designed for 10-year LTS cycles, it focuses on health, distraction-free learning, and cinematic beauty.
+            </p>
+        </div>
+    </main>
 
+    <main id="downloads" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black italic uppercase mb-12 text-center">Desktop <span class="text-sky-400">Environments</span></h2>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="liquid-panel p-8 bg-sky-500/5 border-sky-500/20">
-                    <span class="text-2xl">🧠</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Inspire Creativity</h4>
-                    <p class="text-[11px] opacity-60">Themed desktops based on animated films.</p>
+                <div class="edition-card">
+                    <h3 class="text-lg font-black text-sky-400">SoulFrame</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-4">GNOME • Inspired by Soul</p>
+                    <p class="text-xs opacity-60 mb-6 italic">Dreamlike UI for finding your spark. (2GB RAM)</p>
+                    <button class="btn-stay-tuned">Stay Tuned</button>
                 </div>
-                <div class="liquid-panel p-8 bg-purple-500/5 border-purple-500/20">
-                    <span class="text-2xl">👨‍👩‍👧‍👦</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Support Families</h4>
-                    <p class="text-[11px] opacity-60">Parental controls and screen time tools.</p>
+                <div class="edition-card">
+                    <h3 class="text-lg font-black text-red-500">MeiLite</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-4">XFCE • Inspired by Turning Red</p>
+                    <p class="text-xs opacity-60 mb-6 italic">Fast, expressive, 2002-era aesthetic. (1GB RAM)</p>
+                    <button class="btn-stay-tuned">Stay Tuned</button>
                 </div>
-                <div class="liquid-panel p-8 bg-orange-500/5 border-orange-500/20">
-                    <span class="text-2xl">👨‍🎓</span>
-                    <h4 class="font-black uppercase text-xs mt-4 mb-2">Education Ready</h4>
-                    <p class="text-[11px] opacity-60">Math, coding, and exploring without AI bloat.</p>
+                <div class="edition-card">
+                    <h3 class="text-lg font-black text-purple-400">ElementalDesk</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-4">KDE Plasma • Inspired by Elemental</p>
+                    <p class="text-xs opacity-60 mb-6 italic">Vibrant, elemental customization. (4GB RAM)</p>
+                    <button class="btn-stay-tuned">Stay Tuned</button>
                 </div>
+                <div class="edition-card">
+                    <h3 class="text-lg font-black text-emerald-400">NotebookOS</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-4">Openbox • Inspired by Luca</p>
+                    <p class="text-xs opacity-60 mb-6 italic">Seaside calm, ultra-lightweight. (512MB RAM)</p>
+                    <button class="btn-stay-tuned">Stay Tuned</button>
+                </div>
+                <div class="edition-card">
+                    <h3 class="text-lg font-black text-orange-400">QuestLand</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-4">Budgie • Inspired by Onward</p>
+                    <p class="text-xs opacity-60 mb-6 italic">Magical and modern desktop. (2GB RAM)</p>
+                    <button class="btn-stay-tuned">Stay Tuned</button>
+                </div>
+                <div class="edition-card">
+                    <h3 class="text-lg font-black text-blue-500">IntellSpace</h3>
+                    <p class="text-[10px] opacity-40 uppercase mb-4">LXQt • Inspired by Wall·E</p>
+                    <p class="text-xs opacity-60 mb-6 italic">Futuristic efficiency. (1GB RAM)</p>
+                    <button class="btn-stay-tuned">Stay Tuned</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="about" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-black italic uppercase mb-8 border-l-8 border-sky-400 pl-6">WonderRepo</h2>
+            <div class="liquid-panel p-10 text-sm opacity-70 space-y-4">
+                <p>WhirlyOS is forked from the original repository by <b>hirohamada2014</b> (my previous account).</p>
+                <p>Built on Debian Stable, WhirlyOS provides educational tools like GCompris, Scratch, and TuxMath without AI interference, favoring physical notebook work paired with technical exploration.</p>
             </div>
         </div>
     </main>
 
     <main id="blog" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="flex justify-between items-center mb-12">
-                <div>
-                    <h2 class="text-4xl font-black italic uppercase">Latest <span class="text-orange-400">Sparks</span></h2>
-                    <p class="text-[10px] opacity-40 uppercase tracking-widest mt-2">Blogger Engine • Publisher: 22soulfan</p>
-                </div>
-                <button onclick="openCreator()" class="add-post-btn" title="Create New Spark">+</button>
+            <div class="flex justify-between items-end mb-12">
+                <h2 class="text-4xl font-black italic uppercase">Native <span class="text-orange-400">Publisher</span></h2>
+                <button onclick="publishSpark()" class="bg-orange-400 text-black font-black text-[24px] w-12 h-12 rounded-full">+</button>
             </div>
-
-            <div id="blog-container">
-                <div class="empty-state">
-                    <div class="text-4xl mb-4">✨</div>
-                    <h3 class="text-xl font-bold opacity-80">No sparks published yet.</h3>
-                    <p class="text-xs opacity-40 mt-2">Click the plus icon to write your first WhirlyOS update.</p>
+            <div id="spark-feed" class="space-y-6">
+                <div class="liquid-panel p-10 text-center border-dashed border-white/10">
+                    <p class="text-xs opacity-30 italic">No sparks published in the native engine yet.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <div class="soul-fab" onclick="alert('Soul Number 2026: Ready to document your journey?')">Soul 2026</div>
+    <div class="soul-fab" onclick="alert('Soul Number 2026: I am ready to publish your vision.')">Soul 2026</div>
 
     <script>
         function showPage(p) {
@@ -100,23 +134,20 @@
             window.scrollTo(0,0);
         }
 
-        function openCreator() {
+        function publishSpark() {
             const title = prompt("Spark Title:");
-            const content = prompt("Spark Content:");
-            if(title && content) {
-                const container = document.getElementById('blog-container');
-                if(container.querySelector('.empty-state')) container.innerHTML = '';
-                
+            const body = prompt("Spark Content:");
+            if(title && body) {
+                const feed = document.getElementById('spark-feed');
+                if(feed.innerText.includes('No sparks')) feed.innerHTML = '';
                 const post = document.createElement('div');
-                post.className = 'liquid-panel p-8 mb-6 border-l-4 border-orange-400';
+                post.className = 'liquid-panel p-8 border-l-4 border-orange-400';
                 post.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-[10px] font-bold text-orange-400 uppercase">January 17, 2026 • Owner: 22soulfan</span>
-                    </div>
-                    <h3 class="text-xl font-black mb-3">${title}</h3>
-                    <p class="text-sm opacity-60 leading-relaxed">${content}</p>
+                    <div class="text-[9px] font-black uppercase opacity-40 mb-2">Jan 17, 2026 • Published by Owner: 22soulfan</div>
+                    <h3 class="text-xl font-black mb-4">${title}</h3>
+                    <p class="text-sm opacity-70">${body}</p>
                 `;
-                container.prepend(post);
+                feed.prepend(post);
             }
         }
 
