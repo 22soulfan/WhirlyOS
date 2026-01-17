@@ -3,117 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Myriad Project | WonderRepo</title>
+    <title>The Myriad Project | Find Your Spark</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { --primary: #38bdf8; --bg: #05070a; --glass: rgba(255, 255, 255, 0.02); --border: rgba(255, 255, 255, 0.08); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: #f8fafc; scroll-behavior: smooth; overflow-x: hidden; }
         
-        /* 🌊 Liquid Glass Panels */
         .liquid-panel { 
             background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-            backdrop-filter: blur(30px);
+            backdrop-filter: blur(40px);
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 2.5rem;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border-radius: 2rem;
         }
-        
+
         /* 🚫 UNMOVABLE NAVIGATION */
-        nav { position: fixed !important; top: 1.5rem; left: 50%; transform: translateX(-50%); width: 94%; z-index: 9999; pointer-events: auto; }
+        nav { position: fixed !important; top: 1.5rem; left: 50%; transform: translateX(-50%); width: 94%; z-index: 9999; }
 
         .page-section { display: none; opacity: 0; }
-        .page-section.active { display: block; animation: fadeIn 0.6s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .nav-link { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.4; transition: 0.3s; }
-        .nav-link:hover, .nav-link.active { opacity: 1; color: var(--primary); }
+        .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* 🤖 AI CHAT BUTTON (FydeOS Style) */
-        .ai-fab { position: fixed; bottom: 2rem; right: 2rem; width: 60px; height: 60px; background: #e11d48; border-radius: 50%; display: flex; items-center; justify-content: center; box-shadow: 0 10px 25px rgba(225, 29, 72, 0.4); cursor: pointer; z-index: 10000; transition: 0.3s; }
-        .ai-fab:hover { transform: scale(1.1); }
+        /* 🤖 ROX ASSISTANT (FydeOS Inspired) */
+        .rox-fab { position: fixed; bottom: 2rem; right: 2rem; background: #e11d48; color: white; padding: 12px 24px; border-radius: 100px; font-weight: 800; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 10px 30px rgba(225, 29, 72, 0.4); cursor: pointer; z-index: 10000; display: flex; align-items: center; gap: 10px; }
+        .rox-fab:hover { transform: translateY(-2px); transition: 0.3s; }
+
+        /* Supermium Style Cards */
+        .info-card { padding: 2rem; border-radius: 1.5rem; font-size: 12px; line-height: 1.6; }
+        .blue-card { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.2); }
+        .yellow-card { background: rgba(234, 179, 8, 0.05); border: 1px solid rgba(234, 179, 8, 0.2); }
+        .green-card { background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(34, 197, 94, 0.2); }
     </style>
 </head>
 <body onload="initApp()">
 
     <nav class="liquid-panel px-8 py-4 flex justify-between items-center shadow-2xl">
-        <div class="flex items-center gap-10">
-            <span class="text-xl font-black tracking-tighter uppercase italic text-sky-400">Whirly<span class="text-white">OS</span></span>
-            <div class="hidden xl:flex gap-8">
-                <button onclick="showPage('home')" class="nav-link">Dashboard</button>
-                <button onclick="showPage('multiverse')" class="nav-link">The Multiverse</button>
-                <button onclick="showPage('faq')" class="nav-link">FAQs</button>
-                <button onclick="showPage('downloads')" class="nav-link">Downloads</button>
+        <div class="flex items-center gap-8">
+            <span class="text-xl font-black italic text-sky-400 tracking-tighter">MYRIAD<span class="text-white">OS</span></span>
+            <div class="hidden lg:flex gap-6">
+                <button onclick="showPage('home')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Dashboard</button>
+                <button onclick="showPage('about')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Mission</button>
+                <button onclick="showPage('downloads')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Downloads</button>
+                <button onclick="showPage('updates')" class="text-[10px] font-black uppercase opacity-50 hover:opacity-100 transition">Updates</button>
             </div>
         </div>
-        <div class="flex items-center gap-6">
-            <a href="https://github.com/22soulfan" title="GitHub Repository">
-                <svg class="w-5 h-5 fill-current opacity-40 hover:opacity-100 transition" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <span class="text-[8px] font-black opacity-30 uppercase tracking-[0.2em]">v209.0</span>
-        </div>
+        <a href="https://github.com/22soulfan" class="opacity-40 hover:opacity-100 transition"><svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
     </nav>
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <h1 class="text-7xl font-black italic uppercase tracking-tighter mb-8 leading-none">DOING THE <span class="text-sky-400">IMPOSSIBLE.</span></h1>
-            <p class="max-w-3xl mx-auto text-sm opacity-50 font-medium leading-relaxed mb-12">
-                "Find your spark. Find your way." Inspired by Pixar's <i>Soul</i>, WhirlyOS is the result of countless attempts to build an ADHD-aware experience on Debian. We celebrate diversity in design, emotion, and user experience.
-            </p>
-            <div class="grid md:grid-cols-2 gap-8 text-left">
-                <div class="liquid-panel p-10">
-                    <h3 class="font-black uppercase text-xs mb-4 text-sky-400 tracking-widest">The Inspiration</h3>
-                    <p class="text-xs opacity-60 leading-relaxed">Everything in WonderRepo is built to make computing magical again—bringing cinematic flair and mascots to the desktop while keeping you healthy with screen time limits.</p>
-                </div>
-                <div class="liquid-panel p-10">
-                    <h3 class="font-black uppercase text-xs mb-4 text-sky-400 tracking-widest">The Challenge</h3>
-                    <p class="text-xs opacity-60 leading-relaxed">Developing WhirlyOS is ongoing. After many attempts with 0x OS Builder, we are now testing with Cubic to ensure rock-solid i386 compatibility.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main id="faq" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black uppercase italic mb-12 text-center">Frequently Asked <span class="text-sky-400">Questions</span></h2>
+            <div class="text-center mb-20">
+                <h1 class="text-8xl font-black italic uppercase leading-none mb-4">Find your <span class="text-sky-400">Spark.</span></h1>
+                <p class="text-xs opacity-40 uppercase tracking-[0.5em] mb-12">Inspired by Pixar's Soul (2020)</p>
+                <div class="flex justify-center gap-4">
+                    <button onclick="showPage('downloads')" class="bg-sky-500 text-black px-10 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest shadow-xl shadow-sky-500/20">Get MyriadOS</button>
+                    <button onclick="showPage('about')" class="glass border border-white/10 px-10 py-4 rounded-xl font-black uppercase text-[10px] tracking-widest">The Mission</button>
+                </div>
+            </div>
+
+            <div class="liquid-panel p-12 mb-12 border-sky-400/20">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="flex-1">
+                        <h2 class="text-2xl font-black italic mb-2">myr·i·ad</h2>
+                        <span class="text-xs opacity-40 italic">/ˈmirēəd/ • noun</span>
+                        <p class="text-sm mt-4 opacity-70 leading-relaxed">
+                            1. A countless or extremely great number. <br>
+                            <span class="text-sky-400 italic">"networks connecting a myriad of computers"</span>
+                        </p>
+                    </div>
+                    <div class="flex-1 border-l border-white/10 md:pl-8">
+                        <h4 class="text-[10px] font-black uppercase text-sky-400 mb-4 tracking-widest">Similar Terms</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-[10px] opacity-40 border border-white/10 px-2 py-1 rounded">Multitude</span>
+                            <span class="text-[10px] opacity-40 border border-white/10 px-2 py-1 rounded">Legion</span>
+                            <span class="text-[10px] opacity-40 border border-white/10 px-2 py-1 rounded">Galaxy</span>
+                            <span class="text-[10px] opacity-40 border border-white/10 px-2 py-1 rounded">Infinite</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="liquid-panel p-8 bg-sky-500/5">
-                    <h4 class="font-black uppercase text-xs mb-3 text-sky-400">What is WhirlyOS?</h4>
-                    <p class="text-[11px] opacity-60">A curated Debian-based OS that wraps a Linux base in a playful, ADHD-aware shell with browser-based learning tools.</p>
+                <div class="info-card blue-card">
+                    <h4 class="font-black uppercase text-sky-400 mb-4">What is it?</h4>
+                    <p class="opacity-60">MyriadOS and openMyriad are drop-in replacements for traditional environments, optimized for legacy hardware while maintaining a modern, cinematic interface. Our goal is to revive hardware and spirits alike.</p>
                 </div>
-                <div class="liquid-panel p-8 bg-yellow-500/5">
-                    <h4 class="font-black uppercase text-xs mb-3 text-yellow-400">Hardware Requirements?</h4>
-                    <p class="text-[11px] opacity-60">Optimized for i386. Requirements vary from 512MB RAM (NotebookOS) to 4GB RAM (ElementalDesk).</p>
-                </div>
-                <div class="liquid-panel p-8 bg-red-500/5">
-                    <h4 class="font-black uppercase text-xs mb-3 text-red-400">Is it safe to dual-boot?</h4>
-                    <p class="text-[11px] opacity-60 text-red-400/70 italic">Warning: Install at your own risk. Breaking partitions can damage your device. Always do a clean install if unsure.</p>
-                </div>
-                <div class="liquid-panel p-8 bg-emerald-500/5">
-                    <h4 class="font-black uppercase text-xs mb-3 text-emerald-400">Why the Pixar themes?</h4>
-                    <p class="text-[11px] opacity-60">To inspire creativity and celebrate diversity through beloved animated films like Turning Red, Luca, and Wall·E.</p>
+                <div class="info-card yellow-card">
+                    <h4 class="font-black uppercase text-yellow-500 mb-4">The Goals</h4>
+                    <p class="opacity-60">Inspire creativity through film-themed environments, support families with built-in parental controls, and make computing feel magical—without the bloat of artificial intelligence.</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <div class="ai-fab" onclick="alert('Myriad Assistant Loading...')">
-        <span class="text-2xl">💬</span>
+    <main id="downloads" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-black italic uppercase mb-12 text-center">Pick your <span class="text-sky-400">MyriadOS</span></h2>
+            <div class="space-y-4">
+                <div class="liquid-panel p-8 flex justify-between items-center group hover:border-sky-400 transition">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">SoulFrame (GNOME)</h3>
+                        <p class="text-[10px] opacity-40 uppercase mt-1">2.4 GB • i386 • Mirror: GitHub</p>
+                    </div>
+                    <button class="bg-white/5 px-6 py-2 rounded-lg text-[10px] font-black uppercase opacity-50">Stay Tuned</button>
+                </div>
+                <div class="liquid-panel p-8 flex justify-between items-center group hover:border-red-400 transition">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">MeiLite (XFCE)</h3>
+                        <p class="text-[10px] opacity-40 uppercase mt-1">1.2 GB • i386 • Mirror: Mirror 1</p>
+                    </div>
+                    <button class="bg-white/5 px-6 py-2 rounded-lg text-[10px] font-black uppercase opacity-50">Stay Tuned</button>
+                </div>
+                <div class="liquid-panel p-8 flex justify-between items-center group hover:border-emerald-400 transition">
+                    <div>
+                        <h3 class="text-xl font-bold uppercase">NotebookOS (Openbox)</h3>
+                        <p class="text-[10px] opacity-40 uppercase mt-1">840 MB • i386 • Recommended</p>
+                    </div>
+                    <button class="bg-white/5 px-6 py-2 rounded-lg text-[10px] font-black uppercase opacity-50">Stay Tuned</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="rox-fab" onclick="showPage('home')">
+        <img src="https://cdn-icons-png.flaticon.com/512/2622/2622671.png" class="w-4 h-4 invert">
+        Ask Rox
     </div>
 
-    <footer class="py-20 text-center border-t border-white/5 mt-20">
-        <div class="flex justify-center gap-10 text-[9px] font-black opacity-30 uppercase tracking-[0.3em] mb-6">
-            <span>© 2026 The Myriad Project</span>
-            <span>MIT License</span>
-            <span>WonderRepo Inspired</span>
+    <footer class="mt-20 py-20 bg-black/40 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-12 text-left">
+            <div>
+                <h5 class="text-[10px] font-black uppercase text-sky-400 mb-6">Site Map</h5>
+                <ul class="text-xs space-y-3 opacity-40">
+                    <li class="cursor-pointer" onclick="showPage('home')">Dashboard</li>
+                    <li class="cursor-pointer" onclick="showPage('about')">Mission</li>
+                    <li class="cursor-pointer" onclick="showPage('downloads')">Downloads</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-[10px] font-black uppercase text-sky-400 mb-6">Community</h5>
+                <ul class="text-xs space-y-3 opacity-40">
+                    <li><a href="https://github.com/22soulfan">GitHub Repo</a></li>
+                    <li><a href="#">WonderRepo Wiki</a></li>
+                </ul>
+            </div>
+            <div class="md:col-span-2">
+                <p class="text-[10px] font-black opacity-30 uppercase italic mb-4">"Find your spark. Find your way."</p>
+                <p class="text-[9px] opacity-20 uppercase tracking-[0.5em]">WhirlyOS & WonderRepo // MMXXVI</p>
+            </div>
         </div>
     </footer>
 
     <script>
         function showPage(p) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            if(document.getElementById(p)) document.getElementById(p).classList.add('active');
+            const target = document.getElementById(p);
+            if(target) target.classList.add('active');
             window.scrollTo(0,0);
         }
         function initApp() { showPage('home'); }
