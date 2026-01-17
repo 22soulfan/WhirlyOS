@@ -34,10 +34,9 @@
         
         .badge { font-size: 8px; font-weight: 800; padding: 4px 10px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.1em; }
         .tech-stack { font-family: 'Fira Code', monospace; font-size: 10px; color: var(--primary); margin-bottom: 0.5rem; }
-        .ram-badge { font-size: 9px; font-weight: bold; color: var(--accent); opacity: 0.8; }
     </style>
 </head>
-<body>
+<body onload="loadPosts()">
 
     <div class="mesh-gradient"></div>
 
@@ -48,10 +47,10 @@
         <div class="hidden md:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest opacity-60">
             <button onclick="showPage('home')" class="hover:text-sky-400 transition">Portal</button>
             <button onclick="showPage('systems')" class="hover:text-sky-400 transition">Systems</button>
+            <button onclick="showPage('blog')" class="hover:text-sky-400 transition">DevLog</button>
             <button onclick="showPage('wonderrepo')" class="hover:text-sky-400 transition">WonderRepo</button>
         </div>
         <div class="flex items-center gap-4">
-            <a href="https://github.com/22soulfan" target="_blank" class="opacity-60 hover:opacity-100 transition"><svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
             <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">✨</button>
         </div>
     </nav>
@@ -60,102 +59,66 @@
         <div class="max-w-5xl mx-auto">
             <h1 class="text-7xl md:text-[8rem] font-black tracking-tighter mb-4 leading-[0.85]">The <br><span class="text-gradient">Myriad</span> Project.</h1>
             <h2 class="text-xl md:text-3xl font-light tracking-[0.4em] uppercase opacity-40 mb-12">Find your spark. Find your way.</h2>
-            
-            <div class="glass p-10 rounded-[3rem] border-white/5 max-w-4xl mx-auto mb-12 shadow-2xl">
-                <p class="text-xl italic opacity-80 leading-relaxed">
-                    "A project for high-performance computing on low-resource hardware. From zero-aesthetic minimal builds to light-aesthetic systems designed for $1\text{GB}$ to $2\text{GB}$ RAM limits."
-                </p>
-            </div>
-            <button onclick="showPage('systems')" class="px-12 py-5 bg-sky-500 text-slate-950 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 transition-all">Explore Architectures</button>
+            <button onclick="showPage('blog')" class="px-12 py-5 bg-sky-500 text-slate-950 rounded-[1.5rem] font-black text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 transition-all">Latest Updates</button>
         </div>
     </main>
 
     <main id="systems" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-5xl font-black mb-16 text-center tracking-tighter uppercase text-gradient">The Multiverse</h2>
-            
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">NT Rebirth</span>
+                    <span class="badge bg-indigo-500/20 text-indigo-400 mb-4 inline-block w-fit">ReactOS</span>
                     <h3 class="text-3xl font-bold mb-2">MyriadOS</h3>
-                    <div class="tech-stack">ReactOS // Light-Aesthetic</div>
-                    <div class="ram-badge mb-4">Target: $1\text{GB}$ - $2\text{GB}$ RAM</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Optimized for older hardware. MyriadOS provides a reduced aesthetic layer that keeps the UI modern and responsive without the heavy resource cost of typical Windows clones.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                    <div class="tech-stack">Light-Aesthetic Layer (1-2GB RAM)</div>
+                    <p class="text-xs opacity-60">Optimized NT-based compatibility with the signature Myriad Shell.</p>
                 </div>
-
                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-green-500/20 text-green-400 mb-4 inline-block w-fit">Rolling Release</span>
-                    <h3 class="text-3xl font-bold mb-2">RenardOS</h3>
-                    <div class="tech-stack">openSUSE // Light-Aesthetic</div>
-                    <div class="ram-badge mb-4">Target: $1\text{GB}$ - $2\text{GB}$ RAM</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">High-speed rolling release based on Tumbleweed. Uses a stripped-back aesthetic layer to ensure the kernel's speed isn't choked by the desktop environment.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-red-500/20 text-red-400 mb-4 inline-block w-fit">Managed OS</span>
-                    <h3 class="text-3xl font-bold mb-2">RPandaOS</h3>
-                    <div class="tech-stack">Cosmos C# // Light-Aesthetic</div>
-                    <div class="ram-badge mb-4">Target: $1\text{GB}$ - $2\text{GB}$ RAM</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Experimental C# environment. The aesthetic layer is kept simple and optimized for managed memory, ensuring $1\text{GB}$ RAM stability.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Educational</span>
+                    <span class="badge bg-sky-500/20 text-sky-400 mb-4 inline-block w-fit">Debian</span>
                     <h3 class="text-3xl font-bold mb-2">WhirlyOS</h3>
-                    <div class="tech-stack">Debian // Zero-Aesthetic</div>
-                    <div class="ram-badge mb-4">Target: Ultra-Minimal</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Strictly functional. WhirlyOS removes the aesthetic layer entirely to maximize educational tool performance on legacy hardware. No bloat, no distractions.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                    <div class="tech-stack">Zero-Aesthetic Layer (Functional)</div>
+                    <p class="text-xs opacity-60">Minimalist educational powerhouse with no resource overhead.</p>
                 </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-yellow-500/10">
-                    <span class="badge bg-yellow-500/20 text-yellow-400 mb-4 inline-block w-fit">Cloud Hybrid</span>
-                    <h3 class="text-3xl font-bold mb-2">ChromMyriadOS</h3>
-                    <div class="tech-stack">ChromiumOS + MyriadOS Shell</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">The fusion of Chromium's web-speed and Myriad's security-focused lockscreen. A bridge between cloud workflows and local resource management.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
+                 <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
+                    <span class="badge bg-green-500/20 text-green-400 mb-4 inline-block w-fit">openSUSE</span>
+                    <h3 class="text-3xl font-bold mb-2">RenardOS</h3>
+                    <div class="tech-stack">Light-Aesthetic Layer (1-2GB RAM)</div>
+                    <p class="text-xs opacity-60">Rolling release performance with a focused fox-shell UI.</p>
                 </div>
-
-                <div class="glass p-8 rounded-[2.5rem] os-card border-white/5">
-                    <span class="badge bg-pink-500/20 text-pink-400 mb-4 inline-block w-fit">Win11 Mod</span>
-                    <h3 class="text-3xl font-bold mb-2">Communiverse11</h3>
-                    <div class="tech-stack">Anti-Microsoft NT Core</div>
-                    <p class="text-xs opacity-60 leading-relaxed mb-6">Radical de-bloating. Removing telemetry and forced MS services to reclaim the hardware's power for the user.</p>
-                    <button class="mt-auto block py-4 glass text-white/30 rounded-2xl font-black text-[10px] uppercase tracking-widest cursor-not-allowed italic">Stay Tuned</button>
-                </div>
-
             </div>
+        </div>
+    </main>
+
+    <main id="blog" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h2 class="text-5xl font-black tracking-tighter uppercase text-gradient">DevLog</h2>
+                    <p class="opacity-40 text-xs font-bold uppercase tracking-widest mt-2">Project Updates & Milestones</p>
+                </div>
+                <button onclick="openEditor()" class="px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/10 rounded-full font-black text-[10px] uppercase tracking-widest transition-all">Create Blog Post</button>
+            </div>
+
+            <div id="blogEditor" class="hidden glass p-8 rounded-[2rem] border-sky-500/30 mb-12 animate-pulse">
+                <input type="text" id="postTitle" placeholder="Post Title..." class="w-full bg-transparent text-2xl font-bold mb-4 outline-none border-b border-white/10 pb-2">
+                <textarea id="postContent" rows="5" placeholder="What's the latest update on the Myriad Project?" class="w-full bg-transparent text-sm opacity-80 outline-none resize-none mb-4"></textarea>
+                <div class="flex gap-4">
+                    <button onclick="savePost()" class="px-8 py-3 bg-sky-500 text-slate-950 rounded-xl font-black text-[10px] uppercase tracking-widest">Publish</button>
+                    <button onclick="closeEditor()" class="px-8 py-3 glass rounded-xl font-black text-[10px] uppercase tracking-widest">Cancel</button>
+                </div>
+            </div>
+
+            <div id="postsContainer" class="space-y-8">
+                </div>
         </div>
     </main>
 
     <main id="wonderrepo" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-black mb-8">Wonder<span class="text-gradient">Repo</span></h2>
-            
             <div class="glass p-10 rounded-[3rem] border-white/5">
-                <h3 class="text-xl font-bold mb-6 italic">RAM & Resource Roadmap</h3>
-                <p class="text-sm opacity-60 mb-8">Our development priority is **Hardware Reclamation**. By utilizing differing levels of "Aesthetic Layers," we target specific RAM profiles for maximum efficiency.</p>
-                
-                <div class="grid md:grid-cols-2 gap-8 text-[11px] opacity-70">
-                    <div class="space-y-2">
-                        <p class="font-bold text-sky-400">ZERO AESTHETIC (Functional)</p>
-                        <ul class="list-disc pl-4">
-                            <li>WhirlyOS (Debian Core)</li>
-                            <li>Designed for sub-512MB RAM tasks</li>
-                        </ul>
-                    </div>
-                    <div class="space-y-2">
-                        <p class="font-bold text-accent">LIGHT AESTHETIC (Responsive)</p>
-                        <ul class="list-disc pl-4">
-                            <li>MyriadOS / RenardOS / RPandaOS</li>
-                            <li>Targeting $1\text{GB}$–$2\text{GB}$ RAM stability</li>
-                        </ul>
-                    </div>
-                </div>
+                <h3 class="text-xl font-bold mb-4 italic">Architectural Reclamation</h3>
+                <p class="text-sm opacity-60">Development focused on reclaiming legacy hardware through strategic aesthetic layering.</p>
             </div>
         </div>
     </main>
@@ -170,7 +133,65 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
         function toggleTheme() { document.documentElement.classList.toggle('light'); }
+
+        // --- BLOG LOGIC ---
+        function openEditor() {
+            document.getElementById('blogEditor').classList.remove('hidden');
+        }
+
+        function closeEditor() {
+            document.getElementById('blogEditor').classList.add('hidden');
+        }
+
+        function savePost() {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            if (!title || !content) return alert("Please fill in both fields!");
+
+            const post = {
+                title,
+                content,
+                date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }),
+                id: Date.now()
+            };
+
+            let posts = JSON.parse(localStorage.getItem('myriad_posts') || '[]');
+            posts.unshift(post);
+            localStorage.setItem('myriad_posts', JSON.stringify(posts));
+
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postContent').value = '';
+            closeEditor();
+            loadPosts();
+        }
+
+        function loadPosts() {
+            const container = document.getElementById('postsContainer');
+            const posts = JSON.parse(localStorage.getItem('myriad_posts') || '[]');
+            
+            if (posts.length === 0) {
+                container.innerHTML = `<div class="glass p-12 rounded-[2rem] text-center opacity-40 italic">No updates published yet. Click "Create Blog Post" to start.</div>`;
+                return;
+            }
+
+            container.innerHTML = posts.map(post => `
+                <div class="glass p-8 rounded-[2rem] border-white/5 hover:border-white/10 transition-all">
+                    <p class="text-[9px] font-black text-sky-400 uppercase tracking-widest mb-2">${post.date}</p>
+                    <h3 class="text-2xl font-bold mb-4">${post.title}</h3>
+                    <p class="text-sm opacity-60 leading-relaxed">${post.content}</p>
+                    <button onclick="deletePost(${post.id})" class="mt-6 text-[8px] font-black uppercase tracking-tighter opacity-20 hover:opacity-100 hover:text-red-400 transition">Delete Post</button>
+                </div>
+            `).join('');
+        }
+
+        function deletePost(id) {
+            let posts = JSON.parse(localStorage.getItem('myriad_posts') || '[]');
+            posts = posts.filter(p => p.id !== id);
+            localStorage.setItem('myriad_posts', JSON.stringify(posts));
+            loadPosts();
+        }
     </script>
 </body>
 </html>
