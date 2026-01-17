@@ -8,165 +8,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #38bdf8;
-            --secondary: #818cf8;
-            --accent: #f472b6;
-            --bg: #020617;
-            --text: #f8fafc;
-            --glass: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.1);
+            --primary: #38bdf8; --secondary: #818cf8; --accent: #f472b6;
+            --bg: #020617; --text: #f8fafc;
+            --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1);
         }
-
         .light {
-            --bg: #f0f9ff;
-            --text: #0c4a6e;
-            --glass: rgba(255, 255, 255, 0.7);
-            --border: rgba(56, 189, 248, 0.2);
+            --bg: #f0f9ff; --text: #0c4a6e;
+            --glass: rgba(255, 255, 255, 0.7); --border: rgba(56, 189, 248, 0.2);
         }
-
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            transition: all 0.5s ease;
-            overflow-x: hidden;
-        }
-
-        .aesthetic-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 100; opacity: 0.04;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-        }
-
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: all 0.5s ease; overflow-x: hidden; }
         .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
-            background: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.2) 0px, transparent 50%),
-                        radial-gradient(at 100% 100%, rgba(244, 114, 182, 0.2) 0px, transparent 50%);
+            background: radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                        radial-gradient(at 100% 100%, rgba(244, 114, 182, 0.15) 0px, transparent 50%);
             filter: blur(80px);
         }
-
         .glass { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--border); }
-        .text-gradient {
-            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
+        .text-gradient { background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .page-section { display: none; opacity: 0; transform: translateY(20px); }
         .page-section.active { display: block; animation: fadeIn 0.8s forwards; }
         @keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
-
-        .terminal-container {
-            font-family: 'Fira Code', monospace;
-            background: #000;
-            color: #10b981;
-        }
+        
+        .bot-card:hover { transform: translateY(-5px); border-color: var(--primary); }
     </style>
 </head>
 <body>
 
-    <div class="aesthetic-overlay"></div>
     <div class="mesh-gradient"></div>
 
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-[150] glass rounded-[2.5rem] px-8 py-4 flex justify-between items-center shadow-2xl">
-        <div class="flex items-center gap-3 cursor-pointer group" onclick="showPage('home')">
-            <img src="branding/whirlyos.png" alt="WhirlyOS" class="w-10 h-10 object-contain group-hover:rotate-12 transition-transform duration-500">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+            <img src="branding/whirlyos.png" alt="WhirlyOS" class="w-10 h-10 object-contain">
             <span class="text-xl font-black tracking-tighter uppercase">Whirly<span class="text-sky-400">OS</span></span>
         </div>
-        
-        <div class="hidden md:flex items-center gap-8 text-[11px] font-black uppercase tracking-widest opacity-60">
-            <button onclick="showPage('home')" class="hover:text-sky-400">Home</button>
-            <button onclick="showPage('about')" class="hover:text-sky-400">Mission</button>
-            <button onclick="showPage('downloads')" class="hover:text-sky-400">Downloads</button>
-            <button onclick="showPage('terminal')" class="hover:text-sky-400">Live Shell</button>
+        <div class="hidden md:flex items-center gap-6 text-[10px] font-black uppercase tracking-widest opacity-60">
+            <button onclick="showPage('home')">Home</button>
+            <button onclick="showPage('bots')">AI Bots</button>
+            <button onclick="showPage('multiverse')">Multiverse</button>
+            <button onclick="showPage('downloads')">Downloads</button>
+            <a href="https://github.com/22soulfan/whirlyos/discussions" target="_blank">Forum</a>
         </div>
-
-        <div class="flex items-center gap-6">
-            <a href="https://github.com/22soulfan/whirlyos" target="_blank" class="opacity-40 hover:opacity-100 transition hover:scale-110">
-                <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-            </a>
-            <button onclick="toggleTheme()" id="themeBtn" class="w-10 h-10 rounded-full glass flex items-center justify-center text-xl">🌙</button>
+        <div class="flex items-center gap-5">
+            <a href="https://github.com/22soulfan/whirlyos" target="_blank" class="opacity-40 hover:opacity-100 transition"><svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.041-1.416-4.041-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+            <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌙</button>
         </div>
     </nav>
 
-    <main id="home" class="page-section active pt-56 pb-20 px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter mb-8 leading-[0.8]">Find your <br><span class="text-gradient">Spark.</span></h1>
-            <p class="text-xl opacity-60 mb-14 max-w-2xl mx-auto font-light">The Debian-based desktop that turns learning into play. Inspired by Pixar, built for the future.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-5">
-                <button onclick="showPage('downloads')" class="px-12 py-5 bg-sky-500 text-slate-950 rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-sky-500/20 hover:scale-105 transition">Get WhirlyOS</button>
-                <button onclick="showPage('terminal')" class="px-12 py-5 glass rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-white/5 transition">Live Shell</button>
-            </div>
-        </div>
-    </main>
-
-    <main id="about" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto text-center md:text-left">
-            <h2 class="text-6xl font-black mb-12 tracking-tight">The <span class="text-gradient">Mission.</span></h2>
-            <div class="grid md:grid-cols-2 gap-12 text-lg leading-relaxed opacity-80">
-                <div class="space-y-6">
-                    <p>WhirlyOS is more than just a Debian fork. It's an <strong>educational experiment</strong> designed to remove the "fear" of Linux. By using cinematic visuals and playful animations, we create a focus-friendly environment for ADHD users and students.</p>
-                </div>
-                <div class="space-y-6">
-                    <p>Our <strong>Future Builds</strong> will feature local AI integration, helping you manage tasks and automate your workflow without sending data to the cloud. We believe in a private, playful, and powerful desktop.</p>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <main id="downloads" class="page-section pt-48 pb-20 px-6">
+    <main id="bots" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h2 class="text-6xl font-black mb-4">Choose your <span class="text-gradient">Vibe.</span></h2>
-                <p class="opacity-50">All ISOs include the Whirly-Kernel for legacy x86 (i386) support.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="glass p-10 rounded-[3rem] border-white/5 group hover:border-sky-500/30 transition-all">
-                    <div class="text-5xl mb-6">🌌</div>
-                    <h3 class="text-2xl font-black mb-2">SoulFrame</h3>
-                    <p class="text-sm opacity-50 mb-8">Modern GNOME. Fluid, cinematic, and best for high-end x64 workstations.</p>
-                    <a href="https://github.com/22soulfan/whirlyos/releases" class="block w-full py-4 rounded-2xl bg-sky-500 text-slate-900 text-center font-black text-[10px] uppercase tracking-widest">Download</a>
+            <h2 class="text-5xl font-black mb-12 text-center">Meet the <span class="text-gradient">Companions</span></h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="glass p-8 rounded-[2rem] bot-card transition-all text-center">
+                    <div class="text-4xl mb-4">🩹</div>
+                    <h4 class="font-bold">Carebit</h4>
+                    <p class="text-[10px] opacity-50 uppercase mt-2">Health & Support</p>
                 </div>
-                <div class="glass p-10 rounded-[3rem] border-white/5 group hover:border-pink-500/30 transition-all">
-                    <div class="text-5xl mb-6">🏮</div>
-                    <h3 class="text-2xl font-black mb-2">MeiLite</h3>
-                    <p class="text-sm opacity-50 mb-8">XFCE optimization. Perfect for legacy i386 laptops and speed enthusiasts.</p>
-                    <a href="https://github.com/22soulfan/whirlyos/releases" class="block w-full py-4 rounded-2xl bg-pink-500 text-slate-900 text-center font-black text-[10px] uppercase tracking-widest">Download</a>
+                <div class="glass p-8 rounded-[2rem] bot-card transition-all text-center">
+                    <div class="text-4xl mb-4">🧠</div>
+                    <h4 class="font-bold">Eva</h4>
+                    <p class="text-[10px] opacity-50 uppercase mt-2">Core Intelligence</p>
                 </div>
-                <div class="glass p-10 rounded-[3rem] border-white/5 group hover:border-emerald-500/30 transition-all">
-                    <div class="text-5xl mb-6">🌊</div>
-                    <h3 class="text-2xl font-black mb-2">NotebookOS</h3>
-                    <p class="text-sm opacity-50 mb-8">Openbox minimal. Pure zen for distraction-free writing and study.</p>
-                    <a href="https://github.com/22soulfan/whirlyos/releases" class="block w-full py-4 rounded-2xl bg-emerald-500 text-slate-900 text-center font-black text-[10px] uppercase tracking-widest">Download</a>
+                <div class="glass p-8 rounded-[2rem] bot-card transition-all text-center">
+                    <div class="text-4xl mb-4">💎</div>
+                    <h4 class="font-bold">Luxi</h4>
+                    <p class="text-[10px] opacity-50 uppercase mt-2">Premium Logic</p>
+                </div>
+                <div class="glass p-8 rounded-[2rem] bot-card transition-all text-center">
+                    <div class="text-4xl mb-4">🐼</div>
+                    <h4 class="font-bold">Pando</h4>
+                    <p class="text-[10px] opacity-50 uppercase mt-2">Educational Guide</p>
+                </div>
+                <div class="glass p-8 rounded-[2rem] bot-card transition-all text-center">
+                    <div class="text-4xl mb-4">🧚</div>
+                    <h4 class="font-bold">Pixi</h4>
+                    <p class="text-[10px] opacity-50 uppercase mt-2">Creative Assistant</p>
+                </div>
+                <div class="glass p-8 rounded-[2rem] bot-card transition-all text-center">
+                    <div class="text-4xl mb-4">🌊</div>
+                    <h4 class="font-bold">Wave</h4>
+                    <p class="text-[10px] opacity-50 uppercase mt-2">System Optimization</p>
                 </div>
             </div>
         </div>
     </main>
 
-    <main id="terminal" class="page-section pt-48 pb-20 px-6">
+    <main id="multiverse" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
-            <div class="terminal-container rounded-3xl p-8 h-[450px] flex flex-col border border-white/10">
-                <div id="terminal-output" class="flex-grow overflow-y-auto space-y-2 text-sm">
-                    <div class="text-sky-400 font-bold">user@whirlyos:~$ neofetch</div>
-                    <div class="text-white opacity-80">
-                        OS: WhirlyOS 2026<br>
-                        Base: Debian 12 (Bookworm)<br>
-                        Uptime: 100% Spark<br>
-                        Architecture: x64/i386 Ready
+            <h2 class="text-5xl font-black mb-12 text-center">The OS <span class="text-gradient">Multiverse</span></h2>
+            <div class="space-y-6">
+                <a href="https://github.com/22soulfan/whirlyos" class="block glass p-8 rounded-3xl flex justify-between items-center hover:bg-white/5 transition">
+                    <div>
+                        <h4 class="text-xl font-bold">WhirlyOS</h4>
+                        <p class="text-sm opacity-50">The flagship Pixar-inspired educational OS.</p>
                     </div>
-                    <div class="pt-4 text-emerald-400">Type 'help' to see Whirly-specific commands.</div>
+                    <span class="text-xs font-bold text-sky-400">ACTIVE</span>
+                </a>
+                <div class="glass p-8 rounded-3xl flex justify-between items-center opacity-60">
+                    <div>
+                        <h4 class="text-xl font-bold">DreamLayer</h4>
+                        <p class="text-sm opacity-50">Experimental VR-first desktop environment.</p>
+                    </div>
+                    <span class="text-xs font-bold text-pink-400 italic">STAY TUNED</span>
                 </div>
-                <div class="flex items-center gap-2 pt-4 border-t border-white/5">
-                    <span class="text-sky-400 font-bold">user@whirlyos:~$</span>
-                    <input type="text" id="terminal-input" class="bg-transparent border-none outline-none text-white w-full" autofocus onkeydown="handleCommand(event)">
+                <div class="glass p-8 rounded-3xl flex justify-between items-center opacity-60">
+                    <div>
+                        <h4 class="text-xl font-bold">NovaCore</h4>
+                        <p class="text-sm opacity-50">Ultra-secure immutable Linux distribution.</p>
+                    </div>
+                    <span class="text-xs font-bold text-pink-400 italic">STAY TUNED</span>
                 </div>
             </div>
         </div>
     </main>
-
-    <footer class="py-20 text-center opacity-30 text-[9px] font-black uppercase tracking-[0.5em]">
-        WhirlyOS // Created by 22soulfan // MMXXVI
-    </footer>
 
     <script>
         function showPage(pageId) {
@@ -174,36 +127,6 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-
-        function handleCommand(e) {
-            if (e.key === 'Enter') {
-                const input = e.target.value.toLowerCase().trim();
-                const out = document.getElementById('terminal-output');
-                const line = document.createElement('div');
-                line.innerHTML = `<span class="text-sky-400">user@whirlyos:~$</span> ${e.target.value}`;
-                out.appendChild(line);
-
-                const res = document.createElement('div');
-                res.className = "pl-4 text-white opacity-70";
-                
-                if(input === 'help') {
-                    res.innerHTML = "whirly --ai | whirly --spark | neofetch | clear";
-                } else if(input === 'neofetch') {
-                    res.innerHTML = "WhirlyOS | Kernel: 6.1 | DE: SoulFrame";
-                } else if(input === 'whirly --ai') {
-                    res.innerHTML = "AI Integration status: Scheduled for 2026.";
-                } else if(input === 'clear') {
-                    out.innerHTML = ''; e.target.value = ''; return;
-                } else {
-                    res.innerHTML = "Command not found.";
-                }
-                
-                out.appendChild(res);
-                e.target.value = '';
-                out.scrollTop = out.scrollHeight;
-            }
-        }
-
         function toggleTheme() {
             document.documentElement.classList.toggle('light');
         }
