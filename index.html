@@ -5,101 +5,299 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhirlyOS | WonderRepo</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        :root { --p-blue: #38bdf8; --p-purple: #a78bfa; --bg: #030508; --text: #f8fafc; }
-        .light { --bg: #f8fafc; --text: #030508; }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); transition: 0.3s; }
-        
-        .glass-nav { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; }
-        .hero-title { font-size: clamp(3rem, 10vw, 7rem); font-weight: 800; line-height: 0.85; letter-spacing: -0.05em; }
-        .spark-text { background: linear-gradient(to right, var(--p-purple), var(--p-blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .obsidian-panel { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden; }
-        .status-dot { height: 8px; width: 8px; background: #ef4444; border-radius: 50%; display: inline-block; margin-right: 8px; box-shadow: 0 0 10px #ef4444; }
-        
-        .page-section { display: none; opacity: 0; }
-        .page-section.active { display: block; animation: fadeIn 0.4s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        :root {
+            --primary: #38bdf8;
+            --secondary: #818cf8;
+            --accent: #c084fc;
+            --bg-dark: #020617;
+            --glass-white: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        .light {
+            --glass-white: rgba(15, 23, 42, 0.03);
+            --glass-border: rgba(15, 23, 42, 0.1);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mesh-gradient {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
+            background: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
+            filter: blur(80px);
+        }
+
+        .glass {
+            background: var(--glass-white);
+            backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: flow 8s linear infinite;
+        }
+
+        @keyframes flow { to { background-position: 200% center; } }
+
+        .feature-card { transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); }
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px -20px rgba(56, 189, 248, 0.4);
+        }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px;
+            bottom: -4px; left: 0; background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .page-section { display: none; opacity: 0; transform: translateY(20px); }
+        .page-section.active { display: block; animation: sectionIn 0.6s forwards; }
+        @keyframes sectionIn { to { opacity: 1; transform: translateY(0); } }
+
+        .warning-pill {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
     </style>
 </head>
-<body onload="initApp()">
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
 
-    <header class="fixed top-8 left-0 right-0 flex justify-center z-50 px-6">
-        <div class="glass-nav flex items-center justify-between px-8 py-4 w-full max-w-[1000px]">
-            <div class="flex items-center gap-4">
-                <div class="w-6 h-6 bg-sky-500 rounded flex items-center justify-center font-black text-white text-[10px]">W</div>
-                <span class="font-bold tracking-tighter text-sm uppercase">Whirly<span class="text-sky-400">OS</span></span>
-            </div>
-            <nav class="hidden md:flex items-center gap-8">
-                <button onclick="showPage('home')" class="text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition">Home</button>
-                <button onclick="showPage('about')" class="text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition">About</button>
-                <button onclick="showPage('downloads')" class="text-[10px] font-bold uppercase tracking-widest opacity-40 hover:opacity-100 transition">Downloads</button>
-            </nav>
-            <button onclick="toggleMode()" class="text-[10px] font-bold opacity-40">THEME</button>
+    <div class="mesh-gradient"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 glass rounded-2xl px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3 group cursor-pointer" onclick="showPage('home')">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold shadow-lg shadow-sky-500/20">W</div>
+            <span class="text-xl font-extrabold tracking-tighter uppercase">Wonder<span class="text-sky-400">Repo</span></span>
         </div>
-    </header>
-
-    <main id="home" class="page-section active min-h-screen flex flex-col items-center justify-center text-center px-6">
-        <h1 class="hero-title">Find your</h1>
-        <h1 class="hero-title spark-text mb-12">Spark.</h1>
         
-        <div class="obsidian-panel w-full max-w-xl text-left border-red-500/20">
-            <div class="flex items-center mb-4">
-                <span class="status-dot"></span>
-                <span class="text-[10px] font-bold uppercase tracking-widest opacity-60">Build Status: Failed</span>
-            </div>
-            <p class="text-xs opacity-80 leading-relaxed">
-                Attempts to build via <code class="text-sky-400">0x OS Builder</code> in Codespaces resulted in missing ISO output. Switching testing to <code class="text-purple-400">Cubic</code> for the next phase.
+        <div class="hidden md:flex items-center gap-8 text-[10px] font-black uppercase tracking-widest text-slate-500 dark:text-slate-400">
+            <button onclick="showPage('home')" class="nav-link hover:text-sky-400 transition">Home</button>
+            <button onclick="showPage('about')" class="nav-link hover:text-sky-400 transition">Mission</button>
+            <button onclick="showPage('downloads')" class="nav-link hover:text-sky-400 transition">Editions</button>
+            <button onclick="showPage('install')" class="nav-link hover:text-sky-400 transition">Install</button>
+        </div>
+
+        <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 transition">
+            <span id="theme-icon">🌙</span>
+        </button>
+    </nav>
+
+    <main id="home" class="page-section active pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="inline-block px-4 py-1 rounded-full warning-pill text-[10px] font-bold uppercase tracking-widest mb-6">i386 Compatibility Releases Only</span>
+            <h1 class="text-7xl md:text-9xl font-extrabold tracking-tighter mb-8 leading-[0.9]">
+                Find your <br><span class="text-gradient">Spark.</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-500 dark:text-slate-400 mb-12 font-light leading-relaxed max-w-2xl mx-auto">
+                "Find your spark. Find your way." — A playful, ADHD-aware Debian shell designed to make computing magical.
             </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <button onclick="showPage('downloads')" class="px-12 py-4 bg-sky-500 text-slate-950 rounded-2xl font-bold hover:shadow-2xl hover:shadow-sky-500/40 transition-all hover:-translate-y-1">View Editions</button>
+                <button onclick="showPage('about')" class="px-12 py-4 glass rounded-2xl font-bold hover:bg-white/10 transition">The Roadmap</button>
+            </div>
         </div>
     </main>
 
-    <main id="about" class="page-section pt-48 pb-20 px-10">
+    <main id="about" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-black italic uppercase mb-12">The <span class="text-sky-400">Mission</span></h2>
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="space-y-8">
+                    <h2 class="text-5xl font-bold tracking-tight uppercase italic">The <span class="text-sky-400">Mission</span></h2>
+                    <p class="text-slate-500 dark:text-slate-400 leading-relaxed text-lg">
+                        Forked from <span class="text-sky-400">hirohamada2014</span>, WhirlyOS provides a playful environment with a built-in <strong>screen time limit</strong> to keep users healthy and distraction-free.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="p-6 rounded-2xl glass border-sky-500/10">
+                            <h4 class="font-bold text-sky-400 mb-2 uppercase text-xs">🧠 Inspire Creativity</h4>
+                            <p class="text-sm opacity-60">Themed desktops based on beloved animated films celebrate emotion and experience.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl glass border-purple-500/10">
+                            <h4 class="font-bold text-purple-400 mb-2 uppercase text-xs">👨‍👩‍👧‍👦 Support Families</h4>
+                            <p class="text-sm opacity-60">Built-in parental controls and education-first tools for homeschooling and classrooms.</p>
+                        </div>
+                        <div class="p-6 rounded-2xl glass border-emerald-500/10">
+                            <h4 class="font-bold text-emerald-400 mb-2 uppercase text-xs">🐧 Revive Hardware</h4>
+                            <p class="text-sm opacity-60">Lightweight editions run smoothly on older low-spec hardware, reducing waste.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass p-10 rounded-[3rem] space-y-6">
+                    <h3 class="text-2xl font-bold">2025/26 Timeline</h3>
+                    <div class="space-y-4 font-mono text-xs">
+                        <div class="flex gap-4 border-l-2 border-sky-500 pl-4 py-2">
+                            <span class="text-sky-500 font-bold">JAN 25</span>
+                            <span class="opacity-60">Building Debian base + creating assets.</span>
+                        </div>
+                        <div class="flex gap-4 border-l-2 border-slate-500 pl-4 py-2">
+                            <span class="text-slate-500 font-bold">NOW</span>
+                            <span class="opacity-60 italic text-red-400">Testing with Cubic (Next phase after 0x Builder).</span>
+                        </div>
+                        <div class="flex gap-4 border-l-2 border-slate-700 pl-4 py-2">
+                            <span class="text-slate-700 font-bold">2026</span>
+                            <span class="opacity-40">No official releases yet. Development ongoing.</span>
+                        </div>
+                    </div>
+                    <div class="pt-8 border-t border-white/5 italic opacity-40 text-sm">
+                        "If you prefer physical notebooks for math, WhirlyOS is here for the coding and surfing."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <main id="downloads" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-6xl mx-auto text-center mb-16">
+            <h2 class="text-5xl font-bold mb-4 uppercase">The <span class="text-gradient">Editions</span></h2>
+            <p class="text-slate-500">Six spirits, one rock-solid Debian base.</p>
+        </div>
+        
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="feature-card glass p-8 rounded-[2rem]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-3xl">🌌</span>
+                    <span class="px-3 py-1 glass rounded-full text-[9px] font-bold">2GB RAM</span>
+                </div>
+                <h3 class="text-xl font-bold">SoulFrame</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase font-bold text-sky-400">GNOME // Soul</p>
+                <p class="text-sm opacity-60 mb-6 italic">"Dreamlike UI, perfect for the Great Before."</p>
+                <button class="w-full py-3 rounded-xl border border-white/5 text-[9px] font-black uppercase tracking-widest opacity-30">In Development</button>
+            </div>
+
+            <div class="feature-card glass p-8 rounded-[2rem]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-3xl">🏮</span>
+                    <span class="px-3 py-1 glass rounded-full text-[9px] font-bold">1GB RAM</span>
+                </div>
+                <h3 class="text-xl font-bold">MeiLite</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase font-bold text-red-400">XFCE // Turning Red</p>
+                <p class="text-sm opacity-60 mb-6 italic">"Expressive, lightweight 2002 vibes."</p>
+                <button class="w-full py-3 rounded-xl border border-white/5 text-[9px] font-black uppercase tracking-widest opacity-30">In Development</button>
+            </div>
+
+            <div class="feature-card glass p-8 rounded-[2rem]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-3xl">🔥</span>
+                    <span class="px-3 py-1 glass rounded-full text-[9px] font-bold">4GB RAM</span>
+                </div>
+                <h3 class="text-xl font-bold">ElementalDesk</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase font-bold text-orange-400">KDE Plasma // Elemental</p>
+                <p class="text-sm opacity-60 mb-6 italic">"Vibrant, elemental UI with magical flair."</p>
+                <button class="w-full py-3 rounded-xl border border-white/5 text-[9px] font-black uppercase tracking-widest opacity-30">In Development</button>
+            </div>
+
+            <div class="feature-card glass p-8 rounded-[2rem]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-3xl">🌊</span>
+                    <span class="px-3 py-1 glass rounded-full text-[9px] font-bold">512MB RAM</span>
+                </div>
+                <h3 class="text-xl font-bold">NotebookOS</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase font-bold text-cyan-400">Openbox // Luca</p>
+                <p class="text-sm opacity-60 mb-6 italic">"Minimal, seaside calm for old hardware."</p>
+                <button class="w-full py-3 rounded-xl border border-white/5 text-[9px] font-black uppercase tracking-widest opacity-30">In Development</button>
+            </div>
+
+            <div class="feature-card glass p-8 rounded-[2rem]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-3xl">🦄</span>
+                    <span class="px-3 py-1 glass rounded-full text-[9px] font-bold">2GB RAM</span>
+                </div>
+                <h3 class="text-xl font-bold">QuestLand</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase font-bold text-indigo-400">Budgie // Onward</p>
+                <p class="text-sm opacity-60 mb-6 italic">"Adventurous, modern desktop for fantasy fans."</p>
+                <button class="w-full py-3 rounded-xl border border-white/5 text-[9px] font-black uppercase tracking-widest opacity-30">In Development</button>
+            </div>
+
+            <div class="feature-card glass p-8 rounded-[2rem]">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-3xl">🤖</span>
+                    <span class="px-3 py-1 glass rounded-full text-[9px] font-bold">1GB RAM</span>
+                </div>
+                <h3 class="text-xl font-bold">IntellSpace</h3>
+                <p class="text-xs text-slate-500 mb-4 uppercase font-bold text-yellow-400">LXQt // Wall·E</p>
+                <p class="text-sm opacity-60 mb-6 italic">"Futuristic and low-resource efficiency."</p>
+                <button class="w-full py-3 rounded-xl border border-white/5 text-[9px] font-black uppercase tracking-widest opacity-30">In Development</button>
+            </div>
+        </div>
+    </main>
+
+    <main id="install" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold mb-12 uppercase italic">Installation <span class="text-sky-400">Protocol</span></h2>
             
-            <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <div class="obsidian-panel min-h-[250px]">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-6">WhirlyOS Concept</h3>
-                    <div class="opacity-40 italic text-sm text-center pt-10">[Your project history and fork info goes here]</div>
-                </div>
-                <div class="obsidian-panel min-h-[250px]">
-                    <h3 class="text-xs font-bold uppercase tracking-widest text-sky-400 mb-6">ADHD-Aware Design</h3>
-                    <div class="opacity-40 italic text-sm text-center pt-10">[Your notes on simple interfaces and screen time limits go here]</div>
-                </div>
+            <div class="warning-pill p-8 rounded-[2rem] mb-10 text-sm">
+                <p class="font-bold mb-2 uppercase">⚠️ Critical Warning</p>
+                <p class="opacity-80">Install at your own risk. Warranty may void. The creator of WhirlyOS is not responsible for hardware damage. Always backup your data before partitioning.</p>
             </div>
 
-            <h3 class="text-3xl font-black uppercase mb-8 italic">🎯 Project Goals</h3>
-            <div class="grid md:grid-cols-3 gap-6">
-                <div class="obsidian-panel border-white/5 h-48 flex items-center justify-center opacity-30 italic">Goal 1: Inspire Creativity</div>
-                <div class="obsidian-panel border-white/5 h-48 flex items-center justify-center opacity-30 italic">Goal 2: Family Support</div>
-                <div class="obsidian-panel border-white/5 h-48 flex items-center justify-center opacity-30 italic">Goal 3: Revive Hardware</div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="glass p-8 rounded-[2rem] space-y-4">
+                    <h3 class="font-bold text-sky-400 uppercase text-xs">Windows / MacOS</h3>
+                    <ol class="text-sm space-y-3 opacity-70 list-decimal pl-4 font-light">
+                        <li>Download <strong>BalenaEtcher</strong> or <strong>Rufus</strong>.</li>
+                        <li>Download the WhirlyOS ISO.</li>
+                        <li>Flash the image to a USB drive.</li>
+                        <li>Restart and enter Boot Manager (F10/F12).</li>
+                        <li><strong>Disable Secure Boot</strong> in BIOS.</li>
+                    </ol>
+                </div>
+                <div class="glass p-8 rounded-[2rem] space-y-4">
+                    <h3 class="font-bold text-emerald-400 uppercase text-xs">Linux Terminal</h3>
+                    <p class="text-xs opacity-60 italic font-light">Recommended for advanced users:</p>
+                    <div class="bg-black/50 p-4 rounded-xl font-mono text-[10px] text-sky-300 border border-white/5">
+                        sudo dd if=whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <main id="downloads" class="page-section pt-48 pb-20 px-10">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-4xl font-black italic uppercase mb-12">SoulFrame <span class="text-sky-400">GNOME</span></h2>
-            <div class="obsidian-panel max-w-2xl mx-auto">
-                <p class="opacity-60 mb-8">Base: Debian Stable (i386 Only)</p>
-                <div class="bg-black/40 p-6 rounded-xl border border-white/5 mb-8">
-                    <p class="text-xs uppercase tracking-widest font-bold opacity-30">Development Ongoing</p>
-                </div>
-                <button class="bg-white/5 text-white/20 border border-white/5 py-4 px-12 rounded-xl cursor-not-allowed">ISO Not Released</button>
-            </div>
-        </div>
-    </main>
+    <footer class="py-20 text-center opacity-40 text-[10px] font-black uppercase tracking-[0.4em]">
+        WhirlyOS & WonderRepo // MMXXVI // Open Source MIT
+    </footer>
 
     <script>
-        function showPage(p) {
+        function showPage(pageId) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-            document.getElementById(p).classList.add('active');
-            window.scrollTo(0,0);
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function toggleMode() { document.documentElement.classList.toggle('light'); }
-        function initApp() { showPage('home'); }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                icon.innerText = '☀️';
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                icon.innerText = '🌙';
+            }
+        }
     </script>
 </body>
 </html>
