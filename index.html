@@ -9,36 +9,89 @@
     <style>
         :root { --primary: #38bdf8; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         .light { --glass: rgba(15, 23, 42, 0.05); --border: rgba(15, 23, 42, 0.1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.4s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.4s ease; scroll-behavior: smooth; }
         .dark body { background-color: #020617; color: #f8fafc; }
         .light body { background-color: #f8fafc; color: #0f172a; }
         .glass { background: var(--glass); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); }
         .page-section { display: none; opacity: 0; transform: translateY(15px); }
         .page-section.active { display: block; opacity: 1; transform: translateY(0); animation: fadeIn 0.5s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .text-gradient { background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .chip { padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); font-size: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; white-space: nowrap; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
     </style>
 </head>
 <body>
 
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 glass rounded-2xl px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3" onclick="showPage('home')">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold">W</div>
             <span class="text-xl font-extrabold tracking-tighter uppercase">Wonder<span class="text-sky-400">Repo</span></span>
         </div>
-        <div class="flex items-center gap-4">
-            <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌙</button>
+        <div class="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+            <button onclick="showPage('home')" class="hover:text-sky-400 transition">Home</button>
+            <button onclick="showPage('mission')" class="hover:text-sky-400 transition">Mission</button>
+            <button onclick="showPage('downloads')" class="hover:text-sky-400 transition">Downloads</button>
+            <button onclick="showPage('install')" class="hover:text-sky-400 transition">Install</button>
         </div>
+        <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌙</button>
     </nav>
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h1 class="text-6xl font-extrabold tracking-tighter mb-4">WhirlyOS is <span class="text-sky-400">still in dev.</span></h1>
-            <p class="opacity-60 italic mb-8">"Find your spark. Find your way."</p>
-            <div class="glass p-8 rounded-3xl text-left text-sm leading-relaxed">
-                <p>WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and screen time limits to keep you healthy and free from distraction. Currently targeting <strong>i386 compatibility</strong> only.</p>
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <span class="px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest">i386 Legacy Ready</span>
+                    <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter leading-[0.85]">Find your <br><span class="text-gradient">Spark.</span></h1>
+                    <p class="text-lg opacity-60 max-w-xl leading-relaxed">WhirlyOS is still in dev. We wrap a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and healthy screen time limits.</p>
+                    <div class="flex gap-4">
+                        <button onclick="showPage('downloads')" class="px-8 py-4 bg-sky-500 text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-sky-500/30 transition-all">Get WhirlyOS Assets</button>
+                    </div>
+                </div>
+                <div class="rounded-3xl aspect-video relative group bg-slate-900 border border-white/10 overflow-hidden">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-40">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-500 mb-4 shadow-2xl"></div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em]">WonderRepo Dashboard</p>
+                    </div>
+                </div>
             </div>
+        </div>
+    </main>
+
+    <main id="downloads" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6 tracking-tighter">Download Resources</h2>
+            <p class="opacity-60 mb-12">WhirlyOS is still in dev. You can download the current asset bundle below.</p>
+            
+            <div class="glass p-12 rounded-3xl border-2 border-dashed border-sky-500/30">
+                <div class="w-20 h-20 bg-sky-500/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                    <span class="text-3xl">📦</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">WhirlyOS_Assets_2026.zip</h3>
+                <p class="text-xs opacity-50 mb-8 uppercase tracking-widest font-bold">Includes Wallpapers & Configuration Templates</p>
+                <a href="#" class="inline-block px-10 py-4 bg-white text-black rounded-2xl font-bold hover:bg-sky-400 transition">Download ZIP File</a>
+            </div>
+        </div>
+    </main>
+
+    <main id="mission" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <div class="glass p-10 rounded-3xl">
+                <h2 class="text-3xl font-bold mb-6 text-sky-400 uppercase tracking-widest text-sm">🎯 Our Goals</h2>
+                <ul class="space-y-4 text-sm opacity-80">
+                    <li>• <strong>Inspire Creativity:</strong> Themed environments based on Pixar hits like <em>Soul</em> and <em>Wall·E</em>.</li>
+                    <li>• <strong>Support Diversity:</strong> ADHD-aware interfaces and dyslexia-friendly typography.</li>
+                    <li>• <strong>Revive Hardware:</strong> Running smoothly on legacy i386 specs to reduce e-waste.</li>
+                    <li>• <strong>Safe Education:</strong> No-AI tools for schools and homeschooling.</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <main id="install" class="page-section pt-48 pb-20 px-6">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8">Install Guide</h2>
+            <p class="glass p-10 rounded-2xl text-sm opacity-70">WhirlyOS requires i386 compatibility. Use BalenaEtcher or Rufus to flash the ISO found in WonderRepo releases once development is finalized.</p>
         </div>
     </main>
 
@@ -47,22 +100,19 @@
         <div id="soul-chat" class="hidden absolute bottom-20 right-0 w-85 glass rounded-3xl overflow-hidden shadow-2xl flex flex-col border border-white/20">
             <div class="p-4 bg-white/10 border-b border-white/10">
                 <h4 class="font-bold text-[10px]">Soul 26 Assistant</h4>
-                <p class="text-[7px] text-yellow-500 uppercase font-bold mt-1">⚠️ Note: AI may make mistakes. Verify info in the repo.</p>
+                <p class="text-[7px] text-yellow-500 uppercase font-bold mt-1">⚠️ Note: AI may make mistakes. Verify repo references.</p>
             </div>
-            
             <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 text-[10px] bg-slate-900/40 no-scrollbar">
                 <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none border border-white/5">
-                    Hello. I am the Soul 26 assistant for WonderRepo. I can provide details on WhirlyOS, Debian history, Linux documentation, and building via GitHub.
+                    Welcome. I am the Soul 26 assistant. I have full knowledge of WonderRepo, Debian history, and WhirlyOS development status. How can I assist you?
                 </div>
             </div>
-
             <div class="p-2 flex gap-2 overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
-                <button onclick="chipInput('What is WhirlyOS bro?')" class="chip">What is WhirlyOS?</button>
-                <button onclick="chipInput('Tell me about Debian sir')" class="chip">About Debian</button>
-                <button onclick="chipInput('How to install 26?')" class="chip">How to Install</button>
-                <button onclick="chipInput('WhirlyOS development')" class="chip">Dev Timeline</button>
+                <button onclick="chipInput('What can you do?')" class="chip">Capabilities</button>
+                <button onclick="chipInput('How to build WhirlyOS?')" class="chip">Building</button>
+                <button onclick="chipInput('WhirlyOS based on Debian?')" class="chip">Base OS</button>
+                <button onclick="chipInput('Can you build on Arch or Kali?')" class="chip">Other Distros</button>
             </div>
-
             <div class="p-4 bg-white/5 flex gap-2">
                 <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 bg-white/10 rounded-xl px-3 py-2 text-[10px] focus:outline-none text-white">
                 <button onclick="sendMessage()" class="p-2 bg-sky-500 rounded-xl text-white">➤</button>
@@ -70,12 +120,19 @@
         </div>
     </div>
 
-    <footer class="mt-20 border-t border-white/5 py-10 text-center">
-        <div class="text-[9px] font-bold opacity-30 mb-2">© 2026 WONDERREPO | MIT LICENSE</div>
-        <div class="flex justify-center gap-4 text-[8px] opacity-20 font-bold">
-            <span>HTML 55.2%</span><span>SHELL 36.9%</span><span>PYTHON 7.9%</span>
+    <div class="max-w-6xl mx-auto px-6 mt-20">
+        <div class="p-6 glass rounded-2xl border-yellow-500/20">
+            <h4 class="text-[10px] font-bold text-yellow-500 uppercase mb-2">Legal Disclaimer & Copyright</h4>
+            <p class="text-[9px] opacity-40 leading-relaxed">
+                Debian is a registered trademark of Software in the Public Interest, Inc. Linux® is the registered trademark of Linus Torvalds. 
+                WhirlyOS is an independent project and is not affiliated with, endorsed by, or sponsored by Debian, Pixar, Disney, or any mentioned Linux distributions including Ubuntu, Arch, Kali, or Red Star OS. 
+                All trademarks belong to their respective owners. WhirlyOS is still in dev.
+            </p>
         </div>
-        <p class="text-[8px] text-yellow-600 font-bold mt-4 px-6">Soul 26 is an AI assistant. AI models can occasionally produce incorrect information. Always cross-reference with the official README.md.</p>
+    </div>
+
+    <footer class="py-10 text-center text-[9px] font-bold opacity-30 uppercase">
+        © 2026 WONDERREPO | MIT LICENSE
     </footer>
 
     <script>
@@ -93,10 +150,10 @@
             if(!input.value) return;
 
             const userText = input.value;
-            const query = userText.toLowerCase(); // Supports any casing for logic
+            const q = userText.toLowerCase();
             
             const uDiv = document.createElement('div');
-            uDiv.className = "bg-sky-500/20 ml-auto p-3 rounded-2xl rounded-tr-none text-right max-w-[80%] border border-sky-500/20";
+            uDiv.className = "bg-sky-500/20 ml-auto p-3 rounded-2xl rounded-tr-none text-right max-w-[80%]";
             uDiv.innerText = userText;
             box.appendChild(uDiv);
             input.value = "";
@@ -104,47 +161,35 @@
             setTimeout(() => {
                 const bDiv = document.createElement('div');
                 bDiv.className = "bg-white/10 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-white/5";
-                let r = "I am searching the WonderRepo archives for that information.";
+                let r = "I am processing your query based on WonderRepo documentation.";
 
-                // WHIRLYOS GENERAL
-                if (query.includes("what is whirlyos")) {
-                    r = "WhirlyOS is an unfinished, playful Linux project based on Debian Stable. It features an ADHD-aware shell, screen time limits, and cinematic UI inspired by movies like Soul (2020). It targets i386 hardware.";
+                // COMPLEX DISTRO LOGIC
+                if (q.includes("reactos") || q.includes("arch") || q.includes("ubuntu") || q.includes("kali") || q.includes("red star")) {
+                    r = "WhirlyOS is strictly based on Debian Stable. While I can conceptually discuss creating variants based on Arch, Manjaro, Ubuntu, or even ReactOS, the official WonderRepo focus is Debian for its rock-solid reliability. Note: Using Kali or Red Star OS as a base is highly discouraged due to security and ethical concerns.";
                 }
-                // DEBIAN HISTORY
-                else if (query.includes("debian")) {
-                    r = "Debian is the foundation of WhirlyOS. Founded in 1993 by Ian Murdock, it is known for rock-solid reliability and the APT package system. WhirlyOS uses the Stable branch to ensure compatibility and ease of customization.";
+                else if (q.includes("chromiumos") || q.includes("browser")) {
+                    r = "WhirlyOS is not based on ChromiumOS. It is a full GNU/Linux distribution. However, we provide seamless browser-based learning tool integration for Google Classroom and YouTube Kids using lightweight browsers.";
                 }
-                // ADHD & DISORDERS
-                else if (query.includes("adhd") || query.includes("disorder") || query.includes("neuro")) {
-                    r = "WhirlyOS is designed with neurodiversity in mind. It uses a minimal-clutter GNOME Shell to reduce distractions and includes built-in screen time features to support healthy computing habits.";
+                else if (q.includes("can you build") || q.includes("how to build")) {
+                    r = "WhirlyOS is still in dev. You can fork the WonderRepo on GitHub to see our progress. We previously used 0x OS Builder but are currently transitioning to test with Cubic for future i386 ISO generation.";
                 }
-                // REPOSITORY & OWNER
-                else if (query.includes("owner") || query.includes("who made") || query.includes("wonderrepo")) {
-                    r = "The project is managed via WonderRepo. It was forked from the original account, hirohamada2014 (the owner's previous GitHub), to continue development on a new platform.";
+                else if (q.includes("debian") || q.includes("founding")) {
+                    r = "Debian was founded by Ian Murdock in 1993. It is the 'Universal Operating System.' WhirlyOS relies on Debian for i386 support, its massive APT package library, and its stable community-driven development model.";
                 }
-                // GITHUB & LANGUAGES
-                else if (query.includes("github") || query.includes("languages") || query.includes("code")) {
-                    r = "The WonderRepo on GitHub consists of 55.2% HTML, 36.9% Shell, and 7.9% Python. Development is active with over 121 deployments recorded.";
+                else if (q.includes("adhd") || q.includes("disorder")) {
+                    r = "WhirlyOS is designed for neurodiversity. It features an ADHD-aware shell, minimal clutter, and screen time management to help users stay healthy and focused on their 'spark'.";
                 }
-                // DEVELOPMENT & BUILDING
-                else if (query.includes("dev") || query.includes("build") || query.includes("cubic")) {
-                    r = "WhirlyOS is still in development. Multiple attempts were made with 0x OS Builder, and the next phase involves testing with Cubic. No official releases exist as of early 2026.";
+                else if (q.includes("owner") || q.includes("hirohamada")) {
+                    r = "WhirlyOS is owned by the creator behind WonderRepo. The repository was forked from their previous account, hirohamada2014, to reorganize development for 2026.";
                 }
-                // INSTALLATION
-                else if (query.includes("install")) {
-                    r = "To install, you can use BalenaEtcher (Mac/Win/Linux) or Rufus (Win). On Linux, the 'dd' command is an option: sudo dd if=iso_path of=/dev/sdx. Caution: Improper installation can void warranties or break devices.";
+                else if (q.includes("pixar") || q.includes("movie")) {
+                    r = "Our editions are inspired by Pixar classics: SoulFrame (Soul), MeiLite (Turning Red), ElementalDesk (Elemental), NotebookOS (Luca), QuestLand (Onward), and IntellSpace (Wall·E).";
                 }
-                // EDUCATION
-                else if (query.includes("education") || query.includes("school")) {
-                    r = "WhirlyOS provides educational tools like GCompris, Scratch, and TuxMath without Artificial Intelligence, making it ideal for homeschooling and private/public school environments.";
+                else if (q.includes("what can you do")) {
+                    r = "I can explain our education goals (No AI), detail the Debian base history, provide installation commands for Linux/Windows, and discuss the architectural differences between x64 and x86 builds.";
                 }
-                // PIXAR
-                else if (query.includes("pixar") || query.includes("soul") || query.includes("luca") || query.includes("wall")) {
-                    r = "WhirlyOS editions are inspired by Pixar. For example, SoulFrame is based on 'Soul' (Celestial UI), MeiLite on 'Turning Red' (2002 Retro vibe), and IntellSpace on 'Wall·E' (Futuristic LXQt).";
-                }
-                // CAPABILITIES
-                else if (query.includes("can you do") || query.includes("what can you do")) {
-                    r = "I can provide technical data on the WhirlyOS development timeline, explain the differences between our Pixar-themed editions, provide installation steps for Windows/Linux, and discuss the history of our Debian base.";
+                else if (q.includes("what is whirlyos")) {
+                    r = "WhirlyOS is still in dev. It is a playful, educational, and neurodiverse-friendly operating system based on Debian Stable, targeting older i386 hardware.";
                 }
 
                 bDiv.innerText = r;
