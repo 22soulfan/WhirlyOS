@@ -9,209 +9,150 @@
     <style>
         :root { --primary: #38bdf8; --glass: rgba(255, 255, 255, 0.03); --border: rgba(255, 255, 255, 0.1); }
         .light { --glass: rgba(15, 23, 42, 0.05); --border: rgba(15, 23, 42, 0.1); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; transition: all 0.4s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.4s ease; }
         .dark body { background-color: #020617; color: #f8fafc; }
         .light body { background-color: #f8fafc; color: #0f172a; }
-        .dyslexia-mode { font-family: 'OpenDyslexic', sans-serif !important; letter-spacing: 0.1ch !important; word-spacing: 0.3ch !important; line-height: 1.6 !important; }
-        @font-face { font-family: 'OpenDyslexic'; src: url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.otf'); }
         .glass { background: var(--glass); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); }
         .page-section { display: none; opacity: 0; transform: translateY(15px); }
         .page-section.active { display: block; opacity: 1; transform: translateY(0); animation: fadeIn 0.5s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .chrome-card { border-radius: 12px; border: 1px solid var(--border); overflow: hidden; transition: 0.3s; background: var(--glass); }
-        .text-gradient { background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .chip { padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); font-size: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; white-space: nowrap; }
-        .chip:hover { background: rgba(56, 189, 248, 0.1); border-color: #38bdf8; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
+        .chip { padding: 4px 10px; border-radius: 20px; border: 1px solid var(--border); font-size: 8px; font-weight: bold; cursor: pointer; transition: 0.2s; white-space: nowrap; }
     </style>
 </head>
 <body>
 
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50 glass rounded-2xl px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center gap-3 cursor-pointer" onclick="showPage('home')">
+        <div class="flex items-center gap-3" onclick="showPage('home')">
             <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-sky-400 to-indigo-500 flex items-center justify-center text-white font-bold">W</div>
             <span class="text-xl font-extrabold tracking-tighter uppercase">Wonder<span class="text-sky-400">Repo</span></span>
         </div>
-        <div class="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            <button onclick="showPage('home')" class="hover:text-sky-400 transition">Home</button>
-            <button onclick="showPage('mission')" class="hover:text-sky-400 transition">Mission</button>
-            <button onclick="showPage('install')" class="hover:text-sky-400 transition">Install</button>
-        </div>
         <div class="flex items-center gap-4">
-            <button onclick="toggleDyslexiaMode()" id="dyslexia-btn" class="px-3 py-1 rounded-lg border border-yellow-500/30 text-yellow-500 text-[8px] font-bold uppercase hover:bg-yellow-500/10 transition">Dyslexia: OFF</button>
             <button onclick="toggleTheme()" id="theme-toggle" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌙</button>
         </div>
     </nav>
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <h1 class="text-6xl md:text-8xl font-extrabold tracking-tighter mb-6">Find your <span class="text-gradient">Spark.</span></h1>
-            <p class="text-xl opacity-60 mb-12 italic">"WhirlyOS is still in dev" — A playful, ADHD-aware shell based on Debian.</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
-                <script>
-                    const wallp = [
-                        "blob:https://github.com/a486bfae-880c-4a9b-94d1-2fb4a084b4f4",
-                        "blob:https://github.com/26e50525-a6bd-41b2-835d-7b4a5223c1e5",
-                        "blob:https://github.com/c513eef7-0b9b-4d2b-95a4-76147fd53fea",
-                        "blob:https://github.com/ae0cc9c9-e84b-402f-8527-dfb10653d869",
-                        "blob:https://github.com/9540e076-0783-443f-9f0b-2e1bbb866530",
-                        "blob:https://github.com/803c1532-2837-42bf-9a6f-59641ec5c57b"
-                    ];
-                    wallp.forEach((u, i) => {
-                        document.write(`
-                            <div class="chrome-card group">
-                                <div class="aspect-video bg-slate-800 overflow-hidden flex items-center justify-center">
-                                    <img src="${u}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://via.placeholder.com/400x225/0f172a/38bdf8?text=WhirlyOS+Wallpaper'">
-                                </div>
-                                <div class="p-4 flex justify-between items-center glass">
-                                    <span class="text-[9px] font-bold opacity-50 uppercase">Wallpaper ${i+1}</span>
-                                    <a href="${u}" download="WhirlyOS_WP_${i+1}.png" class="px-3 py-1 bg-sky-500 text-white text-[9px] font-bold rounded">DOWNLOAD</a>
-                                </div>
-                            </div>
-                        `);
-                    });
-                </script>
-            </div>
-            <p class="text-yellow-500 text-[10px] mt-4 font-bold uppercase tracking-widest">Note: Images may not download properly due to session security.</p>
-        </div>
-    </main>
-
-    <main id="mission" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto space-y-12">
-            <div class="glass p-10 rounded-3xl border-l-4 border-sky-500">
-                <h2 class="text-4xl font-bold mb-4 tracking-tighter">WonderRepo Mission</h2>
-                <p class="opacity-70 mb-6 leading-relaxed">
-                    A curated repository for building WhirlyOS Linux, based on Debian Stable. <br><br>
-                    <strong>Copyright:</strong> Forked from <strong>hirohamada2014</strong> (my old account) to this new home.
-                </p>
-                <div class="bg-red-500/10 border border-red-500/30 p-4 rounded-xl text-xs text-red-400 mb-6 font-bold uppercase">
-                    Warning: WhirlyOS is still in dev. Wait for a release.
-                </div>
-                <h3 class="font-bold text-sky-400 uppercase tracking-widest text-[10px] mb-2 italic">"Find your spark. Find your way."</h3>
-            </div>
-        </div>
-    </main>
-
-    <main id="install" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-3xl font-bold mb-8">Installation Guide</h2>
-            <div class="bg-red-500/10 border border-red-500/30 p-6 rounded-2xl mb-8">
-                <h4 class="font-bold text-red-400 mb-2 uppercase text-xs">⚠️ Warning</h4>
-                <p class="text-[10px] opacity-80 leading-relaxed font-bold">Install at your own risk. The owner is not responsible for damage. Backup your original OS. Dual boot requires shrinking drives—be careful!</p>
-            </div>
-            <div class="glass p-8 rounded-xl text-sm opacity-70 space-y-4">
-                <p><strong>Windows:</strong> Rufus, BalenaEtcher, or Win32Imager.</p>
-                <p><strong>Linux:</strong> Etcher or <code>dd</code> command (advanced).</p>
-                <code class="block bg-black/40 p-4 rounded text-green-400 break-all text-[10px]">sudo dd if=path/to/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-6xl font-extrabold tracking-tighter mb-4">WhirlyOS is <span class="text-sky-400">still in dev.</span></h1>
+            <p class="opacity-60 italic mb-8">"Find your spark. Find your way."</p>
+            <div class="glass p-8 rounded-3xl text-left text-sm leading-relaxed">
+                <p>WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and screen time limits to keep you healthy and free from distraction. Currently targeting <strong>i386 compatibility</strong> only.</p>
             </div>
         </div>
     </main>
 
     <div id="chat-wrapper" class="fixed bottom-6 right-6 z-[100]">
-        <button onclick="toggleChat()" class="w-14 h-14 bg-gradient-to-tr from-sky-400 to-indigo-600 rounded-full shadow-2xl flex items-center justify-center hover:scale-110 transition-transform">✨</button>
-        <div id="soul-chat" class="hidden absolute bottom-20 right-0 w-80 glass rounded-3xl overflow-hidden shadow-2xl flex flex-col border border-white/20">
-            <div class="p-4 bg-white/10 border-b border-white/10 flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-sky-500 flex items-center justify-center text-xs">👤</div>
-                <div>
-                    <h4 class="font-bold text-[10px]">Soul 26</h4>
-                    <p class="text-[8px] opacity-50 uppercase tracking-widest">WonderRepo Expert</p>
-                </div>
-                <button onclick="toggleChat()" class="ml-auto opacity-50">✕</button>
+        <button onclick="toggleChat()" class="w-14 h-14 bg-sky-500 rounded-full shadow-2xl flex items-center justify-center">✨</button>
+        <div id="soul-chat" class="hidden absolute bottom-20 right-0 w-85 glass rounded-3xl overflow-hidden shadow-2xl flex flex-col border border-white/20">
+            <div class="p-4 bg-white/10 border-b border-white/10">
+                <h4 class="font-bold text-[10px]">Soul 26 Assistant</h4>
+                <p class="text-[7px] text-yellow-500 uppercase font-bold mt-1">⚠️ Note: AI may make mistakes. Verify info in the repo.</p>
             </div>
             
             <div id="chat-messages" class="h-80 overflow-y-auto p-4 space-y-4 text-[10px] bg-slate-900/40 no-scrollbar">
                 <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none border border-white/5">
-                    Yo! I'm Soul 26, bro. I'm here to help you navigate WonderRepo and WhirlyOS, sir. What's on your mind?
+                    Hello. I am the Soul 26 assistant for WonderRepo. I can provide details on WhirlyOS, Debian history, Linux documentation, and building via GitHub.
                 </div>
             </div>
 
             <div class="p-2 flex gap-2 overflow-x-auto border-t border-white/5 bg-black/20 no-scrollbar">
-                <button onclick="chipInput('what can you do')" class="chip">What can you do?</button>
-                <button onclick="chipInput('what is whirlyos')" class="chip">What is WhirlyOS?</button>
-                <button onclick="chipInput('how to build')" class="chip">How to build?</button>
-                <button onclick="chipInput('pixar')" class="chip">Pixar Themes</button>
+                <button onclick="chipInput('What is WhirlyOS bro?')" class="chip">What is WhirlyOS?</button>
+                <button onclick="chipInput('Tell me about Debian sir')" class="chip">About Debian</button>
+                <button onclick="chipInput('How to install 26?')" class="chip">How to Install</button>
+                <button onclick="chipInput('WhirlyOS development')" class="chip">Dev Timeline</button>
             </div>
 
             <div class="p-4 bg-white/5 flex gap-2">
-                <input type="text" id="chat-input" placeholder="Ask 26 something, dude..." class="flex-1 bg-white/10 rounded-xl px-3 py-2 text-[10px] focus:outline-none text-white">
-                <button onclick="sendMessage()" class="p-2 bg-sky-500 rounded-xl">➤</button>
+                <input type="text" id="chat-input" placeholder="Ask a question..." class="flex-1 bg-white/10 rounded-xl px-3 py-2 text-[10px] focus:outline-none text-white">
+                <button onclick="sendMessage()" class="p-2 bg-sky-500 rounded-xl text-white">➤</button>
             </div>
         </div>
     </div>
 
+    <footer class="mt-20 border-t border-white/5 py-10 text-center">
+        <div class="text-[9px] font-bold opacity-30 mb-2">© 2026 WONDERREPO | MIT LICENSE</div>
+        <div class="flex justify-center gap-4 text-[8px] opacity-20 font-bold">
+            <span>HTML 55.2%</span><span>SHELL 36.9%</span><span>PYTHON 7.9%</span>
+        </div>
+        <p class="text-[8px] text-yellow-600 font-bold mt-4 px-6">Soul 26 is an AI assistant. AI models can occasionally produce incorrect information. Always cross-reference with the official README.md.</p>
+    </footer>
+
     <script>
+        function toggleChat() { document.getElementById('soul-chat').classList.toggle('hidden'); }
+        function chipInput(v) { document.getElementById('chat-input').value = v; sendMessage(); }
         function showPage(id) {
             document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function toggleTheme() {
-            const h = document.documentElement;
-            h.classList.toggle('dark'); h.classList.toggle('light');
-            document.getElementById('theme-toggle').innerText = h.classList.contains('dark') ? '🌙' : '☀️';
-        }
-        function toggleDyslexiaMode() {
-            const b = document.body; b.classList.toggle('dyslexia-mode');
-            document.getElementById('dyslexia-btn').innerText = b.classList.contains('dyslexia-mode') ? "Dyslexia: ON" : "Dyslexia: OFF";
-        }
-        function toggleChat() { document.getElementById('soul-chat').classList.toggle('hidden'); }
-        function chipInput(v) { document.getElementById('chat-input').value = v; sendMessage(); }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); }
 
         function sendMessage() {
-            const i = document.getElementById('chat-input');
-            const c = document.getElementById('chat-messages');
-            if(!i.value) return;
+            const input = document.getElementById('chat-input');
+            const box = document.getElementById('chat-messages');
+            if(!input.value) return;
 
-            const uM = document.createElement('div');
-            uM.className = "bg-sky-500/20 ml-auto p-3 rounded-2xl rounded-tr-none text-right max-w-[80%] border border-sky-500/20";
-            uM.innerText = i.value;
-            c.appendChild(uM);
-
-            const q = i.value.toLowerCase();
-            i.value = "";
+            const userText = input.value;
+            const query = userText.toLowerCase(); // Supports any casing for logic
+            
+            const uDiv = document.createElement('div');
+            uDiv.className = "bg-sky-500/20 ml-auto p-3 rounded-2xl rounded-tr-none text-right max-w-[80%] border border-sky-500/20";
+            uDiv.innerText = userText;
+            box.appendChild(uDiv);
+            input.value = "";
 
             setTimeout(() => {
-                const b = document.createElement('div');
-                b.className = "bg-white/10 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-white/5";
-                let r = "I'm checking the WonderRepo data for you, sir.";
+                const bDiv = document.createElement('div');
+                bDiv.className = "bg-white/10 p-3 rounded-2xl rounded-tl-none max-w-[85%] border border-white/5";
+                let r = "I am searching the WonderRepo archives for that information.";
 
-                if (q.includes("what can you do")) {
-                    r = "Bro, I can explain the i386 releases, tell you about Debian founding in '93, explain our ADHD shell, or show you how to build via Cubic, sir! I know the whole WonderRepo mission.";
-                } 
-                else if (q.includes("what is whirlyos")) {
-                    r = "WhirlyOS is still in dev, dude! It's a Debian Stable project forked from hirohamada2014. It's got an ADHD-aware shell, Pixar vibes, and educational tools like Scratch and GCompris, bro.";
+                // WHIRLYOS GENERAL
+                if (query.includes("what is whirlyos")) {
+                    r = "WhirlyOS is an unfinished, playful Linux project based on Debian Stable. It features an ADHD-aware shell, screen time limits, and cinematic UI inspired by movies like Soul (2020). It targets i386 hardware.";
                 }
-                else if (q.includes("build")) {
-                    r = "Sir, building is tough. We tried 0x OS Builder but we gotta test with Cubic next, bro. Check WonderRepo for the HTML, Shell, and Python code if you want to fork it, 26.";
+                // DEBIAN HISTORY
+                else if (query.includes("debian")) {
+                    r = "Debian is the foundation of WhirlyOS. Founded in 1993 by Ian Murdock, it is known for rock-solid reliability and the APT package system. WhirlyOS uses the Stable branch to ensure compatibility and ease of customization.";
                 }
-                else if (q.includes("pixar") || q.includes("movie") || q.includes("inspired")) {
-                    r = "The soul of the project is Pixar, bro! Soul (SoulFrame), Turning Red (MeiLite), Elemental (ElementalDesk), Luca (NotebookOS), Onward (QuestLand), and Wall·E (IntellSpace). Find your spark, sir!";
+                // ADHD & DISORDERS
+                else if (query.includes("adhd") || query.includes("disorder") || query.includes("neuro")) {
+                    r = "WhirlyOS is designed with neurodiversity in mind. It uses a minimal-clutter GNOME Shell to reduce distractions and includes built-in screen time features to support healthy computing habits.";
                 }
-                else if (q.includes("adhd") || q.includes("disorder")) {
-                    r = "We got you, bro. WhirlyOS has a minimal-clutter shell and screen time limits to keep you healthy and free from distraction. It's ADHD-aware by design, dude.";
+                // REPOSITORY & OWNER
+                else if (query.includes("owner") || query.includes("who made") || query.includes("wonderrepo")) {
+                    r = "The project is managed via WonderRepo. It was forked from the original account, hirohamada2014 (the owner's previous GitHub), to continue development on a new platform.";
                 }
-                else if (q.includes("debian") || q.includes("founding") || q.includes("linux")) {
-                    r = "Debian is the base, sir. It's rock-solid! Founded in 1993 by Ian Murdock. WhirlyOS relies on Debian Stable for i386 compatibility and thousands of APT packages, 26.";
+                // GITHUB & LANGUAGES
+                else if (query.includes("github") || query.includes("languages") || query.includes("code")) {
+                    r = "The WonderRepo on GitHub consists of 55.2% HTML, 36.9% Shell, and 7.9% Python. Development is active with over 121 deployments recorded.";
                 }
-                else if (q.includes("owner")) {
-                    r = "The owner is the one behind the WonderRepo account, bro. They forked it from their old hirohamada2014 account to keep development going, sir.";
+                // DEVELOPMENT & BUILDING
+                else if (query.includes("dev") || query.includes("build") || query.includes("cubic")) {
+                    r = "WhirlyOS is still in development. Multiple attempts were made with 0x OS Builder, and the next phase involves testing with Cubic. No official releases exist as of early 2026.";
                 }
-                else if (q.includes("education")) {
-                    r = "WhirlyOS is for homeschooling and schools, bro. We provide tools like Scratch and TuxMath without any AI clutter, so you can focus on real learning, sir.";
+                // INSTALLATION
+                else if (query.includes("install")) {
+                    r = "To install, you can use BalenaEtcher (Mac/Win/Linux) or Rufus (Win). On Linux, the 'dd' command is an option: sudo dd if=iso_path of=/dev/sdx. Caution: Improper installation can void warranties or break devices.";
                 }
-                else if (q.includes("install")) {
-                    r = "Bro, grab BalenaEtcher or Rufus. Flash the ISO to a USB and reboot. Make sure to check Secure Boot settings, or you'll get a violation, sir! Don't break your device, dude.";
+                // EDUCATION
+                else if (query.includes("education") || query.includes("school")) {
+                    r = "WhirlyOS provides educational tools like GCompris, Scratch, and TuxMath without Artificial Intelligence, making it ideal for homeschooling and private/public school environments.";
                 }
-                else if (q.includes("x64") || q.includes("x86") || q.includes("i386")) {
-                    r = "Sir, we are currently focused on i386 compatibility releases only, to revive that old hardware, bro.";
+                // PIXAR
+                else if (query.includes("pixar") || query.includes("soul") || query.includes("luca") || query.includes("wall")) {
+                    r = "WhirlyOS editions are inspired by Pixar. For example, SoulFrame is based on 'Soul' (Celestial UI), MeiLite on 'Turning Red' (2002 Retro vibe), and IntellSpace on 'Wall·E' (Futuristic LXQt).";
+                }
+                // CAPABILITIES
+                else if (query.includes("can you do") || query.includes("what can you do")) {
+                    r = "I can provide technical data on the WhirlyOS development timeline, explain the differences between our Pixar-themed editions, provide installation steps for Windows/Linux, and discuss the history of our Debian base.";
                 }
 
-                b.innerText = r;
-                c.appendChild(b);
-                c.scrollTop = c.scrollHeight;
+                bDiv.innerText = r;
+                box.appendChild(bDiv);
+                box.scrollTop = box.scrollHeight;
             }, 600);
         }
+        document.getElementById('chat-input').onkeypress = (e) => { if(e.key === "Enter") sendMessage(); };
     </script>
 </body>
 </html>
