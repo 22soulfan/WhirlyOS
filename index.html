@@ -12,7 +12,6 @@
             --glass-white: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.1);
         }
-        .light { --glass-white: rgba(15, 23, 42, 0.03); --glass-border: rgba(15, 23, 42, 0.1); }
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
         .mesh-gradient {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
@@ -25,15 +24,18 @@
         .page-section.active { display: block; animation: sectionIn 0.6s forwards; }
         @keyframes sectionIn { to { opacity: 1; transform: translateY(0); } }
         
-        .chrome-card { background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb; overflow: hidden; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1); }
-        .dark .chrome-card { background: #111111; border-color: #333; }
+        /* Chrome Card & Screenshot Style */
+        .chrome-card { background: #ffffff; border-radius: 12px; border: 1px solid #e5e7eb; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
+        .dark .chrome-card { background: #0f172a; border-color: #334155; }
         
-        .screenshot-placeholder {
-            background: linear-gradient(45deg, #1e1e1e 25%, #252525 25%, #252525 50%, #1e1e1e 50%, #1e1e1e 75%, #252525 75%, #252525 100%);
-            background-size: 20px 20px;
-            display: flex; align-items: center; justify-content: center;
+        .desktop-placeholder {
+            background: #1e293b;
+            position: relative;
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
         }
-
+        .taskbar-mock { background: rgba(0,0,0,0.4); backdrop-filter: blur(10px); height: 32px; width: 100%; position: absolute; bottom: 0; display: flex; align-items: center; padding: 0 10px; gap: 8px; }
+        
         table { width: 100%; border-collapse: collapse; font-size: 0.75rem; }
         th, td { padding: 12px; border: 1px solid rgba(255,255,255,0.05); text-align: left; }
     </style>
@@ -48,13 +50,13 @@
             <span class="text-xl font-extrabold tracking-tighter uppercase">Wonder<span class="text-sky-400">Repo</span></span>
         </div>
         <div class="hidden md:flex items-center gap-6 text-[10px] font-bold uppercase tracking-widest text-slate-500">
-            <button onclick="showPage('home')" class="hover:text-sky-400">Home</button>
-            <button onclick="showPage('mission')" class="hover:text-sky-400">Mission</button>
-            <button onclick="showPage('editions')" class="hover:text-sky-400">Editions</button>
-            <button onclick="showPage('install')" class="hover:text-sky-400">Install</button>
+            <button onclick="showPage('home')" class="hover:text-sky-400 transition">Home</button>
+            <button onclick="showPage('mission')" class="hover:text-sky-400 transition">Mission</button>
+            <button onclick="showPage('editions')" class="hover:text-sky-400 transition">Editions</button>
+            <button onclick="showPage('install')" class="hover:text-sky-400 transition">Install</button>
         </div>
         <div class="flex items-center gap-4">
-            <a href="https://github.com" class="opacity-50 hover:opacity-100 transition">
+            <a href="https://github.com" target="_blank" class="opacity-50 hover:opacity-100 transition">
                 <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.833 2.809 1.302 3.495.996.108-.775.419-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
             </a>
             <button onclick="toggleTheme()" class="w-10 h-10 rounded-full glass flex items-center justify-center">🌙</button>
@@ -63,42 +65,39 @@
 
     <main id="home" class="page-section active pt-48 pb-20 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <div class="text-left space-y-8">
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest">i386 Support</span>
-                        <span class="px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-indigo-400 text-[10px] font-bold uppercase tracking-widest">Debian Base</span>
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8">
+                    <div class="flex gap-3">
+                        <span class="px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest">i386 Legacy Ready</span>
                     </div>
                     <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter leading-[0.85]">Find your <br><span class="text-gradient">Spark.</span></h1>
-                    <p class="text-lg text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed italic">"Find your spark. Find your way." — Inspired by Soul (2020)</p>
-                    <div class="flex flex-wrap gap-4 pt-4">
-                        <button onclick="showPage('editions')" class="px-8 py-4 bg-sky-500 text-slate-950 rounded-2xl font-bold hover:shadow-lg hover:shadow-sky-500/30 transition-all active:scale-95">Get ISOs</button>
-                        <button onclick="showPage('mission')" class="px-8 py-4 glass rounded-2xl font-bold hover:bg-white/10 transition-all">Project Goals</button>
+                    <p class="text-lg text-slate-500 dark:text-slate-400 max-w-xl leading-relaxed">
+                        An ADHD-aware Linux experience designed for education and creativity. WhirlyOS brings a cinematic, focused shell to your desktop.
+                    </p>
+                    <div class="flex gap-4">
+                        <button onclick="showPage('editions')" class="px-8 py-4 bg-sky-500 text-slate-950 rounded-2xl font-bold hover:shadow-lg hover:shadow-sky-500/30 transition-all active:scale-95">Explore Editions</button>
                     </div>
                 </div>
 
                 <div class="relative">
-                    <div class="absolute -inset-4 bg-sky-500/10 blur-3xl rounded-full"></div>
+                    <div class="absolute -inset-10 bg-sky-500/10 blur-[100px] rounded-full"></div>
                     <div class="chrome-card relative">
-                        <div class="p-3 bg-gray-100 dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 flex justify-between items-center">
+                        <div class="p-3 bg-gray-100 dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 flex justify-between items-center">
                             <div class="flex gap-1.5">
                                 <div class="w-2.5 h-2.5 rounded-full bg-red-400"></div><div class="w-2.5 h-2.5 rounded-full bg-yellow-400"></div><div class="w-2.5 h-2.5 rounded-full bg-green-400"></div>
                             </div>
-                            <span class="text-[9px] font-mono opacity-50 uppercase tracking-widest">WhirlyOS_SoulFrame_Preview.png</span>
+                            <span class="text-[9px] font-mono opacity-40 uppercase tracking-widest">whirlyos_preview.sys</span>
                         </div>
-                        <div class="aspect-video screenshot-placeholder group overflow-hidden cursor-pointer">
-                            <div class="text-center group-hover:scale-110 transition-transform">
-                                <p class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-40">Screenshot Placeholder</p>
-                                <p class="text-[9px] opacity-20 mt-2 font-mono">1920 x 1080px</p>
+                        <div class="aspect-video desktop-placeholder group overflow-hidden">
+                            <div class="w-full h-full flex flex-col items-center justify-center opacity-40 group-hover:opacity-60 transition-opacity">
+                                <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-500 mb-4 shadow-2xl"></div>
+                                <p class="text-[10px] font-black uppercase tracking-[0.4em]">WhirlyOS Desktop Preview</p>
+                                <p class="text-[9px] mt-2 font-mono">1366 x 768 Optimized</p>
                             </div>
-                        </div>
-                        <div class="p-6 bg-slate-50 dark:bg-[#0a0a0a]">
-                            <div class="flex justify-between items-center">
-                                <div class="space-y-1">
-                                    <p class="text-xs font-bold text-sky-400 uppercase">Latest Build</p>
-                                    <p class="text-[10px] opacity-50">Testing with Cubic Phase (2026)</p>
-                                </div>
-                                <div class="px-3 py-1 rounded bg-green-500/10 border border-green-500/20 text-[9px] text-green-500 font-bold">STABLE BASE</div>
+                            <div class="taskbar-mock">
+                                <div class="w-4 h-4 rounded bg-white/20"></div>
+                                <div class="w-12 h-2 rounded-full bg-white/10"></div>
+                                <div class="w-4 h-4 rounded bg-white/10 ml-auto"></div>
                             </div>
                         </div>
                     </div>
@@ -108,53 +107,46 @@
     </main>
 
     <main id="mission" class="page-section pt-48 pb-20 px-6">
-        <div class="max-w-5xl mx-auto space-y-12 text-center md:text-left">
-            <h2 class="text-3xl font-bold mb-6">About WonderRepo</h2>
-            <div class="glass p-10 rounded-[2.5rem]">
-                <p class="text-sm opacity-70 leading-relaxed mb-6">A curated repository for building WhirlyOS Linux, based on Debian. <strong>Copyright Notice:</strong> I forked this repository from hirohamada2014, my old GitHub account, to this new one.</p>
-                <div class="p-6 bg-sky-500/5 rounded-2xl border border-sky-500/10 mb-8 text-sm leading-relaxed text-left">
-                    WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms.
-                </div>
-            </div>
-        </section>
+        <div class="max-w-4xl mx-auto glass p-10 rounded-3xl">
+             <h2 class="text-3xl font-bold mb-6 italic">The Mission</h2>
+             <p class="opacity-70 leading-relaxed mb-6">Copyright Notice: This repository was forked from hirohamada2014 (my old GitHub account). WhirlyOS is now managed under this new WonderRepo profile.</p>
+        </div>
     </main>
 
-    <footer class="mt-20 border-t border-black/5 dark:border-white/5 pt-20 pb-10 px-6">
+    <footer class="mt-20 border-t border-slate-200 dark:border-slate-800 pt-20 pb-10 px-6">
         <div class="max-w-6xl mx-auto">
-            <div class="grid md:grid-cols-4 gap-12 mb-16">
-                <div class="col-span-2 space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+                <div class="max-w-xs space-y-4">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded bg-sky-500"></div>
+                        <div class="w-6 h-6 rounded bg-sky-500"></div>
                         <span class="font-black uppercase tracking-tighter">Wonder<span class="text-sky-500">Repo</span></span>
                     </div>
-                    <p class="text-xs opacity-50 max-w-sm leading-relaxed">
-                        An open-source project dedicated to making computing accessible, magical, and ADHD-friendly. Built on the shoulders of Debian.
+                    <p class="text-[11px] opacity-50 leading-relaxed uppercase tracking-wider">
+                        Building Linux tools for the next generation of creative minds. 
+                        Based on Debian Stable.
                     </p>
                 </div>
-                <div class="space-y-4">
-                    <h4 class="text-[10px] font-black uppercase tracking-widest text-sky-400">Project</h4>
-                    <ul class="text-xs space-y-3 opacity-60">
-                        <li><button onclick="showPage('mission')" class="hover:text-sky-400">Mission</button></li>
-                        <li><button onclick="showPage('editions')" class="hover:text-sky-400">Editions</button></li>
-                        <li><button onclick="showPage('install')" class="hover:text-sky-400">Installation</button></li>
-                    </ul>
+                
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-sky-400">Open Source</h4>
+                    <p class="text-[11px] opacity-40 max-w-[200px]">Licensed under MIT. Fork and build on your own terms. i386 releases target 2026.</p>
                 </div>
-                <div class="space-y-4">
-                    <h4 class="text-[10px] font-black uppercase tracking-widest text-sky-400">Legal</h4>
-                    <p class="text-[10px] opacity-40 leading-relaxed uppercase">
-                        WhirlyOS is open-source under the <strong>MIT License</strong>. 
-                        "Find your spark" is a non-official fan motto. Safe for community use.
-                    </p>
+
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-[10px] font-black uppercase tracking-widest text-sky-400">Resources</h4>
+                    <a href="https://github.com" target="_blank" class="text-xs opacity-60 hover:text-sky-400 flex items-center gap-2">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.833 2.809 1.302 3.495.996.108-.775.419-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        WonderRepo GitHub
+                    </a>
                 </div>
             </div>
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-black/5 dark:border-white/5">
-                <p class="text-[9px] font-bold uppercase tracking-[0.3em] opacity-30 text-center md:text-left">
-                    © 2026 WonderRepo // Forked from HiroHamada2014
+
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-10 border-t border-slate-200 dark:border-slate-800">
+                <p class="text-[9px] font-bold uppercase tracking-[0.3em] opacity-30 text-center">
+                    © 2026 WonderRepo // No affiliation with Disney or Pixar.
                 </p>
-                <div class="flex gap-6 opacity-30 grayscale hover:grayscale-0 transition-all">
-                    <a href="#" class="text-[9px] font-bold uppercase tracking-widest hover:text-sky-400">GitHub</a>
-                    <a href="#" class="text-[9px] font-bold uppercase tracking-widest hover:text-sky-400">Debian</a>
-                    <a href="#" class="text-[9px] font-bold uppercase tracking-widest hover:text-sky-400">Cubic</a>
+                <div class="text-[9px] font-bold uppercase tracking-widest opacity-20">
+                    MIT LICENSE // OPEN SOURCE
                 </div>
             </div>
         </div>
@@ -166,9 +158,7 @@
             document.getElementById(pageId).classList.add('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
-        function toggleTheme() {
-            document.documentElement.classList.toggle('dark');
-        }
+        function toggleTheme() { document.documentElement.classList.toggle('dark'); }
     </script>
 </body>
 </html>
