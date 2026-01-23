@@ -7,116 +7,154 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --bg: #f8fafc; --text: #0f172a; --container: #ffffff; --border: #dedede; }
-        .dark { --bg: #020617; --text: #f8fafc; --container: #1e293b; --border: #334155; }
+        :root { --bg: #f8fafc; --text: #0f172a; --container: #ffffff; --border: #dedede; --accent: #38bdf8; }
+        .dark { --bg: #020617; --text: #f8fafc; --container: #1e293b; --border: #334155; --accent: #38bdf8; }
         
-        body { font-family: Verdana, sans-serif; background-color: var(--bg); color: var(--text); transition: 0.3s; margin: 0; }
+        body { font-family: Verdana, sans-serif; background-color: var(--bg); color: var(--text); transition: 0.3s; margin: 0; overflow-x: hidden; }
         .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
         
         /* Navigation */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 5%; position: fixed; width: 100%; top: 0; z-index: 100; }
         
-        /* Chat Containers */
-        .chat-container { border: 2px solid var(--border); background-color: var(--container); border-radius: 5px; padding: 10px; margin: 10px 0; clear: both; }
-        .darker { border-color: #38bdf8; background-color: rgba(56, 189, 248, 0.1); }
-        .chat-container::after { content: ""; clear: both; display: table; }
-        .chat-container img { float: left; max-width: 40px; width: 100%; margin-right: 20px; border-radius: 50%; }
-        .chat-container img.right { float: right; margin-left: 20px; margin-right: 0; }
-        .time-right { float: right; color: #aaa; font-size: 10px; }
-        .time-left { float: left; color: #999; font-size: 10px; }
+        /* Coming Soon Splash Refined */
+        .coming-soon-hero {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80');
+            background-position: center;
+            background-size: cover;
+            position: relative;
+            color: white;
+            font-family: "Courier New", Courier, monospace;
+            border-radius: 20px;
+            margin-bottom: 40px;
+        }
+        .middle-content { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; width: 100%; }
+        hr.sep { margin: 20px auto; width: 20%; border: 1px solid var(--accent); }
 
-        /* Calendar Styles */
-        .month { padding: 20px; width: 100%; background: #1abc9c; text-align: center; color: white; border-radius: 5px 5px 0 0; }
-        .weekdays { margin: 0; padding: 10px 0; background-color: #ddd; display: flex; list-style: none; }
-        .weekdays li { width: 14.2%; color: #666; text-align: center; }
-        .days { padding: 10px 0; background: #eee; margin: 0; display: flex; flex-wrap: wrap; list-style: none; border-radius: 0 0 5px 5px; }
-        .days li { width: 14.2%; text-align: center; margin-bottom: 5px; font-size: 12px; color: #777; }
-        .days li .active { padding: 5px; background: #1abc9c; color: white !important; }
-
-        /* Assistant Popup */
+        /* Chat Styles */
+        .chat-container { border: 2px solid var(--border); background-color: var(--container); border-radius: 5px; padding: 15px; margin: 10px 0; clear: both; font-size: 13px; }
+        .darker { border-color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
         .chat-popup { display: none; position: fixed; bottom: 20px; right: 20px; width: 350px; height: 500px; z-index: 1000; flex-direction: column; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border-radius: 15px; overflow: hidden; background: var(--container); border: 1px solid var(--border); }
         #chat-messages { flex: 1; overflow-y: auto; padding: 15px; }
-        .chat-input-area { padding: 10px; border-top: 1px solid var(--border); display: flex; gap: 5px; }
-        .chat-input-area input { flex: 1; padding: 10px; border-radius: 5px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
         
-        .section { display: none; padding: 100px 5% 50px; }
+        .section { display: none; padding: 100px 8% 50px; }
         .active { display: block; animation: fadeIn 0.5s; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 11px; }
+        th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+        th { background: rgba(56, 189, 248, 0.2); }
+        
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
 <nav class="glass">
-    <div style="font-weight: bold; font-size: 20px;">WONDERREPO</div>
-    <div style="display: flex; gap: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase;">
+    <div style="font-weight: bold; font-size: 18px; letter-spacing: 2px;">WONDERREPO</div>
+    <div style="display: flex; gap: 20px; font-size: 11px; font-weight: bold; text-transform: uppercase;">
         <a href="javascript:void(0)" onclick="showSection('home')">Home</a>
-        <a href="javascript:void(0)" onclick="showSection('mission')">Mission</a>
         <a href="javascript:void(0)" onclick="showSection('downloads')">Downloads</a>
-        <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="javascript:void(0)" onclick="showSection('mission')">Mission</a>
         <a href="javascript:void(0)" onclick="toggleTheme()"><i class="fas fa-adjust"></i></a>
     </div>
 </nav>
 
 <div id="home" class="section active">
     <div style="text-align: center;">
-        <h1 style="font-size: 3rem;">WhirlyOS is <span style="color: #38bdf8;">still in dev.</span></h1>
-        <p>A playful, ADHD-aware Debian shell. Find your spark.</p>
-        <div style="margin: 40px auto; max-width: 600px; height: 300px; background: #334155; border-radius: 20px; display: flex; align-items: center; justify-content: center; color: #64748b; border: 4px solid #38bdf8;">
-            [Screenshot Placeholder: WhirlyOS Desktop Preview]
+        <h1 style="font-size: 3.5rem; font-weight: 900; line-height: 1;">WhirlyOS <br><span style="color: var(--accent);">WonderRepo</span></h1>
+        <p style="margin-top: 20px; opacity: 0.7;">i386 compatibility releases only! Find your spark.</p>
+        <div style="margin: 40px auto; max-width: 700px; height: 350px; background: #0f172a; border-radius: 10px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+             <div style="position: absolute; top: 10px; left: 10px; display: flex; gap: 5px;">
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: #ff5f56;"></div>
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: #ffbd2e;"></div>
+                <div style="width: 8px; height: 8px; border-radius: 50%; background: #27c93f;"></div>
+             </div>
+             <span style="font-family: monospace; color: #38bdf8;">[ WhirlyOS Desktop Screenshot Placeholder ]</span>
         </div>
     </div>
 </div>
 
-<div id="mission" class="section">
-    <h2>Our Mission</h2>
-    <p>WhirlyOS focuses on <b>Education</b> and <b>Neurodiversity</b>. By stripping away AI clutter and focusing on cinematic, distraction-free interfaces, we help users with ADHD focus on what matters.</p>
-    <ul>
-        <li>Rock-solid Debian base.</li>
-        <li>i386 compatibility for legacy hardware.</li>
-        <li>Parental controls and screen time limits.</li>
-    </ul>
-</div>
-
 <div id="downloads" class="section">
-    <h2>Downloads</h2>
+    <div class="coming-soon-hero">
+        <div class="middle-content">
+            <h1 style="font-size: 40px; font-weight: bold;">COMING SOON</h1>
+            <hr class="sep">
+            <p>WhirlyOS Release: 2026 Phase</p>
+        </div>
+        <div style="position: absolute; bottom: 10px; left: 20px; font-size: 10px;">
+            <p>Based on Debian Stable 🐧</p>
+        </div>
+    </div>
+
+    <div class="chat-container darker">
+        <h2 style="color: var(--accent);">WonderRepo Documentation</h2>
+        <p><b>Copyright Notice:</b> Forked from hirohamada2014 (original owner). Moved to new GitHub for continued dev.</p>
+        <p style="margin: 10px 0;">WhirlyOS is a Debian-based ADHD-aware shell with screen time limits for health and focus.</p>
+        <div style="background: rgba(255,0,0,0.1); border-left: 4px solid red; padding: 10px; font-size: 11px; margin: 15px 0;">
+            <b>Warning:</b> Development is ongoing. Wait for an official release before installing on primary hardware.
+        </div>
+    </div>
+
+    <h3>Desktop Environments</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Edition</th>
+                <th>Environment</th>
+                <th>Inspiration</th>
+                <th>Specs</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>SoulFrame</td><td>GNOME</td><td>Soul</td><td>2GB RAM / 20GB Disk</td></tr>
+            <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>1GB RAM / 10GB Disk</td></tr>
+            <tr><td>ElementalDesk</td><td>KDE Plasma</td><td>Elemental</td><td>4GB RAM / 25GB Disk</td></tr>
+            <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>512MB RAM / 5GB Disk</td></tr>
+            <tr><td>QuestLand</td><td>Budgie</td><td>Onward</td><td>2GB RAM / 15GB Disk</td></tr>
+            <tr><td>IntellSpace</td><td>LXQt</td><td>Wall·E</td><td>1GB RAM / 8GB Disk</td></tr>
+        </tbody>
+    </table>
+
     <div class="chat-container">
-        <p><b>WhirlyOS_Assets_2026.zip</b></p>
-        <p style="font-size: 12px; color: #777;">Current Dev Build: Jan 2026 Phase</p>
-        <button style="padding: 10px 20px; background: #38bdf8; color: white; border: none; border-radius: 5px;">Download ZIP</button>
+        <h3>How to Install</h3>
+        <p><b>Windows:</b> Rufus or BalenaEtcher. <b>Linux:</b> <code>dd</code> command or Etcher.</p>
+        <code style="background: #000; color: #0f0; padding: 5px; display: block; margin-top: 10px;">sudo dd if=whirlyOS.iso of=/dev/sdx bs=4M status=progress</code>
     </div>
 </div>
 
-<button onclick="toggleChat()" style="position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; border-radius: 50px; background: #38bdf8; color: white; border: none; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-    <i class="fas fa-comment"></i> Ask Soul 26
+<button onclick="toggleChat()" style="position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; border-radius: 50px; background: #38bdf8; color: white; border: none; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 1001;">
+    <i class="fas fa-comment"></i> Soul 26
 </button>
 
 <div class="chat-popup" id="chatWindow">
-    <div style="padding: 15px; background: #38bdf8; color: white; display: flex; justify-content: space-between;">
-        <span><b>Soul 26 Assistant</b></span>
+    <div style="padding: 15px; background: #38bdf8; color: white; display: flex; justify-content: space-between; font-size: 12px;">
+        <span><b>Soul 26 (Debian Expert)</b></span>
         <button onclick="toggleChat()" style="background: none; border: none; color: white; cursor: pointer;">✕</button>
     </div>
     <div id="chat-messages">
         <div class="chat-container">
-            <p>Hello! I'm Soul 26. I'm an expert in <b>Linux</b>, <b>Debian</b>, and the <b>ADHD-friendly features</b> of WhirlyOS. Ask me anything, bro!</p>
-            <span class="time-right">13:51</span>
+            <p>Yo! Soul 26 here. I know everything about <b>WonderRepo</b> and <b>Debian</b>. Ask me about our Pixar editions or Linux building, bro!</p>
+            <p style="font-size: 9px; color: #777; margin-top: 5px;">Note: I may make mistakes. Verify documentation, sir.</p>
         </div>
     </div>
-    <div class="chat-input-area">
-        <input type="text" id="userInput" placeholder="Ask about Linux, building, or ADHD..">
-        <button onclick="handleChat()" style="background: #38bdf8; color: white; border: none; padding: 10px 15px; border-radius: 5px;">➤</button>
+    <div style="padding: 10px; border-top: 1px solid var(--border); display: flex; gap: 5px;">
+        <input type="text" id="userInput" placeholder="Ask about build scripts or specs..." style="flex: 1; padding: 8px; border-radius: 5px; background: var(--bg); color: var(--text); border: 1px solid var(--border); font-size: 12px;">
+        <button onclick="handleChat()" style="background: #38bdf8; color: white; border: none; padding: 10px; border-radius: 5px;">➤</button>
     </div>
 </div>
 
-<script>
-    function toggleTheme() {
-        document.documentElement.classList.toggle('dark');
-    }
+<footer style="padding: 40px; text-align: center; font-size: 10px; opacity: 0.5; border-top: 1px solid var(--border);">
+    <p>© 2026 WonderRepo | WhirlyOS is based on Debian Linux (Copyright Software in the Public Interest, Inc.)</p>
+    <div style="margin-top: 10px;">
+        <span style="color: #e34c26;">HTML 55.2%</span> | <span style="color: #89e051;">Shell 36.9%</span> | <span style="color: #3572A5;">Python 7.9%</span>
+    </div>
+</footer>
 
+<script>
+    function toggleTheme() { document.documentElement.classList.toggle('dark'); }
     function showSection(id) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
     }
-
     function toggleChat() {
         const win = document.getElementById('chatWindow');
         win.style.display = win.style.display === 'flex' ? 'none' : 'flex';
@@ -128,35 +166,22 @@
         const val = input.value.trim().toLowerCase();
         if(!val) return;
 
-        // User Message
         const userDiv = document.createElement('div');
         userDiv.className = "chat-container darker";
         userDiv.innerHTML = `<p>${input.value}</p><span class="time-left">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`;
         msgBox.appendChild(userDiv);
         input.value = "";
 
-        // AI Logic
         setTimeout(() => {
             const aiDiv = document.createElement('div');
             aiDiv.className = "chat-container";
-            let response = "I'm still learning about that, sir. But remember, WhirlyOS is still in dev!";
+            let response = "That sounds technical, sir! Check the WonderRepo README, bro.";
 
-            if(val.includes("what is whirlyos")) {
-                response = "WhirlyOS is a playful, ADHD-aware shell based on Debian Stable. It focuses on simple interfaces and screen time management, dude.";
-            } else if(val.includes("adhd") || val.includes("disorder")) {
-                response = "WhirlyOS is designed for neurodiversity. Disorders like ADHD make it hard to focus, so we use a minimal-clutter GNOME shell and parent tools to help manage focus, bro.";
-            } else if(val.includes("linux") || val.includes("debian")) {
-                response = "Linux is the kernel, and Debian is our base! Debian offers rock-solid reliability and APT package management. WhirlyOS forked from hirohamada2014 to keep the i386 dream alive, sir.";
-            } else if(val.includes("how to build") || val.includes("cubic")) {
-                response = "To build WhirlyOS, we are currently testing with <b>Cubic</b> after trying 0x OS Builder. You can fork the WonderRepo to see our scripts, dude.";
-            } else if(val.includes("calendar")) {
-                response = `Here is our current development sprint view, sir:<br><br>
-                    <div class="month"><ul><li>August 2021 (Reference)</li></ul></div>
-                    <ul class="weekdays"><li>Mo</li><li>Tu</li><li>We</li><li>Th</li><li>Fr</li><li>Sa</li><li>Su</li></ul>
-                    <ul class="days"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li><span class="active">10</span></li><li>11...</li></ul>`;
-            } else if(val.includes("distro") || val.includes("arch") || val.includes("kali")) {
-                response = "WhirlyOS is Debian-based, but technically you could build a variant on Arch or Ubuntu. However, for education, we stick to the stability of Debian, sir.";
-            }
+            if(val.includes("who is the owner")) response = "The owner moved from hirohamada2014 to this new account to fork and continue WhirlyOS development, sir.";
+            if(val.includes("specs") || val.includes("ram")) response = "We have editions from 512MB (NotebookOS) to 4GB (ElementalDesk). All are i386 compatible, bro!";
+            if(val.includes("debian")) response = "Debian Stable is our base, sir. It was founded in 1993 and provides the rock-solid reliability WhirlyOS needs.";
+            if(val.includes("build")) response = "We tried 0x OS Builder, but we're testing with Cubic next for the ISO, sir!";
+            if(val.includes("adhd")) response = "WhirlyOS is built for neurodiversity, bro. Screen time limits and simple shells help manage disorders related to focus.";
 
             aiDiv.innerHTML = `<p>${response}</p><span class="time-right">Soul 26</span>`;
             msgBox.appendChild(aiDiv);
