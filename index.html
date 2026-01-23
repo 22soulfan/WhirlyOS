@@ -12,8 +12,11 @@
         body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; transition: all 0.4s ease; }
         .dark body { background-color: #020617; color: #f8fafc; }
         .light body { background-color: #f8fafc; color: #0f172a; }
+        
+        /* Dyslexia Mode Styling */
         .dyslexia-mode { font-family: 'OpenDyslexic', sans-serif !important; letter-spacing: 0.1ch !important; word-spacing: 0.3ch !important; line-height: 1.6 !important; }
         @font-face { font-family: 'OpenDyslexic'; src: url('https://cdn.jsdelivr.net/npm/opendyslexic@1.0.3/OpenDyslexic-Regular.otf'); }
+        
         .glass { background: var(--glass); backdrop-filter: blur(20px) saturate(180%); border: 1px solid var(--border); }
         .page-section { display: none; opacity: 0; transform: translateY(15px); }
         .page-section.active { display: block; opacity: 1; transform: translateY(0); animation: fadeIn 0.5s ease-out; }
@@ -47,46 +50,49 @@
                 <div class="space-y-8">
                     <span class="px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 text-sky-400 text-[10px] font-bold uppercase tracking-widest">i386 Legacy Ready</span>
                     <h1 class="text-7xl md:text-8xl font-extrabold tracking-tighter leading-[0.85]">Find your <br><span class="text-gradient">Spark.</span></h1>
-                    <p class="text-lg opacity-60 max-w-xl">WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and healthy screen time limits.</p>
+                    <p class="text-lg opacity-60 max-w-xl leading-relaxed">WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools.</p>
                     <div class="flex gap-4">
                         <button onclick="showPage('install')" class="px-8 py-4 bg-sky-500 text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-sky-500/30 transition-all">How to Install</button>
                     </div>
                 </div>
-                <div class="chrome-card aspect-video relative group">
-                    <img src="whirlyos-wallpaper.png" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" alt="Preview">
-                    <div class="absolute inset-0 flex flex-col items-center justify-center">
-                        <div class="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 mb-4"></div>
-                        <p class="text-[10px] font-black uppercase tracking-[0.4em]">WhirlyOS Desktop Preview</p>
+                <div class="chrome-card aspect-video relative group bg-slate-900">
+                    <div class="absolute inset-0 flex flex-col items-center justify-center opacity-40">
+                        <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-sky-400 to-indigo-500 mb-4 shadow-2xl"></div>
+                        <p class="text-[10px] font-black uppercase tracking-[0.4em]">WhirlyOS Desktop</p>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold tracking-tighter mb-4">Try also these WhirlyOS desktop wallpapers</h2>
-                <p class="opacity-50">These wallpapers will make your desktop look perfect!</p>
+                <h2 class="text-3xl font-bold tracking-tighter mb-2">Try also these WhirlyOS desktop wallpapers</h2>
+                <p class="opacity-50 text-sm mb-4">These wallpapers will make your desktop look perfect!</p>
+                <p class="text-yellow-500 text-[10px] font-bold uppercase tracking-widest">Note: The images may not download properly due to session security.</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="chrome-card group">
-                    <img src="great_before_pixos.jpg" class="aspect-video object-cover group-hover:scale-105 transition-transform">
-                    <div class="p-4 flex justify-between items-center glass border-t-0">
-                        <span class="text-[9px] font-bold opacity-60">THE GREAT BEFORE</span>
-                        <a href="great_before_pixos.jpg" download class="px-3 py-1 bg-sky-500 text-white text-[9px] font-bold rounded">DOWNLOAD</a>
-                    </div>
-                </div>
-                <div class="chrome-card group">
-                    <img src="luxi_study_glow.jpg" class="aspect-video object-cover group-hover:scale-105 transition-transform">
-                    <div class="p-4 flex justify-between items-center glass border-t-0">
-                        <span class="text-[9px] font-bold opacity-60">LUXI STUDY GLOW</span>
-                        <a href="luxi_study_glow.jpg" download class="px-3 py-1 bg-sky-500 text-white text-[9px] font-bold rounded">DOWNLOAD</a>
-                    </div>
-                </div>
-                <div class="chrome-card group">
-                    <img src="pixi_forest.jpg" class="aspect-video object-cover group-hover:scale-105 transition-transform">
-                    <div class="p-4 flex justify-between items-center glass border-t-0">
-                        <span class="text-[9px] font-bold opacity-60">PIXI FOREST</span>
-                        <a href="pixi_forest.jpg" download class="px-3 py-1 bg-sky-500 text-white text-[9px] font-bold rounded">DOWNLOAD</a>
-                    </div>
-                </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
+                <script>
+                    const wallpaperLinks = [
+                        "blob:https://github.com/a486bfae-880c-4a9b-94d1-2fb4a084b4f4",
+                        "blob:https://github.com/26e50525-a6bd-41b2-835d-7b4a5223c1e5",
+                        "blob:https://github.com/c513eef7-0b9b-4d2b-95a4-76147fd53fea",
+                        "blob:https://github.com/ae0cc9c9-e84b-402f-8527-dfb10653d869",
+                        "blob:https://github.com/9540e076-0783-443f-9f0b-2e1bbb866530",
+                        "blob:https://github.com/803c1532-2837-42bf-9a6f-59641ec5c57b"
+                    ];
+                    wallpaperLinks.forEach((link, index) => {
+                        document.write(`
+                            <div class="chrome-card group">
+                                <div class="aspect-video bg-slate-800 overflow-hidden">
+                                    <img src="${link}" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.parentElement.innerHTML='<div class=\"flex items-center justify-center h-full text-[10px] opacity-30 uppercase\">Preview Unavailable</div>'">
+                                </div>
+                                <div class="p-4 flex justify-between items-center glass border-t-0">
+                                    <span class="text-[9px] font-bold opacity-60">WHIRLY WALLPAPER ${index + 1}</span>
+                                    <a href="${link}" download="whirlyos_wp_${index + 1}.png" class="px-3 py-1 bg-sky-500 text-white text-[9px] font-bold rounded">DOWNLOAD</a>
+                                </div>
+                            </div>
+                        `);
+                    });
+                </script>
             </div>
         </div>
     </main>
@@ -94,32 +100,38 @@
     <main id="mission" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto space-y-12">
             <div class="glass p-10 rounded-3xl border-l-4 border-sky-500">
-                <h2 class="text-4xl font-bold mb-4">WonderRepo Mission</h2>
-                <p class="opacity-70 leading-relaxed mb-6">Copyright Notice: I forked this repository from <strong>hirohamada2014</strong>, who is the original owner of WhirlyOS. hirohamada2014 was my old GitHub account, but I moved to a new one and forked this repo.</p>
+                <h2 class="text-4xl font-bold mb-4 tracking-tighter">WonderRepo Mission</h2>
+                <p class="opacity-70 leading-relaxed mb-6">
+                    A curated repository for building WhirlyOS Linux, based on Debian.<br><br>
+                    <strong>Copyright Notice:</strong> I forked this repository from <strong>hirohamada2014</strong>, who is the original owner of WhirlyOS. hirohamada2014 was my old GitHub account, but I moved to a new one and forked this repo.
+                </p>
                 <div class="bg-red-500/10 border border-red-500/30 p-4 rounded-xl text-xs text-red-400 mb-6">
-                    ⚠️ Warning: Development is ongoing. No releases have been made as of 2026.
+                    ⚠️ Development of WhirlyOS is still ongoing. Wait for a release.
                 </div>
-                <h3 class="font-bold text-sky-400 uppercase tracking-widest text-xs mb-4">🎬 Motto: "Find your spark. Find your way."</h3>
-                <p class="text-sm opacity-80">Inspired by Soul (2020), this reflects our mission to help users discover passion through technology. (Safe to use, non-official tagline).</p>
+                <h3 class="font-bold text-sky-400 uppercase tracking-widest text-[10px] mb-2">🎬 Motto: "Find your spark. Find your way."</h3>
+                <p class="text-sm opacity-60 mb-6 italic">Inspired by Soul (2020). It is not an official Disney or Pixar tagline.</p>
+                
+                <h4 class="font-bold text-xs uppercase tracking-widest mb-4">🐧 Base Distribution</h4>
+                <p class="text-sm opacity-70">WhirlyOS is based on <strong>Debian Stable</strong>, ensuring rock-solid reliability, access to thousands of APT packages, and hardware compatibility.</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-6 text-xs">
                 <div class="glass p-8 rounded-2xl">
-                    <h4 class="font-bold text-sky-400 mb-4 text-xs uppercase tracking-widest">🎯 Goals</h4>
-                    <ul class="text-xs space-y-3 opacity-80">
-                        <li>🧠 Inspire creativity via themed environments</li>
-                        <li>👨‍👩‍👧‍👦 Support families with parental controls</li>
-                        <li>💡 Cinematic flair and custom UI mascots</li>
-                        <li>🐧 Revive old i386 hardware</li>
-                        <li>👨‍🎓 Educational tools for homeschooling (No AI)</li>
+                    <h4 class="font-bold text-sky-400 mb-4 uppercase tracking-widest">🎯 Goals</h4>
+                    <ul class="space-y-3 opacity-70">
+                        <li>• Inspire creativity through themed environments</li>
+                        <li>• Support families with screen time tools</li>
+                        <li>• Revive old hardware with lightweight i386 editions</li>
+                        <li>• Optimized for homeschooling (No Artificial Intelligence)</li>
                     </ul>
                 </div>
                 <div class="glass p-8 rounded-2xl">
-                    <h4 class="font-bold text-sky-400 mb-4 text-xs uppercase tracking-widest">📅 Timeline (2025)</h4>
-                    <div class="text-[10px] space-y-2 opacity-70">
-                        <p><strong>JAN 2025:</strong> WhirlyOS building via Debian Linux. Asset creation phase.</p>
-                        <p><strong>STATUS:</strong> Preparing testing with <strong>Cubic</strong> next after 0x OS Builder attempts.</p>
-                    </div>
+                    <h4 class="font-bold text-sky-400 mb-4 uppercase tracking-widest">🛠️ Features</h4>
+                    <ul class="space-y-3 opacity-70">
+                        <li>• Preinstalled: GCompris, Scratch, TuxMath, TuxPaint</li>
+                        <li>• Creative: GIMP, Mu Editor, MuseScore, VLC</li>
+                        <li>• Cloud: Google Classroom, Docs, Drive, YT Kids</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -129,21 +141,22 @@
         <div class="max-w-6xl mx-auto">
             <h2 class="text-3xl font-bold mb-8 tracking-tighter">Desktop Environments</h2>
             <div class="overflow-x-auto glass rounded-2xl">
-                <table class="w-full text-left text-xs">
+                <table class="w-full text-left text-[11px]">
                     <thead class="bg-white/5 border-b border-white/10 uppercase font-bold text-sky-400">
                         <tr>
                             <th class="p-4">Edition</th>
-                            <th class="p-4">Desktop</th>
                             <th class="p-4">Inspired By</th>
                             <th class="p-4">Notes</th>
                             <th class="p-4">Specs</th>
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-white/5 opacity-80">
-                        <tr><td class="p-4 font-bold">SoulFrame</td><td class="p-4">GNOME</td><td class="p-4 italic">Soul</td><td class="p-4">Celestial UI</td><td class="p-4">2GB RAM / 20GB Disk</td></tr>
-                        <tr><td class="p-4 font-bold">MeiLite</td><td class="p-4">XFCE</td><td class="p-4 italic">Turning Red</td><td class="p-4">Retro 2002 Feel</td><td class="p-4">1GB RAM / 10GB Disk</td></tr>
-                        <tr><td class="p-4 font-bold">ElementalDesk</td><td class="p-4">KDE Plasma</td><td class="p-4 italic">Elemental</td><td class="p-4">Vibrant Elements</td><td class="p-4">4GB RAM / 25GB Disk</td></tr>
-                        <tr><td class="p-4 font-bold">NotebookOS</td><td class="p-4">Openbox</td><td class="p-4 italic">Luca</td><td class="p-4">Seaside Calm</td><td class="p-4">512MB RAM / 5GB Disk</td></tr>
+                        <tr><td class="p-4 font-bold">SoulFrame (GNOME)</td><td class="p-4 italic">Soul</td><td class="p-4 text-slate-500">Celestial UI / Dream interface</td><td class="p-4">2GB RAM / 20GB Disk</td></tr>
+                        <tr><td class="p-4 font-bold">MeiLite (XFCE)</td><td class="p-4 italic">Turning Red</td><td class="p-4 text-slate-500">Fast / Expressive / Retro 2002 Feel</td><td class="p-4">1GB RAM / 10GB Disk</td></tr>
+                        <tr><td class="p-4 font-bold">ElementalDesk (KDE)</td><td class="p-4 italic">Elemental</td><td class="p-4 text-slate-500">Vibrant / Customizable UI</td><td class="p-4">4GB RAM / 25GB Disk</td></tr>
+                        <tr><td class="p-4 font-bold">NotebookOS (Openbox)</td><td class="p-4 italic">Luca</td><td class="p-4 text-slate-500">Minimal / Seaside Calm</td><td class="p-4">512MB RAM / 5GB Disk</td></tr>
+                        <tr><td class="p-4 font-bold">QuestLand (Budgie)</td><td class="p-4 italic">Onward</td><td class="p-4 text-slate-500">Adventurous / Magical Desktop</td><td class="p-4">2GB RAM / 15GB Disk</td></tr>
+                        <tr><td class="p-4 font-bold">IntellSpace (LXQt)</td><td class="p-4 italic">Wall·E</td><td class="p-4 text-slate-500">Futuristic / Efficient / Windows 7 style</td><td class="p-4">1GB RAM / 8GB Disk</td></tr>
                     </tbody>
                 </table>
             </div>
@@ -153,31 +166,26 @@
     <main id="install" class="page-section pt-48 pb-20 px-6">
         <div class="max-w-4xl mx-auto">
             <h2 class="text-3xl font-bold mb-8">How to Install</h2>
-            <div class="grid md:grid-cols-3 gap-6 mb-12">
-                <div class="glass p-6 rounded-xl"><h4 class="font-bold mb-2">Linux</h4><p class="text-[10px] opacity-60">BalenaEtcher or DD command</p></div>
-                <div class="glass p-6 rounded-xl"><h4 class="font-bold mb-2">Windows</h4><p class="text-[10px] opacity-60">Rufus or BalenaEtcher</p></div>
-                <div class="glass p-6 rounded-xl"><h4 class="font-bold mb-2">MacOS</h4><p class="text-[10px] opacity-60">BalenaEtcher (10.15+)</p></div>
+            <div class="bg-red-500/10 border border-red-500/30 p-6 rounded-2xl mb-8">
+                <h4 class="font-bold text-red-400 mb-2 uppercase text-xs">⚠️ Warning & Liability</h4>
+                <p class="text-[10px] opacity-80 leading-relaxed">Install at your own risk. The owner of WhirlyOS is not responsible for any hardware damage or warranty void. Be careful when partitioning drives for dual boot.</p>
             </div>
             
-            <div class="bg-red-500/10 border border-red-500/30 p-6 rounded-2xl mb-8">
-                <h4 class="font-bold text-red-400 mb-2">⚠️ WARNING</h4>
-                <p class="text-[11px] opacity-80 leading-relaxed">Install at your own risk. Improper installation may void warranty. The creator of WhirlyOS is not responsible for hardware damage. Make sure to have a backup of your original OS.</p>
-            </div>
-
-            <div class="space-y-4">
+            <div class="grid md:grid-cols-2 gap-8 text-[11px]">
                 <div class="glass p-6 rounded-xl">
-                    <h4 class="font-bold mb-4 text-sky-400">Windows Installation Steps:</h4>
-                    <ol class="text-xs space-y-2 opacity-80 list-decimal pl-4">
+                    <h4 class="font-bold mb-4 text-sky-400 uppercase tracking-widest">On Windows:</h4>
+                    <ol class="space-y-3 opacity-80 list-decimal pl-4">
                         <li>Download bootable USB creator (Rufus/Etcher).</li>
                         <li>Download WhirlyOS ISO from repository releases.</li>
                         <li>Flash ISO to USB drive.</li>
-                        <li>Restart and enter Boot Manager (F10, F12, or Del).</li>
-                        <li>Disable Secure Boot if necessary to avoid security violations.</li>
+                        <li>Restart computer and enter Boot Manager (Del, F10, F12).</li>
+                        <li>Disable Secure Boot if necessary.</li>
                     </ol>
                 </div>
                 <div class="glass p-6 rounded-xl">
-                    <h4 class="font-bold mb-4 text-sky-400">Linux (dd command):</h4>
-                    <code class="block bg-black/40 p-4 rounded text-[10px] text-green-400">sudo dd if=path/to/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
+                    <h4 class="font-bold mb-4 text-sky-400 uppercase tracking-widest">On Linux (dd command):</h4>
+                    <code class="block bg-black/40 p-4 rounded text-green-400 mb-4">sudo dd if=path/to/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsync</code>
+                    <p class="opacity-50 italic">Note: It is recommended to use BalenaEtcher if you are not advanced with terminal commands.</p>
                 </div>
             </div>
         </div>
@@ -191,19 +199,21 @@
                 <h4 class="font-bold text-xs">Soul 26</h4>
                 <button onclick="toggleChat()" class="ml-auto opacity-50">✕</button>
             </div>
-            <div id="chat-messages" class="h-64 overflow-y-auto p-4 space-y-4 text-[10px]">
-                <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none">Hello! I'm Soul 26. Ask me about WhirlyOS, ADHD support, or Linux!</div>
+            <div id="chat-messages" class="h-64 overflow-y-auto p-4 space-y-4 text-[10px] bg-slate-900/40">
+                <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none">Hello! I'm Soul 26. I can tell you about WhirlyOS, our Debian base, education features, or ADHD support!</div>
             </div>
             <div class="p-4 bg-white/5 border-t border-white/10 flex gap-2">
-                <input type="text" id="chat-input" placeholder="Ask something..." class="flex-1 bg-white/10 rounded-xl px-3 py-2 text-[10px] focus:outline-none text-white">
+                <input type="text" id="chat-input" placeholder="Ask Soul 26..." class="flex-1 bg-white/10 rounded-xl px-3 py-2 text-[10px] focus:outline-none text-white">
                 <button onclick="sendMessage()" class="p-2 bg-sky-500 rounded-xl">➤</button>
             </div>
         </div>
     </div>
 
-    <footer class="mt-20 border-t border-white/5 py-10 px-6 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <div class="text-[9px] font-bold uppercase tracking-[0.3em] opacity-30">© 2026 WonderRepo // MIT License</div>
-        <div class="flex gap-4 text-[9px] font-black opacity-20 uppercase tracking-widest">
+    <footer class="mt-20 border-t border-white/5 py-10 px-6 max-w-6xl mx-auto flex flex-col items-center gap-4">
+        <div class="text-[9px] font-bold uppercase tracking-[0.3em] opacity-30 text-center">
+            © 2026 WonderRepo // WHIRLYOS IS OPEN-SOURCE UNDER MIT LICENSE
+        </div>
+        <div class="flex gap-4 text-[8px] font-black opacity-20 uppercase tracking-widest grayscale">
             <span>HTML 46.2%</span><span>Shell 44.3%</span><span>Python 9.5%</span>
         </div>
     </footer>
@@ -216,7 +226,12 @@
         }
         function toggleTheme() {
             const h = document.documentElement;
-            h.classList.contains('dark') ? (h.classList.remove('dark'), h.classList.add('light')) : (h.classList.remove('light'), h.classList.add('dark'));
+            const btn = document.getElementById('theme-toggle');
+            if(h.classList.contains('dark')) {
+                h.classList.remove('dark'); h.classList.add('light'); btn.innerText = '☀️';
+            } else {
+                h.classList.remove('light'); h.classList.add('dark'); btn.innerText = '🌙';
+            }
         }
         function toggleDyslexiaMode() {
             const b = document.body;
@@ -232,14 +247,17 @@
             u.innerText = i.value; c.appendChild(u);
             const q = i.value.toLowerCase(); i.value = "";
             setTimeout(() => {
-                const b = document.createElement('div'); b.className = "bg-white/10 p-3 rounded-2xl rounded-tl-none max-w-[80%]";
-                let r = "I'm Soul 26! WhirlyOS is ADHD-aware and runs on i386 hardware.";
-                if(q.includes("adhd")) r = "We use minimal interfaces and screen time limits to help focus.";
-                if(q.includes("linux")) r = "WhirlyOS is based on Debian Stable for rock-solid reliability.";
-                if(q.includes("dyslexia")) r = "While not built into the OS yet, our website supports Dyslexia Access mode!";
+                const b = document.createElement('div'); b.className = "bg-white/10 p-3 rounded-2xl rounded-tl-none max-w-[80%] border border-white/5";
+                let r = "I'm Soul 26! WhirlyOS is designed for focus and creativity.";
+                if(q.includes("adhd")) r = "WhirlyOS is ADHD-aware. We use simple interfaces and screen time limits to keep you healthy and free from distraction.";
+                if(q.includes("linux") || q.includes("debian")) r = "WhirlyOS is based on Debian Stable, which means rock-solid reliability and access to thousands of packages via APT.";
+                if(q.includes("dyslexia") || q.includes("autism")) r = "While the distro won't have a built-in Dyslexia mode, we advocate for accessibility. This website has a Dyslexia Access toggle, and we support calm modes for autism.";
+                if(q.includes("education") || q.includes("school")) r = "WhirlyOS is for homeschooling and schools. It provides tools like Scratch and GCompris without AI interference to help you find your spark!";
+                if(q.includes("release")) r = "Development is ongoing. No releases have been made as of 2026, but we are testing with Cubic soon!";
                 b.innerText = r; c.appendChild(b); c.scrollTop = c.scrollHeight;
-            }, 500);
+            }, 600);
         }
+        document.getElementById('chat-input').onkeypress = (e) => { if(e.key === "Enter") sendMessage(); };
     </script>
 </body>
 </html>
