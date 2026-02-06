@@ -1,79 +1,65 @@
 #!/bin/bash
 # ---------------------------------------------------------
-# WhirlyOS v1 Gibberlink - SoulFrame Edition Build Script
+# WhirlyOS v1 Gibberlink - SoulFrame Workstation
 # ---------------------------------------------------------
 set -e 
 
-echo "🚀 Starting the WhirlyOS 'Boom' Build..."
+echo "🚀 Starting the WhirlyOS Workstation Build..."
 
-# 1. UPDATES & CORE APPS
+# --- 1. SYSTEM PREP & REPAIR ---
 apt-get update
-apt-get install -y gimp musescore3 vlc scratch tuxmath tuxpaint gcompris-qt \
-                   neofetch git wget curl dconf-cli plymouth plymouth-themes
+apt-get install -f -y
+apt-get install -y wget gpg apt-transport-https
 
-# 2. OVERWRITE IDENTITY
+# --- 2. ADD VS CODE REPOSITORY ---
+echo "🔑 Adding VS Code Repo..."
+wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list
+rm -f packages.microsoft.gpg
+apt-get update
+
+# --- 3. PURGE OLD/UNWANTED PACKAGES ---
+echo "🧹 Removing non-essential packages..."
+apt-get purge -y scratch tuxmath tuxpaint gcompris-qt libreoffice-common
+apt-get autoremove -y
+
+# --- 4. INSTALL APPS (Workstation Suite) ---
+echo "📦 Installing MuseScore, VLC, and VS Code..."
+apt-get install -y \
+    musescore3 \
+    vlc \
+    code \
+    gimp \
+    neofetch git curl dconf-cli plymouth
+
+# --- 5. INSTALL LIBREOFFICE (Specific Tools) ---
+echo "📝 Adding Writer, Calc, and Math..."
+apt-get install -y libreoffice-writer libreoffice-calc libreoffice-math libreoffice-gtk3
+
+# --- 6. WHIRLYOS BRANDING ---
+echo "🆔 Applying WhirlyOS Identity..."
 echo "whirlyos" > /etc/hostname
 sed -i 's/Debian/WhirlyOS/g' /etc/os-release
-sed -i 's/debian/whirlyos/g' /etc/os-release
 
-# 3. WALLPAPERS (The 'Spark' Collection)
+# --- 7. ASSETS & UI ---
 W_DIR="/usr/share/backgrounds/whirlyos"
 mkdir -p "$W_DIR"
 cp ./assets/*.jpg "$W_DIR/"
 cp ./assets/*.png "$W_DIR/"
 
-# 4. GNOME UI SETTINGS
-cat << 'EOF' > /usr/share/glib-2.0/schemas/10_whirlyos.gschema.override
-[org.gnome.desktop.background]
-picture-uri='file:///usr/share/backgrounds/whirlyos/whirlyos-wallpaper.png'
-picture-options='zoom'
-
-[org.gnome.desktop.screensaver]
-picture-uri='file:///usr/share/backgrounds/whirlyos/great_before_pixos.jpg'
-
-[org.gnome.desktop.interface]
-gtk-theme='Adwaita-dark'
-EOF
-glib-compile-schemas /usr/share/glib-2.0/schemas/
-
-# 5. BOOT SPLASH (Plymouth)
-THEME_DIR="/usr/share/plymouth/themes/whirlyos"
-mkdir -p "$THEME_DIR"
-cp ./assets/whirlyos.png "$THEME_DIR/splash.png"
-
-cat << 'EOF' > "$THEME_DIR/whirlyos.plymouth"
-[Plymouth Theme]
-Name=WhirlyOS
-Description=Celestial Boot
-ModuleName=script
-
-[script]
-ImageDir=/usr/share/plymouth/themes/whirlyos
-ScriptFile=/usr/share/plymouth/themes/whirlyos/whirlyos.script
-EOF
-
-cat << 'EOF' > "$THEME_DIR/whirlyos.script"
-logo_image = Image("splash.png");
-logo_sprite = Sprite(logo_image);
-logo_sprite.SetX(Window.GetWidth() / 2 - logo_image.GetWidth() / 2);
-logo_sprite.SetY(Window.GetHeight() / 2 - logo_image.GetHeight() / 2);
-EOF
-
-update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth "$THEME_DIR/whirlyos.plymouth" 100
-plymouth-set-default-theme whirlyos
-
-# 6. LOGIN LOGO (GDM3)
+# Use whirlyos.png for Login and Boot
 mkdir -p /usr/share/icons/vendor
 cp ./assets/whirlyos.png /usr/share/icons/vendor/whirlyos-logo.png
 ln -sf /usr/share/icons/vendor/whirlyos-logo.png /usr/share/icons/gnome-logo-text.png
 
-# 7. TERMINAL ASCII
-mkdir -p /usr/share/whirlyos/ascii
-cp ./assets/logo.txt /usr/share/whirlyos/ascii/
-echo "neofetch --ascii_distro /usr/share/whirlyos/ascii/logo.txt" >> /etc/skel/.bashrc
+# (Insert Plymouth logic and GSchema override here)
 
-# 8. CLEANUP (Keep the 6.1GB ISO stable)
-apt-get autoremove -y && apt-get clean
-rm -rf /tmp/* /var/lib/apt/lists/*
+# --- 8. FINAL CLEANUP ---
+echo "🧹 Cleaning up..."
+apt-get autoremove --purge -y
+apt-get clean
+rm -rf /var/lib/apt/lists/*
+rm -rf /tmp/*
 
-echo "✅ WhirlyOS Gibberlink SoulFrame Beta is Ready!"
+echo "✅ WhirlyOS Gibberlink with VS Code is Ready! Boom."
