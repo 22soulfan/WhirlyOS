@@ -15,31 +15,25 @@
         body { background-color: var(--bg); color: var(--text); font-family: var(--font); transition: all 0.4s ease; margin: 0; }
         .glass { background: var(--card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
         
-        /* Legacy Mode Specifics */
         .mode-legacy nav { border-bottom: 3px double #808080; background: #d4d0c8; color: black; }
         .mode-legacy .btn { border: 2px outset #ffffff; background: #d4d0c8; color: black; border-radius: 0; }
         
-        /* Navigation */
         nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; position: fixed; width: 100%; top: 0; z-index: 100; transition: 0.3s; }
         
-        /* Content Sections */
         .section { display: none; padding: 120px 8% 50px; animation: fadeIn 0.5s; }
         .active { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Tables & Lists */
         table { width: 100%; border-collapse: collapse; margin: 20px 0; background: var(--card); }
-        th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; font-size: 13px; }
+        th, td { border: 1px solid rgba(255,255,255,0.1); padding: 12px; text-align: left; font-size: 12px; }
         .mode-legacy th, .mode-legacy td { border: 1px solid #808080; color: black; }
         
-        /* Chat Styling */
         .chat-container { border: 2px solid rgba(255,255,255,0.1); background: var(--card); border-radius: 8px; padding: 12px; margin: 10px 0; font-size: 13px; position: relative; }
         .darker { border-color: var(--accent); background: rgba(56, 189, 248, 0.1); }
         .chat-popup { display: none; position: fixed; bottom: 85px; right: 20px; width: 350px; height: 500px; z-index: 1000; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1px solid var(--accent); background: var(--bg); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
         
-        /* Coming Soon Hero */
-        .coming-soon { height: 300px; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80'); background-size: cover; display: flex; align-items: center; justify-content: center; flex-direction: column; border-radius: 15px; margin-bottom: 30px; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
+        .readme-block { text-align: left; max-width: 900px; margin: auto; line-height: 1.6; }
     </style>
 </head>
 <body class="no-scrollbar">
@@ -68,79 +62,67 @@
             <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 text-[10px] border border-indigo-500/30 rounded font-bold">DEBIAN STABLE</span>
         </div>
         <h1 class="text-7xl font-black tracking-tighter leading-none mb-6">Find your <br><span style="color:var(--accent)">Spark.</span></h1>
-        <p class="text-lg opacity-60 mb-10 italic">"The journey is the reward. Find your way with WhirlyOS."</p>
+        <p class="text-lg opacity-60 mb-10 italic">"Find your spark. Find your way."</p>
         <div class="flex justify-center gap-4 mb-12">
             <button onclick="showSection('downloads')" class="btn px-8 py-4 bg-sky-500 text-white rounded-xl font-bold hover:scale-105 transition">Get WhirlyOS</button>
-            <button onclick="showSection('mission')" class="btn px-8 py-4 glass rounded-xl font-bold">The Mission</button>
-        </div>
-        <div class="glass p-4 rounded-3xl border-2 border-dashed border-white/10 aspect-video flex items-center justify-center opacity-40">
-            [ WhirlyOS v1.1 "Boom" Preview ]
+            <button onclick="showSection('mission')" class="btn px-8 py-4 glass rounded-xl font-bold">Read the README</button>
         </div>
     </div>
 </div>
 
 <div id="downloads" class="section">
-    <div class="coming-soon">
-        <h1 class="text-4xl font-bold">V1.1 RELEASED</h1>
-        <div class="w-24 h-1 bg-sky-500 my-4"></div>
-        <p class="text-xs tracking-widest uppercase">WhirlyOS 2026 Phase</p>
-    </div>
-
     <div class="chat-container darker mb-8">
-        <h2 class="text-xl font-bold mb-2">WonderRepo Curated Builds</h2>
-        <p class="text-xs opacity-70"><b>Copyright Notice:</b> Maintained by 22soulfan. Project forked from hirohamada2014.</p>
-        <p class="mt-4 text-xs">WhirlyOS is a successful Debian-based Linux distribution designed for neurodiversity and ADHD-friendly computing environments.</p>
+        <h2 class="text-xl font-bold mb-2">Release Archive</h2>
+        <p class="text-xs">WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces and seamless access to browser-based learning tools.</p>
     </div>
 
-    <h3 class="font-bold mb-4 uppercase text-xs tracking-widest text-sky-400">Stable Editions</h3>
     <table>
         <thead>
-            <tr><th>Edition</th><th>Environment</th><th>Inspiration</th><th>Download Link</th></tr>
+            <tr><th>Edition</th><th>Environment</th><th>Inspired By</th><th>Specs</th><th>Download</th></tr>
         </thead>
         <tbody>
             <tr>
                 <td class="font-bold text-sky-400">SoulFrame</td>
                 <td>GNOME</td>
                 <td>Soul (2020)</td>
+                <td>2GB RAM, 20GB Disk</td>
                 <td>
-                    <div class="flex flex-col gap-2">
-                        <span class="text-[10px]">2GB RAM / 20GB Disk</span>
-                        <a href="#" target="_blank" class="btn px-3 py-2 bg-sky-500 text-white text-[10px] text-center rounded font-bold hover:bg-white hover:text-sky-500 transition">
-                            <i class="fab fa-google-drive mr-1"></i> DOWNLOAD FROM DRIVE
-                        </a>
-                        <span class="text-[8px] opacity-40">whirlyos-v1-amd64-gnome.iso</span>
-                    </div>
+                    <a href="#" target="_blank" class="btn px-3 py-2 bg-sky-500 text-white text-[10px] rounded font-bold">
+                        <i class="fab fa-google-drive mr-1"></i> GOOGLE DRIVE (AMD64)
+                    </a>
                 </td>
             </tr>
-            <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>Testing (i386)</td></tr>
-            <tr><td>ElementalDesk</td><td>KDE Plasma</td><td>Elemental</td><td>Planned</td></tr>
-            <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>Testing (i386)</td></tr>
+            <tr><td>MeiLite</td><td>XFCE</td><td>Turning Red</td><td>1GB RAM, 10GB Disk</td><td>Testing (i386)</td></tr>
+            <tr><td>NotebookOS</td><td>Openbox</td><td>Luca</td><td>512MB RAM, 5GB Disk</td><td>Testing (i386)</td></tr>
         </tbody>
     </table>
-
-    <div class="grid md:grid-cols-2 gap-6 mt-8">
-        <div class="chat-container">
-            <h4 class="font-bold mb-2">Flash to USB (Linux)</h4>
-            <code class="block bg-black p-3 rounded text-green-400 text-[10px]">sudo dd if=whirlyos-v1-amd64-gnome.iso of=/dev/sdx bs=4M status=progress</code>
-        </div>
-        <div class="chat-container">
-            <h4 class="font-bold mb-2">Flash to USB (Windows)</h4>
-            <p class="text-[10px]">Use <b>Rufus</b> or <b>BalenaEtcher</b> for a reliable installation process.</p>
-        </div>
-    </div>
 </div>
 
 <div id="mission" class="section">
-    <div class="max-w-3xl">
-        <h2 class="text-3xl font-bold mb-6">🎯 Project Goals</h2>
-        <ul class="space-y-4 text-sm opacity-80">
-            <li>🧠 <b>Success:</b> WhirlyOS v1.1 has reached a stable release milestone.</li>
-            <li>👨‍👩‍👧‍👦 <b>Support:</b> Providing distraction-free tools for neurodivergent students.</li>
-            <li>🐧 <b>Reliability:</b> Built on a rock-solid Debian foundation for the 2026 phase.</li>
+    <div class="readme-block">
+        <h2 class="text-4xl font-bold text-sky-400 mb-6">WonderRepo // README.md</h2>
+        <p class="mb-4">A curated repository for building <strong>WhirlyOS Linux</strong>, based on Debian.</p>
+        <p class="text-sm opacity-70 border-l-2 border-sky-500 pl-4 mb-8">
+            <strong>Copyright Notice:</strong> I forked this repository from hirohamada2014, who is the original owner of WhirlyOS. hirohamada214 was my old GitHub account, but I moved to a new one and forked this repo.
+        </p>
+
+        <h3 class="text-2xl font-bold mb-4">Motto: Find your spark. Find your way.</h3>
+        <p class="mb-8">Inspired by <i>Soul</i> (2020), this motto reflects WhirlyOS’s mission to help users discover their passion through technology. It is not an official Disney or Pixar tagline and is safe to use.</p>
+
+        <h3 class="text-xl font-bold mb-4">🎯 Goals</h3>
+        <ul class="list-disc ml-6 space-y-2 mb-8">
+            <li>🧠 <strong>Inspire creativity</strong> through themed desktop environments.</li>
+            <li>👨‍👩‍👧‍👦 <strong>Support families</strong> with built-in parental controls and screen time tools to keep you free from distraction.</li>
+            <li>🐧 <strong>Revive old hardware</strong> with lightweight editions (i386).</li>
+            <li>👨‍🎓 <strong>Education Focused:</strong> For homeschooling and schools, providing tools like GCompris, Scratch, and TuxPaint (without AI).</li>
         </ul>
-        <div class="mt-10 p-6 border-l-4 border-yellow-500 bg-yellow-500/10 text-xs">
-            <b>Disclaimer:</b> Always backup your data before installing a new operating system.
+
+        <div class="p-4 bg-yellow-500/10 border border-yellow-500/50 rounded mb-8 text-xs">
+            <strong>Warning:</strong> Improper installation may result in warranty void. The owner is not responsible for hardware damage. Always clean install your original OS in case of emergency.
         </div>
+        
+        <h3 class="text-xl font-bold mb-4">🛠️ Building the ISO</h3>
+        <p class="text-sm mb-4">I made lots of attempts to build WhirlyOS using 0x OS Builder. I have to test with Cubic next!</p>
     </div>
 </div>
 
@@ -153,31 +135,27 @@
         <span>Soul 26 Assistant</span>
         <button onclick="toggleChat()">✕</button>
     </div>
-    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 no-scrollbar">
+    <div id="chat-messages" class="flex-1 overflow-y-auto p-4 no-scrollbar bg-black/10">
         <div class="chat-container">
-            <p>Greetings. I am the Soul 26 Assistant. I can provide technical details regarding the successful release of WhirlyOS. How may I assist you today?</p>
+            <p>Greetings. I am the Soul 26 Assistant. I have been updated with the WonderRepo README data. How may I assist you with WhirlyOS today?</p>
         </div>
     </div>
     <div class="p-3 border-t border-white/10 flex gap-2">
-        <input type="text" id="chatInput" placeholder="Inquire about specs or releases..." class="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-[11px] focus:outline-none focus:border-sky-500">
+        <input type="text" id="chatInput" placeholder="Ask about specs, history, or builds..." class="flex-1 bg-white/5 border border-white/10 rounded px-3 py-2 text-[11px] focus:outline-none focus:border-sky-500">
         <button onclick="sendMsg()" class="bg-sky-500 text-white px-3 py-2 rounded">➤</button>
     </div>
 </div>
 
 <footer class="p-10 border-t border-white/10 text-center opacity-30 text-[9px] uppercase tracking-widest">
-    © 2026 WonderRepo // Forked from hirohamada2014 // WhirlyOS v1.1 "Boom" Success
+    © 2026 WonderRepo // Licensed under MIT // HTML 55.2% Shell 36.9% Python 7.9%
 </footer>
 
 <script>
-    function setMode(mode) {
-        document.documentElement.className = 'mode-' + mode;
-    }
-
+    function setMode(mode) { document.documentElement.className = 'mode-' + mode; }
     function showSection(id) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
     }
-
     function toggleChat() {
         const chat = document.getElementById('chatWindow');
         chat.style.display = chat.style.display === 'flex' ? 'none' : 'flex';
@@ -198,22 +176,22 @@
         setTimeout(() => {
             const aiDiv = document.createElement('div');
             aiDiv.className = "chat-container";
-            let r = "I am ready to provide information on WhirlyOS. Please ask about specifications or availability.";
+            let r = "I am processing your inquiry. Please specify if you are asking about SoulFrame, MeiLite, or installation methods.";
 
             if (val.includes("developed") || val.includes("is it out") || val.includes("released") || val.includes("success")) {
-                r = "WhirlyOS v1.1 'Boom' has been successfully developed. The official ISO is released and is currently available for download via Google Drive.";
+                r = "WhirlyOS v1.1 'Boom' (AMD64) is a successful release and is now available on Google Drive. We are currently testing the i386 compatibility releases using Cubic.";
             } 
-            else if (val.includes("specs") || val.includes("requirements") || val.includes("hardware")) {
-                r = "The SoulFrame (GNOME) edition requires 2GB of RAM and 20GB of disk space. It is fully optimized for the amd64 architecture.";
+            else if (val.includes("specs") || val.includes("requirements")) {
+                r = "Specs vary by edition. SoulFrame requires 2GB RAM and 20GB disk. MeiLite requires 1GB RAM and 10GB disk. NotebookOS is our lightest, requiring only 512MB RAM.";
             }
-            else if (val.includes("download") || val.includes("iso") || val.includes("google drive")) {
-                r = "The whirlyos-v1-amd64-gnome.iso file is ready. You can find the secure Google Drive link in our Downloads section.";
+            else if (val.includes("history") || val.includes("owner") || val.includes("hirohamada")) {
+                r = "WhirlyOS was originally created by hirohamada2014 (hirohamada214). The project was forked to this new account to continue development under the WonderRepo brand.";
             }
-            else if (val.includes("debian")) {
-                r = "WhirlyOS is built on the stable Debian foundation, providing a reliable experience for users with diverse needs.";
+            else if (val.includes("adhd") || val.includes("distraction") || val.includes("screen time")) {
+                r = "WhirlyOS is designed to be ADHD-aware. It includes a screen time limit feature and a distraction-free shell to promote healthy computing habits.";
             }
-            else if (val.includes("who made") || val.includes("owner")) {
-                r = "The project is currently led by 22soulfan, maintaining and expanding the curated builds of WonderRepo.";
+            else if (val.includes("google drive") || val.includes("download")) {
+                r = "The official ISO for the SoulFrame edition is hosted on Google Drive for stability. You can find the link in the Downloads section.";
             }
 
             aiDiv.innerHTML = `<p>${r}</p>`;
