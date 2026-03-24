@@ -22,8 +22,14 @@ cd /tmp/neofetch && make install && cd -
 
 # --- STEP 3: BRANDING & LOGO ---
 echo "🎨 Applying WhirlyOS Branding..."
-mkdir -p /etc/neofetch
 
+# 1. Move the logo to a public system directory so students can see it
+# (Assuming your logo.txt is currently in the folder where you run the script)
+mkdir -p /usr/share/whirlyos
+cp logo.txt /usr/share/whirlyos/logo.txt || echo "⚠️ logo.txt not found in current directory!"
+
+# 2. Create the global Neofetch configuration
+mkdir -p /etc/neofetch
 cat <<EOF > /etc/neofetch/config.conf
 print_info() {
     info title
@@ -39,13 +45,22 @@ print_info() {
     info "Memory" memory
 }
 image_backend="ascii"
-image_source="/root/WhirlyOS/logo.txt"
-# Colors: 6 (Cyan) matches whirlyos.png accents, 7 (White) for text
+image_source="/usr/share/whirlyos/logo.txt"
+# Colors: 6 (Cyan), 7 (White)
 ascii_colors=(6 7)
 EOF
 
-# Ensure Neofetch runs for every user on login
-echo "neofetch --config /etc/neofetch/config.conf" >> /etc/skel/.bashrc
+# 3. FIX: Create a system-wide ALIAS so typing 'neofetch' always uses your config
+# We put this in /etc/bash.bashrc so it applies to EVERY user automatically
+cat <<EOF >> /etc/bash.bashrc
+
+# WhirlyOS Custom Neofetch Alias
+alias neofetch='neofetch --config /etc/neofetch/config.conf'
+EOF
+
+# 4. Ensure it runs automatically on login for the 'Student' user
+# Adding it to /etc/skel ensures every NEW user gets this behavior
+echo "neofetch" >> /etc/skel/.bashrc
 
 # --- STEP 4: WALLPAPER SETUP ---
 echo "🖼️ Migrating Wallpapers..."
