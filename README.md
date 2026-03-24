@@ -45,7 +45,7 @@ It is not an official Disney or Pixar tagline and is safe to use.
 | **ElementalDesk**  | KDE Plasma               | *Elemental*         | Vibrant, customizable, elemental UI            | The classical elements (not the elements of the periodic table) fit perfectly in Plasma | 4 GB RAM, 25 GB disk               |
 | **NotebookOS**     | Openbox                  | *Luca*              | Minimal, seaside calm, fast boot               | Since, older time periods gave this perfect interface of the old BunsenLabs into WhirlyOS to the run | 512 MB RAM, 5 GB disk              |
 | **QuestLand**      | Budgie                   | *Onward*            | Adventurous, magical, modern desktop           | For fantasy fans, this is the perfect desktop for them | 2 GB RAM, 15 GB disk               |
-| **IntellSpace**    | LXQt                     | *Wall·E*            | Futuristic, efficient, low-resource            | Since the movie is released in 2008, LXQt gives teh Windows 7 interface back to life | 1 GB RAM, 8 GB disk                |
+| **IntellSpace**    | LXQt                     | *Wall·E*            | Futuristic, efficient, low-resource            | Since the movie is released in 2008, LXQt gives this Windows 7 interface back to life | 1 GB RAM, 8 GB disk                |
   
 ## 🎯 Goals
 
@@ -140,9 +140,52 @@ sudo dd if=path/to/your/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsyn
 
 ---
 
-## Building the ISO or Image
+## Building the ISO or Image and turning a Linux distro into WhirlyOS
     
-We don't support building WhirlyOS, but you may want to fork the repository.
+You can build your own WhirlyOS ISO if you want to, and you can base them on any Linux distro. You just need the following tools:
+
+- A Linux distribution (choose those based on Ubuntu or Debian) or Windows Subsystem for Linux (if on Windows 10/11)
+- Cubic (Custom Ubuntu ISO Creator)
+- Any Linux ISO (use the latest version for security)
+
+You can turn a Linux distro into WhirlyOS as well!
+
+To build WhirlyOS:
+
+For Windows:
+
+1. Make sure you have WSL2 installed. If not, hold Windows Key + R, type "optionalfeatures", and it will redirect to the Optional Features program. Find Windows Subsystem for Linux and Virtual Machine Platform and select them all. Click OK then wait. You might have to restart your computer after.
+2. After restart, login and go to Microsoft Store. Find a Linux distro (Ubuntu or Debian) and install. You can setup this distro on WSL.
+3. Now after you setup, go to your browser and download Cubic. You can follow its instructions in its GitHub repository: https://github.com/PJ-Singh-001/Cubic.
+4. You also have to download a Linux ISO as well so you can use it to customize.
+5. Open Cubic and then follow the instructions. Point the program to the location where you download the Linux ISO.
+6. Fill the information needed (you can customize whatever you want.) When you click Next after filling everything, you will be be redirected to the terminal as root.
+7. On the terminal, type this command to install Git so you can clone the WhirlyOS repository:
+``` bash
+apt install git -y
+```
+Then type this command:
+``` bash
+git clone "github.com/22soulfan/WhirlyOS.git"
+```
+8. Point the terminal to the clone repository by typing this:
+``` bash
+cd WhirlyOS/
+```
+9. To make the build script executable type this:
+``` bash
+chmod +x build-gnome.sh
+```
+10. Now type this command to start the build:
+``` bash
+sudo ./build-gnome.sh
+```
+11. After everything has been done, click Next to exit the terminal and proceed to the compression settings.
+12. It is recommened to select lz4 and gzip.
+13. After the instructions, you now have a WhirlyOS based on any Linux distro!
+
+For Linux, you can follow the same instructions which are in steps 3-13.
+
 
 ---
 
