@@ -12,6 +12,10 @@ WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simpl
 > 
 > amd64 and i386 releases only!
 
+## Notes for other desktop environemtns:
+
+For AstraShell, building may require an ElementaryOS ISO instead of a Debian ISO.
+
 ## New desktop editions
 
 New editions will expect to release around 2026
@@ -21,7 +25,7 @@ New editions will expect to release around 2026
 ## 🐧 Base Distribution
 
 > [!WARNING]
-> Development of WhirlyOS is still ongoing. Wait for a release.
+> WhirlyOS SoulFrame is already released, but other desktop editions are ongoing. Code has been regularly updated.
 
 WhirlyOS is based on **Debian Stable**, ensuring:
 
@@ -40,18 +44,31 @@ Inspired by *Soul* (2020), this motto reflects WhirlyOS’s mission to help user
 It is not an official Disney or Pixar tagline and is safe to use.
 
 ---
+## Desktop Environemtns
 
+| **Edition Name** | **Desktop Environment** | **Inspired By** | **Notes** | **Why This Name?** | **Min. Specs (amd64)** |
+|:--- |:--- |:--- |:--- |:--- |:--- |
+| **SoulFrame** | GNOME | *Soul* | Dreamlike UI, celestial theme, Great Before aesthetics. | The fluid, abstract nature of GNOME feels like a bridge to the "Great Before." | 2 GB RAM, 20 GB Disk |
+| **MeiLite** | XFCE | *Turning Red* | Fast, expressive, and lightweight. | XFCE captures the iconic 2002 Toronto computing vibe with modern speed. | 1 GB RAM, 10 GB Disk |
+| **ZootopiaHub** | Cinnamon | *Zootopia 2* | Professional, sleek, and highly organized. | A "Metropolitan" layout that feels like the ZPD headquarters—polished and powerful. | 2 GB RAM, 15 GB Disk |
+| **AstraShell** | Pantheon | *Elio* | Elegant, high-tech, and ambassador-class UI. | Based on the Communiverse station; a clean, sophisticated interface for planetary leaders. | 2 GB RAM, 15 GB Disk |
+| **GladeDesktop** | Plasma Mobile | *Hoppers* | Nature-themed, adaptive, and touch-ready. | Built for "hopping" between devices seamlessly, matching the tech of the Glade. | 1 GB RAM, 8 GB Disk |
+| **CommuniPoint** | Phosh | *Elio* | Galactic, mobile-first, and ultra-adaptive. | A simplified "communicator" interface perfect for tablets and small screens. | 1 GB RAM, 8 GB Disk |
+| **ElementalDesk** | KDE Plasma | *Elemental* | Vibrant, customizable, and fluid. | Plasma’s effects perfectly mimic the interplay of Fire, Water, Earth, and Air. | 4 GB RAM, 25 GB Disk |
+| **NotebookOS** | Openbox | *Luca* | Minimalist, seaside calm, and ultra-light. | A "hand-drawn" minimal feel inspired by retro BunsenLabs and Italian summers. | 512 MB RAM, 5 GB Disk |
+| **QuestLand** | Budgie | *Onward* | Adventurous, magical, and modern. | A perfect blend of traditional desktop layout with a modern, mystical "Quest" feel. | 2 GB RAM, 15 GB Disk |
+| **IntellSpace** | LXQt | *Wall·E* | Futuristic, efficient, and low-resource. | Brings Windows 7-style efficiency back to life for older, "reclaimed" hardware. | 1 GB RAM, 8 GB Disk |
+| **ClassicQuest** | MATE | *The Good Dinosaur* | Rugged, stable, and fossil-strong. | Based on GNOME 2 heritage; it is a "living fossil" that is unbreakably reliable. | 1 GB RAM, 8 GB Disk |
+| **RustGlade** | COSMIC | *Hoppers* | Cutting-edge, Rust-based, and memory-safe. | The future of Linux. Experimental tech for the next generation of "Hoppers." | 2 GB RAM, 12 GB Disk |
 
-## Desktop Envirnoments
+---
 
-| **Edition Name**   | **Desktop Environment** | **Inspired By**     | **Notes**                                      | **Reasons why it's called** |**Specs**                          |
-|--------------------|--------------------------|---------------------|-----------------------------------------------| ------------------------------------------|------------------------------------|
-| **SoulFrame**      | GNOME                    | *Soul*              | Dreamlike UI, celestial theme, Great Before    | The dream interface feels like perfect| 2 GB RAM, 20 GB disk, GPU optional |
-| **MeiLite**        | XFCE                     | *Turning Red*       | Fast, expressive, lightweight                  | Since Turning Red is set in 2002, Xfce desktop is used in order to give the olden times | 1 GB RAM, 10 GB disk               |
-| **ElementalDesk**  | KDE Plasma               | *Elemental*         | Vibrant, customizable, elemental UI            | The classical elements (not the elements of the periodic table) fit perfectly in Plasma | 4 GB RAM, 25 GB disk               |
-| **NotebookOS**     | Openbox                  | *Luca*              | Minimal, seaside calm, fast boot               | Since, older time periods gave this perfect interface of the old BunsenLabs into WhirlyOS to the run | 512 MB RAM, 5 GB disk              |
-| **QuestLand**      | Budgie                   | *Onward*            | Adventurous, magical, modern desktop           | For fantasy fans, this is the perfect desktop for them | 2 GB RAM, 15 GB disk               |
-| **IntellSpace**    | LXQt                     | *Wall·E*            | Futuristic, efficient, low-resource            | Since the movie is released in 2008, LXQt gives this Windows 7 interface back to life | 1 GB RAM, 8 GB disk                |
+## 🛠️ Core Educational Suite (The "Big Four")
+Every WhirlyOS ISO comes pre-installed with:
+* **GCompris-qt**: High-quality educational software suite.
+* **Scratch 3**: Block-based coding for young creators.
+* **TuxMath**: Arcade-style math practice.
+* **TuxPaint**: The gold standard for open-source digital art for kids.
   
 ## 🎯 Goals
 
@@ -86,7 +103,7 @@ WhirlyOS is the latest chapter in a multi-year journey of OS experimentation and
 
 
 
-> Notes for release: No releases has been made as of 2026.
+> Notes for release: SoulFrame is already released as of 2026.
 
 ## How to install 
 
@@ -191,6 +208,8 @@ sudo ./build-gnome.sh
 13. After the instructions, you now have a WhirlyOS based on any Linux distro!
 
 For Linux, you can follow the same instructions which are in steps 3-13.
+
+> **Note:** You can build Astrashell, but instead of a Debian disk image, use only an ElementaryOS disk image as it works better with Pantheon. Just follow steps 3-13 with an ElementaryOS ISO.
 
 
 ---
