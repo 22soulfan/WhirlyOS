@@ -2,13 +2,19 @@
 
 A curated repository for building **WhirlyOS Linux**, based on Debian.
 
+> **Releases:** SoulFrame is the only desktop edition released.
+
 > **Copyright Notice:** I forked this repository from hirohamada2014, who is the original owner of WhirlyOS. hirohamada214 was my old GitHub account, but I moved to a new one and forked this repo.
 
 WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms. It has the features of the screen time limit to keep you free from distraction and be healthy. 
 
 > ### **Note:** I made lots of attempts to build WhirlyOS using 0x OS Builder. I have to test with Cubic next!
 > 
-> i386 compatibility releases only! 
+> amd64 and i386 releases only!
+
+## New desktop editions
+
+New editions will expect to release around 2026
 
 ---
 
