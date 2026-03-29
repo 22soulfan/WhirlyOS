@@ -1,4 +1,4 @@
-# WonderRepo
+# WonderRepo (WonderShare repository)
 
 A curated repository for building **WhirlyOS Linux**, based on Debian.
 
