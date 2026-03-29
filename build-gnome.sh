@@ -1,34 +1,45 @@
 #!/bin/bash
-# WhirlyOS v1.1 Public Beta - Color Synced Build
+# WhirlyOS v1.1 Public Beta - SoulFrame (GNOME) Build Script
+# Target: Debian Stable amd64 (64-bit)
+# Mission: "Find your spark. Find your way."
 set -e
 
-echo "🚀 Starting WhirlyOS 'Boom' Build..."
+# --- STEP 0: NON-INTERACTIVE SETUP ---
+# Prevents the build from hanging in Cubic terminal
+export DEBIAN_FRONTEND=noninteractive
 
-# --- STEP 0: RESOLVE APT CONFLICTS ---
-echo "🛡️ Clearing APT repository conflicts..."
+echo "🌀 Starting WhirlyOS 'SoulFrame' Build (amd64)..."
+
+# --- STEP 1: REPOSITORY & SYSTEM PREP ---
+echo "🛡️ Clearing conflicts and updating package lists..."
+# Remove known conflicting third-party repo files if they exist
 rm -f /etc/apt/sources.list.d/vscode.list /etc/apt/sources.list.d/vscode.sources
-rm -f /etc/apt/keyrings/packages.microsoft.gpg /usr/share/keyrings/microsoft.gpg
-
-# --- STEP 1: UPDATE SYSTEM ---
-echo "🌐 Updating package lists..."
 apt update
-apt install -y git make plymouth plymouth-themes curl
 
-# --- STEP 2: NEOFETCH FROM GITHUB ---
-echo "📦 Installing latest Neofetch from GitHub..."
-rm -rf /tmp/neofetch
-git clone https://github.com/dylanaraps/neofetch.git /tmp/neofetch
-cd /tmp/neofetch && make install && cd -
+# --- STEP 2: INSTALL CORE SUITE & DEPENDENCIES ---
+echo "📦 Installing WhirlyOS Software Suite..."
+# Includes Learning, Creative, and System tools
+apt install -y git make curl plymouth plymouth-themes dconf-cli neofetch \
+               gcompris-qt scratch3 tuxmath tuxpaint \
+               gimp musescore3 vlc gnome-shell-extension-prefs \
+               chromium-browser firefox-esr
 
-# --- STEP 3: BRANDING & LOGO ---
-echo "🎨 Applying WhirlyOS Branding..."
+# --- STEP 3: PERMANENT NEOFETCH BRANDING ---
+echo "🎨 Customizing Neofetch for all users..."
 
-# 1. Move the logo to a public system directory so students can see it
-# (Assuming your logo.txt is currently in the folder where you run the script)
+# 1. Create a public directory for the WhirlyOS logo
+# (Moving out of /root so standard users have permission to see it)
 mkdir -p /usr/share/whirlyos
-cp logo.txt /usr/share/whirlyos/logo.txt || echo "⚠️ logo.txt not found in current directory!"
 
-# 2. Create the global Neofetch configuration
+if [ -f "/root/WhirlyOS/logo.txt" ]; then
+    cp /root/WhirlyOS/logo.txt /usr/share/whirlyos/logo.txt
+    chmod 644 /usr/share/whirlyos/logo.txt
+else
+    # Fallback if the file is missing during build
+    echo "WhirlyOS" > /usr/share/whirlyos/logo.txt
+fi
+
+# 2. Create the Global Configuration
 mkdir -p /etc/neofetch
 cat <<EOF > /etc/neofetch/config.conf
 print_info() {
@@ -46,68 +57,50 @@ print_info() {
 }
 image_backend="ascii"
 image_source="/usr/share/whirlyos/logo.txt"
-# Colors: 6 (Cyan), 7 (White)
+# Cyan (6) and White (7) to match the Soul/WhirlyOS theme
 ascii_colors=(6 7)
 EOF
 
-# 3. FIX: Create a system-wide ALIAS so typing 'neofetch' always uses your config
-# We put this in /etc/bash.bashrc so it applies to EVERY user automatically
-cat <<EOF >> /etc/bash.bashrc
+# 3. Apply System-wide Alias
+# This ensures 'neofetch' always uses our config, even for new users
+echo "alias neofetch='neofetch --config /etc/neofetch/config.conf'" >> /etc/bash.bashrc
 
-# WhirlyOS Custom Neofetch Alias
-alias neofetch='neofetch --config /etc/neofetch/config.conf'
-EOF
-
-# 4. Ensure it runs automatically on login for the 'Student' user
-# Adding it to /etc/skel ensures every NEW user gets this behavior
+# 4. Auto-run Neofetch on terminal start for all new accounts
 echo "neofetch" >> /etc/skel/.bashrc
 
-# --- STEP 4: WALLPAPER SETUP ---
-echo "🖼️ Migrating Wallpapers..."
+# --- STEP 4: WALLPAPER & GNOME BRANDING ---
+echo "🖼️ Applying SoulFrame Aesthetics..."
 BG_DIR="/usr/share/backgrounds/whirlyos"
 mkdir -p "$BG_DIR"
 
-# Copy default images from main folder
-cp /root/WhirlyOS/whirlyos-official-wallpaper.jpg "$BG_DIR/"
-cp /root/WhirlyOS/whirlyos-wallpaper.png "$BG_DIR/"
+# Copy wallpapers from the cloned Git repo
+cp /root/WhirlyOS/*.jpg "$BG_DIR/" 2>/dev/null || true
+cp /root/WhirlyOS/*.png "$BG_DIR/" 2>/dev/null || true
 
-# Copy extra wallpapers from sub-folder
-cp /root/WhirlyOS/wallpapers/*.jpg "$BG_DIR/" 2>/dev/null || true
-
-# Register wallpapers in GNOME menu
-mkdir -p /usr/share/gnome-background-properties
-cat <<EOF > /usr/share/gnome-background-properties/whirlyos.xml
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
-<wallpapers>
-  <wallpaper><name>WhirlyOS Official</name><filename>$BG_DIR/whirlyos-official-wallpaper.jpg</filename><options>zoom</options></wallpaper>
-  <wallpaper><name>Carebit Garden</name><filename>$BG_DIR/carebit_garden.jpg</filename><options>zoom</options></wallpaper>
-  <wallpaper><name>Pixos Legacy</name><filename>$BG_DIR/great_before_pixos.jpg</filename><options>zoom</options></wallpaper>
-  <wallpaper><name>Luxi Study</name><filename>$BG_DIR/luxi_study_glow.jpg</filename><options>zoom</options></wallpaper>
-  <wallpaper><name>Pixi Forest</name><filename>$BG_DIR/pixi_forest.jpg</filename><options>zoom</options></wallpaper>
-  <wallpaper><name>Wave Ocean</name><filename>$BG_DIR/wave_ocean_deck.jpg</filename><options>zoom</options></wallpaper>
-</wallpapers>
-EOF
-
-# Set Default Wallpaper via GSchema
+# Set Default Wallpaper via GSchema Override
 cat <<EOF > /usr/share/glib-2.0/schemas/99_whirlyos.gschema.override
 [org.gnome.desktop.background]
 picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
 picture-uri-dark='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
+
 [org.gnome.desktop.screensaver]
 picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
+
+[org.gnome.shell]
+favorite-apps=['chromium-browser.desktop', 'org.kde.gcompris.desktop', 'scratch3.desktop', 'org.gnome.Nautilus.desktop']
 EOF
 
+# Compile the new settings into the system
 glib-compile-schemas /usr/share/glib-2.0/schemas
 
-# --- STEP 5: FINAL SYSTEM SYNC ---
-echo "✨ Updating Initramfs & Plymouth..."
-plymouth-set-default-theme -R spinner || true
-update-initramfs -u -k all
+# --- STEP 5: CLEANUP & FINAL SYNC ---
+echo "✨ Finalizing system sync..."
+apt autoremove -y
+update-initramfs -u -k all || true
 
 echo "------------------------------------------------"
-echo "✅ WhirlyOS Build Complete!"
+echo "✅ WhirlyOS SoulFrame (amd64) Build Complete!"
 echo "------------------------------------------------"
 
-# --- SHOW LOGO IMMEDIATELY AFTER COMPLETION ---
+# Run once at the end of the script to show the result
 neofetch --config /etc/neofetch/config.conf
