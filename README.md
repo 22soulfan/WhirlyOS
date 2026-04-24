@@ -168,7 +168,7 @@ sudo dd if=path/to/your/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsyn
 
 ```
 
-> Note: The disk image name may vary.
+> Note: The disk image name may vary. Also, be careful as your flash drive might be sda or something. Type lsblk to check.
 
    
 
@@ -180,7 +180,7 @@ sudo dd if=path/to/your/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsyn
     
 You can build your own WhirlyOS ISO if you want to, and you can base them on any Linux distro. You just need the following tools:
 
-- A Linux distribution (choose those based on Ubuntu or Debian) or Windows Subsystem for Linux (if on Windows 10/11)
+- A Linux distribution (choose those based on Ubuntu or Debian) or Windows Subsystem for Linux and WSLg (if on Windows 10/11)
 - Cubic (Custom Ubuntu ISO Creator)
 - Any Linux ISO (use the latest version for security)
 
@@ -190,7 +190,7 @@ To build WhirlyOS:
 
 For Windows:
 
-1. Make sure you have WSL2 installed. If not, hold Windows Key + R, type "optionalfeatures", and it will redirect to the Optional Features program. Find Windows Subsystem for Linux and Virtual Machine Platform and select them all. Click OK then wait. You might have to restart your computer after.
+1. Make sure you have WSL2 installed. If not, hold Windows Key + R, type "optionalfeatures", and it will redirect to the Optional Features program. Find Windows Subsystem for Linux and Virtual Machine Platform and select them all. Click OK then wait. You might have to restart your computer after. (Make sure you have WSLg.)
 2. After restart, login and go to Microsoft Store. Find a Linux distro (Ubuntu or Debian) and install. You can setup this distro on WSL.
 3. Now after you setup, go to your browser and download Cubic. You can follow its instructions in its GitHub repository: https://github.com/PJ-Singh-001/Cubic.
 4. You also have to download a Linux ISO as well so you can use it to customize.
