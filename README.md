@@ -1,8 +1,11 @@
 # WonderRepo (WonderShare repository)
 
 A curated repository for building **WhirlyOS Linux**, based on Debian.
+> **Notice for RustGlade development:** Hoppers, a Pixar film that was released on March 6, 2026 is expected to release around summer to Disney+. After that, development will start.
 
-> **Releases:** SoulFrame is the only desktop edition released.
+> **Releases:** Both SoulFrame and MeiLite are the only desktop editions developed, but were not released yet.
+
+> **Some packages may not show in WhirlyOS**, so I have to update the scripts to fix the problem.
 
 > **Copyright Notice:** I forked this repository from hirohamada2014, who is the original owner of WhirlyOS. hirohamada214 was my old GitHub account, but I moved to a new one and forked this repo.
 
@@ -11,7 +14,13 @@ WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simpl
 > ### **Note:** Releases of WhirlyOS are made with Cubic (Custom Ubuntu ISO Creator)!
 > 
 > amd64 and i386 releases only!
+>
+> **Screen Time can be accessed anytime through /home/WhirlyOS/common-files/ and clicking screen-timer.sh to set a timer.**
+> There has been some experimental features to setup a screen time feature for ADHD users.
 
+## ARM architecture compatibility
+
+For computers with ARM such as Raspberry Pi, WhirlyOS does not offer ARM images since the primary focus was on amd64 and i386. However, by around 2027, there will be ARM images released. This means that I have to use debootstrap to create an img file.
 ## Notes for other desktop environemtns:
 
 For AstraShell, building may require an ElementaryOS ISO instead of a Debian ISO.
@@ -25,9 +34,9 @@ New editions will expect to release around 2026
 ## 🐧 Base Distribution
 
 > [!WARNING]
-> WhirlyOS SoulFrame is already released, but other desktop editions are ongoing. Code has been regularly updated.
+> Both WhirlyOS SoulFrame and MeiLite are already developed but not yet released, but other desktop editions are ongoing. Code has been regularly updated.
 
-WhirlyOS is based on **Debian Stable**, ensuring:
+WhirlyOS is based on **Debian Stable** and **ElementaryOS** (for AstraShell), ensuring:
 
 - 🔒 Rock-solid reliability
 - 📦 Access to thousands of packages via APT
@@ -45,6 +54,8 @@ It is not an official Disney or Pixar tagline and is safe to use.
 
 ---
 ## Desktop Environemtns
+
+> **Note:** Only AstraShell is the desktop edition to be based on ElementaryOS since Pantheon may not work on Debian.
 
 | **Edition Name** | **Desktop Environment** | **Inspired By** | **Notes** | **Why This Name?** | **Min. Specs (amd64)** |
 |:--- |:--- |:--- |:--- |:--- |:--- |
@@ -164,6 +175,8 @@ sudo dd if=path/to/your/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsyn
 ---
 
 ## Building the ISO or Image and turning a Linux distro into WhirlyOS
+
+> **Note for building WhirlyOS**: We have only two build script for GNOME and XFCE. Please use only Linux distro isos that show either GNOME or XFCE ui.
     
 You can build your own WhirlyOS ISO if you want to, and you can base them on any Linux distro. You just need the following tools:
 
@@ -209,10 +222,22 @@ sudo ./build-gnome.sh
 
 For Linux, you can follow the same instructions which are in steps 3-13.
 
-> **Note:** You can build Astrashell, but instead of a Debian disk image, use only an ElementaryOS disk image as it works better with Pantheon. Just follow steps 3-13 with an ElementaryOS ISO.
+> **Note:** You can build AstraShell, but instead of a Debian disk image, use only an ElementaryOS disk image as it works better with Pantheon. Just follow steps 3-13 with an ElementaryOS ISO.
 
 
 ---
+
+## Origin of WhirlyOS
+
+The project first started in around 2025 as PixOS. It was supposed to be based on openSUSE Tumbleweed, and also provide a Pixar-inspired and educational Linux distro. It is inspired by Pixar movies, and also has AI bots like Pixi, Luxi, Pando, or Eva. However, due to worries of copyright issues, the project was renamed to **WhirlyOS**.
+
+**WhirlyOS** moved to Debian after problems with the building process, and also broken builds; it was using Open Build Service to build the ISO. The project was collaborated along with some AI chatbots, often Google Gemini, to create build scripts. Some fixes are been ongoing due to some missing software or other bugs like the wallpaper itself. Right now, **WhirlyOS** is now being built with Cubic (Custom Ubuntu ISO Creator) to provide an easy way to build the distro.
+
+AI interegation in **WhirlyOS** is cancelled, because of the risk of some mistakes, as predicted. We now don't need to use AI on this operating system, because it is experimental.
+
+---
+
+
 
 ## License
 
