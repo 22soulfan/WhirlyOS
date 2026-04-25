@@ -1,13 +1,15 @@
 # WonderRepo (WonderShare repository)
 
-A curated repository for building **WhirlyOS Linux**, based on Debian.
+A curated repository for building **WhirlyOS Linux**, based on Debian and elementaryOS.
 > **Notice for RustGlade development:** Hoppers, a Pixar film that was released on March 6, 2026 is expected to release around summer to Disney+. After that, development will start.
-
+> 
+> **RustGlade is hosted on another GitHub repository.**
+> 
 > **Releases:** Both SoulFrame and MeiLite are the only desktop editions developed, but were not released yet.
 
 > **Some packages may not show in WhirlyOS**, so I have to update the scripts to fix the problem.
 
-> **Copyright Notice:** I forked this repository from hirohamada2014, who is the original owner of WhirlyOS. hirohamada214 was my old GitHub account, but I moved to a new one and forked this repo.
+> **Copyright Notice:** I forked this repository from hirohamada2014, who is the original owner of WhirlyOS. hirohamada2014 was my old GitHub account, but I moved to a new one and forked this repo.
 
 WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms. It has the features of the screen time limit to keep you free from distraction and be healthy. 
 
@@ -36,7 +38,7 @@ New editions will expect to release around 2026
 > [!WARNING]
 > Both WhirlyOS SoulFrame and MeiLite are already developed but not yet released, but other desktop editions are ongoing. Code has been regularly updated.
 
-WhirlyOS is based on **Debian Stable** and **ElementaryOS** (for AstraShell), ensuring:
+WhirlyOS is based on **Debian Stable** and **elementaryOS** (for AstraShell), ensuring:
 
 - 🔒 Rock-solid reliability
 - 📦 Access to thousands of packages via APT
