@@ -22,7 +22,7 @@ echo "📦 Installing WhirlyOS Software Suite..."
 apt install -y git make curl plymouth plymouth-themes dconf-cli neofetch \
                gcompris-qt scratch3 tuxmath tuxpaint \
                gimp musescore3 vlc gnome-shell-extension-prefs \
-               chromium-browser firefox-esr
+               chromium-browser firefox-esr gimp
 
 # --- STEP 3: PERMANENT NEOFETCH BRANDING ---
 echo "🎨 Customizing Neofetch for all users..."
@@ -70,7 +70,7 @@ echo "neofetch" >> /etc/skel/.bashrc
 
 # --- STEP 4: WALLPAPER & GNOME BRANDING ---
 echo "🖼️ Applying SoulFrame Aesthetics..."
-BG_DIR="/usr/share/backgrounds/whirlyos"
+BG_DIR="/usr/share/wallpapers/whirlyos"
 mkdir -p "$BG_DIR"
 
 # Copy wallpapers from the cloned Git repo
@@ -80,11 +80,11 @@ cp /root/WhirlyOS/*.png "$BG_DIR/" 2>/dev/null || true
 # Set Default Wallpaper via GSchema Override
 cat <<EOF > /usr/share/glib-2.0/schemas/99_whirlyos.gschema.override
 [org.gnome.desktop.background]
-picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
-picture-uri-dark='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
+picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.PNG'
+picture-uri-dark='file://$BG_DIR/whirlyos-official-wallpaper.PNG'
 
 [org.gnome.desktop.screensaver]
-picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
+picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.PNG'
 
 [org.gnome.shell]
 favorite-apps=['chromium-browser.desktop', 'org.kde.gcompris.desktop', 'scratch3.desktop', 'org.gnome.Nautilus.desktop']
