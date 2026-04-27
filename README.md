@@ -1,6 +1,10 @@
 # WonderRepo (WonderShare repository)
 
+>[!WARNING]
+>Today, this forked repository is now independent. 
+
 A curated repository for building **WhirlyOS Linux**, based on Debian and elementaryOS.
+
 > **Notice for RustGlade development:** Hoppers, a Pixar film that was released on March 6, 2026 is expected to release around summer to Disney+. After that, development will start.
 > 
 > **RustGlade is hosted on another GitHub repository.**
@@ -18,7 +22,7 @@ WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simpl
 > amd64 and i386 releases only!
 >
 > **Screen Time can be accessed anytime through /home/WhirlyOS/common-files/ and clicking screen-timer.sh to set a timer.**
-> There has been some experimental features to setup a screen time feature for ADHD users.
+> There has been some experimental features to setup a screen time feature for ADHD users. Note that there are some bugs in this script, so I'm trying my best to update. :)
 
 ## ARM architecture compatibility
 
@@ -240,6 +244,10 @@ WhirlyOS was still based on openSuse Tumbleweed, but moved to Debian after probl
 AI integration in **WhirlyOS** is cancelled, because of the risk of some mistakes, as predicted. We now don't need to use AI on this operating system, because it is experimental, and may affect either the system or everything itself and also increase the file size.
 
 ---
+
+## Other WhirlyOS seperate repositories
+
+RustGlade will have its own repository since it is not based on Debian, but Pop!_OS. The reason for this, is that COSMIC is only support on Pop!_OS, and that would be impossible to install on Debian. However, Pop!_OS is based on Ubuntu, which is based on Debian, so WhirlyOS might still work with Pop!_OS. After the Disney+ release of Hoppers, I'm going to release a build script for RustGlade. Sorry for the inconvenince! :(
 
 
 
