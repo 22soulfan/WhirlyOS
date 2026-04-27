@@ -231,9 +231,11 @@ For Linux, you can follow the same instructions which are in steps 3-13.
 
 ## Origin of WhirlyOS
 
-The project first started in around 2025 as PixOS. It was supposed to be based on openSUSE Tumbleweed, and also provide a Pixar-inspired and educational Linux distro. It is inspired by Pixar movies, and also has AI bots like Pixi, Luxi, Pando, or Eva. However, due to worries of copyright issues, the project was renamed to **WhirlyOS**.
+The project first started in around 2025 as PixOS. It was supposed to be based on openSUSE Tumbleweed, and also provide a Pixar-inspired and educational Linux distro. Tt was collaborated by a developer along with an AI chatbot named Microsoft Copilot to create scripts for the build. The distro is inspired by Pixar movies, and also has AI bots like Pixi, Luxi, Pando, or Eva. 
 
-**WhirlyOS** moved to Debian after problems with the building process, and also broken builds; it was using Open Build Service to build the ISO. The project was collaborated along with some AI chatbots, often Google Gemini, to create build scripts. Some fixes are been ongoing due to some missing software or other bugs like the wallpaper itself. Right now, **WhirlyOS** is now being built with Cubic (Custom Ubuntu ISO Creator) to provide an easy way to build the distro.
+PixOS was first built on Open Build Service. It contains the AI chat Python programs, and also the wallpaper assets. The problem was about broken builds, and also due to worries of copyright issues, the project was renamed to **WhirlyOS**.
+
+WhirlyOS was still based on openSuse Tumbleweed, but moved to Debian after problems with the building process, and also broken builds; it was using Open Build Service to build the ISO. The project was collaborated along with some AI chatbots, often Google Gemini, to create build scripts. Some fixes are been ongoing due to some missing software or other bugs like the wallpaper itself. Right now, **WhirlyOS** is now being built with Cubic (Custom Ubuntu ISO Creator) to provide an easy way to build the distro.
 
 AI integration in **WhirlyOS** is cancelled, because of the risk of some mistakes, as predicted. We now don't need to use AI on this operating system, because it is experimental, and may affect either the system or everything itself and also increase the file size.
 
