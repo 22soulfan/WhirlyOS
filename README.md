@@ -231,7 +231,7 @@ For Linux, you can follow the same instructions which are in steps 3-13.
 
 ## Origin of WhirlyOS
 
-The project first started in around 2025 as PixOS. It was supposed to be based on openSUSE Tumbleweed, and also provide a Pixar-inspired and educational Linux distro. Tt was collaborated by a developer along with an AI chatbot named Microsoft Copilot to create scripts for the build. The distro is inspired by Pixar movies, and also has AI bots like Pixi, Luxi, Pando, or Eva. 
+The project first started in around 2025 as PixOS. It was supposed to be based on openSUSE Tumbleweed, and also provide a Pixar-inspired and educational Linux distro. It was collaborated by a developer along with an AI chatbot named Microsoft Copilot to create scripts for the build. The distro is inspired by Pixar movies, and also has AI bots like Pixi, Luxi, Pando, or Eva. 
 
 PixOS was first built on Open Build Service. It contains the AI chat Python programs, and also the wallpaper assets. The problem was about broken builds, and also due to worries of copyright issues, the project was renamed to **WhirlyOS**.
 
