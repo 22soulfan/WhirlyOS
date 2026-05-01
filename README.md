@@ -31,6 +31,8 @@ For computers with ARM such as Raspberry Pi, WhirlyOS does not offer ARM images 
 
 For AstraShell, building may require an ElementaryOS ISO instead of a Debian ISO.
 
+SeaWave (formely NotebookOS) will be based on BunsenLabs Linux (aka Crunchbang Linux.)
+
 ## New desktop editions
 
 New editions will expect to release around 2026
@@ -60,7 +62,7 @@ It is not an official Disney or Pixar tagline and is safe to use.
 
 ---
 ## Desktop Environments
-
+> **Copyright Notice:** NotebookOS is renamed to SeaWave to prevent confusion with NotebookLM.
 > **Note:** Only AstraShell is the desktop edition to be based on ElementaryOS since Pantheon may not work on Debian.
 
 | **Edition Name** | **Desktop Environment** | **Inspired By** | **Notes** | **Why This Name?** | **Min. Specs (amd64)** |
@@ -72,7 +74,7 @@ It is not an official Disney or Pixar tagline and is safe to use.
 | **GladeDesktop** | Plasma Mobile | *Hoppers* | Nature-themed, adaptive, and touch-ready. | Built for "hopping" between devices seamlessly, matching the tech of the Glade. | 1 GB RAM, 8 GB Disk |
 | **CommuniPoint** | Phosh | *Elio* | Galactic, mobile-first, and ultra-adaptive. | A simplified "communicator" interface perfect for tablets and small screens. | 1 GB RAM, 8 GB Disk |
 | **ElementalDesk** | KDE Plasma | *Elemental* | Vibrant, customizable, and fluid. | Plasma’s effects perfectly mimic the interplay of Fire, Water, Earth, and Air. | 4 GB RAM, 25 GB Disk |
-| **NotebookOS** | Openbox | *Luca* | Minimalist, seaside calm, and ultra-light. | A "hand-drawn" minimal feel inspired by retro BunsenLabs and Italian summers. | 512 MB RAM, 5 GB Disk |
+| **SeaWave** | Openbox | *Luca* | Minimalist, seaside calm, and ultra-light. | A "hand-drawn" minimal feel inspired by retro BunsenLabs and Italian summers. | 512 MB RAM, 5 GB Disk |
 | **QuestLand** | Budgie | *Onward* | Adventurous, magical, and modern. | A perfect blend of traditional desktop layout with a modern, mystical "Quest" feel. | 2 GB RAM, 15 GB Disk |
 | **IntellSpace** | LXQt | *Wall·E* | Futuristic, efficient, and low-resource. | Brings Windows 7-style efficiency back to life for older, "reclaimed" hardware. | 1 GB RAM, 8 GB Disk |
 | **ClassicQuest** | MATE | *The Good Dinosaur* | Rugged, stable, and fossil-strong. | Based on GNOME 2 heritage; it is a "living fossil" that is unbreakably reliable. | 1 GB RAM, 8 GB Disk |
