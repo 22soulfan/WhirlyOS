@@ -251,6 +251,21 @@ AI integration in **WhirlyOS** is cancelled, because of the risk of some mistake
 
 RustGlade will have its own repository since it is not based on Debian, but Pop!_OS. The reason for this, is that COSMIC is only support on Pop!_OS, and that would be impossible to install on Debian. However, Pop!_OS is based on Ubuntu, which is based on Debian, so WhirlyOS might still work with Pop!_OS. After the Disney+ release of Hoppers, I'm going to release a build script for RustGlade. Sorry for the inconvenince! :(
 
+## Repositories similar to WhirlyOS
+- Lynux Webs (a fork of PyLinux)
+  Link: https://github.com/22soulfan/Lynux-Webs
+
+  Lynux Webs is a fork of PyLinux and it is designed as a simulated Linux terminal that feels real. In a few years, it will evolve into a Linux distribution based on Arch Linux, and will serve as a DreamWorks inspired Linux distro.
+
+ - Octopus11 (based on Windows 11)
+   Link: coming soon
+
+   Octopus11 is a customized Windows 11 inspired by the DreamWorks movie Ruby Gillman, Teenage Kraken (2023) and serves as an inspired DreamWorks Windows 11. There are two ISOs, one that is Windows 11 and the other based on Windows 11 with Tiny11Builder used to create the Tiny11.iso to create the base for Octopus11.
+
+- OpenMyriad (a fork of reactOS, modernized and compatible with Windows 11 stuff)
+  Link: coming soon
+
+  OpenMyriad is a WhirlyOS alternative and inspired by Soul(2020). Users can choose during installation a minimal install or a full install. Also an alternative to Tiny11 and Windows 11.
 
 
 ## License
