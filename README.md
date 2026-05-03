@@ -184,7 +184,7 @@ sudo dd if=path/to/your/whirlyOS.iso of=/dev/sdx bs=4M status=progress conv=fsyn
 
 ## Building the ISO or Image and turning a Linux distro into WhirlyOS
 
-> **Note for building WhirlyOS**: We have only two build script for GNOME and XFCE. Please use only Linux distro isos that show either GNOME or XFCE ui. Also, amke sure your base ISO is based on either Debian or ubuntu, as we don't have an Arch or Alpine build script.
+> **Note for building WhirlyOS**: We have only two build script for GNOME and XFCE. Please use only Linux distro isos that show either GNOME or XFCE ui. Also, make sure your base ISO is based on either Debian or ubuntu, as we don't have an Arch or Alpine build script.
     
 You can build your own WhirlyOS ISO if you want to, and you can base them on any Linux distro. You just need the following tools:
 
