@@ -9,7 +9,7 @@ A curated repository for building **WhirlyOS Linux**, based on Debian and elemen
 > 
 > **RustGlade is hosted on another GitHub repository.**
 > 
-> **Releases:** Both SoulFrame and MeiLite are the only desktop editions developed, but were not released yet.
+> **Releases:** Both SoulFrame, MeiLite, SeaWave, and AstraShell are the only desktop editions developed, but were not released yet. They are only released as build scripts for Ubuntu/Debian distros.
 
 > **Some packages may not show in WhirlyOS**, so I have to update the scripts to fix the problem.
 
