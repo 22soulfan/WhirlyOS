@@ -241,9 +241,11 @@ The project first started in around 2025 as PixOS. It was supposed to be based o
 
 PixOS was first built on Open Build Service. It contains the AI chat Python programs, and also the wallpaper assets. The problem was about broken builds, and also due to worries of copyright issues, the project was renamed to **WhirlyOS**.
 
-WhirlyOS was still based on openSuse Tumbleweed, but moved to Debian after problems with the building process, and also broken builds; it was using Open Build Service to build the ISO. The project was collaborated along with some AI chatbots, often Google Gemini, to create build scripts. Some fixes are been ongoing due to some missing software or other bugs like the wallpaper itself. Right now, **WhirlyOS** is now being built with Cubic (Custom Ubuntu ISO Creator) to provide an easy way to build the distro.
+WhirlyOS was still based on openSuse Tumbleweed, and still faced tech problems so with help from Microsoft Copilot, the developer created a yml workflow script to create the Linux distro, which soon failed. So the developer moved the distro to Debian after problems with the building process, and also broken builds; it was using Open Build Service to build the ISO. The project was collaborated along with some AI chatbots, often Google Gemini, to create build scripts. Some fixes are been ongoing due to some missing software or other bugs like the wallpaper itself. Right now, **WhirlyOS** is now being built with Cubic (Custom Ubuntu ISO Creator) to provide an easy way to build the distro.
 
 AI integration in **WhirlyOS** is cancelled, because of the risk of some mistakes, as predicted. We now don't need to use AI on this operating system, because it is experimental, and may affect either the system or everything itself and also increase the file size.
+
+There are still problems with Live Debian isos and packages.
 
 ---
 
