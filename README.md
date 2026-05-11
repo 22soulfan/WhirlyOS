@@ -1,5 +1,7 @@
 # WonderRepo (WonderShare repository)
 
+> A repository with this same name is hosted in https://build.opensuse.org/project/show/home:hiro_hamada:WhirlyOSLinux. It was an attempt to create WhirlyOS with openSuse before using Debian.
+
 >[!WARNING]
 >Today, this forked repository is now independent. 
 
