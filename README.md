@@ -275,3 +275,9 @@ RustGlade will have its own repository since it is not based on Debian, but Pop!
 
 WhirlyOS is open-source under the MIT License. Anyone can fork this repo.
 
+# If you want PixOS...
+
+A repository in Open Build Service has this repo. Check out here: https://build.opensuse.org/project/show/home:hiro_hamada:pixos_educational.
+
+> Note that this is now an empty project.
+
