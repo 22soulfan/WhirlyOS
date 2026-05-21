@@ -23,7 +23,7 @@
             background-color: var(--bg); 
             color: var(--text); 
             font-family: var(--font); 
-            transition: background 0.5s ease;
+            transition: background-color 0.5s ease, color 0.5s ease;
             overflow-x: hidden;
         }
 
@@ -56,10 +56,10 @@
         <span class="font-black tracking-tighter text-xl uppercase italic">Whirly<span class="text-sky-400">OS</span></span>
     </div>
     <div class="hidden md:flex gap-8 text-[11px] font-bold uppercase tracking-widest">
-        <a href="#" onclick="showSection('home')" class="nav-link">Home</a>
-        <a href="#" onclick="showSection('downloads')" class="nav-link">Downloads</a>
-        <a href="#" onclick="showSection('about')" class="nav-link">The Story</a>
-        <a href="#" onclick="showSection('sister-projects')" class="nav-link">Sister Projects</a>
+        <a href="javascript:void(0)" onclick="showSection('home')" class="nav-link">Home</a>
+        <a href="javascript:void(0)" onclick="showSection('downloads')" class="nav-link">Downloads</a>
+        <a href="javascript:void(0)" onclick="showSection('about')" class="nav-link">The Story</a>
+        <a href="javascript:void(0)" onclick="showSection('sister-projects')" class="nav-link">Sister Projects</a>
     </div>
     <div class="flex gap-3">
         <button onclick="setMode('modern')" class="w-5 h-5 rounded-full bg-sky-500 border-2 border-white/10 hover:scale-110 transition"></button>
@@ -101,14 +101,14 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="glass p-8 rounded-3xl border-t-4 border-sky-500">
-            <span class="text-[10px] font-black uppercase text-sky-400">Flagship</span>
+            <span class="text-[10px] font-black uppercase text-sky-400">Exclusive Easter Build</span>
             <h3 class="text-3xl font-bold mt-2 mb-4">SoulFrame</h3>
-            <p class="text-xs opacity-50 mb-8 leading-loose">The flagship GNOME experience. Fluid animations inspired by 'Soul' (2020).</p>
+            <p class="text-xs opacity-50 mb-8 leading-loose">The premier Windows-styled layout powered by AnduinOS and GNOME. Codename: <strong>Flosshilde</strong>.</p>
             <ul class="text-[10px] space-y-2 mb-8 uppercase font-bold opacity-70">
-                <li><i class="fas fa-check text-sky-400 mr-2"></i> 2GB RAM REQ</li>
-                <li><i class="fas fa-check text-sky-400 mr-2"></i> AMD64 STABLE</li>
+                <li><i class="fas fa-microchip text-sky-400 mr-2"></i> AMD64 (Optimized via LZ4)</li>
+                <li><i class="fas fa-book text-sky-400 mr-2"></i> Pair with physical notebooks!</li>
             </ul>
-            <a href="https://www.mediafire.com/file/wl7turh1c16h37t/WhirlyOS-v1.1+-SoulFrame-PublicBeta-amd64.iso/file" class="block text-center py-4 bg-sky-500 rounded-xl font-bold text-xs hover:shadow-lg transition">Download ISO</a>
+            <a href="https://www.mediafire.com/file/wl7turh1c16h37t/WhirlyOS-v1.1+-SoulFrame-PublicBeta-amd64.iso/file" target="_blank" class="block text-center py-4 bg-sky-500 text-white rounded-xl font-bold text-xs hover:shadow-lg transition">Download ISO</a>
         </div>
 
         <div class="glass p-8 rounded-3xl opacity-80">
@@ -144,7 +144,7 @@
                     <h4 class="font-bold text-lg">22soulfan</h4>
                     <p class="text-[10px] opacity-50 uppercase tracking-widest">Lead Developer // Formerly hirohamada2014</p>
                     <div class="flex gap-4 mt-2">
-                        <a href="https://github.com/22soulfan" class="text-sky-400 text-xs"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://github.com/22soulfan" target="_blank" class="text-sky-400 text-xs"><i class="fab fa-github"></i> GitHub</a>
                     </div>
                 </div>
             </div>
@@ -154,8 +154,8 @@
             <h3 class="text-2xl font-bold mb-8 uppercase italic">FAQs</h3>
             <div class="space-y-4">
                 <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="flex justify-between font-bold text-xs uppercase"><span>Is it based on Ubuntu?</span><i class="fas fa-plus"></i></div>
-                    <div class="faq-answer">WhirlyOS is primarily based on <strong>Debian Stable</strong>, though some editions use <strong>elementaryOS</strong> tools for a more polished UI.</div>
+                    <div class="flex justify-between font-bold text-xs uppercase"><span>What is the base OS?</span><i class="fas fa-plus"></i></div>
+                    <div class="faq-answer">The core project scripts support Debian Stable, but our exclusive <strong>Flosshilde</strong> release is built on <strong>AnduinOS</strong>. This provides a highly compatible, Windows-style desktop container out of the box.</div>
                 </div>
                 <div class="faq-item" onclick="toggleFaq(this)">
                     <div class="flex justify-between font-bold text-xs uppercase"><span>Why ADHD-Aware?</span><i class="fas fa-plus"></i></div>
