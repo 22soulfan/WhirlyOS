@@ -255,7 +255,7 @@ There are still problems with Live Debian isos and packages.
 RustGlade will have its own repository since it is not based on Debian, but Pop!_OS. The reason for this, is that COSMIC is only support on Pop!_OS, and that would be impossible to install on Debian. However, Pop!_OS is based on Ubuntu, which is based on Debian, so WhirlyOS might still work with Pop!_OS. After the Disney+ release of Hoppers, I'm going to release a build script for RustGlade. Sorry for the inconvenince! :(
 
 ## Repositories similar to WhirlyOS
-- **Lynux Webs** (a fork of PyLinux)
+- **Lynux Webs** <em> alias </em> **ArryanOS** (a fork of PyLinux)
   Link: https://github.com/22soulfan/Lynux-Webs
 
   Lynux Webs is a fork of PyLinux and it is designed as a simulated Linux terminal that feels real. In a few years, it will evolve into a Linux distribution based on Arch Linux, and will serve as a DreamWorks inspired Linux distro.
