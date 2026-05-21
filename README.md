@@ -29,7 +29,7 @@ WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simpl
 ## ARM architecture compatibility
 
 For computers with ARM such as Raspberry Pi, WhirlyOS does not offer ARM images since the primary focus was on amd64 and i386. However, by around 2027, there will be ARM images released. This means that I have to use debootstrap to create an img file.
-## Notes for other desktop environemtns:
+## Notes for other desktop environments:
 
 For AstraShell, building may require an ElementaryOS ISO instead of a Debian ISO.
 
