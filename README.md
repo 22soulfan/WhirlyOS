@@ -270,6 +270,9 @@ RustGlade will have its own repository since it is not based on Debian, but Pop!
 
   OpenMyriad is a WhirlyOS alternative and inspired by Soul(2020). Users can choose during installation a minimal install or a full install. Also an alternative to Tiny11 and Windows 11.
 
+## Attempts on WhirlyOS
+
+I made attempts to use other Debian-based distros like ZorinOS.
 
 ## License
 
