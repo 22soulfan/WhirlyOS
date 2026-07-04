@@ -19,6 +19,10 @@ A curated repository for building **WhirlyOS Linux**, based on Debian and elemen
 
 WhirlyOS wraps a Linux base in a playful, ADHD-aware shell—complete with simple interfaces, and seamless access to browser-based learning tools across desktop and embedded platforms. It has the features of the screen time limit to keep you free from distraction and be healthy. 
 
+## Surprise Notes for WhirlyOS
+
+RustGlade (the proposed Rust edition of WhirlyOS) will have an independent repo, and also will be called Roen Linux.
+
 > ### **Note:** Releases of WhirlyOS are made with Cubic (Custom Ubuntu ISO Creator)!
 > 
 > amd64 and i386 releases only!
