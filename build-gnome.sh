@@ -22,7 +22,7 @@ echo "📦 Installing WhirlyOS Software Suite..."
 apt install -y git make curl plymouth plymouth-themes dconf-cli neofetch \
                gcompris-qt scratch3 tuxmath tuxpaint \
                gimp musescore3 vlc gnome-shell-extension-prefs \
-               chromium-browser firefox-esr gimp
+               chromium firefox gimp python3 idle3
 
 # --- STEP 3: PERMANENT NEOFETCH BRANDING ---
 echo "🎨 Customizing Neofetch for all users..."
