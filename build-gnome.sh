@@ -19,13 +19,13 @@ apt update
 # --- STEP 2: INSTALL CORE SUITE & DEPENDENCIES ---
 echo "📦 Installing WhirlyOS Software Suite..."
 # Includes Learning, Creative, and System tools
-apt install -y git make curl plymouth plymouth-themes dconf-cli neofetch \
+apt install -y git make curl plymouth plymouth-themes dconf-cli fastfetch \
                gcompris-qt scratch3 tuxmath tuxpaint \
                gimp musescore3 vlc gnome-shell-extension-prefs \
                chromium firefox gimp python3 idle3
 
-# --- STEP 3: PERMANENT NEOFETCH BRANDING ---
-echo "🎨 Customizing Neofetch for all users..."
+# --- STEP 3: PERMANENT FASTFETCH BRANDING ---
+echo "🎨 Customizing Fastfetch for all users..."
 
 # 1. Create a public directory for the WhirlyOS logo
 # (Moving out of /root so standard users have permission to see it)
@@ -40,33 +40,40 @@ else
 fi
 
 # 2. Create the Global Configuration
-mkdir -p /etc/neofetch
-cat <<EOF > /etc/neofetch/config.conf
-print_info() {
-    info title
-    info underline
-    info "OS" distro
-    info "Host" model
-    info "Kernel" kernel
-    info "Uptime" uptime
-    info "Packages" packages
-    info "Shell" shell
-    info "DE" de
-    info "Terminal" term
-    info "Memory" memory
+mkdir -p /etc/fastfetch
+cat <<EOF > /etc/fastfetch/config.jsonc
+{
+  "\$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "file",
+    "source": "/usr/share/whirlyos/logo.txt",
+    "color": {
+      "1": "cyan",
+      "2": "white"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "de",
+    "terminal",
+    "memory"
+  ]
 }
-image_backend="ascii"
-image_source="/usr/share/whirlyos/logo.txt"
-# Cyan (6) and White (7) to match the Soul/WhirlyOS theme
-ascii_colors=(6 7)
 EOF
 
 # 3. Apply System-wide Alias
-# This ensures 'neofetch' always uses our config, even for new users
-echo "alias neofetch='neofetch --config /etc/neofetch/config.conf'" >> /etc/bash.bashrc
+# This ensures 'fastfetch' always uses our config, even for new users
+echo "alias fastfetch='fastfetch -c /etc/fastfetch/config.jsonc'" >> /etc/bash.bashrc
 
-# 4. Auto-run Neofetch on terminal start for all new accounts
-echo "neofetch" >> /etc/skel/.bashrc
+# 4. Auto-run Fastfetch on terminal start for all new accounts
+echo "fastfetch" >> /etc/skel/.bashrc
 
 # --- STEP 4: WALLPAPER & GNOME BRANDING ---
 echo "🖼️ Applying SoulFrame Aesthetics..."
@@ -103,4 +110,4 @@ echo "✅ WhirlyOS SoulFrame (amd64) Build Complete!"
 echo "------------------------------------------------"
 
 # Run once at the end of the script to show the result
-neofetch --config /etc/neofetch/config.conf
+fastfetch -c /etc/fastfetch/config.jsonc
