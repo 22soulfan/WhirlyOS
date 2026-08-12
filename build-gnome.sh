@@ -75,30 +75,65 @@ echo "alias fastfetch='fastfetch -c /etc/fastfetch/config.jsonc'" >> /etc/bash.b
 # 4. Auto-run Fastfetch on terminal start for all new accounts
 echo "fastfetch" >> /etc/skel/.bashrc
 
-# --- STEP 4: WALLPAPER & GNOME BRANDING ---
-echo "🖼️ Applying SoulFrame Aesthetics..."
-BG_DIR="/usr/share/backgrounds/"
+# --- STEP 4: PERMANENT DEFAULT WALLPAPER & GNOME BRANDING ---
+echo "🖼️ Applying WhirlyOS Official Permanent Wallpaper & Aesthetics..."
+BG_DIR="/usr/share/backgrounds/whirlyos"
 mkdir -p "$BG_DIR"
 
-# Copy wallpapers from the cloned Git repo
+# Copy wallpapers from cloned repo to dedicated directory
 cp /root/WhirlyOS/*.jpg "$BG_DIR/" 2>/dev/null || true
 cp /root/WhirlyOS/*.png "$BG_DIR/" 2>/dev/null || true
 
-# Set Default Wallpaper via GSchema Override
+# Ensure permissions on wallpaper assets
+chmod -R 644 "$BG_DIR"/* 2>/dev/null || true
+
+WALLPAPER_PATH="$BG_DIR/whirlyos-official-wallpaper.jpg"
+
+# Fallback in case wallpaper uses lower/upper case PNG format
+if [ ! -f "$WALLPAPER_PATH" ] && [ -f "$BG_DIR/whirlyos-official-wallpaper.PNG" ]; then
+    WALLPAPER_PATH="$BG_DIR/whirlyos-official-wallpaper.PNG"
+fi
+
+# Set System-wide Permanent Default Wallpaper via GSchema Override
 cat <<EOF > /usr/share/glib-2.0/schemas/99_whirlyos.gschema.override
 [org.gnome.desktop.background]
-picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
-picture-uri-dark='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
+picture-uri='file://$WALLPAPER_PATH'
+picture-uri-dark='file://$WALLPAPER_PATH'
+picture-options='zoom'
 
 [org.gnome.desktop.screensaver]
-picture-uri='file://$BG_DIR/whirlyos-official-wallpaper.jpg'
+picture-uri='file://$WALLPAPER_PATH'
+picture-options='zoom'
 
 [org.gnome.shell]
 favorite-apps=['chromium-browser.desktop', 'org.kde.gcompris.desktop', 'scratch3.desktop', 'org.gnome.Nautilus.desktop']
 EOF
 
-# Compile the new settings into the system
+# Compile the new settings into the system schema
 glib-compile-schemas /usr/share/glib-2.0/schemas
+
+# Lock wallpaper settings for all accounts via dconf system profile
+mkdir -p /etc/dconf/profile
+cat <<EOF > /etc/dconf/profile/user
+user-db:user
+system-db:local
+EOF
+
+mkdir -p /etc/dconf/db/local.d/locks
+cat <<EOF > /etc/dconf/db/local.d/00-whirlyos-wallpaper
+[org/gnome/desktop/background]
+picture-uri='file://$WALLPAPER_PATH'
+picture-uri-dark='file://$WALLPAPER_PATH'
+picture-options='zoom'
+EOF
+
+cat <<EOF > /etc/dconf/db/local.d/locks/00-whirlyos-wallpaper
+/org/gnome/desktop/background/picture-uri
+/org/gnome/desktop/background/picture-uri-dark
+/org/gnome/desktop/background/picture-options
+EOF
+
+dconf update
 
 # --- STEP 5: CLEANUP & FINAL SYNC ---
 echo "✨ Finalizing system sync..."
