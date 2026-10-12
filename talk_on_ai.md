@@ -10,6 +10,6 @@ There are also drawbacks of AI. While AI can be helpful, it can make things up. 
 
 ## Would AI be in WhirlyOS?
 
-No, WhirlyOS forbids AI integration because of one thing: disk space and system problems. Since AI makes mistakes, it may mistake a legit object as dangerous. Of course AI does not know the difference between black and white, and PixOS bots like Eva can give fake notes on "dangereous programs".
+No, WhirlyOS forbids AI integration because of one thing: disk space and system problems. Since AI makes mistakes, it may mistake a legit object as dangerous. Of course AI does not know the difference between black and white, and PixOS bots like Eva can give fake notes on "dangerous programs".
 
 If AI would be in WhirlyOS, it would require both Ollama and Python. Ollama is an open-source AI model that is local, which is heavy to use on a normal PC. Since it takes some disk space, it can increase the disk image size which would be unsuitable. That is why I forbade AI integration to make sure that the ISO disk image size stays steady, and to prevent problems.
